@@ -1,0 +1,13 @@
+# Table of content
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: Programming Environment
+  chapters:
+  - file: ide/install
+- caption: Electronics & IoT
+  chapters:
+  - file: iot/micropython
+  - file: iot/gpio
