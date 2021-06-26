@@ -7,6 +7,14 @@ parts:
 - caption: Programming Environment
   chapters:
   - file: ide/install
+    sections:
+    - file: ide/deploy_with_balena
+  - file: ide/architecture
+  - file: ide/security
+  - file: ide/service
+    sections:
+    - file: ide/services/plotserver
+  - file: ide/issues
 - caption: Electronics & IoT
   chapters:
   - file: iot/micropython
