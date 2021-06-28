@@ -7,13 +7,18 @@ parts:
 - caption: Programming Environment
   chapters:
   - file: ide/install
+  - file: ide/configuration
+  - file: ide/services
     sections:
-    - file: ide/deploy_with_balena
-  - file: ide/architecture
-  - file: ide/security
-  - file: ide/service
-    sections:
+    - file: ide/services/jupyter
+    - file: ide/services/editor
+    - file: ide/services/backup
     - file: ide/services/plotserver
+    - file: ide/services/balena-cli
+    - file: ide/services/samba
+    - file: ide/services/mosquitto
+    - file: ide/services/gcc
+  - file: ide/security
   - file: ide/issues
 - caption: Electronics & IoT
   chapters:
