@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MicroPython &#8212; Electronics for IoT</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GPIO" href="gpio.html" />
+    <link rel="prev" title="Issues" href="../ide/issues.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  Programming Environment
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ide/install.html">
+   Install ide49
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ide/overview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ide/security.html">
+   Security
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/plotserver.html">
+     Plotserver
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ide/issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Electronics &amp; IoT
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   MicroPython
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="gpio.html">
+   GPIO
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/iot/micropython.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fiot/micropython.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/executablebooks/jupyter-book/edit/master/docs/iot/micropython.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/iot/micropython.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connecting-to-the-board">
+   Connecting to the Board
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naming-the-board">
+   Naming the Board
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hello-world">
+   Hello World
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="micropython">
+<h1>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://micropython.org/">MicroPython</a> is a port of <a class="reference external" href="https://www.python.org/">Python</a> to <a class="reference external" href="https://en.wikipedia.org/wiki/Microcontroller">microcontrollers</a>.</p>
+<p>A wide variety of devices are supported by MicroPython that cover a wide range of computer power, peripherals, wireless connectivity, power dissipation. In this overview we use an <a class="reference external" href="https://www.espressif.com/en/products/socs/esp32">ESP32</a>. With built-in support for <a class="reference external" href="https://en.wikipedia.org/wiki/Wi-Fi">WiFi</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Bluetooth">Bluetooth</a> it is well suited for IoT projects.</p>
+<p>Like all computer chips, the ESP32 requires a few additional components - memory, a USB interface, power supply - to operate. Fortunately breakout boards are available that not only contain these circuits but also a mechanically and electrically conventient interface for connecting with IoT projects.</p>
+<p><img alt="TinyPICO" src="../_images/tinypico-features-v2.jpg" /></p>
+<p>Boards are available from several vendors including the manufacturer. Below we use the <a class="reference external" href="https://www.tinypico.com/">TinyPICO</a>, but boards from other vendors will work with minor modifications to the code.</p>
+<div class="section" id="connecting-to-the-board">
+<h2>Connecting to the Board<a class="headerlink" href="#connecting-to-the-board" title="Permalink to this headline">¶</a></h2>
+<p>The first step after connecting the microcontroller to the Raspberry Pi with a USB cable is discovering the port to which it is connected.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50:02:91:a1:a7:2c  serial:///dev/ttyUSB0  
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">%discover</span></code> magic searches all ports for available devices. For each device it reports a hexadecimal string that uniquely identifies the processors (hence you’ll get a different number) and the port it is connected to.</p>
+<p>Connection is initiated with the <code class="docutils literal notranslate"><span class="pre">%connect</span></code> magic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="mi">50</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="n">a7</span><span class="p">:</span><span class="mi">2</span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to 50:02:91:a1:a7:2c @ serial:///dev/ttyUSB0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Code typed into notebook cells is sent to the microcontroller and results reported back. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0
+1 1
+2 32
+3 243
+4 1024
+5 3125
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>But how do we know that the code has actually been executed on the microcontroller and not the Raspberry Pi?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esp32
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>On the “host” (the Raspberry Pi) we get a different response:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>linux
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="naming-the-board">
+<h2>Naming the Board<a class="headerlink" href="#naming-the-board" title="Permalink to this headline">¶</a></h2>
+<p>Identifying microcontrollers with hexadecimal strings is useful for keeping track of devices (I have an entire drawer full), but about as informative and convenient to remember as a phone number.</p>
+<p>Fortunately it is easy to associate the device with a “name”, by simply recording this information in a file and saving it to folder <code class="docutils literal notranslate"><span class="pre">~/iot49/devices</span></code>. The <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> magic does this for us:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="o">~/</span><span class="n">iot49</span><span class="o">/</span><span class="n">devices</span><span class="o">/</span><span class="n">boards</span><span class="o">.</span><span class="n">yaml</span>
+<span class="n">pico</span><span class="p">:</span>
+    <span class="n">uid</span><span class="p">:</span> <span class="mi">50</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="n">a7</span><span class="p">:</span><span class="mi">2</span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing /home/iot/iot49/devices/boards.yaml
+</pre></div>
+</div>
+</div>
+</div>
+<p>Don’t forget to change the name of the microcontroller (I called mine <code class="docutils literal notranslate"><span class="pre">pico</span></code>) and it’s uid! If you have more than one device, you can add additional entries to the same file or a different one in <code class="docutils literal notranslate"><span class="pre">~/iot49/devices</span></code>. The name does not matter, only the extension (<code class="docutils literal notranslate"><span class="pre">.yaml</span></code>).</p>
+<p>Now <code class="docutils literal notranslate"><span class="pre">%discover</span></code> reports the name rather than a hex number.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pico  serial:///dev/ttyUSB0  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Connect also understand the name:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">pico</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to pico @ serial:///dev/ttyUSB0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="hello-world">
+<h2>Hello World<a class="headerlink" href="#hello-world" title="Permalink to this headline">¶</a></h2>
+<p>Blinking an LED is a good first “verification” that the controller actually works. Most breakout boards include one or serveral LEDs that can easily be turned on and off by the microcontroller. For example, the code for <a class="reference external" href="https://www.adafruit.com/product/3405">Adafruit Huzzah32</a> is</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">huzzah32</span>
+
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="c1"># connect to the LED and configure the Pin as an output</span>
+<span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+
+<span class="c1"># turn the LED on and off ten times</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+    <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to huzzah32 @ serial:///dev/ttyUSB1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This code snippet first imports <code class="docutils literal notranslate"><span class="pre">Pin</span></code>, a class that is specific to MicroPython and allows to set or read the value of a and electrical connection between 3.3V and 0V.</p>
+<p>The ESP32 has many electrical connections (pins) that are identified by numbers. On the Huzzah32 board the on-board LED is connected to pin number 13.</p>
+<p>Alas, the TinyPICO has a more sophisticated three-color LED that is controlled from an SPI bus. Fortunately the code to operate the LED are already flashed into the MicroPython interpreter installed on the TinyPICO. For now we simply copy an <a class="reference external" href="https://www.tinypico.com/code-examples">example</a> from the web, leaving the details for later.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">pico</span>
+
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">SoftSPI</span><span class="p">,</span> <span class="n">Pin</span>
+<span class="kn">import</span> <span class="nn">tinypico</span> <span class="k">as</span> <span class="nn">TinyPICO</span>
+<span class="kn">from</span> <span class="nn">dotstar</span> <span class="kn">import</span> <span class="n">DotStar</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># Configure the DotStar 3-color LED</span>
+<span class="n">spi</span> <span class="o">=</span> <span class="n">SoftSPI</span><span class="p">(</span><span class="n">sck</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">TinyPICO</span><span class="o">.</span><span class="n">DOTSTAR_CLK</span><span class="p">),</span> 
+              <span class="n">mosi</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">TinyPICO</span><span class="o">.</span><span class="n">DOTSTAR_DATA</span><span class="p">),</span> 
+              <span class="n">miso</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="n">TinyPICO</span><span class="o">.</span><span class="n">SPI_MISO</span><span class="p">))</span> 
+<span class="n">dotstar</span> <span class="o">=</span> <span class="n">DotStar</span><span class="p">(</span><span class="n">spi</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">brightness</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="c1"># One DotStar, half brightness</span>
+<span class="n">TinyPICO</span><span class="o">.</span><span class="n">set_dotstar_power</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create a colour wheel index int</span>
+<span class="n">color_index</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># Rainbow colours on the Dotstar</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Get the R,G,B values of the next colour</span>
+    <span class="n">r</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">b</span> <span class="o">=</span> <span class="n">TinyPICO</span><span class="o">.</span><span class="n">dotstar_color_wheel</span><span class="p">(</span><span class="n">color_index</span><span class="p">)</span>
+    <span class="c1"># Set the colour on the dotstar</span>
+    <span class="n">dotstar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="c1"># Increase the wheel index</span>
+    <span class="n">color_index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># Sleep a little so the colour cycle isn&#39;t too fast</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to pico @ serial:///dev/ttyUSB0</span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Interrupted
+</pre></div>
+</div>
+</div>
+</div>
+<p>Admire the beautiful colors. Click the black square in the toolbar at the top of the notebook to stop the show.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./iot"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../ide/issues.html" title="previous page">Issues</a>
+    <a class='right-next' id="next-link" href="gpio.html" title="next page">GPIO</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
