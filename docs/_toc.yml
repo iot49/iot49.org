@@ -4,10 +4,16 @@
 format: jb-book
 root: intro
 parts:
-- caption: Programming Environment
+- caption: ide49
   chapters:
   - file: ide/install
+  - file: ide/getting_started
   - file: ide/configuration
+    sections:
+    - file: ide/config/password
+    - file: ide/config/backup
+    - file: ide/config/samba
+    - file: ide/config/https
   - file: ide/services
     sections:
     - file: ide/services/jupyter
@@ -18,9 +24,9 @@ parts:
     - file: ide/services/samba
     - file: ide/services/mosquitto
     - file: ide/services/gcc
-  - file: ide/security
+  - file: ide/app
   - file: ide/issues
-- caption: Electronics & IoT
+- caption: IoT
   chapters:
   - file: iot/micropython
   - file: iot/gpio
