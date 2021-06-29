@@ -13,8 +13,6 @@
 * Web-browser (e.g. Chrome)
 * [Balena Etcher](https://www.balena.io/etcher/), available for Mac, Window, and Linux (free)
 
-<span style="font-size:16pt;">Hardware</span>
-
 <span style="font-size:13pt;">1. Download Balena OS</span>
 
 Open the [*ide49* repository on github](https://github.com/iot49/ide49) and click the 
