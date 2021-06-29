@@ -49,6 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/iot/micropython.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="GPIO" href="gpio.html" />
@@ -84,23 +85,26 @@
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
-  Programming Environment
+  ide49
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../ide/install.html">
-   Install ide49
+   Install
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ide/overview.html">
-   Overview
+  <a class="reference internal" href="../ide/getting-started.html">
+   Getting Started
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../ide/security.html">
-   Security
+  <a class="reference internal" href="../ide/configuration.html">
+   Configuration
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -109,11 +113,88 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../ide/config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/config/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/config/https.html">
+     Certificates
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ide/iot-kernel.html">
+   IoT Kernel
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ide/services.html">
+   Services
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/jupyter.html">
+     Jupyter Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/editor.html">
+     Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../ide/services/plotserver.html">
      Plotserver
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/balena-cli.html">
+     Balena CLI (Command Line Interface)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/mosquitto.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/gcc.html">
+     GCC
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ide/app.html">
+   IoT-dev Architecture Decisions
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ide/issues.html">
@@ -123,7 +204,7 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Electronics &amp; IoT
+  IoT
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -135,6 +216,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="gpio.html">
    GPIO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="install_micropython.html">
+   Install MicroPython
   </a>
  </li>
 </ul>
@@ -194,14 +280,14 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/iot49/iot49.org.git"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fiot/micropython.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org.git/issues/new?title=Issue%20on%20page%20%2Fiot/micropython.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/executablebooks/jupyter-book/edit/master/docs/iot/micropython.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org.git/edit/master/docs/iot/micropython.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -221,7 +307,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/iot/micropython.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/iot49/iot49.org.git/master?urlpath=tree/docs/iot/micropython.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -272,10 +358,10 @@
   <div class="section" id="micropython">
 <h1>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://micropython.org/">MicroPython</a> is a port of <a class="reference external" href="https://www.python.org/">Python</a> to <a class="reference external" href="https://en.wikipedia.org/wiki/Microcontroller">microcontrollers</a>.</p>
-<p>A wide variety of devices are supported by MicroPython that cover a wide range of computer power, peripherals, wireless connectivity, power dissipation. In this overview we use an <a class="reference external" href="https://www.espressif.com/en/products/socs/esp32">ESP32</a>. With built-in support for <a class="reference external" href="https://en.wikipedia.org/wiki/Wi-Fi">WiFi</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Bluetooth">Bluetooth</a> it is well suited for IoT projects.</p>
+<p>A wide variety of devices are supported by MicroPython that cover a wide range of computer power, peripherals, wireless connectivity, power dissipation. In this overview we use an <a class="reference external" href="https://www.espressif.com/en/products/socs/esp32">ESP32</a> from <a class="reference external" href="https://www.espressif.com/">Espressif</a>. With built-in support for <a class="reference external" href="https://en.wikipedia.org/wiki/Wi-Fi">WiFi</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Bluetooth">Bluetooth</a> it is well suited for IoT projects.</p>
 <p>Like all computer chips, the ESP32 requires a few additional components - memory, a USB interface, power supply - to operate. Fortunately breakout boards are available that not only contain these circuits but also a mechanically and electrically conventient interface for connecting with IoT projects.</p>
 <p><img alt="TinyPICO" src="../_images/tinypico-features-v2.jpg" /></p>
-<p>Boards are available from several vendors including the manufacturer. Below we use the <a class="reference external" href="https://www.tinypico.com/">TinyPICO</a>, but boards from other vendors will work with minor modifications to the code.</p>
+<p>Boards are available from several vendors including Espressif. In this guide we use the <a class="reference external" href="https://www.tinypico.com/">TinyPICO</a>, but boards from other vendors will work with minor modifications to the code. The <em>TinyPICO</em> comes with MicroPython preinstalled. If you use a different board, you need to first <a class="reference internal" href="install_micropython.html"><span class="doc std std-doc">install MicroPython</span></a>.</p>
 <div class="section" id="connecting-to-the-board">
 <h2>Connecting to the Board<a class="headerlink" href="#connecting-to-the-board" title="Permalink to this headline">¶</a></h2>
 <p>The first step after connecting the microcontroller to the Raspberry Pi with a USB cable is discovering the port to which it is connected.</p>

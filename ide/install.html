@@ -49,9 +49,10 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/ide/install.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Configuration" href="configuration.html" />
+    <link rel="next" title="Getting Started" href="getting-started.html" />
     <link rel="prev" title="Electronics for IoT" href="../intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -84,26 +85,61 @@
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
-  Programming Environment
+  ide49
  </span>
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Install ide49
+   Install
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="configuration.html">
-   Configuration
+  <a class="reference internal" href="getting-started.html">
+   Getting Started
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="services.html">
-   Overview
+  <a class="reference internal" href="configuration.html">
+   Configuration
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/https.html">
+     Certificates
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="services.html">
+   Services
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -114,11 +150,46 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="services/editor.html">
+     Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="services/plotserver.html">
      Plotserver
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/balena-cli.html">
+     Balena CLI (Command Line Interface)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/mosquitto.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/gcc.html">
+     GCC
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="app.html">
+   IoT-dev Architecture Decisions
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="issues.html">
@@ -128,7 +199,7 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Electronics &amp; IoT
+  IoT
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -183,9 +254,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/ide/install.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/ide/install.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -199,14 +270,14 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/iot49/iot49.org.git"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fide/install.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org.git/issues/new?title=Issue%20on%20page%20%2Fide/install.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/executablebooks/jupyter-book/edit/master/docs/ide/install.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org.git/edit/master/docs/ide/install.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -221,77 +292,11 @@
 
             <!-- Launch buttons -->
 
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/ide/install.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
         </div>
 
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hardware">
-   Hardware
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#software">
-   Software
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#installation">
-   Installation
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#flash-balena-os-to-sd-card">
-     1. Flash Balena OS to SD Card
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#install-ide49-on-the-raspberry-pi">
-     2. Install
-     <em>
-      ide49
-     </em>
-     on the Raspberry PI
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#connecting-to-the-raspberry-pi">
-     3. Connecting to the Raspberry PI
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#turning-off-the-raspberry-pi">
-     4. Turning off the Raspberry PI
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -301,55 +306,55 @@
               <div>
                 
   <div class="section" id="install-ide49">
-<h1>Install ide49<a class="headerlink" href="#install-ide49" title="Permalink to this headline">¶</a></h1>
-<p><em>ide49</em> is an environment for developing IoT applications on Microcontrollers over the Internet. It runs on a Raspberry PI. It has the following requirements:</p>
-<div class="section" id="hardware">
-<h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h2>
+<h1>Install <em>ide49</em><a class="headerlink" href="#install-ide49" title="Permalink to this headline">¶</a></h1>
+<p><em>ide49</em> is an environment for developing IoT applications on Microcontrollers over the Internet. It runs on a Raspberry PI. To install it, you need the following:</p>
+<p><span style="font-size:13pt;">Hardware</span></p>
 <ul class="simple">
-<li><p>Raspberry PI 4 with 2GBytes of RAM (no need for more).</p></li>
+<li><p>Raspberry PI 4 (2GBytes suffice for <em>iot49</em>).</p></li>
 <li><p>SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).</p></li>
-<li><p>A host computer (e.g. a laptop) with an SD Card slot or attachment (only used for installation)</p></li>
+<li><p>A host computer (e.g. a laptop) with an SD Card slot (only used for installation)</p></li>
 </ul>
-</div>
-<div class="section" id="software">
-<h2>Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h2>
+<p><span style="font-size:13pt;">Software</span></p>
 <ul class="simple">
 <li><p>Web-browser (e.g. Chrome)</p></li>
 <li><p><a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a>, available for Mac, Window, and Linux (free)</p></li>
 </ul>
-</div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="flash-balena-os-to-sd-card">
-<h3>1. Flash Balena OS to SD Card<a class="headerlink" href="#flash-balena-os-to-sd-card" title="Permalink to this headline">¶</a></h3>
-<p>Open the <a class="reference external" href="https://github.com/iot49/ide49"><em>ide49</em> repository on github</a> and click the <code class="docutils literal notranslate"><span class="pre">Deploy</span> <span class="pre">with</span> <span class="pre">Balena</span></code> button. Create a (free) account for <a class="reference external" href="https://www.balena.io/">balena.io</a> or login to your existing account.</p>
-<p>In the popup window, choose a name for your application (e.g. <em>ide49</em>). Click <em>advanced</em> and set the timezone (TZ) to the desired value. Click <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">here</a> for a list of valid TZ names.
-and click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">and</span> <span class="pre">Deploy</span></code>.</p>
-<p>Leave the other variables at their defaults (they can be changed later) and click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">and</span> <span class="pre">Deploy</span></code>. The new browser window is the Balena dashboard for the ide49 application. Click <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Add</span> <span class="pre">device</span></code>. You get another popup:</p>
+<p><span style="font-size:16pt;">Hardware</span></p>
+<p><span style="font-size:13pt;">1. Download Balena OS</span></p>
+<p>Open the <a class="reference external" href="https://github.com/iot49/ide49"><em>ide49</em> repository on github</a> and click the</p>
+<p><img alt="Deploy with Balena" src="../_images/deploy.svg" /></p>
+<p>button. Create a (free) account for <a class="reference external" href="https://www.balena.io/">balena.io</a> or login to your existing account.</p>
+<p>In the popup window, choose a name for your application (e.g. <em>ide49</em>). Click <em>advanced</em> and set the timezone (TZ) to the desired value. Click <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">here</a> for a list of valid TZ names. Click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">and</span> <span class="pre">Deploy</span></code>.</p>
+<p>Leave the other variables at their defaults (they can be changed later) and click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">and</span> <span class="pre">Deploy</span></code>. The browser is redirected to the Balena dashboard for the ide49 application. Click <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Add</span> <span class="pre">device</span></code>. You get another popup:</p>
 <ul class="simple">
 <li><p>under edition, select <code class="docutils literal notranslate"><span class="pre">Development</span></code></p></li>
 <li><p>click the <code class="docutils literal notranslate"><span class="pre">Wifi</span> <span class="pre">+</span> <span class="pre">Ethernet</span></code> button and enter your WiFi credentials</p></li>
 </ul>
-<p>Accept the defaults for everything else and hit the <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">balenaOS</span></code> button. Keep the browser window open. Once the download finishes, start the <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a> to flash the downloaded zip-file to an SD Card. Insert the card in your computer (laptop), click <em>Flash from file</em> and choose the <em>balena-cloud … img.zip</em>, choose the SD Card as target and hit <code class="docutils literal notranslate"><span class="pre">Flash</span></code>. You may be asked to enter the administrator password to enable the flash.</p>
-</div>
-<div class="section" id="install-ide49-on-the-raspberry-pi">
-<h3>2. Install <em>ide49</em> on the Raspberry PI<a class="headerlink" href="#install-ide49-on-the-raspberry-pi" title="Permalink to this headline">¶</a></h3>
+<p>Accept the defaults for everything else and hit the <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">balenaOS</span></code> button. Keep the browser window open.</p>
+<p><span style="font-size:13pt;">2. Flash Balena OS to SD Card</span></p>
+<p>Once the download finishes, start the <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a> to flash the downloaded zip-file to an SD Card. Insert the card in your computer (laptop), click <em>Flash from file</em> and choose the <em>balena-cloud … img.zip</em>, choose the SD Card as target and hit <code class="docutils literal notranslate"><span class="pre">Flash</span></code>. You may be asked to enter the administrator password to enable the flash.</p>
+<p><span style="font-size:13pt;">3. Install <em>ide49</em> on the Raspberry PI</span></p>
 <p>Remove the SD Card from the host and insert it into the Raspberry PI, power up the device. It will automatically configure the OS. Head back to the browser window with the <em>Balena dashboard</em> and wait a few minutes for the new device to appear.</p>
-<p>The new device has some creative name (mine was called <em>hidden-sun</em>). Click on the device name. At the top of the page is that funny device name. Click the pencil to change it. Also listed are some statistics of your Raspberry PI (memory usage, device temperature, local ip address, etc).</p>
+<p><img alt="Balena dashboard" src="../_images/device_dashboard.png" /></p>
+<p>The new device has some creative name (like <em>hidden-sun</em>). Click on the device name. The top of the page show poetic device name. Click the pencil to change it. Also listed are some statistics of your Raspberry PI (memory usage, device temperature, local ip address, etc).</p>
+<p><img alt="Balena device status" src="../_images/device_stats.png" /></p>
 <p>Click the application name in the Balena dashboard and wait for the release to complete (about twenty minutes). Once it’s complete, the Raspberry PI will automatically download it. You can see the progress in the device window with populates itself with a list of services.</p>
+<p><img alt="Balena services" src="../_images/services.png" /></p>
 <p>After the download completes the application will automatically start.</p>
-</div>
-<div class="section" id="connecting-to-the-raspberry-pi">
-<h3>3. Connecting to the Raspberry PI<a class="headerlink" href="#connecting-to-the-raspberry-pi" title="Permalink to this headline">¶</a></h3>
-<p>Once the download completes and the application started (as indicated in the device dashboard), connect to the Raspberry PI at <a class="reference external" href="http://ide49.local">http://ide49.local</a>.</p>
-<p>If this does not work, try http://LOCAL_IP_ADDRESS instead. Substitute the value <em>LOCAL_IP_ADDRESS</em> from the device dashboard.</p>
-<p>Head over to the <span class="xref myst">ide49 Overview</span> for further steps. Or, if you rather dive right in with microcontroller programming, head over to <a class="reference internal" href="../iot/micropython.html"><span class="doc std std-doc">MicroPython with <em>ide49</em></span></a>.</p>
-</div>
-<div class="section" id="turning-off-the-raspberry-pi">
-<h3>4. Turning off the Raspberry PI<a class="headerlink" href="#turning-off-the-raspberry-pi" title="Permalink to this headline">¶</a></h3>
-<p>Should you ever want to turn off your Raspberry PI don’t just pull the power cord. Instead head to the dashboard. At the top right is a button. Click it to get several options, including <em>shutdown</em>.</p>
-</div>
-</div>
+<p><span style="font-size:13pt;">4. Connecting to the Raspberry PI</span></p>
+<p>Once the download completes and the application started (as indicated in the device dashboard), connect to the Raspberry PI at <a class="reference external" href="http://iot49.local">http://iot49.local</a>.</p>
+<p>If this does not work, try http://LOCAL_IP_ADDRESS instead. Substitute the value <em>LOCAL_IP_ADDRESS</em> with the address shown on the device dashboard.</p>
+<p><img alt="ide49 Landing Page" src="../_images/ide49_landing.png" /></p>
+<p>Click on <em>Jupyter</em>. You will get a warning (the image and text may differ depending on the browser you are using):</p>
+<img src="figures/browser_warning.png" alt="Browser Warning" width="500"/>
+<p>Click “Advanced” and then “proceed anyway”. The page on <a class="reference internal" href="config/https.html"><span class="doc std std-doc">https</span></a> has information about this warning and how to get rid of it.</p>
+<p>At the login window, enter the default username and password are (both <em>iot49</em>; see <a class="reference internal" href="config/password.html"><span class="doc std std-doc">Change Password</span></a> change).</p>
+<div style="font-size:15pt;font-weight:bold;text-align:center;color:green">Congratulations, you have completed the installation!</div>
+</p>
+<p><img alt="Jupyter" src="../_images/jupyter.png" /></p>
+<p>Proceed to the next section, <span class="xref myst">Getting Started</span>.</p>
+<p><span style="font-size:13pt;">5. Turning off the Raspberry PI</span></p>
+<p>To turn off your Raspberry PI don’t just pull the power cord. Instead head to the dashboard on <a class="reference external" href="https://balena.io">https://balena.io</a>. At the top right is a button. Click it to get several options, including <em>shutdown</em>.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -361,16 +366,16 @@ and click <code class="docutils literal notranslate"><span class="pre">Create</s
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "iot_kernel"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "iot_kernel",
+            kernelName: "python3",
             path: "./ide"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'iot_kernel'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -378,7 +383,7 @@ and click <code class="docutils literal notranslate"><span class="pre">Create</s
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">Electronics for IoT</a>
-    <a class='right-next' id="next-link" href="configuration.html" title="next page">Configuration</a>
+    <a class='right-next' id="next-link" href="getting-started.html" title="next page">Getting Started</a>
 
         </div>
         

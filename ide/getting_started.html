@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Overview &#8212; Electronics for IoT</title>
+    <title>Getting Started &#8212; Electronics for IoT</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,9 +49,10 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/ide/getting_started.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Security" href="security.html" />
+    <link rel="next" title="Configuration" href="configuration.html" />
     <link rel="prev" title="Install ide49" href="install.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -84,23 +85,26 @@
     <div class="bd-toc-item active">
         <p class="caption">
  <span class="caption-text">
-  Programming Environment
+  ide49
  </span>
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
-   Install ide49
+   Install
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Overview
+   Getting Started
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="security.html">
-   Security
+  <a class="reference internal" href="configuration.html">
+   Configuration
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -109,11 +113,83 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/https.html">
+     Certificates
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="services.html">
+   Services
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/jupyter.html">
+     Jupyter Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/editor.html">
+     Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="services/plotserver.html">
      Plotserver
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/balena-cli.html">
+     Balena CLI (Command Line Interface)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/mosquitto.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/gcc.html">
+     GCC
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="app.html">
+   IoT-dev Architecture Decisions
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="issues.html">
@@ -123,7 +199,7 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Electronics &amp; IoT
+  IoT
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -178,7 +254,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/ide/overview.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/ide/getting_started.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -194,14 +270,14 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/iot49/iot49.org.git"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fide/overview.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org.git/issues/new?title=Issue%20on%20page%20%2Fide/getting_started.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/executablebooks/jupyter-book/edit/master/docs/ide/overview.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org.git/edit/master/docs/ide/getting_started.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -221,7 +297,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/ide/overview.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/iot49/iot49.org.git/master?urlpath=tree/docs/ide/getting_started.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -246,27 +322,14 @@
         
               <div>
                 
-  <div class="section" id="overview">
-<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>Connect to the Raspberry PI at <a class="reference external" href="http://ide49.local">http://ide49.local</a>. You will be greeted by your browser with a message that this is unsafe (<a class="reference internal" href="security.html"><span class="doc std std-doc">more on that later</span></a>). Click the advanced button (or whatever your particular browser calls the workaround) and proceed anyway.</p>
-<p>You get a simple menu with several option including <em>Jupyter</em>, <em>Editor</em>, <em>Backup</em>, etc. Each corresponds to a function of <em>ide49</em>:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="services/jupyter.html"><span class="doc std std-doc">Jupyter</span></a> is a <a class="reference external" href="https://jupyter.org/">code execution environment</a> that is quite popular among datascientists and is also a great option for interacting with and programming microcontrollers.</p></li>
-<li><p><a class="reference internal" href="services/editor.html"><span class="doc std std-doc">Editor</span></a> is an Internet enabled version of <a class="reference external" href="https://code.visualstudio.com/">Microsoft Visual Studio Code</a>, a powerful coding envornment.</p></li>
-<li><p><a class="reference internal" href="services/backup.html"><span class="doc std std-doc">Backup</span></a> is a versatile applications for backing up the data on your Raspberry PI to the cloud or local storage. It is based on <a class="reference external" href="https://www.duplicati.com/">Duplicati</a>.</p></li>
-<li><p>The [Webbrowser] is implemented with <a class="reference external" href="https://www.nginx.com/">nginx</a>. It operates as a reverse proxy responsible for encryption and password protection and serves <em>ide49</em> the landing page.</p></li>
-</ul>
-<p>The other options are more specialized.</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="services/plotserver.html"><span class="doc std std-doc">Plots</span></a> is a plotting environment that is convenient to display sensor data in a browser window. Microcontrollers can send this data directly to the <em>plot</em> application.</p></li>
-<li><p><a class="reference internal" href="services/balena-cli.html"><span class="doc std std-doc">Balena CLI</span></a> is the tool used to create and modify applications such as <em>ide49</em>. It lets you change <em>ide49</em> right from <em>ide49</em> itself!</p></li>
-</ul>
-<p>Additional services provided by <em>ide49</em> include:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="services/mosquitto.html"><span class="doc std std-doc">MQTT broker</span></a>.</p></li>
-<li><p><a class="reference internal" href="services/samba.html"><span class="doc std std-doc">Samba/CIFS file server</span></a> that exports user data stored on the Raspberry PI. It is disabled by default.</p></li>
-<li><p><a class="reference internal" href="services/gcc.html"><span class="doc std std-doc">ARM cross compiler</span></a> used to compile MicroPython and other microcontroller applications written in C/C++.</p></li>
-</ul>
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p><em>ide49</em> offers a range of features including a code editor, compilers (e.g. to compile MicroPython), an MQTT broker, etc.</p>
+<p>All interaction with microcontrollers takes place in the <em>Jupyter Lab</em> service. You can access it at <a class="reference external" href="https://iot49.local/jupyter">https://iot49.local/jupyter</a> (if you have not changed the DNS name of the Raspberry PI) or from the <em>Jupyter</em> link of <em>ide49</em> dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
+<p>There you will be presented with the page below.</p>
+<p><img alt="Jupyter" src="../_images/jupyter_annotated.png" /></p>
+<p>For illustration, the key features are highlighted. The main features include a <em>Python 3 Kernel</em> for executing code on the Raspberry PI, a <em>Terminal</em> for running shell commands, and, the <strong>IoT Kernel</strong> for programming microcontrollers. Click on that button to get a new window:</p>
+<p>Click on the</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -294,8 +357,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="install.html" title="previous page">Install ide49</a>
-    <a class='right-next' id="next-link" href="security.html" title="next page">Security</a>
+    <a class='left-prev' id="prev-link" href="install.html" title="previous page">Install <em>ide49</em></a>
+    <a class='right-next' id="next-link" href="configuration.html" title="next page">Configuration</a>
 
         </div>
         

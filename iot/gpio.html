@@ -49,6 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/iot/gpio.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="MicroPython" href="micropython.html" />
@@ -93,13 +94,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ide/overview.html">
-   Overview
+  <a class="reference internal" href="../ide/configuration.html">
+   Configuration
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../ide/security.html">
-   Security
+  <a class="reference internal" href="../ide/services.html">
+   Overview
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -108,11 +109,51 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/jupyter.html">
+     Jupyter Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/editor.html">
+     Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../ide/services/plotserver.html">
      Plotserver
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/balena-cli.html">
+     Balena CLI (Command Line Interface)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/mosquitto.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/services/gcc.html">
+     GCC
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ide/app.html">
+   IoT-dev Architecture Decisions
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ide/issues.html">
@@ -193,14 +234,14 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/iot49/iot49.org.git"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fiot/gpio.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org.git/issues/new?title=Issue%20on%20page%20%2Fiot/gpio.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/executablebooks/jupyter-book/edit/master/docs/iot/gpio.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org.git/edit/master/docs/iot/gpio.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -220,7 +261,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/iot/gpio.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/iot49/iot49.org.git/master?urlpath=tree/docs/iot/gpio.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
