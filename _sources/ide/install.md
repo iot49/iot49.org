@@ -62,7 +62,9 @@ If this does not work, try http://LOCAL_IP_ADDRESS instead. Substitute the value
 
 Click on *Jupyter*. You will get a warning (the image and text may differ depending on the browser you are using):
 
-<img src="figures/browser_warning.png" alt="Browser Warning" width="500"/>
+```{image} figures/browser_warning.png
+:width: 500px
+```
 
 Click "Advanced" and then "proceed anyway". The page on [https](config/https) has information about this warning and how to get rid of it.
 

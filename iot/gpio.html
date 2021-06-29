@@ -348,7 +348,8 @@
 <p>Several pins (3V3, 5V, BAT, GND) are dedicated to power, and one is used for reset. The connections APA102 3-color LED are internal to the board.</p>
 <p>This leaves 14 pins to GPIO. All are capable of digital input and output. Two, marked DAC1 and DAC2, can be configured for analog output an several, marked ADC, for analog input. Note that many pins have multiple functions set (on the fly) by software, but pins cannot serve multiple functions simultaneously.</p>
 <p>To checkout the pins you need a voltmeter (DVM, digital multimeter). These are available online with prices starting at less then ten dollar increasing to well over a thousand. Twenty dollars gets a meter that is perfectly adequate for our purposes.</p>
-<img src="figures/dvm.jpg" alt="Digital Multimeter" width="200"/><div class="section" id="supply">
+<a class="reference internal image-reference" href="../_images/dvm.jpg"><img alt="../_images/dvm.jpg" src="../_images/dvm.jpg" style="width: 200px;" /></a>
+<div class="section" id="supply">
 <h2>Supply<a class="headerlink" href="#supply" title="Permalink to this headline">¶</a></h2>
 <p>Let’s start with measuring the supply voltage. For that connect one terminal of the DVM to one of the pins labeled GND in the pinout diagram for the TinyPICO and the other to 5V. You will measure a little less than 5V because the input from the USB port passes through a protection diode on the TinyPICO board (see <a class="reference external" href="https://github.com/tinypico/tinypico-hardware">schematic</a>).</p>
 <p>By contrast, the 3.3V output comes straight from the on-board regulator and is very close to the nominal voltage.</p>
