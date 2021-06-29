@@ -73,7 +73,7 @@ At the login window, enter the default username and password are (both *iot49*; 
 
 ![Jupyter](figures/jupyter.png)
 
-Proceed to the next section, [Getting Started](getting_started).
+Proceed to the next section, [Getting Started](getting-started).
 
 <span style="font-size:13pt;">5. Turning off the Raspberry PI</span>
 

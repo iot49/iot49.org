@@ -53,7 +53,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Jupyter Lab" href="services/jupyter.html" />
-    <link rel="prev" title="Customize ide49" href="config/customize.html" />
+    <link rel="prev" title="IoT Kernel" href="iot-kernel.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -97,6 +97,11 @@
    </em>
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting-started.html">
+   Getting Started
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="configuration.html">
    Configuration
@@ -109,7 +114,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="config/password.html">
-     Password
+     Change Password
     </a>
    </li>
    <li class="toctree-l2">
@@ -119,18 +124,25 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="config/samba.html">
-     Samba
+     Samba File Server/Client
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="config/customize.html">
-     Customize
-     <em>
-      ide49
-     </em>
+    <a class="reference internal" href="config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/https.html">
+     Https &amp; Certificates
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="iot-kernel.html">
+   IoT Kernel
+  </a>
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
@@ -211,6 +223,11 @@
    GPIO
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../iot/install_micropython.html">
+   Install MicroPython
+  </a>
+ </li>
 </ul>
 
     </div>
@@ -268,14 +285,14 @@
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
         <a class="repository-button"
-            href="https://github.com/iot49/iot49.org.git"><button type="button" class="btn btn-secondary topbarbtn"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org.git/issues/new?title=Issue%20on%20page%20%2Fide/services.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/services.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org.git/edit/master/docs/ide/services.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/services.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -289,23 +306,6 @@
             class="fas fa-expand"></i></button></a>
 
             <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/iot49/iot49.org.git/master?urlpath=tree/docs/ide/services.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
 
         </div>
 
@@ -322,8 +322,8 @@
                 
   <div class="section" id="services">
 <h1>Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h1>
-<p>Connect to the Raspberry PI at <a class="reference external" href="http://ide49.local">http://ide49.local</a>. You will be greeted by your browser with a message that this is unsafe (<span class="xref myst">more on that later</span>). Click the advanced button (or whatever your particular browser calls the workaround) and proceed anyway.</p>
-<p>You get a simple menu with several option including <em>Jupyter</em>, <em>Editor</em>, <em>Backup</em>, etc. The first time you click a link you will be asked to login. The default is login and password are both <em>iot49</em>. Instructions for how to change it are <span class="xref myst">here</span>.</p>
+<p>Connect to the Raspberry PI at <a class="reference external" href="http://ide49.local">http://ide49.local</a>. You will be greeted by your browser with a message that this is unsafe (<a class="reference internal" href="config/https.html"><span class="doc std std-doc">explanation</span></a>). Click the advanced button (or whatever your particular browser calls the workaround) and proceed anyway.</p>
+<p>You get a simple menu with several option including <em>Jupyter</em>, <em>Editor</em>, <em>Backup</em>, etc. The first time you click a link you will be asked to login. The default is login and password are both <em>iot49</em>. Instructions for how to change it are <a class="reference internal" href="config/dns.html"><span class="doc std std-doc">here</span></a>.</p>
 <p>Each link corresponds to a function of <em>ide49</em>:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="services/jupyter.html"><span class="doc std std-doc">Jupyter</span></a> is a <a class="reference external" href="https://jupyter.org/">code execution environment</a> that is quite popular among datascientists and is also a great option for interacting with and programming microcontrollers.</p></li>
@@ -371,7 +371,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="config/customize.html" title="previous page">Customize <em>ide49</em></a>
+    <a class='left-prev' id="prev-link" href="iot-kernel.html" title="previous page">IoT Kernel</a>
     <a class='right-next' id="next-link" href="services/jupyter.html" title="next page">Jupyter Lab</a>
 
         </div>
