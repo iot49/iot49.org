@@ -52,7 +52,7 @@ Click the application name in the Balena dashboard and wait for the release to c
 
 After the download completes the application will automatically start.
 
-<span style="font-size:13pt;">4. Connecting to the Raspberry PI</span>
+<span style="font-size:13pt;">4. Connect to the Raspberry PI</span>
 
 Once the download completes and the application started (as indicated in the device dashboard), connect to the Raspberry PI at http://iot49.local.
 
@@ -60,15 +60,15 @@ If this does not work, try http://LOCAL_IP_ADDRESS instead. Substitute the value
 
 ![ide49 Landing Page](figures/ide49_landing.png)
 
-Click on *Jupyter*. You will get a warning (the image and text may differ depending on the browser you are using):
+Click on `Jupyter`. You will get a warning similar to:
 
 ```{image} figures/browser_warning.png
 :width: 500px
 ```
 
-Click "Advanced" and then "proceed anyway". The page on [https](config/https) has information about this warning and how to get rid of it.
+Click "Advanced" and then "proceed anyway". The page on [https](config/https) has information about this warning and explains how to get rid of it.
 
-At the login window, enter the default username and password are (both *iot49*; see [Change Password](config/password.ipynb) change). 
+At the login window, enter the default username and password are (both *iot49*; see [Change Password](config/password.ipynb) to change). 
 
 <div style="font-size:15pt;font-weight:bold;text-align:center;color:green">Congratulations, you have completed the installation!</div>
 </p>
