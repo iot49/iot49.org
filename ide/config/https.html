@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Certificates &#8212; Electronics for IoT</title>
+    <title>Https &amp; Certificates &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,8 +52,8 @@
     <link rel="canonical" href="https://iot49.org/ide/config/https.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Services" href="../services.html" />
-    <link rel="prev" title="Samba" href="samba.html" />
+    <link rel="next" title="IoT Kernel" href="../iot-kernel.html" />
+    <link rel="prev" title="Domain Name" href="dns.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -98,7 +98,7 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../getting_started.html">
+  <a class="reference internal" href="../getting-started.html">
    Getting Started
   </a>
  </li>
@@ -124,15 +124,25 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="samba.html">
-     Samba
+     Samba File Server/Client
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dns.html">
+     Domain Name
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Certificates
+     Https &amp; Certificates
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../iot-kernel.html">
+   IoT Kernel
+  </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../services.html">
@@ -187,6 +197,11 @@
   </ul>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../app.html">
+   IoT-dev Architecture Decisions
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../issues.html">
    Issues
   </a>
@@ -206,6 +221,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../iot/gpio.html">
    GPIO
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../iot/install_micropython.html">
+   Install MicroPython
   </a>
  </li>
 </ul>
@@ -317,8 +337,67 @@
         
               <div>
                 
-  <div class="section" id="certificates">
-<h1>Certificates<a class="headerlink" href="#certificates" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="https-certificates">
+<h1>Https &amp; Certificates<a class="headerlink" href="#https-certificates" title="Permalink to this headline">¶</a></h1>
+<p><em>ide49</em> uses the https protocol to encrypt the traffic between the Raspberry PI and the browser.</p>
+<p>Despite, and, actually, because of this “secure” choice, browsers give a warning to the contrary:</p>
+<a class="reference internal image-reference" href="../../_images/browser_warning.png"><img alt="../../_images/browser_warning.png" src="../../_images/browser_warning.png" style="width: 500px;" /></a>
+<p>If you ignore the warnings and load the site anyway, the url in the search bar shows a warning:</p>
+<a class="reference internal image-reference" href="../../_images/not_secure.png"><img alt="../../_images/not_secure.png" src="../../_images/not_secure.png" style="width: 300px;" /></a>
+<p>The reason for this is the way https works. To guarantee safe communication, https</p>
+<ol class="simple">
+<li><p>Encrypts all traffic, and</p></li>
+<li><p>Ensures the identiy of the server.</p></li>
+</ol>
+<p>For example, when you access your bank over https, the browser verifies that the website you are looking at actually belongs to your bank and not a hitch-hiker presenting itself with a similar (same) website at a similar (or the same) URL as your bank.</p>
+<p>This is ensured with a <a class="reference external" href="https://www.cloudflare.com/learning/ssl/what-is-an-ssl-certificate/">certificate</a>, a digital document that encodes the URL of the server along with some additional data and a public encryption key. On the PI this notebook is running on, the certificate looks as follows:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat /service-config/nginx/ssl/cert.crt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----BEGIN CERTIFICATE-----
+MIIDxTCCAq2gAwIBAgIUC4/mzMvLEBXS0dEbeP/RC+xfmAkwDQYJKoZIhvcNAQEL
+BQAwcDELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAkNBMRYwFAYDVQQHDA1TYW4gRnJh
+bmNpc2NvMRwwGgYDVQQKDBNFbGVjdHJvbmljcyBmb3IgSW9UMQ4wDAYDVQQLDAVp
+b3Q0OTEOMAwGA1UEAwwFaW90NDkwHhcNMjEwNjI4MTg0ODI4WhcNMzEwNjI2MTg0
+ODI4WjBwMQswCQYDVQQGEwJVUzELMAkGA1UECAwCQ0ExFjAUBgNVBAcMDVNhbiBG
+cmFuY2lzY28xHDAaBgNVBAoME0VsZWN0cm9uaWNzIGZvciBJb1QxDjAMBgNVBAsM
+BWlvdDQ5MQ4wDAYDVQQDDAVpb3Q0OTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+AQoCggEBAOWhUlDZWBA7E9G96/2IXaAicSpFXHsZi3R8gk8HWRQVf1LkyjV37U5M
+oHAT+G3ZxfK6NNniEW2ZV7l+EVqf8MYBUjs/nKpti8hwcWsoLkh07gTJ9G5gqlXx
+H+gXKV10f9DtqyLjQqXn541rLogLSzg0FvHe/yeLh0oKblO+rsvP3bUfDt3lRbgh
+VAwO3LDYtuRhzKbxLuoRCSLFjiq+Ig7ipA58+AwIXfFnRCl8bEFR6KglO3j7SSwJ
+jOKtiljwZccdQpjV7ATiR0PnXLvfPJK6nsgQXFDCTrk/mcVL4zii1HITFp5sfNy7
+6m3KcNYK5q7tbpGmFe5AG2V//UmEY50CAwEAAaNXMFUwDgYDVR0PAQH/BAQDAgOI
+MBMGA1UdJQQMMAoGCCsGAQUFBwMBMC4GA1UdEQQnMCWCD3BpNHNlcnZlci5sb2Nh
+bIIMMTAuMzkuNDAuMTUxhwQKJyiXMA0GCSqGSIb3DQEBCwUAA4IBAQCwR2l7i1Ud
+KqGjtJKxg4jiHwAgixQKUrJlcrC2sDWmdntIuyj8feNqGGflax7a+o31cByoQcc+
+mGoeA9W7YvWXCjvQrlVsJbzJP0hEmsM+9nRu7WkwP+X4OtF2ULplxvIcvTiqBUyu
+lflOr9wXBoMHEDz+cHIJondQXul5MIzYRypemYVWMAIpt53iwufv1p4ARtLA0co7
+V5dLaRM/cIytubcvb+Pq7OgDu9Gt6SJPecJAdVkD/8UPvaheO0l+zjmYtFARpoKV
+VBbF8BBVsylj8nFyaPSzKgfBY/eXk9w6Lg4OQ5ZkM5izzD9RZyhowYfbC9i8AM0J
+XaTG2RPUp/BG
+-----END CERTIFICATE-----
+</pre></div>
+</div>
+</div>
+</div>
+<p>When the browser connects to the server, the server sends the certificate. The browser decodes it and verifies that the URLs match (which is why the certificate changes when you alter the <a class="reference internal" href="dns.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code></span></a>. It also sends a challenge to the server which requires the private key to solve.</p>
+<p><em>ide49</em> stores the private key at <code class="docutils literal notranslate"><span class="pre">/service-config/nginx/ssl/cert.key</span></code>. It looks similar to the certificate but I won’t reproduce it here since it is private, aka secret. In addition, that I can assure you that the private key on your instance differs, even if you use the same <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code>.</p>
+<p>Finally the browser checks if the certificate is valid. This is a bit like a customs agent checking your passport-s/he verifies your name, picture, eye color and what do I know, and then also makes sure your passport is a real passport issued by a real country.</p>
+<p>Here lies the problem with <em>ide49</em>’s certificates: they meet all requirements and the encryption is just as strong as with a real certificate, but the browser has never seen one alike. Just like the customs agent rejects the beautiful passport you created yourself on your 3D printer, the browser won’t trust certificates issued by <em>ide49</em>.</p>
+<p>This begs the question how browsers verify certificates from other websites such as <a class="reference external" href="https://iot49.org">https://iot49.org</a>. The answer is that browsers come with preinstalled certificates (an elaborate chaining scheme permits allows one certficate to vouch for many derived certificates), but unfortunately the certificates created by <em>ide49</em> are not among them.</p>
+<p>There are two solutions to this problem:</p>
+<ol class="simple">
+<li><p>Buy a real domain name such as <code class="docutils literal notranslate"><span class="pre">iot49.org</span></code> or <code class="docutils literal notranslate"><span class="pre">google.com</span></code> and get a real certificate for it from a real <a class="reference external" href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authority</a>. You’ll also need to expose your PI to the internet (not just locally).</p></li>
+<li><p>Alternatively you can add the certificate of your PI to the list of trusted certificates.</p></li>
+</ol>
+<p>Adding certificates depends on the operating system. “Google” <em>add certificate to chrome</em> or something similar for instructions for your setup.</p>
+<p>Your efforts will be rewarded with a nice lock displayed in the search bar and there will no longer be warnings when you connect to <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
+<a class="reference internal image-reference" href="../../_images/secure.png"><img alt="../../_images/secure.png" src="../../_images/secure.png" style="width: 300px;" /></a>
 </div>
 
     <script type="text/x-thebe-config">
@@ -346,8 +425,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="samba.html" title="previous page">Samba</a>
-    <a class='right-next' id="next-link" href="../services.html" title="next page">Services</a>
+    <a class='left-prev' id="prev-link" href="dns.html" title="previous page">Domain Name</a>
+    <a class='right-next' id="next-link" href="../iot-kernel.html" title="next page">IoT Kernel</a>
 
         </div>
         

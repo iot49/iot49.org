@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Samba File Server/Client &#8212; Electronics for IoT</title>
+    <title>Domain Name &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,11 +49,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://iot49.org/ide/config/samba.html" />
+    <link rel="canonical" href="https://iot49.org/ide/config/dns.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Domain Name" href="dns.html" />
-    <link rel="prev" title="Backup" href="backup.html" />
+    <link rel="next" title="Https &amp; Certificates" href="https.html" />
+    <link rel="prev" title="Samba File Server/Client" href="samba.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -122,13 +122,13 @@
      Backup
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="samba.html">
      Samba File Server/Client
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="dns.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Domain Name
     </a>
    </li>
@@ -269,7 +269,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/ide/config/samba.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/ide/config/dns.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -289,10 +289,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org.git/issues/new?title=Issue%20on%20page%20%2Fide/config/samba.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org.git/issues/new?title=Issue%20on%20page%20%2Fide/config/dns.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org.git/edit/master/docs/ide/config/samba.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org.git/edit/master/docs/ide/config/dns.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -312,7 +312,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/iot49/iot49.org.git/master?urlpath=tree/docs/ide/config/samba.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/iot49/iot49.org.git/master?urlpath=tree/docs/ide/config/dns.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../../_static/images/logo_binder.svg"
@@ -329,24 +329,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#server">
-   Server
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#client">
-   Client
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -355,23 +337,12 @@
         
               <div>
                 
-  <div class="section" id="samba-file-server-client">
-<h1>Samba File Server/Client<a class="headerlink" href="#samba-file-server-client" title="Permalink to this headline">¶</a></h1>
-<p><em>ide49</em> can optionally act as a <a class="reference external" href="https://en.wikipedia.org/wiki/Samba_(software)">Samba/CIFS</a> File server or client. When configured as a server, it exports the <code class="docutils literal notranslate"><span class="pre">home/iot</span></code> folder. Conversely, when set as client it mounts <code class="docutils literal notranslate"><span class="pre">home/iot</span></code>.</p>
-<div class="section" id="server">
-<h2>Server<a class="headerlink" href="#server" title="Permalink to this headline">¶</a></h2>
-<p>To enable the Samba server, got to the <code class="docutils literal notranslate"><span class="pre">Device</span> <span class="pre">Variables</span></code> tab on the dashboard</p>
+  <div class="section" id="domain-name">
+<h1>Domain Name<a class="headerlink" href="#domain-name" title="Permalink to this headline">¶</a></h1>
+<p>By default, <em>ide49</em> advertises the Raspberry PI on the local network as <code class="docutils literal notranslate"><span class="pre">iot49.local</span></code>. This can be changed by overriding the value of <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code> in the dashboard:</p>
 <p><img alt="Device Variables" src="../../_images/device_variables.png" /></p>
-<p>Click override to set the value of <code class="docutils literal notranslate"><span class="pre">SAMBA</span></code> to <code class="docutils literal notranslate"><span class="pre">server</span></code> and choose an strong password for <code class="docutils literal notranslate"><span class="pre">SAMBA_PASSWORD</span></code>. Restart the <code class="docutils literal notranslate"><span class="pre">smb</span></code> service from the Summary tab. The share is available as <code class="docutils literal notranslate"><span class="pre">smb://pi4server.local</span></code> as <code class="docutils literal notranslate"><span class="pre">iot-data</span></code> and the user is <code class="docutils literal notranslate"><span class="pre">iot</span></code>.</p>
-<p>For example, in the Finder on Mac choose the <code class="docutils literal notranslate"><span class="pre">Go/Connect</span> <span class="pre">to</span> <span class="pre">Server</span> <span class="pre">...</span></code> menu and enter this information to mount the partition from the Raspberry PI.</p>
-</div>
-<div class="section" id="client">
-<h2>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h2>
-<p>Alternatively you can configure <em>ide49</em> as a client by setting <code class="docutils literal notranslate"><span class="pre">SAMBA</span></code> to <code class="docutils literal notranslate"><span class="pre">client</span></code> and <code class="docutils literal notranslate"><span class="pre">SAMBA_SERVER_IP</span></code> to the IP address of the server you are using. Also set <code class="docutils literal notranslate"><span class="pre">SAMBA_PASSWORD</span></code> to the correct value for your server. User is <code class="docutils literal notranslate"><span class="pre">iot</span></code> and <code class="docutils literal notranslate"><span class="pre">iot-data</span></code> is mounted on <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>.</p>
-<p>The local home directory stored on the SD Card is available at <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home</span></code>.</p>
-<p>You need to restart the device for the changes to take effect.</p>
-<p>The intended use of this feature is environments with multiple Raspberry PIs where one operates as server and the others as client to have the same environment.</p>
-</div>
+<p>For example, if you set <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code> to <code class="docutils literal notranslate"><span class="pre">my_awesome_pi</span></code>, after a restart the Raspberry PI is available at https://my_awesome_pi.local.</p>
+<p><em>ide49</em> automatically issues a new certificate for the new domain name. If you have <a class="reference internal" href="https.html"><span class="doc std std-doc">exported the certificate</span></a> to the host from which you connect to the Raspberry PI you need to export the new certificate.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -399,8 +370,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="backup.html" title="previous page">Backup</a>
-    <a class='right-next' id="next-link" href="dns.html" title="next page">Domain Name</a>
+    <a class='left-prev' id="prev-link" href="samba.html" title="previous page">Samba File Server/Client</a>
+    <a class='right-next' id="next-link" href="https.html" title="next page">Https &amp; Certificates</a>
 
         </div>
         
