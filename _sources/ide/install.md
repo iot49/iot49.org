@@ -1,6 +1,6 @@
-# Install *ide49*
+# Install
 
-*ide49* is an environment for developing IoT applications on Microcontrollers over the Internet. It runs on a Raspberry PI. To install it, you need the following:
+To install *ide49*, you need the following:
 
 <span style="font-size:13pt;">Hardware</span>
 

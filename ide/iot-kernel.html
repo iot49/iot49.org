@@ -92,9 +92,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
    Install
-   <em>
-    ide49
-   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -224,8 +221,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../iot/install_micropython.html">
-   Install MicroPython
+  <a class="reference internal" href="../iot/flash.html">
+   Flash MicroPython
   </a>
  </li>
 </ul>
@@ -312,6 +309,51 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#magics">
+   Magics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connecting-to-devices">
+   Connecting to Devices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-management">
+   File Management
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#device-configuration">
+   Device Configuration
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple">
+     Simple
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#custom-destination">
+     Custom Destination
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#complex-example">
+     Complex Example
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -322,6 +364,531 @@
                 
   <div class="section" id="iot-kernel">
 <h1>IoT Kernel<a class="headerlink" href="#iot-kernel" title="Permalink to this headline">¶</a></h1>
+<p>The <em>IoT Kernel</em> is a specialized Jupyter kernel that evaluates MicroPython code on connected microcontrollers. It has the following main features:</p>
+<ul class="simple">
+<li><p>discover available wired and wireless microcontrollers</p></li>
+<li><p>synchronize files with the host</p></li>
+<li><p>soft reset</p></li>
+<li><p>evaluate code on the host (ipython)</p></li>
+<li><p>exchange variables between microcontrollers and the host</p></li>
+<li><p>access the host shell</p></li>
+</ul>
+<div class="section" id="magics">
+<h2>Magics<a class="headerlink" href="#magics" title="Permalink to this headline">¶</a></h2>
+<p>Many of these features are accessed via magics. <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> lists available magics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">lsmagic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Line Magic:    -h shows help (e.g. %discover -h)
+  %cat         Print contents of named file on microcontroller
+  %cd          Change the working directory.
+  %connect     Connect to device
+  %cp          Copy files between host and microcontroller.
+  %discover    Discover available devices
+  %gettime     Query microcontroller time
+  %loglevel    Set logging level.
+  %lsmagic     List all magic functions.
+  %mkdirs      Create all directories specified by the path, as needed.
+  %name        Name of currently connected microcontroller.
+  %pip         Install packages from PyPi
+  %platform    sys.platform of currently connected device.
+  %rdiff       Show differences between microcontroller and host directories
+  %register    Register device
+  %rlist       List files on microcontroller
+  %rm          Delete files relative to path.
+  %rsync       Synchronize microcontroller to host directories
+  %softreset   Reset microcontroller. Similar to pressing the reset button.
+  %store       Copy variables between microcontroller and storage.
+  %synctime    Synchronize microcontroller time to host
+  %uid         UID of currently connected microcontroller.
+  %unregister  Unregister device
+  %upip        Install MicroPython packages.
+  %url         URL of currently connected microcontroller.
+  !            Pass line to bash shell for evaluation.
+
+Cell Magic:    -h shows help (e.g. %%connect -h)
+  %%bash       Pass cell to bash shell for evaluation.
+  %%connect    Evaluate code sequentially on named devices.
+  %%host       Pass cell to host (cPython) for evaluation.
+  %%service    Evaluate in named container using ssh.
+  %%ssh        Pass cell body to ssh.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-h</span></code> option on any magic returns additional information. E.g.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>usage: %discover [-h] [-a] [-v]
+
+Discover available devices
+
+optional arguments:
+  -h, --help     show this help message and exit
+  -a, --all      list all devices connected to USB ports
+  -v, --verbose  show uid
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Magics not recognized by the <em>IoT Kernel</em> are sent to to underlying ipython kernel for evaluation. E.g.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span>
+<span class="c1"># sample program</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello from main.py!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting main.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat main.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># sample program
+print(&quot;Hello from main.py!&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!rm main.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="connecting-to-devices">
+<h2>Connecting to Devices<a class="headerlink" href="#connecting-to-devices" title="Permalink to this headline">¶</a></h2>
+<p>At any one time, the kernel is connected to one (or no) microcontroller. Code typed into Jupyter cells is sent to the “connected” microcontroller for evaluation. The <code class="docutils literal notranslate"><span class="pre">%discover</span></code> magic scans USB ports and listens to DNS advertisements for available devices. For each device to which connection is successful, the magic reports the device name, URL, and UID. Device names are specified in <a class="reference external" href="#device-configuration">configuration files</a>).</p>
+<p><strong>Note:</strong> Use a powered USB hub to reliably connect more than one microcontroller to the Raspberry PI!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test-esp32  ws://10.39.40.135:8266  
+samd51      serial:///dev/ttyACM0   
+stm32       serial:///dev/ttyACM1   
+test-esp32  serial:///dev/ttyUSB2   
+pico        serial:///dev/ttyUSB0   
+nrf52840    serial:///dev/ttyACM2   
+huzzah32    serial:///dev/ttyUSB1   
+</pre></div>
+</div>
+</div>
+</div>
+<p>The esp32 is available both over USB (serial:///dev/ttyUSB2) and wirelessly webrepl (ws://10.39.40.135:8266).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="s2">&quot;ws://10.39.40.135:8266&quot;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to test-esp32 @ ws://10.39.40.135:8266</span>
+0 0
+1 1
+2 1048576
+3 3486784401
+4 1099511627776
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Connection to a device is maintained until changed. The <code class="docutils literal notranslate"><span class="pre">%%connect</span></code> cell magic runs code sequentially on one or more processors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">connect</span> <span class="o">--</span><span class="nb">all</span> <span class="o">--</span><span class="n">host</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:18}</span><span class="s2">   (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class=" -Color -Color-Black -Color-Black-BGCyan">----- HOST</span>
+
+linux                (cpython)
+
+<span class=" -Color -Color-Black -Color-Black-BGCyan">----- test-esp32</span>
+
+esp32                (micropython)
+
+<span class=" -Color -Color-Black -Color-Black-BGCyan">----- samd51</span>
+
+MicroChip SAMD51     (circuitpython)
+
+<span class=" -Color -Color-Black -Color-Black-BGCyan">----- stm32</span>
+
+pyboard              (micropython)
+
+<span class=" -Color -Color-Black -Color-Black-BGCyan">----- test-esp32</span>
+
+esp32                (micropython)
+
+<span class=" -Color -Color-Black -Color-Black-BGCyan">----- pico</span>
+
+esp32                (micropython)
+
+<span class=" -Color -Color-Black -Color-Black-BGCyan">----- nrf52840</span>
+
+nRF52840             (circuitpython)
+
+<span class=" -Color -Color-Black -Color-Black-BGCyan">----- huzzah32</span>
+
+esp32                (micropython)
+
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">%softreset</span></code> resets the MicroPython interpreter and has a similar effect to pressing the reset button of the device:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">name</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="o">%</span><span class="n">softreset</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this will fail ...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>test-esp32
+5
+
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+
+this will fail ...
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 2, in &lt;module&gt;
+NameError: name &#39;a&#39; isn&#39;t defined
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> for additional commands.</p>
+</div>
+<div class="section" id="file-management">
+<h2>File Management<a class="headerlink" href="#file-management" title="Permalink to this headline">¶</a></h2>
+<p>In additional to the usual file operations (<code class="docutils literal notranslate"><span class="pre">%cp</span></code>, <code class="docutils literal notranslate"><span class="pre">%rm</span></code>, etc), the <code class="docutils literal notranslate"><span class="pre">%rsync</span></code> feature can be used to efficiently copy libraries on the host to the microcontroller.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">huzzah32</span>
+
+<span class="c1"># list files on microcontroller</span>
+<span class="o">%</span><span class="n">rlist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to huzzah32 @ serial:///dev/ttyUSB1</span>
+    139  Dec 31 23:00 1999  <span class=" -Color -Color-Blue">boot.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">cat</span> <span class="n">boot</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># This file is executed on every boot (including wake-boot from deepsleep)
+#import esp
+#esp.osdebug(None)
+#import webrepl
+#webrepl.start()
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show differences but do not commit any operations</span>
+<span class="o">%</span><span class="n">rdiff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># synchronize the microcontroller flash to the host</span>
+<span class="c1"># by default, %rsync deletes files on the microcontroller that are not present on the host</span>
+<span class="c1"># specify -u to upload data only</span>
+
+<span class="o">%</span><span class="n">rsync</span> <span class="o">-</span><span class="n">u</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="device-configuration">
+<h2>Device Configuration<a class="headerlink" href="#device-configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simple">
+<h3>Simple<a class="headerlink" href="#simple" title="Permalink to this headline">¶</a></h3>
+<p>Device configuration are saved in <a class="reference external" href="https://en.wikipedia.org/wiki/YAML">yaml format</a> in <code class="docutils literal notranslate"><span class="pre">~/iot49/devices</span></code>. A typical configuration:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">huzzah32</span><span class="p">:</span>
+    <span class="nt">uid</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">24:0a:c4:12:87:7c</span>
+    <span class="nt">resources</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pystone.py</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">secrets.py</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bno055</span>
+</pre></div>
+</div>
+<p>Resources is a list of python source files and packages stored in path-like environment variable <code class="docutils literal notranslate"><span class="pre">IOT_LIBS</span></code> (defaults to ‘~/iot49/libs’).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">huzzah32</span>
+
+<span class="c1"># start with a clean slate</span>
+<span class="o">%</span><span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">lib</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to huzzah32 @ serial:///dev/ttyUSB1</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rsync</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">ADD     /lib/bno055/bno055.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/bno055/bno055_base.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/bno055/bno055_test.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/pystone.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/secrets.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rlist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            <span class=" -Color -Color-Green">lib/</span>
+                                <span class=" -Color -Color-Green">bno055/</span>
+   6491  Jun 29 18:41 2021          <span class=" -Color -Color-Blue">bno055.py</span>
+   5598  Jun 29 18:41 2021          <span class=" -Color -Color-Blue">bno055_base.py</span>
+   1078  Jun 29 18:41 2021          <span class=" -Color -Color-Blue">bno055_test.py</span>
+   7933  Jun 29 18:41 2021      <span class=" -Color -Color-Blue">pystone.py</span>
+    317  Jun 29 18:41 2021      <span class=" -Color -Color-Blue">secrets.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rsync</span>
+<span class="o">%</span><span class="n">softreset</span>
+
+<span class="kn">import</span> <span class="nn">pystone</span>
+<span class="n">pystone</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
+
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+
+Pystone(1.2) time for 2000 passes = 1.968 seconds
+This machine benchmarks at 1016.26 pystones/second
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="custom-destination">
+<h3>Custom Destination<a class="headerlink" href="#custom-destination" title="Permalink to this headline">¶</a></h3>
+<p>By default, resources are installed in the <code class="docutils literal notranslate"><span class="pre">/lib</span></code> folder on the microcontroller. Files like <code class="docutils literal notranslate"><span class="pre">boot.py</span></code> instead go to a special location. Updated configuration:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">huzzah32</span><span class="p">:</span>
+    <span class="nt">uid</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">24:0a:c4:12:87:7c</span>
+    <span class="nt">resources</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">esp32</span><span class="p">:</span>
+            <span class="nt">install-dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+            <span class="nt">unpack</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pystone.py</span>
+        <span class="p p-Indicator">-</span> <span class="nt">secrets.py</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">bno055</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">install-dir</span></code> overwrites the default (<code class="docutils literal notranslate"><span class="pre">/lib</span></code>) and <code class="docutils literal notranslate"><span class="pre">unpack</span></code> indicates that the resource should not be treated as a package but instead the contents should be uploaded.</p>
+<p><code class="docutils literal notranslate"><span class="pre">secrets.py:</span> <span class="pre">/</span></code> is a shorthand for</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">secrets.py</span><span class="p">:</span>
+    <span class="nt">install-dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rsync</span>
+<span class="o">%</span><span class="n">rlist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">UPDATE  /boot.py</span>
+   1787  Jun 29 18:58 2021  <span class=" -Color -Color-Blue">boot.py</span>
+                            <span class=" -Color -Color-Green">lib/</span>
+                                <span class=" -Color -Color-Green">bno055/</span>
+   6491  Jun 29 18:41 2021          <span class=" -Color -Color-Blue">bno055.py</span>
+   5598  Jun 29 18:41 2021          <span class=" -Color -Color-Blue">bno055_base.py</span>
+   1078  Jun 29 18:41 2021          <span class=" -Color -Color-Blue">bno055_test.py</span>
+                                <span class=" -Color -Color-Green">ota32/</span>
+     51  Jun 29 18:46 2021          <span class=" -Color -Color-Blue">__init__.py</span>
+   2048  Jun 29 18:46 2021          <span class=" -Color -Color-Blue">open_url.py</span>
+   3489  Jun 29 18:46 2021          <span class=" -Color -Color-Blue">ota.py</span>
+   7933  Jun 29 18:41 2021      <span class=" -Color -Color-Blue">pystone.py</span>
+    418  Jun 29 18:46 2021  <span class=" -Color -Color-Blue">mp_main.py</span>
+    317  Jun 29 18:48 2021  <span class=" -Color -Color-Blue">secrets.py</span>
+     52  Jun 29 18:46 2021  <span class=" -Color -Color-Blue">webrepl_cfg.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">softreset</span>
+<span class="kn">import</span> <span class="nn">boot</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+
+WebREPL daemon started on ws://10.39.40.163:8266
+Started webrepl in normal mode
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="s1">&#39;ws://10.39.40.163:8266&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to huzzah32 @ ws://10.39.40.163:8266</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">network</span>
+<span class="n">wlan</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">wlan</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.39.40.163
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="complex-example">
+<h3>Complex Example<a class="headerlink" href="#complex-example" title="Permalink to this headline">¶</a></h3>
+<p>This particular <code class="docutils literal notranslate"><span class="pre">stm32</span></code> processor has a small on-chip flash partition at <code class="docutils literal notranslate"><span class="pre">/flash</span></code> used for <code class="docutils literal notranslate"><span class="pre">boot.py</span></code> and the code to mount an external flash chip at <code class="docutils literal notranslate"><span class="pre">/spi</span></code>. Libraries that do not need to be on <code class="docutils literal notranslate"><span class="pre">/flash</span></code> are installed in <code class="docutils literal notranslate"><span class="pre">/spi/lib</span></code>.</p>
+<p>The configuration also specifies a custom library path.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">test-stm32</span><span class="p">:</span>
+    <span class="nt">uid</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">27:00:55:00:09:50:52:42:4e:30:39:20</span>
+    <span class="nt">libs</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">$IOT49/libs</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">$IOT/projects/airlift/libs</span>
+    <span class="nt">install-dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/spi/lib</span>
+    <span class="nt">resources</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="nt">stm32</span><span class="p">:</span> 
+            <span class="nt">install-dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/flash</span>
+            <span class="nt">unpack</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+        <span class="p p-Indicator">-</span> <span class="nt">secrets.py</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/spi</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">neopixel.py</span>
+        <span class="p p-Indicator">-</span> <span class="nt">airlift_client</span><span class="p">:</span>
+            <span class="nt">unpack</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+        <span class="p p-Indicator">-</span> <span class="nt">mp_server</span><span class="p">:</span>
+            <span class="nt">unpack</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+            <span class="nt">install-dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/spi/lib/mp</span>
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
