@@ -66,7 +66,7 @@ Click on `Jupyter`. You will get a warning similar to:
 
 Click "Advanced" and then "proceed anyway". The page on [https](config/https) has information about this warning and explains how to get rid of it.
 
-At the login window, enter the default username and password are (both *iot49*; see [Change Password](config/password.ipynb) to change). 
+At the login window, enter the default username and password are (both *iot49*; [Change Password](config/password.ipynb)). 
 
 <div style="font-size:15pt;font-weight:bold;text-align:center;color:green">Congratulations, you have completed the installation!</div>
 </p>

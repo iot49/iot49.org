@@ -376,7 +376,7 @@
 <div class="section" id="magics">
 <h2>Magics<a class="headerlink" href="#magics" title="Permalink to this headline">¶</a></h2>
 <p>Many of these features are accessed via magics. <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> lists available magics.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">lsmagic</span>
 </pre></div>
@@ -526,7 +526,7 @@ huzzah32    serial:///dev/ttyUSB1
 </div>
 </div>
 <p>Connection to a device is maintained until changed. The <code class="docutils literal notranslate"><span class="pre">%%connect</span></code> cell magic runs code sequentially on one or more processors:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">connect</span> <span class="o">--</span><span class="nb">all</span> <span class="o">--</span><span class="n">host</span>
 
@@ -681,7 +681,7 @@ NameError: name &#39;a&#39; isn&#39;t defined
 <h2>Device Configuration<a class="headerlink" href="#device-configuration" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="simple">
 <h3>Simple<a class="headerlink" href="#simple" title="Permalink to this headline">¶</a></h3>
-<p>Device configuration are saved in <a class="reference external" href="https://en.wikipedia.org/wiki/YAML">yaml format</a> in <code class="docutils literal notranslate"><span class="pre">~/iot49/devices</span></code>. A typical configuration:</p>
+<p>Save device configurations in <a class="reference external" href="https://en.wikipedia.org/wiki/YAML">yaml format</a> in <code class="docutils literal notranslate"><span class="pre">~/iot49/devices</span></code>. A simple example:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">huzzah32</span><span class="p">:</span>
     <span class="nt">uid</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">24:0a:c4:12:87:7c</span>
     <span class="nt">resources</span><span class="p">:</span>
@@ -691,7 +691,7 @@ NameError: name &#39;a&#39; isn&#39;t defined
 </pre></div>
 </div>
 <p>Resources is a list of python source files and packages stored in path-like environment variable <code class="docutils literal notranslate"><span class="pre">IOT_LIBS</span></code> (defaults to ‘~/iot49/libs’).</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">huzzah32</span>
 
