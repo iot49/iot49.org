@@ -120,11 +120,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="config/samba.html">
-     Samba File Server/Client
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="config/dns.html">
      Domain Name
     </a>
@@ -134,11 +129,21 @@
      Https &amp; Certificates
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="iot-kernel.html">
    IoT Kernel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="flash.html">
+   Flash MicroPython
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -151,6 +156,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/nginx.html">
+     Nginx
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="services/jupyter.html">
      Jupyter Lab
@@ -173,7 +183,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="services/balena-cli.html">
-     Balena CLI (Command Line Interface)
+     Balena CLI
     </a>
    </li>
    <li class="toctree-l2">
@@ -194,13 +204,28 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="app.html">
-   IoT-dev Architecture Decisions
+  <a class="reference internal" href="customize.html">
+   Customize
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="issues.html">
    Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../projects/balance.html">
+   Balance
   </a>
  </li>
 </ul>
@@ -322,6 +347,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#naming-devices">
    Naming devices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-a-repl-prompt">
+   Getting a REPL prompt
   </a>
  </li>
 </ul>
@@ -551,6 +581,16 @@ platform: esp32   implementation: micropython
 </pre></div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="getting-a-repl-prompt">
+<h2>Getting a REPL prompt<a class="headerlink" href="#getting-a-repl-prompt" title="Permalink to this headline">¶</a></h2>
+<p>If you rather use the REPL to program your microcontroller, launch a Terminal (click the blue <code class="docutils literal notranslate"><span class="pre">+</span></code> icon at the upper left of jupyter lab and then the Terminal icon). In the terminal type</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>picocom /dev/ttyUSB0  -b115200
+</pre></div>
+</div>
+<div class="toggle docutils container">
+<p><img alt="REPL" src="../_images/repl.png" /></p>
 </div>
 </div>
 </div>
