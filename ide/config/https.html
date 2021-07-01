@@ -52,7 +52,7 @@
     <link rel="canonical" href="https://iot49.org/ide/config/https.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="IoT Kernel" href="../iot-kernel.html" />
+    <link rel="next" title="Samba File Server/Client" href="samba.html" />
     <link rel="prev" title="Domain Name" href="dns.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -92,9 +92,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../install.html">
    Install
-   <em>
-    ide49
-   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -123,11 +120,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="samba.html">
-     Samba File Server/Client
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="dns.html">
      Domain Name
     </a>
@@ -137,11 +129,21 @@
      Https &amp; Certificates
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../iot-kernel.html">
    IoT Kernel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../flash.html">
+   Flash MicroPython
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -154,6 +156,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../services/nginx.html">
+     Nginx
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../services/jupyter.html">
      Jupyter Lab
@@ -176,7 +183,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../services/balena-cli.html">
-     Balena CLI (Command Line Interface)
+     Balena CLI
     </a>
    </li>
    <li class="toctree-l2">
@@ -197,8 +204,11 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../app.html">
-   IoT-dev Architecture Decisions
+  <a class="reference internal" href="../customize.html">
+   Customize
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -221,11 +231,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../iot/gpio.html">
    GPIO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/install_micropython.html">
-   Install MicroPython
   </a>
  </li>
 </ul>
@@ -368,14 +373,14 @@ XaTG2RPUp/BG
 </div>
 </div>
 </div>
-<p>When the browser connects to the server, the server sends the certificate. The browser decodes it and verifies that the URLs match (which is why the certificate changes when you alter the <a class="reference internal" href="dns.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code></span></a>. It also sends a challenge to the server which requires the private key to solve.</p>
-<p><em>ide49</em> stores the private key at <code class="docutils literal notranslate"><span class="pre">/service-config/nginx/ssl/cert.key</span></code>. It looks similar to the certificate but I won’t reproduce it here since it is private, aka secret. In addition, that I can assure you that the private key on your instance differs, even if you use the same <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code>.</p>
+<p>When the browser connects to the server, the server sends the certificate. The browser decodes it and verifies that the URLs match (which is why the certificate changes when you alter the <a class="reference internal" href="dns.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code></span></a>). It also sends a challenge to the server which requires the private key to solve.</p>
+<p><em>ide49</em> stores the private key at <code class="docutils literal notranslate"><span class="pre">/service-config/nginx/ssl/cert.key</span></code>. It looks similar to the certificate but I won’t reproduce it here since it is private, aka secret. The private key on your instance differs, even if you use the same <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code>.</p>
 <p>Finally the browser checks if the certificate is valid. This is a bit like a customs agent checking your passport-s/he verifies your name, picture, eye color and what do I know, and then also makes sure your passport is a real passport issued by a real country.</p>
 <p>Here lies the problem with <em>ide49</em>’s certificates: they meet all requirements and the encryption is just as strong as with a real certificate, but the browser has never seen one alike. Just like the customs agent rejects the beautiful passport you created yourself on your 3D printer, the browser won’t trust certificates issued by <em>ide49</em>.</p>
-<p>This begs the question how browsers verify certificates from other websites such as <a class="reference external" href="https://iot49.org">https://iot49.org</a>. The answer is that browsers come with preinstalled certificates (an elaborate chaining scheme permits allows one certficate to vouch for many derived certificates), but unfortunately the certificates created by <em>ide49</em> are not among them.</p>
+<p>This begs the question how browsers verify certificates from other websites such as <a class="reference external" href="https://iot49.org">https://iot49.org</a>. The answer is that browsers come with preinstalled certificates (an elaborate chaining scheme permits one certficate to vouch for many derived certificates), but unfortunately the certificates created by <em>ide49</em> are not among them.</p>
 <p>There are two solutions to this problem:</p>
 <ol class="simple">
-<li><p>Buy a real domain name such as <code class="docutils literal notranslate"><span class="pre">iot49.org</span></code> or <code class="docutils literal notranslate"><span class="pre">google.com</span></code> and get a real certificate for it from a real <a class="reference external" href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authority</a>. You’ll also need to expose your PI to the internet (not just locally).</p></li>
+<li><p>Buy a real domain name like <code class="docutils literal notranslate"><span class="pre">iot49.org</span></code> or <code class="docutils literal notranslate"><span class="pre">google.com</span></code> and get a real certificate for it from a real <a class="reference external" href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authority</a>. You’ll also need to expose your PI to the internet (not just locally).</p></li>
 <li><p>Alternatively you can add the certificate of your PI to the list of trusted certificates.</p></li>
 </ol>
 <p>Adding certificates depends on the operating system. “Google” <em>add certificate to chrome</em> or something similar for instructions for your setup.</p>
@@ -409,7 +414,7 @@ XaTG2RPUp/BG
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="dns.html" title="previous page">Domain Name</a>
-    <a class='right-next' id="next-link" href="../iot-kernel.html" title="next page">IoT Kernel</a>
+    <a class='right-next' id="next-link" href="samba.html" title="next page">Samba File Server/Client</a>
 
         </div>
         
