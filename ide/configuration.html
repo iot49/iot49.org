@@ -92,9 +92,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
    Install
-   <em>
-    ide49
-   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -144,6 +141,11 @@
    IoT Kernel
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="flash.html">
+   Flash MicroPython
+  </a>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="services.html">
    Services
@@ -154,6 +156,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/nginx.html">
+     Nginx
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="services/jupyter.html">
      Jupyter Lab
@@ -176,7 +183,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="services/balena-cli.html">
-     Balena CLI (Command Line Interface)
+     Balena CLI
     </a>
    </li>
    <li class="toctree-l2">
@@ -197,8 +204,11 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="app.html">
-   IoT-dev Architecture Decisions
+  <a class="reference internal" href="customize.html">
+   Customize
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -221,11 +231,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../iot/gpio.html">
    GPIO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../iot/install_micropython.html">
-   Install MicroPython
   </a>
  </li>
 </ul>
@@ -312,29 +317,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#password">
-   Password
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#domain">
-   Domain
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#certificate">
-   Certificate
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -345,129 +327,10 @@
                 
   <div class="section" id="configuration">
 <h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="password">
-<h2>Password<a class="headerlink" href="#password" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">bash</span>
-
-# different output for same passwd
-#
-htpasswd -nbB user1 passwd1
-htpasswd -nbB user1 passwd1
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>user1:$2y$05$i2vux.BL7fYQFX2.nCnk5.m/UsTVVysJdcOrio8xONPM5skoFRYsG
-
-user1:$2y$05$A4Ubwr1C44CcDxoG8ZU0S.VBLGcVsZAcrxfxGSpy9GD3HTaLVvSgO
-
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">service</span> nginx
-
-cd /etc/nginx
-echo Current Password File:
-cat htpasswd
-
-# set password
-# htpasswd -cbB htpasswd &lt;user&gt; &quot;&lt;password&gt;&quot;
-htpasswd -cbB htpasswd iot49 iot49
-
-# add additional passwords if desired
-# htpasswd -bB  htpasswd user2 abc
-
-echo
-echo Updated Password File:
-cat htpasswd
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Current Password File:
-iot49:$2y$05$BbEUrYtbuTf8awjFIL7WX.fzXuatIVTQnBm9PSaFuVzB4ziD8ABVC
-user1:$2y$05$Rwk6kpHwTV.XBTEC3RNnqetY86gjDwzjP1nWcWvhtIOaK5ZJ1u4pa
-
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Adding password for user iot49
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Updated Password File:
-iot49:$2y$05$..BEC0f/YimzlbxJOi6R3.M6y0s1SIeVWfHpmFUz91xeBnPbfEkH2
-
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="domain">
-<h2>Domain<a class="headerlink" href="#domain" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="certificate">
-<h2>Certificate<a class="headerlink" href="#certificate" title="Permalink to this headline">¶</a></h2>
-<p>When a secure website like <em>ide49</em> is accessed, the server (in this case the <em>iot49</em> webserver) presents a certifiate. The certificate is a bit like a passport and contains the address of the owner (default is <em>iot49.local</em> for <em>ide49</em>) and an encryption string. <em>ide49</em> generates a custom so-called self-signed certificate automatically.</p>
-<p>Below is the certificate of this server:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">cat</span> /service-config/nginx/ssl/cert.crt
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----BEGIN CERTIFICATE-----
-MIIDxTCCAq2gAwIBAgIUYkTNn8WFWmbQvsPW/tOVsx/eQs0wDQYJKoZIhvcNAQEL
-BQAwcDELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAkNBMRYwFAYDVQQHDA1TYW4gRnJh
-bmNpc2NvMRwwGgYDVQQKDBNFbGVjdHJvbmljcyBmb3IgSW9UMQ4wDAYDVQQLDAVp
-b3Q0OTEOMAwGA1UEAwwFaW90NDkwHhcNMjEwNjI2MjA0MDE0WhcNMzEwNjI0MjA0
-MDE0WjBwMQswCQYDVQQGEwJVUzELMAkGA1UECAwCQ0ExFjAUBgNVBAcMDVNhbiBG
-cmFuY2lzY28xHDAaBgNVBAoME0VsZWN0cm9uaWNzIGZvciBJb1QxDjAMBgNVBAsM
-BWlvdDQ5MQ4wDAYDVQQDDAVpb3Q0OTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
-AQoCggEBAM5ko4DNOb1DTqgoagwZx5dkqCdTO3piPyUjDXmEEDEZv2xco2av+zYt
-AopYdmrOjUFt2WhzgSEiC17peDvZyrmW8MAM1iiPdmH3j3xQxg4SkJcoeFNdgMn5
-5tLO5Je7DnH2XGXTHtBsT/Hs56sE3Hdf3CNQ+xMlxCRhfNm9M26qHe4NPIjBdit+
-v8MEwp1pgvCQt4dsTRCrAvDOhRP/G9AUWCQLbo4kr8xt7BjsgmjxzPLhxC2tnKcR
-njVukKQuKigkxuvQpZ20Rv4rsOj8QhOscFw0j8s5P3VuCyWIAtXrnHPzP6dBn3NS
-jj9Z0LfEKQMGIck01r9MLOs4hOuy6hUCAwEAAaNXMFUwDgYDVR0PAQH/BAQDAgOI
-MBMGA1UdJQQMMAoGCCsGAQUFBwMBMC4GA1UdEQQnMCWCD2lkZTQ5LW9sZC5sb2Nh
-bIIMMTAuMzkuNDAuMTYyhwQKJyiiMA0GCSqGSIb3DQEBCwUAA4IBAQCjXtwXbop+
-tuf6HtCDe2Jj770FRN1D8Bl8FPEBmb42WPEojsY66HaBKJw6YG9JZeuPPOA7h1oO
-4OW01ocguoiKIt2eDvW6dmxaydvL+4f/aauzx8wjYn/qgVb9CEW0dap/QGcaOJ69
-ocYfB3OSYZLlrydzjQ64JK+bp9MKc7jY8QD9KI7oAVF0zOlqVuDsZVsmrld8db1y
-vNm3e+Kkx9x415aJbpfjRSvhSb0jwIDVn3jGdrFWXAwL2MsKkZFebjjtb8mDC90x
-lD3+Tm3KuVLAFWvfe1vNRzpHID68k/SRyZqG2Jq7uiuQPi7oyrKwrzwk9aP6XvwG
-eBZJjLFfXBWp
------END CERTIFICATE-----
-</pre></div>
-</div>
-</div>
-</div>
-<p>The webbrowser compares the certificate to a list of</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">host</span> 
-
-import socket
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.connect((&quot;8.8.8.8&quot;, 80))
-print(s.getsockname()[0])
-s.close()
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.39.40.151
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+<p>Many aspects of <em>ide49</em> are configurable.</p>
+<p>If you have not done so already, you may want to <a class="reference internal" href="config/password.html"><span class="doc std std-doc">change the password</span></a> and setup automatic <a class="reference internal" href="config/backup.html"><span class="doc std std-doc">backups</span></a>.</p>
+<p>You can also <a class="reference internal" href="config/dns.html"><span class="doc std std-doc">change the domain name</span></a> from the default <a class="reference external" href="http://iot49.local">http://iot49.local</a> and <a class="reference internal" href="config/https.html"><span class="doc std std-doc">configure your browser/OS</span></a> to treat the domain as secure.</p>
+<p>Samba allows you to export or mount the <em>ide49</em> home directory (<code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>).</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
