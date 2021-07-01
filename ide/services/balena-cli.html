@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Balena CLI (Command Line Interface) &#8212; Electronics for IoT</title>
+    <title>Balena CLI &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -92,9 +92,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../install.html">
    Install
-   <em>
-    ide49
-   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -144,6 +141,11 @@
    IoT Kernel
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../flash.html">
+   Flash MicroPython
+  </a>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../services.html">
    Services
@@ -176,7 +178,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Balena CLI (Command Line Interface)
+     Balena CLI
     </a>
    </li>
    <li class="toctree-l2">
@@ -197,8 +199,11 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../app.html">
-   IoT-dev Architecture Decisions
+  <a class="reference internal" href="../customize.html">
+   Customize
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -221,11 +226,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../iot/gpio.html">
    GPIO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/install_micropython.html">
-   Install MicroPython
   </a>
  </li>
 </ul>
@@ -320,14 +320,15 @@
         
               <div>
                 
-  <div class="section" id="balena-cli-command-line-interface">
-<h1>Balena CLI (Command Line Interface)<a class="headerlink" href="#balena-cli-command-line-interface" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
+  <div class="section" id="balena-cli">
+<h1>Balena CLI<a class="headerlink" href="#balena-cli" title="Permalink to this headline">¶</a></h1>
+<p>A jupyter container with the <a class="reference external" href="https://www.balena.io/docs/reference/balena-cli/">balena command line</a> installed. Used to <a class="reference internal" href="../customize.html"><span class="doc std std-doc">customize</span></a> <em>ide49</em>.</p>
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">balena</span><span class="o">-</span><span class="n">cli</span>
 
 <span class="n">cd</span> <span class="o">~/</span><span class="n">ide49</span>
-<span class="n">balena</span> <span class="n">push</span> <span class="n">ide49</span><span class="o">-</span><span class="n">dev</span>
+<span class="n">balena</span> <span class="n">push</span> <span class="n">ide49</span>
 </pre></div>
 </div>
 </div>

@@ -53,7 +53,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Configuration" href="configuration.html" />
-    <link rel="prev" title="Install ide49" href="install.html" />
+    <link rel="prev" title="Install" href="install.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -92,9 +92,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
    Install
-   <em>
-    ide49
-   </em>
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -223,11 +220,6 @@
    GPIO
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../iot/install_micropython.html">
-   Install MicroPython
-  </a>
- </li>
 </ul>
 
     </div>
@@ -312,6 +304,29 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jupyter-lab">
+   Jupyter Lab
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#micropython">
+   MicroPython
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naming-devices">
+   Naming devices
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -324,6 +339,8 @@
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <p><em>ide49</em> offers a range of features including a code editor, compilers (e.g. to compile MicroPython), an MQTT broker, etc.</p>
 <p>All interaction with microcontrollers takes place in the <a class="reference external" href="https://jupyter.org/"><em>Jupyter Lab</em></a> service. <em>Jupyter</em> is a popular interactive Python programming environment. You can find many online tutorials and videos. Below we quickly go over the main features with special focus on the customizations for programming microcontrollers.</p>
+<div class="section" id="jupyter-lab">
+<h2>Jupyter Lab<a class="headerlink" href="#jupyter-lab" title="Permalink to this headline">¶</a></h2>
 <p>To access <em>Jupyter Lab</em> in <em>ide49</em>, go to <a class="reference external" href="https://iot49.local/jupyter">https://iot49.local/jupyter</a> (change the name if you modified the DNS name of the Raspberry PI) or from the <em>Jupyter</em> link of <em>ide49</em> dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
 <p>You will be presented with the page below.</p>
 <p><img alt="Jupyter" src="../_images/jupyter_annotated.png" /></p>
@@ -333,8 +350,8 @@
 <p>Like all <em>Jupyter</em> kernels, you type code into <em>cells</em>, and click <code class="docutils literal notranslate"><span class="pre">shift-return</span></code> (return while holding down the shift key) to execute it.</p>
 <p>For example:</p>
 <a class="reference internal image-reference" href="../_images/no_device_connected.png"><img alt="../_images/no_device_connected.png" src="../_images/no_device_connected.png" style="width: 250px;" /></a>
-<p>The error is not surprising, since, well, we have not yet connected a microcontroller to the Raspberry PI. Head over to the <em>IOT</em> section if you are anxious.</p>
-<p>But even if you are familiar with <em>Jupyter</em>, you may want to first check out the special features of the <em>IoT Kernel</em>. Like other <em>Jupyter</em> kernels, it implements several <em>magics</em>, lines that start with a percent sign <code class="docutils literal notranslate"><span class="pre">%</span></code> in the first column. To get a list of magics available in the <em>IoT Kernel</em>, execte the magic <code class="docutils literal notranslate"><span class="pre">%lsmagic%</span></code>: type it into an empty cell and hit <code class="docutils literal notranslate"><span class="pre">shift-return</span></code>:</p>
+<p>The error is not surprising, since, well, we have not yet connected a microcontroller to the Raspberry PI.</p>
+<p>Like other <em>Jupyter</em> kernels, it implements several <em>magics</em>; lines that start with a percent sign <code class="docutils literal notranslate"><span class="pre">%</span></code> in the first column. To get a list of magics available in the <em>IoT Kernel</em>, execute <code class="docutils literal notranslate"><span class="pre">%lsmagic%</span></code> by typing it into an empty cell and hitting <code class="docutils literal notranslate"><span class="pre">shift-return</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">lsmagic</span>
@@ -413,8 +430,129 @@ optional arguments:
 </div>
 </div>
 </div>
-<p>Code preceded by the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic is submitted to the Raspberry PI for execution. See <a class="reference internal" href="iot-kernel.html"><span class="doc std std-doc">iot-kernel</span></a> for additional information about these magics.</p>
-<p>Then, at last, proceed to <a class="reference internal" href="../iot/micropython.html"><span class="doc std std-doc">Programming Microcontrollers with MicroPython</span></a>.</p>
+<p>Code preceded by the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic is submitted to the Raspberry PI for execution. See <a class="reference internal" href="iot-kernel.html"><span class="doc std std-doc">iot-kernel</span></a> for more information.</p>
+</div>
+<div class="section" id="micropython">
+<h2>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h2>
+<p>Connect a microcontroller to one of the USB ports of the Raspberry PI &amp; <a class="reference internal" href="flash.html"><span class="doc std std-doc">install MicroPython</span></a>. If MicroPython is installed already, you can skip this step.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>50:02:91:a1:a7:2c  serial:///dev/ttyUSB0  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>The `%discover` magic searches all ports for available devices. For each device it reports a hexadecimal string that uniquely identifies the processors (hence you&#39;ll get a different number) and the port it is connected to.
+
+Connection is initiated with the `%connect` magic.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="mi">50</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="n">a7</span><span class="p">:</span><span class="mi">2</span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Code typed into notebook cells is sent to the microcontroller for execution and results reported back. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0 0
+1 1
+2 32
+3 243
+4 1024
+5 3125
+
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">%%connect</span></code> with two percent signs runs a code sequence on multiple processors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">connect</span> <span class="o">--</span><span class="n">host</span> <span class="mi">50</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="n">a7</span><span class="p">:</span><span class="mi">2</span><span class="n">c</span>
+                    
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;platform: </span><span class="si">{:7}</span><span class="s2"> implementation: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+<span class=" -Color -Color-Black -Color-Black-BGCyan">----- HOST</span>
+
+platform: linux   implementation: cpython
+
+<span class=" -Color -Color-Black -Color-Black-BGCyan">----- 50:02:91:a1:a7:2c</span>
+
+platform: esp32   implementation: micropython
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are indeed connected to MicroPython.</p>
+</div>
+<div class="section" id="naming-devices">
+<h2>Naming devices<a class="headerlink" href="#naming-devices" title="Permalink to this headline">¶</a></h2>
+<p>The string <code class="docutils literal notranslate"><span class="pre">50:02:91:a1:a7:2c</span></code> is the <em>UID</em> of the microcontroller, a unique identifier programmed into the controller by the manufacturer. The <code class="docutils literal notranslate"><span class="pre">%discover</span></code> magic obtains it by running the following code snippet on the controller:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uid</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">machine</span>
+    <span class="n">uid</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">unique_id</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">microcontroller</span>
+    <span class="n">uid</span> <span class="o">=</span> <span class="n">microcontroller</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">uid</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">uid</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <em>IoT Kernel</em> uses <em>UIDs</em> to unambiguously distinguish devices. Identifying microcontrollers with hexadecimal strings is useful for keeping track of devices (I have an entire drawer full), but about as informative and convenient to remember as a phone number.</p>
+<p>Fortunately it is easy to associate the device with a “name”, by simply recording this information in a file and saving it to folder <code class="docutils literal notranslate"><span class="pre">~/iot49/devices</span></code>. The <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> magic does this for us:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="o">~/</span><span class="n">iot49</span><span class="o">/</span><span class="n">devices</span><span class="o">/</span><span class="n">my_microcontroller</span><span class="o">.</span><span class="n">yaml</span>
+<span class="n">pico</span><span class="p">:</span>
+    <span class="n">uid</span><span class="p">:</span> <span class="mi">50</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="n">a7</span><span class="p">:</span><span class="mi">2</span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing /home/iot/iot49/devices/my_microcontroller.yaml
+</pre></div>
+</div>
+</div>
+</div>
+<p>Change the <code class="docutils literal notranslate"><span class="pre">uid</span></code> to match your microcontroller and the word <code class="docutils literal notranslate"><span class="pre">pico</span></code> to the name you want to give. The filename is not important, as long as it ends with <code class="docutils literal notranslate"><span class="pre">.yaml</span></code>.</p>
+<p>After this, <code class="docutils literal notranslate"><span class="pre">%discover</span></code> reports the name instead of the <em>UID</em>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pico  serial:///dev/ttyUSB0  
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -442,7 +580,7 @@ optional arguments:
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="install.html" title="previous page">Install <em>ide49</em></a>
+    <a class='left-prev' id="prev-link" href="install.html" title="previous page">Install</a>
     <a class='right-next' id="next-link" href="configuration.html" title="next page">Configuration</a>
 
         </div>

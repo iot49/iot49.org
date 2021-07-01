@@ -52,8 +52,8 @@
     <link rel="canonical" href="https://iot49.org/ide/services.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Jupyter Lab" href="services/jupyter.html" />
-    <link rel="prev" title="IoT Kernel" href="iot-kernel.html" />
+    <link rel="next" title="Nginx" href="services/nginx.html" />
+    <link rel="prev" title="Flash MicroPython" href="flash.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -92,9 +92,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
    Install
-   <em>
-    ide49
-   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -144,6 +141,11 @@
    IoT Kernel
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="flash.html">
+   Flash MicroPython
+  </a>
+ </li>
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
    Services
@@ -154,6 +156,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/nginx.html">
+     Nginx
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="services/jupyter.html">
      Jupyter Lab
@@ -176,7 +183,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="services/balena-cli.html">
-     Balena CLI (Command Line Interface)
+     Balena CLI
     </a>
    </li>
    <li class="toctree-l2">
@@ -197,8 +204,11 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="app.html">
-   IoT-dev Architecture Decisions
+  <a class="reference internal" href="customize.html">
+   Customize
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -221,11 +231,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../iot/gpio.html">
    GPIO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../iot/install_micropython.html">
-   Install MicroPython
   </a>
  </li>
 </ul>
@@ -322,26 +327,26 @@
                 
   <div class="section" id="services">
 <h1>Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h1>
-<p>Connect to the Raspberry PI at <a class="reference external" href="http://ide49.local">http://ide49.local</a>. You will be greeted by your browser with a message that this is unsafe (<a class="reference internal" href="config/https.html"><span class="doc std std-doc">explanation</span></a>). Click the advanced button (or whatever your particular browser calls the workaround) and proceed anyway.</p>
-<p>You get a simple menu with several option including <em>Jupyter</em>, <em>Editor</em>, <em>Backup</em>, etc. The first time you click a link you will be asked to login. The default is login and password are both <em>iot49</em>. Instructions for how to change it are <a class="reference internal" href="config/dns.html"><span class="doc std std-doc">here</span></a>.</p>
-<p>Each link corresponds to a function of <em>ide49</em>:</p>
+<p><em>ide49</em> is a <a class="reference external" href="https://www.docker.com/products/docker-app">docker application</a> on <a class="reference external" href="https://www.balena.io/docs/reference/OS/overview/2.x/">balenaOS</a>. Each “service” shown in the Balena dashboard represents a separate container with its own copy of Linux.</p>
+<p><img alt="Balena services" src="../_images/services.png" /></p>
 <ul class="simple">
-<li><p><a class="reference internal" href="services/jupyter.html"><span class="doc std std-doc">Jupyter</span></a> is a <a class="reference external" href="https://jupyter.org/">code execution environment</a> that is quite popular among datascientists and is also a great option for interacting with and programming microcontrollers.</p></li>
-<li><p><a class="reference internal" href="services/editor.html"><span class="doc std std-doc">Editor</span></a> is an Internet enabled version of <a class="reference external" href="https://code.visualstudio.com/">Microsoft Visual Studio Code</a>, a powerful coding envornment.</p></li>
-<li><p><a class="reference internal" href="services/backup.html"><span class="doc std std-doc">Backup</span></a> is a versatile applications for backing up the data on your Raspberry PI to the cloud or local storage. It is based on <a class="reference external" href="https://www.duplicati.com/">Duplicati</a>.</p></li>
-<li><p>The [Webbrowser] is implemented with <a class="reference external" href="https://www.nginx.com/">nginx</a>. It operates as a reverse proxy responsible for encryption and password protection and serves <em>ide49</em> the landing page.</p></li>
+<li><p><a class="reference internal" href="iot-kernel.html"><span class="doc std std-doc">Jupyter</span></a> is a <a class="reference external" href="https://jupyter.org/">code execution environment</a> that is quite popular among datascientists and is also a great option for interacting with and programming microcontrollers.</p></li>
+<li><p>Editor is an Internet enabled version of <a class="reference external" href="https://code.visualstudio.com/">Microsoft Visual Studio Code</a>, a powerful coding environment.</p></li>
+<li><p><a class="reference internal" href="services/backup.html"><span class="doc std std-doc">Backup</span></a> does what the name says.</p></li>
+<li><p><a class="reference internal" href="services/nginx.html"><span class="doc std std-doc">Nginx</span></a> is a <a class="reference external" href="https://www.nginx.com/">webbrowser</a>. In <em>ide49</em> it acts as a reverse proxy forwarding requests on the external network (ports 80 and 443) to the internal network and handles encryption and password protection. Nginx also serves <em>ide49</em> the landing page.</p></li>
 </ul>
 <p>The other options are more specialized.</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="services/plotserver.html"><span class="doc std std-doc">Plots</span></a> is a plotting environment that is convenient to display sensor data in a browser window. Microcontrollers can send this data directly to the <em>plot</em> application.</p></li>
+<li><p><a class="reference internal" href="services/plotserver.html"><span class="doc std std-doc">Plotserver</span></a> plots data received via MQTT in a browser window. It is a convenient solution to monitor data produced by microcontrollers that implement an MQTT client.</p></li>
 <li><p><a class="reference internal" href="services/balena-cli.html"><span class="doc std std-doc">Balena CLI</span></a> is the tool used to create and modify applications such as <em>ide49</em>. It lets you change <em>ide49</em> right from <em>ide49</em> itself!</p></li>
 </ul>
 <p>Additional services provided by <em>ide49</em> include:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="services/mosquitto.html"><span class="doc std std-doc">MQTT broker</span></a>.</p></li>
+<li><p><a class="reference internal" href="services/mosquitto.html"><span class="doc std std-doc">mosquitto</span></a>, an MQTT broker.</p></li>
 <li><p><a class="reference internal" href="services/samba.html"><span class="doc std std-doc">Samba/CIFS file server</span></a> that exports user data stored on the Raspberry PI. It is disabled by default.</p></li>
-<li><p><a class="reference internal" href="services/gcc.html"><span class="doc std std-doc">ARM cross compiler</span></a> used to compile MicroPython and other microcontroller applications written in C/C++.</p></li>
+<li><p><a class="reference internal" href="services/gcc.html"><span class="doc std std-doc">gcc</span></a> used to compile MicroPython and other microcontroller applications written in C/C++.</p></li>
 </ul>
+<p>Services communicate via shared data and over an internal network used by the <code class="docutils literal notranslate"><span class="pre">%%service%</span></code> magic of the <a class="reference internal" href="iot-kernel.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">IOT</span> <span class="pre">Kernel</span></code></span></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -371,8 +376,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="iot-kernel.html" title="previous page">IoT Kernel</a>
-    <a class='right-next' id="next-link" href="services/jupyter.html" title="next page">Jupyter Lab</a>
+    <a class='left-prev' id="prev-link" href="flash.html" title="previous page">Flash MicroPython</a>
+    <a class='right-next' id="next-link" href="services/nginx.html" title="next page">Nginx</a>
 
         </div>
         

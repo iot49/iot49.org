@@ -320,8 +320,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#connecting-to-devices">
-   Connecting to Devices
+  <a class="reference internal nav-link" href="#micropython">
+   MicroPython
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-variables">
+   Environment Variables
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -345,11 +350,16 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#complex-example">
-     Complex Example
+    <a class="reference internal nav-link" href="#full-example">
+     Full Example
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#secrets-py">
+   secrets.py
+  </a>
  </li>
 </ul>
 
@@ -364,14 +374,15 @@
                 
   <div class="section" id="iot-kernel">
 <h1>IoT Kernel<a class="headerlink" href="#iot-kernel" title="Permalink to this headline">¶</a></h1>
-<p>The <em>IoT Kernel</em> is a specialized Jupyter kernel that evaluates MicroPython code on connected microcontrollers. It has the following main features:</p>
+<p>The <em>IoT Kernel</em> is a specialized Jupyter kernel that evaluates MicroPython code on connected microcontrollers. Features include:</p>
 <ul class="simple">
-<li><p>discover available wired and wireless microcontrollers</p></li>
-<li><p>synchronize files with the host</p></li>
-<li><p>soft reset</p></li>
-<li><p>evaluate code on the host (ipython)</p></li>
-<li><p>exchange variables between microcontrollers and the host</p></li>
-<li><p>access the host shell</p></li>
+<li><p>discover and connect to wired and wireless microcontrollers (<code class="docutils literal notranslate"><span class="pre">%discover</span></code> and <code class="docutils literal notranslate"><span class="pre">%connect</span></code>)</p></li>
+<li><p>synchronize files with the host (<code class="docutils literal notranslate"><span class="pre">%rsync</span></code>)</p></li>
+<li><p>softreset (<code class="docutils literal notranslate"><span class="pre">%softreset</span></code>)</p></li>
+<li><p>evaluate code on the host (<code class="docutils literal notranslate"><span class="pre">%%host</span></code>)</p></li>
+<li><p>exchange variables between microcontrollers and the host (<code class="docutils literal notranslate"><span class="pre">%store</span></code>)</p></li>
+<li><p>access the host shell (<code class="docutils literal notranslate"><span class="pre">%%bash</span></code>)</p></li>
+<li><p>access other services of <em>iot49</em> (<code class="docutils literal notranslate"><span class="pre">%%service</span></code>)</p></li>
 </ul>
 <div class="section" id="magics">
 <h2>Magics<a class="headerlink" href="#magics" title="Permalink to this headline">¶</a></h2>
@@ -482,8 +493,8 @@ print(&quot;Hello from main.py!&quot;)
 </div>
 </div>
 </div>
-<div class="section" id="connecting-to-devices">
-<h2>Connecting to Devices<a class="headerlink" href="#connecting-to-devices" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="micropython">
+<h2>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h2>
 <p>At any one time, the kernel is connected to one (or no) microcontroller. Code typed into Jupyter cells is sent to the “connected” microcontroller for evaluation. The <code class="docutils literal notranslate"><span class="pre">%discover</span></code> magic scans USB ports and listens to DNS advertisements for available devices. For each device to which connection is successful, the magic reports the device name, URL, and UID. Device names are specified in <a class="reference external" href="#device-configuration">configuration files</a>).</p>
 <p><strong>Note:</strong> Use a powered USB hub to reliably connect more than one microcontroller to the Raspberry PI!</p>
 <div class="cell docutils container">
@@ -608,6 +619,39 @@ NameError: name &#39;a&#39; isn&#39;t defined
 </div>
 <p>Check <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> for additional commands.</p>
 </div>
+<div class="section" id="environment-variables">
+<h2>Environment Variables<a class="headerlink" href="#environment-variables" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="text-align:left head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>IOT</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">~</span></code></p></td>
+<td class="text-align:left"><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>IOT49</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$IOT/iot49</span></code></p></td>
+<td class="text-align:left"><p></p></td>
+</tr>
+<tr class="row-even"><td><p>IOT_DEVICES</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$IOT49/devices</span></code></p></td>
+<td class="text-align:left"><p>Location(s) of <a class="reference internal" href="#device-configuration"><span class="std std-ref">device configuration</span></a> yaml files, separate with <code class="docutils literal notranslate"><span class="pre">:</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>IOT_SECRETS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$IOT49/libs/secrets.py</span></code></p></td>
+<td class="text-align:left"><p>Location of <a class="reference internal" href="#secrets"><span class="std std-ref"><em>secrets.py</em></span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>IOT_LIBS</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$IOT49/libs</span></code></p></td>
+<td class="text-align:left"><p>Location(s) of MicroPython libraries, separate with <code class="docutils literal notranslate"><span class="pre">:</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="file-management">
 <h2>File Management<a class="headerlink" href="#file-management" title="Permalink to this headline">¶</a></h2>
 <p>In additional to the usual file operations (<code class="docutils literal notranslate"><span class="pre">%cp</span></code>, <code class="docutils literal notranslate"><span class="pre">%rm</span></code>, etc), the <code class="docutils literal notranslate"><span class="pre">%rsync</span></code> feature can be used to efficiently copy libraries on the host to the microcontroller.</p>
@@ -678,7 +722,7 @@ NameError: name &#39;a&#39; isn&#39;t defined
 </div>
 </div>
 <div class="section" id="device-configuration">
-<h2>Device Configuration<a class="headerlink" href="#device-configuration" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Device Configuration<a class="headerlink" href="#device-configuration" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="simple">
 <h3>Simple<a class="headerlink" href="#simple" title="Permalink to this headline">¶</a></h3>
 <p>Save device configurations in <a class="reference external" href="https://en.wikipedia.org/wiki/YAML">yaml format</a> in <code class="docutils literal notranslate"><span class="pre">~/iot49/devices</span></code>. A simple example:</p>
@@ -864,10 +908,10 @@ Started webrepl in normal mode
 </div>
 </div>
 </div>
-<div class="section" id="complex-example">
-<h3>Complex Example<a class="headerlink" href="#complex-example" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="full-example">
+<h3>Full Example<a class="headerlink" href="#full-example" title="Permalink to this headline">¶</a></h3>
 <p>This particular <code class="docutils literal notranslate"><span class="pre">stm32</span></code> processor has a small on-chip flash partition at <code class="docutils literal notranslate"><span class="pre">/flash</span></code> used for <code class="docutils literal notranslate"><span class="pre">boot.py</span></code> and the code to mount an external flash chip at <code class="docutils literal notranslate"><span class="pre">/spi</span></code>. Libraries that do not need to be on <code class="docutils literal notranslate"><span class="pre">/flash</span></code> are installed in <code class="docutils literal notranslate"><span class="pre">/spi/lib</span></code>.</p>
-<p>The configuration also specifies a custom library path.</p>
+<p>The configuration also specifies a custom library path that is searched instead of <code class="docutils literal notranslate"><span class="pre">$IOT_LIBS</span></code>.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">test-stm32</span><span class="p">:</span>
     <span class="nt">uid</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">27:00:55:00:09:50:52:42:4e:30:39:20</span>
     <span class="nt">libs</span><span class="p">:</span>
@@ -888,6 +932,30 @@ Started webrepl in normal mode
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="secrets-py">
+<span id="secrets"></span><h2><a class="reference external" href="http://secrets.py">secrets.py</a><a class="headerlink" href="#secrets-py" title="Permalink to this headline">¶</a></h2>
+<p>A Python file used to define confidential information such as passwords. Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># secrets.py</span>
+
+<span class="c1"># wifi</span>
+<span class="n">wifi_ssid</span> <span class="o">=</span> <span class="s1">&#39;WIFI_SSID&#39;</span>
+<span class="n">wifi_pwd</span>  <span class="o">=</span> <span class="s1">&#39;WIFI_PASSWORD&#39;</span>
+
+<span class="c1"># timezone</span>
+<span class="n">tz_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="mi">3600</span>    <span class="c1"># PST</span>
+
+<span class="c1"># mp wireless &quot;repl&quot; password</span>
+<span class="n">mp_pwd</span>  <span class="o">=</span> <span class="s1">&#39;&amp;(*HFODjpwdlsdf30i%^&amp;&#39;</span>
+
+<span class="c1"># webrepl password, 4 .. 9 characters</span>
+<span class="n">webrepl_pwd</span> <span class="o">=</span> <span class="s1">&#39;fjlkflsad&#39;</span>
+
+<span class="c1"># https://openweathermap.org/</span>
+<span class="n">openweathermap_apiid</span> <span class="o">=</span> <span class="s2">&quot;354f336ac61afasf2b73af8f&quot;</span>
+</pre></div>
+</div>
+<p>Some of these variables (e.g <code class="docutils literal notranslate"><span class="pre">webrepl_pwd</span></code>) are used by MicroPython and <em>ide49</em>.</p>
 </div>
 </div>
 
