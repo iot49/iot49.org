@@ -52,7 +52,7 @@
     <link rel="canonical" href="https://iot49.org/ide/config/backup.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Samba File Server/Client" href="samba.html" />
+    <link rel="next" title="Domain Name" href="dns.html" />
     <link rel="prev" title="Change Password" href="password.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -92,9 +92,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../install.html">
    Install
-   <em>
-    ide49
-   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -123,11 +120,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="samba.html">
-     Samba File Server/Client
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="dns.html">
      Domain Name
     </a>
@@ -137,11 +129,21 @@
      Https &amp; Certificates
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../iot-kernel.html">
    IoT Kernel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../flash.html">
+   Flash MicroPython
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -154,6 +156,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../services/nginx.html">
+     Nginx
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../services/jupyter.html">
      Jupyter Lab
@@ -176,7 +183,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../services/balena-cli.html">
-     Balena CLI (Command Line Interface)
+     Balena CLI
     </a>
    </li>
    <li class="toctree-l2">
@@ -197,13 +204,28 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../app.html">
-   IoT-dev Architecture Decisions
+  <a class="reference internal" href="../customize.html">
+   Customize
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../issues.html">
    Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../projects/balance.html">
+   Balance
   </a>
  </li>
 </ul>
@@ -221,11 +243,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../iot/gpio.html">
    GPIO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/install_micropython.html">
-   Install MicroPython
   </a>
  </li>
 </ul>
@@ -269,9 +286,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/ide/config/backup.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/ide/config/backup.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -292,7 +309,7 @@
             href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/config/backup.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/config/backup.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/config/backup.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -325,18 +342,18 @@
 <p>All your files on the Raspberry PI are stored on the SD Card. These cards sometimes fail, or you may inadvertently delete a file. It’s important to keep backups.</p>
 <p><em>ide49</em> makes this easy. It comes with <a class="reference external" href="https://www.duplicati.com/">Duplicati</a>, a versatile backup solution. Access it at <a class="reference external" href="https://iot49.local/duplicati">https://iot49.local/duplicati</a> or from the dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
 <p>The first time you access Duplicati, you are asked</p>
-<p><img alt="First run" src="../../_images/duplicati_start.png" /></p>
+<a class="reference internal image-reference" href="../../_images/duplicati_start.png"><img alt="../../_images/duplicati_start.png" src="../../_images/duplicati_start.png" style="width: 500px;" /></a>
 <p>Choose “No, my machine …” to get to the home screen</p>
-<p><img alt="Duplicati" src="../../_images/duplicati.png" /></p>
+<a class="reference internal image-reference" href="../../_images/duplicati.png"><img alt="../../_images/duplicati.png" src="../../_images/duplicati.png" style="width: 500px;" /></a>
 <p>Click <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Add</span> <span class="pre">backup</span></code> and configure a new backup. Choose Encryption and a Passphrase if you like (I do not bother as I don’t keep personal information on the Raspberry PI).</p>
 <p>Duplicati offers many backup destinations. Under <code class="docutils literal notranslate"><span class="pre">Storage</span> <span class="pre">Type</span></code> you find all the popular online services (Dropbox, Google Cloud, etc).</p>
 <p>Alternatively you can backup to local storage. Insert a USB thumb drive into the Raspberry PI. It will show up under <code class="docutils literal notranslate"><span class="pre">Folder</span> <span class="pre">path</span></code> in the <code class="docutils literal notranslate"><span class="pre">mnt</span></code> folder.</p>
-<p><img alt="Backup Destination" src="../../_images/duplicati_dest.png" /></p>
+<a class="reference internal image-reference" href="../../_images/duplicati_dest.png"><img alt="../../_images/duplicati_dest.png" src="../../_images/duplicati_dest.png" style="width: 500px;" /></a>
 <p>If the drive does not show up, hit <em>Previous</em> and then again <em>Next</em>.</p>
-<p>On the next screen, choose the folder <code class="docutils literal notranslate"><span class="pre">service-config</span></code> as backup source. This will backup all user data on the Raspberry PI, but not the operating system and <em>ide49</em> application which can easily be reinstalled if lost or damaged.</p>
-<p><img alt="Backup Source" src="../../_images/duplicati_src.png" /></p>
+<p>On the next screen, under <code class="docutils literal notranslate"><span class="pre">Computer</span></code>, choose the folder <code class="docutils literal notranslate"><span class="pre">service-config</span></code> as backup source. This will backup all user data on the Raspberry PI, but not the operating system and <em>ide49</em> application which can easily be reinstalled if lost or damaged.</p>
+<a class="reference internal image-reference" href="../../_images/duplicati_src.png"><img alt="../../_images/duplicati_src.png" src="../../_images/duplicati_src.png" style="width: 350px;" /></a>
 <p>You can either run backups manually, or, preferably, automatically at a set schedule. This is my choice:</p>
-<p><img alt="Backup Schedule" src="../../_images/duplicati_schedule.png" /></p>
+<a class="reference internal image-reference" href="../../_images/duplicati_schedule.png"><img alt="../../_images/duplicati_schedule.png" src="../../_images/duplicati_schedule.png" style="width: 500px;" /></a>
 <p>That’s it! If you ever loose data, come back to <a class="reference external" href="https://iot49.local/duplicati">https://iot49.local/duplicati</a> and run <code class="docutils literal notranslate"><span class="pre">Restore</span></code>.</p>
 </div>
 
@@ -349,16 +366,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "iot_kernel"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "iot_kernel",
+            kernelName: "python3",
             path: "./ide/config"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'iot_kernel'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -366,7 +383,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="password.html" title="previous page">Change Password</a>
-    <a class='right-next' id="next-link" href="samba.html" title="next page">Samba File Server/Client</a>
+    <a class='right-next' id="next-link" href="dns.html" title="next page">Domain Name</a>
 
         </div>
         

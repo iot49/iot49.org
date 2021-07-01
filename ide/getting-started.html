@@ -371,16 +371,16 @@
 <p>All interaction with microcontrollers takes place in the <a class="reference external" href="https://jupyter.org/"><em>Jupyter Lab</em></a> service. <em>Jupyter</em> is a popular interactive Python programming environment. You can find many online tutorials and videos. Below we quickly go over the main features with special focus on the customizations for programming microcontrollers.</p>
 <div class="section" id="jupyter-lab">
 <h2>Jupyter Lab<a class="headerlink" href="#jupyter-lab" title="Permalink to this headline">¶</a></h2>
-<p>To access <em>Jupyter Lab</em> in <em>ide49</em>, go to <a class="reference external" href="https://iot49.local/jupyter">https://iot49.local/jupyter</a> (change the name if you modified the DNS name of the Raspberry PI) or from the <em>Jupyter</em> link of <em>ide49</em> dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
+<p>To access <em>Jupyter Lab</em> in <em>ide49</em>, go to <a class="reference external" href="https://iot49.local/jupyter">https://iot49.local/jupyter</a> (change the name if you modified the DNS name of the Raspberry Pi) or from the <em>Jupyter</em> link of <em>ide49</em> dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
 <p>You will be presented with the page below.</p>
 <p><img alt="Jupyter" src="../_images/jupyter_annotated.png" /></p>
-<p>For illustration, the key features are highlighted. The main features include a <em>Python 3 Kernel</em> for executing code on the Raspberry PI, a <em>Terminal</em> for running shell commands, and, the <strong>IoT Kernel</strong> for programming microcontrollers. Click on that button to get a new window:</p>
+<p>For illustration, the key features are highlighted. The main features include a <em>Python 3 Kernel</em> for executing code on the Raspberry Pi, a <em>Terminal</em> for running shell commands, and, the <strong>IoT Kernel</strong> for programming microcontrollers. Click on that button to get a new window:</p>
 <p>To start an <em>IoT Kernel</em>, click on its icon to get:</p>
 <p><img alt="IoT Kernel" src="../_images/iot_kernel_annotated.png" /></p>
 <p>Like all <em>Jupyter</em> kernels, you type code into <em>cells</em>, and click <code class="docutils literal notranslate"><span class="pre">shift-return</span></code> (return while holding down the shift key) to execute it.</p>
 <p>For example:</p>
 <a class="reference internal image-reference" href="../_images/no_device_connected.png"><img alt="../_images/no_device_connected.png" src="../_images/no_device_connected.png" style="width: 250px;" /></a>
-<p>The error is not surprising, since, well, we have not yet connected a microcontroller to the Raspberry PI.</p>
+<p>The error is not surprising, since, well, we have not yet connected a microcontroller to the Raspberry Pi.</p>
 <p>Like other <em>Jupyter</em> kernels, it implements several <em>magics</em>; lines that start with a percent sign <code class="docutils literal notranslate"><span class="pre">%</span></code> in the first column. To get a list of magics available in the <em>IoT Kernel</em>, execute <code class="docutils literal notranslate"><span class="pre">%lsmagic%</span></code> by typing it into an empty cell and hitting <code class="docutils literal notranslate"><span class="pre">shift-return</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -460,11 +460,11 @@ optional arguments:
 </div>
 </div>
 </div>
-<p>Code preceded by the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic is submitted to the Raspberry PI for execution. See <a class="reference internal" href="iot-kernel.html"><span class="doc std std-doc">iot-kernel</span></a> for more information.</p>
+<p>Code preceded by the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic is submitted to the Raspberry Pi for execution. See <a class="reference internal" href="iot-kernel.html"><span class="doc std std-doc">iot-kernel</span></a> for more information.</p>
 </div>
 <div class="section" id="micropython">
 <h2>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h2>
-<p>Connect a microcontroller to one of the USB ports of the Raspberry PI &amp; <a class="reference internal" href="flash.html"><span class="doc std std-doc">install MicroPython</span></a>. If MicroPython is installed already, you can skip this step.</p>
+<p>Connect a microcontroller to one of the USB ports of the Raspberry Pi &amp; <a class="reference internal" href="flash.html"><span class="doc std std-doc">install MicroPython</span></a>. If MicroPython is installed already, you can skip this step.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>

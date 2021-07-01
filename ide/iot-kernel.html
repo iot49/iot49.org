@@ -52,8 +52,8 @@
     <link rel="canonical" href="https://iot49.org/ide/iot-kernel.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Services" href="services.html" />
-    <link rel="prev" title="Https &amp; Certificates" href="config/https.html" />
+    <link rel="next" title="Flash MicroPython" href="flash.html" />
+    <link rel="prev" title="Samba File Server/Client" href="config/samba.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -120,11 +120,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="config/samba.html">
-     Samba File Server/Client
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="config/dns.html">
      Domain Name
     </a>
@@ -134,11 +129,21 @@
      Https &amp; Certificates
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    IoT Kernel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="flash.html">
+   Flash MicroPython
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -151,6 +156,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/nginx.html">
+     Nginx
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="services/jupyter.html">
      Jupyter Lab
@@ -173,7 +183,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="services/balena-cli.html">
-     Balena CLI (Command Line Interface)
+     Balena CLI
     </a>
    </li>
    <li class="toctree-l2">
@@ -194,13 +204,28 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="app.html">
-   IoT-dev Architecture Decisions
+  <a class="reference internal" href="customize.html">
+   Customize
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="issues.html">
    Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../projects/balance.html">
+   Balance
   </a>
  </li>
 </ul>
@@ -218,11 +243,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../iot/gpio.html">
    GPIO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../iot/flash.html">
-   Flash MicroPython
   </a>
  </li>
 </ul>
@@ -496,7 +516,7 @@ print(&quot;Hello from main.py!&quot;)
 <div class="section" id="micropython">
 <h2>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h2>
 <p>At any one time, the kernel is connected to one (or no) microcontroller. Code typed into Jupyter cells is sent to the “connected” microcontroller for evaluation. The <code class="docutils literal notranslate"><span class="pre">%discover</span></code> magic scans USB ports and listens to DNS advertisements for available devices. For each device to which connection is successful, the magic reports the device name, URL, and UID. Device names are specified in <a class="reference external" href="#device-configuration">configuration files</a>).</p>
-<p><strong>Note:</strong> Use a powered USB hub to reliably connect more than one microcontroller to the Raspberry PI!</p>
+<p><strong>Note:</strong> Use a powered USB hub to reliably connect more than one microcontroller to the Raspberry Pi!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
@@ -984,8 +1004,8 @@ Started webrepl in normal mode
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="config/https.html" title="previous page">Https &amp; Certificates</a>
-    <a class='right-next' id="next-link" href="services.html" title="next page">Services</a>
+    <a class='left-prev' id="prev-link" href="config/samba.html" title="previous page">Samba File Server/Client</a>
+    <a class='right-next' id="next-link" href="flash.html" title="next page">Flash MicroPython</a>
 
         </div>
         

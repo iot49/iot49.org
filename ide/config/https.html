@@ -219,6 +219,18 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../projects/balance.html">
+   Balance
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
   IoT
  </span>
 </p>
@@ -338,7 +350,7 @@
 <li><p>Ensures the identiy of the server.</p></li>
 </ol>
 <p>For example, when you access your bank over https, the browser verifies that the website you are looking at actually belongs to your bank and not a hitch-hiker presenting itself with a similar (same) website at a similar (or the same) URL as your bank.</p>
-<p>This is ensured with a <a class="reference external" href="https://www.cloudflare.com/learning/ssl/what-is-an-ssl-certificate/">certificate</a>, a digital document that encodes the URL of the server along with some additional data and a public encryption key. On the PI this notebook is running on, the certificate looks as follows:</p>
+<p>This is ensured with a <a class="reference external" href="https://www.cloudflare.com/learning/ssl/what-is-an-ssl-certificate/">certificate</a>, a digital document that encodes the URL of the server along with some additional data and a public encryption key. On the Pi this notebook is running on, the certificate looks as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat /service-config/nginx/ssl/cert.crt
@@ -380,8 +392,8 @@ XaTG2RPUp/BG
 <p>This begs the question how browsers verify certificates from other websites such as <a class="reference external" href="https://iot49.org">https://iot49.org</a>. The answer is that browsers come with preinstalled certificates (an elaborate chaining scheme permits one certficate to vouch for many derived certificates), but unfortunately the certificates created by <em>ide49</em> are not among them.</p>
 <p>There are two solutions to this problem:</p>
 <ol class="simple">
-<li><p>Buy a real domain name like <code class="docutils literal notranslate"><span class="pre">iot49.org</span></code> or <code class="docutils literal notranslate"><span class="pre">google.com</span></code> and get a real certificate for it from a real <a class="reference external" href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authority</a>. You’ll also need to expose your PI to the internet (not just locally).</p></li>
-<li><p>Alternatively you can add the certificate of your PI to the list of trusted certificates.</p></li>
+<li><p>Buy a real domain name like <code class="docutils literal notranslate"><span class="pre">iot49.org</span></code> or <code class="docutils literal notranslate"><span class="pre">google.com</span></code> and get a real certificate for it from a real <a class="reference external" href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authority</a>. You’ll also need to expose your Pi to the internet (not just locally).</p></li>
+<li><p>Alternatively you can add the certificate of your Pi to the list of trusted certificates.</p></li>
 </ol>
 <p>Adding certificates depends on the operating system. “Google” <em>add certificate to chrome</em> or something similar for instructions for your setup.</p>
 <p>Your efforts will be rewarded with a nice lock displayed in the search bar and there will no longer be warnings when you connect to <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>

@@ -344,8 +344,8 @@
 <ul class="simple">
 <li><p>Host device:</p>
 <ul>
-<li><p>Raspberry PI 4 (2GBytes suffice for <em>iot49</em>) or</p></li>
-<li><p>Raspberry PI 3</p></li>
+<li><p>Raspberry Pi 4 (2GBytes suffice for <em>iot49</em>) or</p></li>
+<li><p>Raspberry Pi 3</p></li>
 </ul>
 </li>
 <li><p>SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).</p></li>
@@ -370,19 +370,19 @@
 <p>Accept the defaults for everything else and hit the <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">balenaOS</span></code> button. Keep the browser window open for checking progress later.</p>
 <p><span style="font-size:13pt;">2. Flash Balena OS to SD Card</span></p>
 <p>Once the download finishes, start the <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a> to flash the downloaded zip-file to an SD Card. Insert the card in your computer (laptop), click <em>Flash from file</em> and choose the <em>balena-cloud … img.zip</em>, choose the SD Card as target and hit <code class="docutils literal notranslate"><span class="pre">Flash</span></code>. You may be asked to enter the administrator password to enable the flash.</p>
-<p><span style="font-size:13pt;">3. Install <em>ide49</em> on the Raspberry PI</span></p>
-<p>Remove the SD Card from the host and insert it into the Raspberry PI, power up the device. It will automatically configure the OS. Head back to the browser window with the <em>Balena dashboard</em> and wait a few minutes for the new device to appear.</p>
+<p><span style="font-size:13pt;">3. Install <em>ide49</em> on the Raspberry Pi</span></p>
+<p>Remove the SD Card from the host and insert it into the Raspberry Pi, power up the device. It will automatically configure the OS. Head back to the browser window with the <em>Balena dashboard</em> and wait a few minutes for the new device to appear.</p>
 <p><img alt="Balena dashboard" src="../_images/device_dashboard.png" /></p>
-<p>The new device has some creative name (like <em>hidden-sun</em>). Click on the device name. The top of the page show poetic device name. Click the pencil to change it. Also listed are some statistics of your Raspberry PI (memory usage, device temperature, local ip address, etc).</p>
+<p>The new device has some creative name (like <em>hidden-sun</em>). Click on the device name. The top of the page show poetic device name. Click the pencil to change it. Also listed are some statistics of your Raspberry Pi (memory usage, device temperature, local ip address, etc).</p>
 <p><img alt="Balena device status" src="../_images/device_stats.png" /></p>
-<p>Click the application name in the Balena dashboard and wait for the release to complete (about twenty minutes). Once it’s complete, the Raspberry PI will automatically download it. You can see the progress in the device window with populates itself with a list of services.</p>
+<p>Click the application name in the Balena dashboard and wait for the release to complete (about twenty minutes). Once it’s complete, the Raspberry Pi will automatically download it. You can see the progress in the device window with populates itself with a list of services.</p>
 <p><img alt="Balena services" src="../_images/balena_downloading.png" /></p>
 <p>After the download completes the application will automatically start.</p>
 <div class="toggle docutils container">
 <p><img alt="Balena services" src="../_images/services.png" /></p>
 </div>
-<p><span style="font-size:13pt;">4. Connect to the Raspberry PI</span></p>
-<p>Once the download completes and the application started (as indicated in the device dashboard), connect to the Raspberry PI at <a class="reference external" href="http://iot49.local">http://iot49.local</a>.</p>
+<p><span style="font-size:13pt;">4. Connect to the Raspberry Pi</span></p>
+<p>Once the download completes and the application started (as indicated in the device dashboard), connect to the Raspberry Pi at <a class="reference external" href="http://iot49.local">http://iot49.local</a>.</p>
 <p>If this does not work, try http://LOCAL_IP_ADDRESS instead. Substitute the value <em>LOCAL_IP_ADDRESS</em> with the address shown on the device dashboard.</p>
 <p><img alt="ide49 Landing Page" src="../_images/ide49_landing.png" /></p>
 <p>Click on <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code>. You will get a warning similar to:</p>
@@ -393,8 +393,8 @@
 </p>
 <p><img alt="Jupyter" src="../_images/jupyter.png" /></p>
 <p>Proceed to the next section, <a class="reference internal" href="getting-started.html"><span class="doc std std-doc">Getting Started</span></a>.</p>
-<p><span style="font-size:13pt;">5. Turning off the Raspberry PI</span></p>
-<p>To turn off your Raspberry PI don’t just pull the power cord. Instead head to the dashboard on <a class="reference external" href="https://balena.io">https://balena.io</a>. At the top right is a button. Click it to get several options, including <em>shutdown</em>.</p>
+<p><span style="font-size:13pt;">5. Turning off the Raspberry Pi</span></p>
+<p>To turn off your Raspberry Pi don’t just pull the power cord. Instead head to the dashboard on <a class="reference external" href="https://balena.io">https://balena.io</a>. At the top right is a button. Click it to get several options, including <em>shutdown</em>.</p>
 </div>
 
     <script type="text/x-thebe-config">

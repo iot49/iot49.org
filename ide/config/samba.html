@@ -52,8 +52,8 @@
     <link rel="canonical" href="https://iot49.org/ide/config/samba.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Domain Name" href="dns.html" />
-    <link rel="prev" title="Backup" href="backup.html" />
+    <link rel="next" title="IoT Kernel" href="../iot-kernel.html" />
+    <link rel="prev" title="Https &amp; Certificates" href="https.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -92,9 +92,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../install.html">
    Install
-   <em>
-    ide49
-   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -122,11 +119,6 @@
      Backup
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Samba File Server/Client
-    </a>
-   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="dns.html">
      Domain Name
@@ -137,11 +129,21 @@
      Https &amp; Certificates
     </a>
    </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Samba File Server/Client
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../iot-kernel.html">
    IoT Kernel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../flash.html">
+   Flash MicroPython
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -154,6 +156,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../services/nginx.html">
+     Nginx
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../services/jupyter.html">
      Jupyter Lab
@@ -176,7 +183,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../services/balena-cli.html">
-     Balena CLI (Command Line Interface)
+     Balena CLI
     </a>
    </li>
    <li class="toctree-l2">
@@ -197,13 +204,28 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../app.html">
-   IoT-dev Architecture Decisions
+  <a class="reference internal" href="../customize.html">
+   Customize
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../issues.html">
    Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../projects/balance.html">
+   Balance
   </a>
  </li>
 </ul>
@@ -221,11 +243,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../iot/gpio.html">
    GPIO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/install_micropython.html">
-   Install MicroPython
   </a>
  </li>
 </ul>
@@ -346,14 +363,14 @@
 <p>To enable the Samba server, got to the <code class="docutils literal notranslate"><span class="pre">Device</span> <span class="pre">Variables</span></code> tab on the dashboard</p>
 <p><img alt="Device Variables" src="../../_images/device_variables.png" /></p>
 <p>Click override to set the value of <code class="docutils literal notranslate"><span class="pre">SAMBA</span></code> to <code class="docutils literal notranslate"><span class="pre">server</span></code> and choose an strong password for <code class="docutils literal notranslate"><span class="pre">SAMBA_PASSWORD</span></code>. Restart the <code class="docutils literal notranslate"><span class="pre">smb</span></code> service from the Summary tab. The share is available as <code class="docutils literal notranslate"><span class="pre">smb://pi4server.local</span></code> as <code class="docutils literal notranslate"><span class="pre">iot-data</span></code> and the user is <code class="docutils literal notranslate"><span class="pre">iot</span></code>.</p>
-<p>For example, in the Finder on Mac choose the <code class="docutils literal notranslate"><span class="pre">Go/Connect</span> <span class="pre">to</span> <span class="pre">Server</span> <span class="pre">...</span></code> menu and enter this information to mount the partition from the Raspberry PI.</p>
+<p>For example, in the Finder on Mac choose the <code class="docutils literal notranslate"><span class="pre">Go/Connect</span> <span class="pre">to</span> <span class="pre">Server</span> <span class="pre">...</span></code> menu and enter this information to mount the partition from the Raspberry Pi.</p>
 </div>
 <div class="section" id="client">
 <h2>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h2>
 <p>Alternatively you can configure <em>ide49</em> as a client by setting <code class="docutils literal notranslate"><span class="pre">SAMBA</span></code> to <code class="docutils literal notranslate"><span class="pre">client</span></code> and <code class="docutils literal notranslate"><span class="pre">SAMBA_SERVER_IP</span></code> to the IP address of the server you are using. Also set <code class="docutils literal notranslate"><span class="pre">SAMBA_PASSWORD</span></code> to the correct value for your server. User is <code class="docutils literal notranslate"><span class="pre">iot</span></code> and <code class="docutils literal notranslate"><span class="pre">iot-data</span></code> is mounted on <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>.</p>
 <p>The local home directory stored on the SD Card is available at <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home</span></code>.</p>
 <p>You need to restart the device for the changes to take effect.</p>
-<p>The intended use of this feature is environments with multiple Raspberry PIs where one operates as server and the others as client to have the same environment.</p>
+<p>The intended use of this feature is environments with multiple Raspberries where one operates as server and the others as client to have the same environment.</p>
 </div>
 </div>
 
@@ -382,8 +399,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="backup.html" title="previous page">Backup</a>
-    <a class='right-next' id="next-link" href="dns.html" title="next page">Domain Name</a>
+    <a class='left-prev' id="prev-link" href="https.html" title="previous page">Https &amp; Certificates</a>
+    <a class='right-next' id="next-link" href="../iot-kernel.html" title="next page">IoT Kernel</a>
 
         </div>
         
