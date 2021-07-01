@@ -52,8 +52,8 @@
     <link rel="canonical" href="https://iot49.org/ide/issues.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="MicroPython" href="../iot/micropython.html" />
-    <link rel="prev" title="IoT-dev Architecture Decisions" href="app.html" />
+    <link rel="next" title="Balance" href="../projects/balance.html" />
+    <link rel="prev" title="Customize ide49" href="customize.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -92,9 +92,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
    Install
-   <em>
-    ide49
-   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -123,11 +120,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="config/samba.html">
-     Samba File Server/Client
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="config/dns.html">
      Domain Name
     </a>
@@ -137,11 +129,21 @@
      Https &amp; Certificates
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="iot-kernel.html">
    IoT Kernel
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="flash.html">
+   Flash MicroPython
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -154,6 +156,11 @@
    </i>
   </label>
   <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/nginx.html">
+     Nginx
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="services/jupyter.html">
      Jupyter Lab
@@ -176,7 +183,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="services/balena-cli.html">
-     Balena CLI (Command Line Interface)
+     Balena CLI
     </a>
    </li>
    <li class="toctree-l2">
@@ -197,13 +204,28 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="app.html">
-   IoT-dev Architecture Decisions
+  <a class="reference internal" href="customize.html">
+   Customize
+   <em>
+    ide49
+   </em>
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../projects/balance.html">
+   Balance
   </a>
  </li>
 </ul>
@@ -221,11 +243,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../iot/gpio.html">
    GPIO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../iot/install_micropython.html">
-   Install MicroPython
   </a>
  </li>
 </ul>
@@ -318,8 +335,18 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#jupyterlab-extensions">
-   jupyterlab extensions
+  <a class="reference internal nav-link" href="#jupyter-lab-extensions">
+   Jupyter Lab Extensions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#armv7hf-32-bit-arm-not-supported">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     armv7hf
+    </span>
+   </code>
+   (32-Bit ARM) not supported
   </a>
  </li>
 </ul>
@@ -335,8 +362,8 @@
                 
   <div class="section" id="issues">
 <h1>Issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="jupyterlab-extensions">
-<h2>jupyterlab extensions<a class="headerlink" href="#jupyterlab-extensions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="jupyter-lab-extensions">
+<h2>Jupyter Lab Extensions<a class="headerlink" href="#jupyter-lab-extensions" title="Permalink to this headline">¶</a></h2>
 <p>Installing jupyterlab extensions does not work. They are stored in <code class="docutils literal notranslate"><span class="pre">/usr/local/share/jupyter/lab</span></code> which is owned by the container root.</p>
 <p>Installing with <code class="docutils literal notranslate"><span class="pre">--app-dir</span></code> does not solve the problem.</p>
 <div class="cell docutils container">
@@ -353,6 +380,12 @@ Workspaces directory: /home/iot/.jupyter/lab/workspaces
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="armv7hf-32-bit-arm-not-supported">
+<h2><code class="docutils literal notranslate"><span class="pre">armv7hf</span></code> (32-Bit ARM) not supported<a class="headerlink" href="#armv7hf-32-bit-arm-not-supported" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="../_images/arm32_build_fail.png" /></p>
+<p>Apparently bokeh (or paho?) not available:</p>
+<p><img alt="" src="../_images/arm32_build_fail_detail.png" /></p>
 </div>
 </div>
 
@@ -381,8 +414,8 @@ Workspaces directory: /home/iot/.jupyter/lab/workspaces
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="app.html" title="previous page">IoT-dev Architecture Decisions</a>
-    <a class='right-next' id="next-link" href="../iot/micropython.html" title="next page">MicroPython</a>
+    <a class='left-prev' id="prev-link" href="customize.html" title="previous page">Customize <em>ide49</em></a>
+    <a class='right-next' id="next-link" href="../projects/balance.html" title="next page">Balance</a>
 
         </div>
         

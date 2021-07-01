@@ -28,7 +28,7 @@ Leave the other variables at their defaults (they can be changed later) and clic
 * under edition, select `Development`
 * click the `Wifi + Ethernet` button and enter your WiFi credentials
 
-Accept the defaults for everything else and hit the `Download balenaOS` button. Keep the browser window open.
+Accept the defaults for everything else and hit the `Download balenaOS` button. Keep the browser window open for checking progress later.
 
 <span style="font-size:13pt;">2. Flash Balena OS to SD Card</span>
 
@@ -46,9 +46,13 @@ The new device has some creative name (like *hidden-sun*). Click on the device n
 
 Click the application name in the Balena dashboard and wait for the release to complete (about twenty minutes). Once it's complete, the Raspberry PI will automatically download it. You can see the progress in the device window with populates itself with a list of services. 
 
-![Balena services](figures/services.png)
+![Balena services](figures/balena_downloading.png)
 
 After the download completes the application will automatically start.
+
+```{toggle}
+![Balena services](figures/services.png)
+```
 
 <span style="font-size:13pt;">4. Connect to the Raspberry PI</span>
 
