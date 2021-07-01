@@ -342,20 +342,26 @@
 <p>To install <em>ide49</em>, you need the following:</p>
 <p><span style="font-size:13pt;">Hardware</span></p>
 <ul class="simple">
-<li><p>Raspberry PI 4 (2GBytes suffice for <em>iot49</em>).</p></li>
+<li><p>Host device:</p>
+<ul>
+<li><p>Raspberry PI 4 (2GBytes suffice for <em>iot49</em>) or</p></li>
+<li><p>Raspberry PI 3</p></li>
+</ul>
+</li>
 <li><p>SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).</p></li>
-<li><p>A host computer (e.g. a laptop) with an SD Card slot (only used for installation)</p></li>
+<li><p>A networked computer (e.g. a laptop) with an SD Card slot (only used for installation)</p></li>
 </ul>
 <p><span style="font-size:13pt;">Software</span></p>
 <ul class="simple">
 <li><p>Web-browser (e.g. Chrome)</p></li>
-<li><p><a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a>, available for Mac, Window, and Linux (free)</p></li>
+<li><p><a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a>, available for Mac, Window, and Linux</p></li>
 </ul>
 <p><span style="font-size:13pt;">1. Download Balena OS</span></p>
+<p>Create an account on <a class="reference external" href="https://www.balena.io/">balena.io</a> or login to your existing account.</p>
 <p>Open the <a class="reference external" href="https://github.com/iot49/ide49"><em>ide49</em> repository on github</a> and click the</p>
 <p><img alt="Deploy with Balena" src="../_images/deploy.svg" /></p>
-<p>button. Create a (free) account for <a class="reference external" href="https://www.balena.io/">balena.io</a> or login to your existing account.</p>
-<p>In the popup window, choose a name for your application (e.g. <em>ide49</em>). Click <em>advanced</em> and set the timezone (TZ) to the desired value. Click <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">here</a> for a list of valid TZ names. Click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">and</span> <span class="pre">Deploy</span></code>.</p>
+<p>button.</p>
+<p>In the popup window, choose a name for your application (e.g. <em>ide49</em>). Click <em>advanced</em> and set the timezone (TZ) to the desired value. Click <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">here</a> for a list of valid TZ names.</p>
 <p>Leave the other variables at their defaults (they can be changed later) and click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">and</span> <span class="pre">Deploy</span></code>. The browser is redirected to the Balena dashboard for the ide49 application. Click <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Add</span> <span class="pre">device</span></code>. You get another popup:</p>
 <ul class="simple">
 <li><p>under edition, select <code class="docutils literal notranslate"><span class="pre">Development</span></code></p></li>

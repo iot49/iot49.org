@@ -4,24 +4,28 @@ To install *ide49*, you need the following:
 
 <span style="font-size:13pt;">Hardware</span>
 
-* Raspberry PI 4 (2GBytes suffice for *iot49*).
+* Host device:
+    * Raspberry PI 4 (2GBytes suffice for *iot49*) or
+    * Raspberry PI 3
 * SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).
-* A host computer (e.g. a laptop) with an SD Card slot (only used for installation)
+* A networked computer (e.g. a laptop) with an SD Card slot (only used for installation)
 
 <span style="font-size:13pt;">Software</span>
 
 * Web-browser (e.g. Chrome)
-* [Balena Etcher](https://www.balena.io/etcher/), available for Mac, Window, and Linux (free)
+* [Balena Etcher](https://www.balena.io/etcher/), available for Mac, Window, and Linux
 
 <span style="font-size:13pt;">1. Download Balena OS</span>
+
+Create an account on [balena.io](https://www.balena.io/) or login to your existing account.
 
 Open the [*ide49* repository on github](https://github.com/iot49/ide49) and click the 
 
 ![Deploy with Balena](figures/deploy.svg)
 
-button. Create a (free) account for [balena.io](https://www.balena.io/) or login to your existing account.
+button. 
 
-In the popup window, choose a name for your application (e.g. *ide49*). Click *advanced* and set the timezone (TZ) to the desired value. Click [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for a list of valid TZ names. Click `Create and Deploy`.
+In the popup window, choose a name for your application (e.g. *ide49*). Click *advanced* and set the timezone (TZ) to the desired value. Click [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for a list of valid TZ names. 
 
 Leave the other variables at their defaults (they can be changed later) and click `Create and Deploy`. The browser is redirected to the Balena dashboard for the ide49 application. Click `+ Add device`. You get another popup:
 
