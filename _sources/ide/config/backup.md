@@ -11,17 +11,17 @@ The first time you access Duplicati, you are asked
 :width: 500px
 ```
 
-Choose "No, my machine ..." to get to the home screen
+Choose "No, my machine ..." to get to the home screen:
 
 ```{image} figures/duplicati.png
 :width: 500px
 ```
 
-Click `+ Add backup` and configure a new backup. Choose Encryption and a Passphrase if you like (I do not bother as I don't keep personal information on the Raspberry Pi).
+Click `+ Add backup` and configure a new backup. Choose encryption and a passphrase if you like (I do not bother as I don't keep personal information on the Raspberry Pi).
 
 Duplicati offers many backup destinations. Under `Storage Type` you find all the popular online services (Dropbox, Google Cloud, etc). 
 
-Alternatively you can backup to local storage. Insert a USB thumb drive into the Raspberry PI. It will show up under `Folder path` in the `mnt` folder. 
+Alternatively you can backup to local storage. Insert a USB thumb drive into the Raspberry PI. It will show up in section `Folder path` in the `mnt` folder, identified by its label. 
 
 ```{image} figures/duplicati_dest.png
 :width: 500px
@@ -38,7 +38,7 @@ On the next screen, under `Computer`, choose the folder `service-config` as back
 You can either run backups manually, or, preferably, automatically at a set schedule. This is my choice:
 
 ```{image} figures/duplicati_schedule.png
-:width: 500px
+:width: 350px
 ```
 
 That's it! If you ever loose data, come back to https://iot49.local/duplicati and run `Restore`. 
