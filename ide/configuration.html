@@ -136,19 +136,9 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="iot-kernel.html">
-   IoT Kernel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="flash.html">
-   Flash MicroPython
-  </a>
- </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="services.html">
-   Services
+  <a class="reference internal" href="micropython.html">
+   MicroPython
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -157,59 +147,91 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="services/nginx.html">
-     Nginx
+    <a class="reference internal" href="micropython/iot-kernel.html">
+     IoT Kernel
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="services/jupyter.html">
-     Jupyter Lab
+    <a class="reference internal" href="micropython/REPL.html">
+     REPL prompt
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="services/editor.html">
-     Editor
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/backup.html">
-     Backup
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/plotserver.html">
-     Plotserver
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/balena-cli.html">
-     Balena CLI
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/samba.html">
-     Samba
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/mosquitto.html">
-     MQTT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/gcc.html">
-     GCC
+    <a class="reference internal" href="micropython/flash.html">
+     Flash MicroPython
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="customize.html">
-   Customize
-   <em>
-    ide49
-   </em>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="reference.html">
+   Reference
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services.html">
+     Services
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/nginx.html">
+     Nginx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/jupyter.html">
+     Jupyter Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/editor.html">
+     Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/plotserver.html">
+     Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/balena-cli.html">
+     Balena CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/mosquitto.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/gcc.html">
+     GCC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="issues.html">
@@ -286,9 +308,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/ide/configuration.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/ide/configuration.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -309,7 +331,7 @@
             href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/configuration.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/configuration.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/configuration.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -339,10 +361,15 @@
                 
   <div class="section" id="configuration">
 <h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h1>
-<p>Many aspects of <em>ide49</em> are configurable.</p>
-<p>If you have not done so already, you may want to <a class="reference internal" href="config/password.html"><span class="doc std std-doc">change the password</span></a> and setup automatic <a class="reference internal" href="config/backup.html"><span class="doc std std-doc">backups</span></a>.</p>
-<p>You can also <a class="reference internal" href="config/dns.html"><span class="doc std std-doc">change the domain name</span></a> from the default <a class="reference external" href="http://iot49.local">http://iot49.local</a> and <a class="reference internal" href="config/https.html"><span class="doc std std-doc">configure your browser/OS</span></a> to treat the domain as secure.</p>
-<p><a class="reference internal" href="config/samba.html"><span class="doc std std-doc">Samba</span></a> allows you to export or mount the <em>ide49</em> home directory (<code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>).</p>
+<p>Many aspects of <em>ide49</em> are configurable, including:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="config/password.html"><span class="doc std std-doc">Changing the password</span></a>,</p></li>
+<li><p>Automatic <a class="reference internal" href="config/backup.html"><span class="doc std std-doc">backups</span></a>,</p></li>
+<li><p><a class="reference internal" href="config/dns.html"><span class="doc std std-doc">Changing the domain name</span></a> from the default <a class="reference external" href="http://iot49.local">http://iot49.local</a>,</p></li>
+<li><p><a class="reference internal" href="config/https.html"><span class="doc std std-doc">Configure your browser/OS</span></a> to treat the domain as secure,</p></li>
+<li><p>Setting up a <a class="reference internal" href="config/samba.html"><span class="doc std std-doc">Samba</span></a> file server or client to export or mount the <em>ide49</em> home directory, (<code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>).</p></li>
+</ul>
+<p>For further customizations such as installing additional software or adding and removing services you can <a class="reference internal" href="reference/customize.html"><span class="doc std std-doc">rebuild the Balena <em>ide49</em> application</span></a>.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>

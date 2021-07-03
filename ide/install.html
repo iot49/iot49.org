@@ -136,19 +136,9 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="iot-kernel.html">
-   IoT Kernel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="flash.html">
-   Flash MicroPython
-  </a>
- </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="services.html">
-   Services
+  <a class="reference internal" href="micropython.html">
+   MicroPython
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -157,59 +147,91 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="services/nginx.html">
-     Nginx
+    <a class="reference internal" href="micropython/iot-kernel.html">
+     IoT Kernel
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="services/jupyter.html">
-     Jupyter Lab
+    <a class="reference internal" href="micropython/REPL.html">
+     REPL prompt
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="services/editor.html">
-     Editor
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/backup.html">
-     Backup
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/plotserver.html">
-     Plotserver
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/balena-cli.html">
-     Balena CLI
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/samba.html">
-     Samba
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/mosquitto.html">
-     MQTT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/gcc.html">
-     GCC
+    <a class="reference internal" href="micropython/flash.html">
+     Flash MicroPython
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="customize.html">
-   Customize
-   <em>
-    ide49
-   </em>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="reference.html">
+   Reference
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services.html">
+     Services
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/nginx.html">
+     Nginx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/jupyter.html">
+     Jupyter Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/editor.html">
+     Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/plotserver.html">
+     Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/balena-cli.html">
+     Balena CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/mosquitto.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/gcc.html">
+     GCC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="issues.html">
@@ -329,6 +351,43 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#download-balena-os">
+   Download Balena OS
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flash-balena-os-to-sd-card">
+   Flash Balena OS to SD Card
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#install-ide49-on-the-raspberry-pi">
+   Install
+   <em>
+    ide49
+   </em>
+   on the Raspberry Pi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connect-to-the-raspberry-pi">
+   Connect to the Raspberry Pi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#turning-off-the-raspberry-pi">
+   Turning off the Raspberry Pi
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -340,7 +399,7 @@
   <div class="section" id="install">
 <h1>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
 <p>To install <em>ide49</em>, you need the following:</p>
-<p><span style="font-size:13pt;">Hardware</span></p>
+<p><strong>Hardware:</strong></p>
 <ul class="simple">
 <li><p>Host device:</p>
 <ul>
@@ -351,12 +410,13 @@
 <li><p>SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).</p></li>
 <li><p>A networked computer (e.g. a laptop) with an SD Card slot (only used for installation)</p></li>
 </ul>
-<p><span style="font-size:13pt;">Software</span></p>
+<p><strong>Software:</strong></p>
 <ul class="simple">
 <li><p>Web-browser (e.g. Chrome)</p></li>
 <li><p><a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a>, available for Mac, Window, and Linux</p></li>
 </ul>
-<p><span style="font-size:13pt;">1. Download Balena OS</span></p>
+<div class="section" id="download-balena-os">
+<h2>Download Balena OS<a class="headerlink" href="#download-balena-os" title="Permalink to this headline">¶</a></h2>
 <p>Create an account on <a class="reference external" href="https://www.balena.io/">balena.io</a> or login to your existing account.</p>
 <p>Open the <a class="reference external" href="https://github.com/iot49/ide49"><em>ide49</em> repository on github</a> and click the</p>
 <p><img alt="Deploy with Balena" src="../_images/deploy.svg" /></p>
@@ -368,9 +428,13 @@
 <li><p>click the <code class="docutils literal notranslate"><span class="pre">Wifi</span> <span class="pre">+</span> <span class="pre">Ethernet</span></code> button and enter your WiFi credentials</p></li>
 </ul>
 <p>Accept the defaults for everything else and hit the <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">balenaOS</span></code> button. Keep the browser window open for checking progress later.</p>
-<p><span style="font-size:13pt;">2. Flash Balena OS to SD Card</span></p>
+</div>
+<div class="section" id="flash-balena-os-to-sd-card">
+<h2>Flash Balena OS to SD Card<a class="headerlink" href="#flash-balena-os-to-sd-card" title="Permalink to this headline">¶</a></h2>
 <p>Once the download finishes, start the <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a> to flash the downloaded zip-file to an SD Card. Insert the card in your computer (laptop), click <em>Flash from file</em> and choose the <em>balena-cloud … img.zip</em>, choose the SD Card as target and hit <code class="docutils literal notranslate"><span class="pre">Flash</span></code>. You may be asked to enter the administrator password to enable the flash.</p>
-<p><span style="font-size:13pt;">3. Install <em>ide49</em> on the Raspberry Pi</span></p>
+</div>
+<div class="section" id="install-ide49-on-the-raspberry-pi">
+<h2>Install <em>ide49</em> on the Raspberry Pi<a class="headerlink" href="#install-ide49-on-the-raspberry-pi" title="Permalink to this headline">¶</a></h2>
 <p>Remove the SD Card from the host and insert it into the Raspberry Pi, power up the device. It will automatically configure the OS. Head back to the browser window with the <em>Balena dashboard</em> and wait a few minutes for the new device to appear.</p>
 <p><img alt="Balena dashboard" src="../_images/device_dashboard.png" /></p>
 <p>The new device has some creative name (like <em>hidden-sun</em>). Click on the device name. The top of the page show poetic device name. Click the pencil to change it. Also listed are some statistics of your Raspberry Pi (memory usage, device temperature, local ip address, etc).</p>
@@ -381,20 +445,25 @@
 <div class="toggle docutils container">
 <p><img alt="Balena services" src="../_images/services.png" /></p>
 </div>
-<p><span style="font-size:13pt;">4. Connect to the Raspberry Pi</span></p>
+</div>
+<div class="section" id="connect-to-the-raspberry-pi">
+<h2>Connect to the Raspberry Pi<a class="headerlink" href="#connect-to-the-raspberry-pi" title="Permalink to this headline">¶</a></h2>
 <p>Once the download completes and the application started (as indicated in the device dashboard), connect to the Raspberry Pi at <a class="reference external" href="http://iot49.local">http://iot49.local</a>.</p>
 <p>If this does not work, try http://LOCAL_IP_ADDRESS instead. Substitute the value <em>LOCAL_IP_ADDRESS</em> with the address shown on the device dashboard.</p>
 <p><img alt="ide49 Landing Page" src="../_images/ide49_landing.png" /></p>
 <p>Click on <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code>. You will get a warning similar to:</p>
 <a class="reference internal image-reference" href="../_images/browser_warning.png"><img alt="../_images/browser_warning.png" src="../_images/browser_warning.png" style="width: 500px;" /></a>
-<p>Click “Advanced” and then “proceed anyway”. The page on <a class="reference internal" href="config/https.html"><span class="doc std std-doc">https</span></a> has information about this warning and explains how to get rid of it.</p>
-<p>At the login window, enter the default username and password are (both <em>iot49</em>; <a class="reference internal" href="config/password.html"><span class="doc std std-doc">Change Password</span></a>).</p>
+<p>Click “Advanced” and then “proceed anyway”. The page about <a class="reference internal" href="config/https.html"><span class="doc std std-doc">https &amp; certificates</span></a> has information about this warning and explains how to eliminated it.</p>
+<p>At the login window, enter the default username and password are (both <em>iot49</em>; <a class="reference internal" href="config/password.html"><span class="doc std std-doc">instructions for changing</span></a>).</p>
 <div style="font-size:15pt;font-weight:bold;text-align:center;color:green">Congratulations, you have completed the installation!</div>
 </p>
 <p><img alt="Jupyter" src="../_images/jupyter.png" /></p>
 <p>Proceed to the next section, <a class="reference internal" href="getting-started.html"><span class="doc std std-doc">Getting Started</span></a>.</p>
-<p><span style="font-size:13pt;">5. Turning off the Raspberry Pi</span></p>
+</div>
+<div class="section" id="turning-off-the-raspberry-pi">
+<h2>Turning off the Raspberry Pi<a class="headerlink" href="#turning-off-the-raspberry-pi" title="Permalink to this headline">¶</a></h2>
 <p>To turn off your Raspberry Pi don’t just pull the power cord. Instead head to the dashboard on <a class="reference external" href="https://balena.io">https://balena.io</a>. At the top right is a button. Click it to get several options, including <em>shutdown</em>.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

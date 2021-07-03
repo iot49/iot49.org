@@ -52,7 +52,6 @@
     <link rel="canonical" href="https://iot49.org/iot/gpio.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Install MicroPython" href="install_micropython.html" />
     <link rel="prev" title="MicroPython" href="micropython.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -92,9 +91,6 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../ide/install.html">
    Install
-   <em>
-    ide49
-   </em>
   </a>
  </li>
  <li class="toctree-l1">
@@ -123,11 +119,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/config/samba.html">
-     Samba File Server/Client
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../ide/config/dns.html">
      Domain Name
     </a>
@@ -137,16 +128,16 @@
      Https &amp; Certificates
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ide/iot-kernel.html">
-   IoT Kernel
-  </a>
- </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../ide/services.html">
-   Services
+  <a class="reference internal" href="../ide/micropython.html">
+   MicroPython
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -155,55 +146,107 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/services/jupyter.html">
+    <a class="reference internal" href="../ide/micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/micropython/flash.html">
+     Flash MicroPython
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../ide/reference.html">
+   Reference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/reference/services.html">
+     Services
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/reference/services/nginx.html">
+     Nginx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/reference/services/jupyter.html">
      Jupyter Lab
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/services/editor.html">
+    <a class="reference internal" href="../ide/reference/services/editor.html">
      Editor
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/services/backup.html">
+    <a class="reference internal" href="../ide/reference/services/backup.html">
      Backup
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/services/plotserver.html">
+    <a class="reference internal" href="../ide/reference/services/plotserver.html">
      Plotserver
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/services/balena-cli.html">
-     Balena CLI (Command Line Interface)
+    <a class="reference internal" href="../ide/reference/services/balena-cli.html">
+     Balena CLI
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/services/samba.html">
+    <a class="reference internal" href="../ide/reference/services/samba.html">
      Samba
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/services/mosquitto.html">
+    <a class="reference internal" href="../ide/reference/services/mosquitto.html">
      MQTT
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/services/gcc.html">
+    <a class="reference internal" href="../ide/reference/services/gcc.html">
      GCC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/reference/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../ide/app.html">
-   IoT-dev Architecture Decisions
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../ide/issues.html">
    Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../projects/balance.html">
+   Balance
   </a>
  </li>
 </ul>
@@ -221,11 +264,6 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    GPIO
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="install_micropython.html">
-   Install MicroPython
   </a>
  </li>
 </ul>
@@ -415,7 +453,6 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="micropython.html" title="previous page">MicroPython</a>
-    <a class='right-next' id="next-link" href="install_micropython.html" title="next page">Install MicroPython</a>
 
         </div>
         

@@ -136,19 +136,9 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="iot-kernel.html">
-   IoT Kernel
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="flash.html">
-   Flash MicroPython
-  </a>
- </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="services.html">
-   Services
+  <a class="reference internal" href="micropython.html">
+   MicroPython
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -157,59 +147,91 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="services/nginx.html">
-     Nginx
+    <a class="reference internal" href="micropython/iot-kernel.html">
+     IoT Kernel
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="services/jupyter.html">
-     Jupyter Lab
+    <a class="reference internal" href="micropython/REPL.html">
+     REPL prompt
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="services/editor.html">
-     Editor
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/backup.html">
-     Backup
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/plotserver.html">
-     Plotserver
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/balena-cli.html">
-     Balena CLI
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/samba.html">
-     Samba
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/mosquitto.html">
-     MQTT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="services/gcc.html">
-     GCC
+    <a class="reference internal" href="micropython/flash.html">
+     Flash MicroPython
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="customize.html">
-   Customize
-   <em>
-    ide49
-   </em>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="reference.html">
+   Reference
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services.html">
+     Services
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/nginx.html">
+     Nginx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/jupyter.html">
+     Jupyter Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/editor.html">
+     Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/plotserver.html">
+     Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/balena-cli.html">
+     Balena CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/mosquitto.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/services/gcc.html">
+     GCC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reference/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="issues.html">
@@ -349,11 +371,6 @@
    Naming devices
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#getting-a-repl-prompt">
-   Getting a REPL prompt
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -374,14 +391,14 @@
 <p>To access <em>Jupyter Lab</em> in <em>ide49</em>, go to <a class="reference external" href="https://iot49.local/jupyter">https://iot49.local/jupyter</a> (change the name if you modified the DNS name of the Raspberry Pi) or from the <em>Jupyter</em> link of <em>ide49</em> dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
 <p>You will be presented with the page below.</p>
 <p><img alt="Jupyter" src="../_images/jupyter_annotated.png" /></p>
-<p>For illustration, the key features are highlighted. The main features include a <em>Python 3 Kernel</em> for executing code on the Raspberry Pi, a <em>Terminal</em> for running shell commands, and, the <strong>IoT Kernel</strong> for programming microcontrollers. Click on that button to get a new window:</p>
-<p>To start an <em>IoT Kernel</em>, click on its icon to get:</p>
+<p>For illustration, the key features are highlighted. The main features are a <em>Python 3 Kernel</em> that executes Python 3 on the host (Raspberry Pi), a <em>Terminal</em> for running shell commands, and, the <a class="reference internal" href="micropython/iot-kernel.html"><span class="doc std std-doc"><strong>IoT Kernel</strong></span></a> for programming microcontrollers.</p>
+<p>To start an <em>IoT Kernel</em>, click on its icon:</p>
 <p><img alt="IoT Kernel" src="../_images/iot_kernel_annotated.png" /></p>
 <p>Like all <em>Jupyter</em> kernels, you type code into <em>cells</em>, and click <code class="docutils literal notranslate"><span class="pre">shift-return</span></code> (return while holding down the shift key) to execute it.</p>
 <p>For example:</p>
-<a class="reference internal image-reference" href="../_images/no_device_connected.png"><img alt="../_images/no_device_connected.png" src="../_images/no_device_connected.png" style="width: 250px;" /></a>
-<p>The error is not surprising, since, well, we have not yet connected a microcontroller to the Raspberry Pi.</p>
-<p>Like other <em>Jupyter</em> kernels, it implements several <em>magics</em>; lines that start with a percent sign <code class="docutils literal notranslate"><span class="pre">%</span></code> in the first column. To get a list of magics available in the <em>IoT Kernel</em>, execute <code class="docutils literal notranslate"><span class="pre">%lsmagic%</span></code> by typing it into an empty cell and hitting <code class="docutils literal notranslate"><span class="pre">shift-return</span></code>:</p>
+<a class="reference internal image-reference" href="../_images/no_device_connected.png"><img alt="../_images/no_device_connected.png" src="../_images/no_device_connected.png" style="width: 350px;" /></a>
+<p>Unless you have connected a microcontroller with MicroPython installed you get this error.</p>
+<p>Like other <em>Jupyter</em> kernels, the <em>IoT Kernel</em> exposes its functionality through <em>magics</em>; lines that begin with a percent sign <code class="docutils literal notranslate"><span class="pre">%</span></code> in the first column. To get a list of magics available in the <em>IoT Kernel</em>, execute <code class="docutils literal notranslate"><span class="pre">%lsmagic%</span></code> by typing it into an empty cell and hitting <code class="docutils literal notranslate"><span class="pre">shift-return</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">lsmagic</span>
@@ -426,7 +443,31 @@ Cell Magic:    -h shows help (e.g. %%connect -h)
 </div>
 </div>
 </div>
-<p>To get additonal information about a magic, run it with the <code class="docutils literal notranslate"><span class="pre">-h</span></code> flag:</p>
+<p>In addition, the magics from the Python3 kernel are also available. There are quite many! To get a list:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+
+<span class="o">%</span><span class="n">lsmagic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available line magics:
+%alias  %alias_magic  %autoawait  %autocall  %automagic  %autosave  %bookmark  %cat  %cd  %clear  %colors  %conda  %config  %connect_info  %cp  %debug  %dhist  %dirs  %doctest_mode  %ed  %edit  %env  %gui  %hist  %history  %killbgscripts  %ldir  %less  %lf  %lk  %ll  %load  %load_ext  %loadpy  %logoff  %logon  %logstart  %logstate  %logstop  %ls  %lsmagic  %lx  %macro  %magic  %man  %matplotlib  %mkdir  %more  %mv  %notebook  %page  %pastebin  %pdb  %pdef  %pdoc  %pfile  %pinfo  %pinfo2  %pip  %popd  %pprint  %precision  %prun  %psearch  %psource  %pushd  %pwd  %pycat  %pylab  %qtconsole  %quickref  %recall  %rehashx  %reload_ext  %rep  %rerun  %reset  %reset_selective  %rm  %rmdir  %run  %save  %sc  %set_env  %store  %sx  %system  %tb  %time  %timeit  %unalias  %unload_ext  %who  %who_ls  %whos  %xdel  %xmode
+
+Available cell magics:
+%%!  %%HTML  %%SVG  %%bash  %%capture  %%debug  %%file  %%html  %%javascript  %%js  %%latex  %%markdown  %%perl  %%prun  %%pypy  %%python  %%python2  %%python3  %%ruby  %%script  %%sh  %%svg  %%sx  %%system  %%time  %%timeit  %%writefile
+
+Automagic is ON, % prefix IS NOT needed for line magics.
+</pre></div>
+</div>
+</div>
+</div>
+<p>For more information about <em>IoT Kernel</em> magics, run it with the <code class="docutils literal notranslate"><span class="pre">-h</span></code> flag:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span> <span class="o">-</span><span class="n">h</span>
@@ -445,6 +486,7 @@ optional arguments:
 </div>
 </div>
 </div>
+<p>Example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
@@ -460,11 +502,12 @@ optional arguments:
 </div>
 </div>
 </div>
-<p>Code preceded by the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic is submitted to the Raspberry Pi for execution. See <a class="reference internal" href="iot-kernel.html"><span class="doc std std-doc">iot-kernel</span></a> for more information.</p>
+<p>Code preceded by the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic is submitted to the Raspberry Pi for execution. See <a class="reference internal" href="micropython/iot-kernel.html"><span class="doc std std-doc">iot-kernel</span></a> for more information.</p>
 </div>
 <div class="section" id="micropython">
 <h2>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h2>
-<p>Connect a microcontroller to one of the USB ports of the Raspberry Pi &amp; <a class="reference internal" href="flash.html"><span class="doc std std-doc">install MicroPython</span></a>. If MicroPython is installed already, you can skip this step.</p>
+<p>Connect a microcontroller to one of the USB ports of the Raspberry Pi. If MicroPython is not yet installed, follow the instructions <a class="reference internal" href="micropython/flash.html"><span class="doc std std-doc">here</span></a>.</p>
+<p>Then run the <code class="docutils literal notranslate"><span class="pre">%discover</span></code> magic:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
@@ -477,15 +520,8 @@ optional arguments:
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>The `%discover` magic searches all ports for available devices. For each device it reports a hexadecimal string that uniquely identifies the processors (hence you&#39;ll get a different number) and the port it is connected to.
-
-Connection is initiated with the `%connect` magic.
-</pre></div>
-</div>
-</div>
-</div>
+<p>Discover searches all ports for available devices. For each device it reports a hexadecimal string that uniquely identifies the chip and the port it is connected to, e.g. <code class="docutils literal notranslate"><span class="pre">serial:///dev/ttyUSB0</span></code> for a device connected to serial port <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code>.</p>
+<p>Connect to the device:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="mi">50</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="n">a7</span><span class="p">:</span><span class="mi">2</span><span class="n">c</span>
@@ -537,7 +573,7 @@ platform: esp32   implementation: micropython
 </div>
 </div>
 </div>
-<p>We are indeed connected to MicroPython.</p>
+<p>We are indeed talking to MicroPython.</p>
 </div>
 <div class="section" id="naming-devices">
 <h2>Naming devices<a class="headerlink" href="#naming-devices" title="Permalink to this headline">¶</a></h2>
@@ -581,16 +617,6 @@ platform: esp32   implementation: micropython
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="getting-a-repl-prompt">
-<h2>Getting a REPL prompt<a class="headerlink" href="#getting-a-repl-prompt" title="Permalink to this headline">¶</a></h2>
-<p>If you rather use the REPL to program your microcontroller, launch a Terminal (click the blue <code class="docutils literal notranslate"><span class="pre">+</span></code> icon at the upper left of jupyter lab and then the Terminal icon). In the terminal type</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>picocom /dev/ttyUSB0  -b115200
-</pre></div>
-</div>
-<div class="toggle docutils container">
-<p><img alt="REPL" src="../_images/repl.png" /></p>
 </div>
 </div>
 </div>

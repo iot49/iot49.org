@@ -2,7 +2,7 @@
 
 To install *ide49*, you need the following:
 
-<span style="font-size:13pt;">Hardware</span>
+**Hardware:**
 
 * Host device:
     * Raspberry Pi 4 (2GBytes suffice for *iot49*) or
@@ -10,12 +10,12 @@ To install *ide49*, you need the following:
 * SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).
 * A networked computer (e.g. a laptop) with an SD Card slot (only used for installation)
 
-<span style="font-size:13pt;">Software</span>
+**Software:**
 
 * Web-browser (e.g. Chrome)
 * [Balena Etcher](https://www.balena.io/etcher/), available for Mac, Window, and Linux
 
-<span style="font-size:13pt;">1. Download Balena OS</span>
+## Download Balena OS
 
 Create an account on [balena.io](https://www.balena.io/) or login to your existing account.
 
@@ -34,11 +34,11 @@ Leave the other variables at their defaults (they can be changed later) and clic
 
 Accept the defaults for everything else and hit the `Download balenaOS` button. Keep the browser window open for checking progress later.
 
-<span style="font-size:13pt;">2. Flash Balena OS to SD Card</span>
+## Flash Balena OS to SD Card
 
 Once the download finishes, start the [Balena Etcher](https://www.balena.io/etcher/) to flash the downloaded zip-file to an SD Card. Insert the card in your computer (laptop), click *Flash from file* and choose the *balena-cloud ... img.zip*, choose the SD Card as target and hit `Flash`. You may be asked to enter the administrator password to enable the flash.
 
-<span style="font-size:13pt;">3. Install *ide49* on the Raspberry Pi</span>
+## Install *ide49* on the Raspberry Pi
 
 Remove the SD Card from the host and insert it into the Raspberry Pi, power up the device. It will automatically configure the OS. Head back to the browser window with the *Balena dashboard* and wait a few minutes for the new device to appear.
 
@@ -58,7 +58,7 @@ After the download completes the application will automatically start.
 ![Balena services](figures/services.png)
 ```
 
-<span style="font-size:13pt;">4. Connect to the Raspberry Pi</span>
+## Connect to the Raspberry Pi
 
 Once the download completes and the application started (as indicated in the device dashboard), connect to the Raspberry Pi at http://iot49.local.
 
@@ -72,9 +72,9 @@ Click on `Jupyter`. You will get a warning similar to:
 :width: 500px
 ```
 
-Click "Advanced" and then "proceed anyway". The page on [https](config/https) has information about this warning and explains how to get rid of it.
+Click "Advanced" and then "proceed anyway". The page about [https & certificates](config/https) has information about this warning and explains how to eliminated it.
 
-At the login window, enter the default username and password are (both *iot49*; [Change Password](config/password.ipynb)). 
+At the login window, enter the default username and password are (both *iot49*; [instructions for changing](config/password.ipynb)). 
 
 <div style="font-size:15pt;font-weight:bold;text-align:center;color:green">Congratulations, you have completed the installation!</div>
 </p>
@@ -83,6 +83,6 @@ At the login window, enter the default username and password are (both *iot49*; 
 
 Proceed to the next section, [Getting Started](getting-started).
 
-<span style="font-size:13pt;">5. Turning off the Raspberry Pi</span>
+## Turning off the Raspberry Pi
 
 To turn off your Raspberry Pi don't just pull the power cord. Instead head to the dashboard on https://balena.io. At the top right is a button. Click it to get several options, including *shutdown*.
