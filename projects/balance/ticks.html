@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Troubled Times &#8212; Electronics for IoT</title>
+    <title>“Troubled” Times &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -292,7 +292,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Troubled Times
+     “Troubled” Times
     </a>
    </li>
   </ul>
@@ -405,7 +405,7 @@
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Troubled Times
+   “Troubled” Times
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -446,12 +446,12 @@
               <div>
                 
   <div class="section" id="troubled-times">
-<h1>Troubled Times<a class="headerlink" href="#troubled-times" title="Permalink to this headline">¶</a></h1>
-<p>I am not to a disaster, but mearely the challenges of accurately “measuring” small time differences with microcontrollers.</p>
-<p>Depending on clock rate, microcontrollers can resolve sub-microsecond intervals. Equally, using counters, they can track years or even millenia, provided that the power does not go out and someone is there to look at the result.</p>
+<h1>“Troubled” Times<a class="headerlink" href="#troubled-times" title="Permalink to this headline">¶</a></h1>
+<p>I am not talking about a disaster, merely the challenges of accurately “measuring” small time differences with microcontrollers.</p>
+<p>Depending on clock rate, microcontrollers can resolve sub-microsecond intervals. Conversely, using counters, they can track years or even millenia, provided that the power does not go out and someone is there to look at the result.</p>
 <div class="section" id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
-<p>Representing such intervals is also quite easy. A 64-bit integer can represent 584,942 years with microsecond resolution. The problem is that most microcontrollers use 32-bit integers. MicroPython “looses” a bit or two to represent the datatype. An additional bit is used for the sign, hence we are left with 29 bits. That’s sufficient to represent just 9 minutes with microsecond resolution. With millisecond resolution we get about 9000 minutes or a little over 6 days.</p>
+<p>In principle, representing such intervals is quite easy. A 64-bit integer can represent 584,942 years with microsecond resolution. The problem is that most microcontrollers use 32-bit integers. MicroPython “looses” a bit or two to represent the datatype. An additional bit is used for the sign, hence we are left with 29 bits. That’s sufficient to represent just 9 minutes with microsecond resolution. With millisecond resolution we get about 9000 minutes or a little over 6 days.</p>
 <p>Measuring time is typically implemented by arbitrarily resetting a clock variable to zero (usually on powerup) and incrementing its value every millisecond or so. MicroPython has a function <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> that returns the time in microseconds since the device was turned on.</p>
 <p>For example, to measure the duration of button presses (or some sensor input, let’s say the duration of a flash of light), we take the time when the button was pressed, and again when it was released and compute the difference.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ticks_ms</span>
@@ -473,7 +473,7 @@
 </div>
 <div class="section" id="time-monotonic">
 <h1><code class="docutils literal notranslate"><span class="pre">time.monotonic</span></code><a class="headerlink" href="#time-monotonic" title="Permalink to this headline">¶</a></h1>
-<p>C-Python has a function <code class="docutils literal notranslate"><span class="pre">time.monotonic()</span></code> that returns time (with arbitrary offset) in seconds as a 64-bit floating point number. With floating point the resolution decreases for long durations, but to less than microseconds after half a million years, but most of us won’t be around to notice.</p>
+<p>C-Python has a function <code class="docutils literal notranslate"><span class="pre">time.monotonic()</span></code> that returns time (with arbitrary offset) in seconds as a 64-bit floating point number. With floating point the resolution decreases for long durations to less than microseconds after half a million years, but most of us won’t be around to notice.</p>
 <p><a class="reference external" href="https://circuitpython.org/">CircuitPython</a>, a fork of MicroPython, also offers <code class="docutils literal notranslate"><span class="pre">time.monotonic()</span></code> but returns a 32-bit float rather than 64-bits. Now the resolution drops quite quickly, well within our lifetime:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -547,8 +547,8 @@ duration = 0.001
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">duration</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>  <span class="c1"># WRONG!</span>
 </pre></div>
 </div>
-<p>This works correctly as long as no more than one roll-over occurs during the measurement interval.</p>
-<p>Admittedly a bit contorted, but it works correctly, is efficient, and can be used even in interrupt service routines.</p>
+<p>This works correctly as long as no more than one roll-over occurs during the measurement interval limiting the maximum duriation that can be measured with <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> to about six days. With <code class="docutils literal notranslate"><span class="pre">time.ticks_us()</span></code> the maximum is about nine minutes.</p>
+<p>Admittedly a bit contorted, but it works correctly, is efficient, and can be used even in interrupt service routines. After pondering the alternatives (and even implementing custom helpers in C), I always come back to using <code class="docutils literal notranslate"><span class="pre">ticks_XXX</span></code>.</p>
 </div>
 
     <script type="text/x-thebe-config">
