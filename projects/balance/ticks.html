@@ -494,10 +494,10 @@ duration = 0.001
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># simulate `time.monotonic()` just after a day:</span>
-<span class="n">start</span> <span class="o">=</span> <span class="mi">3600</span><span class="o">*</span><span class="mi">24</span>
+<span class="n">start</span> <span class="o">=</span> <span class="mi">3600</span><span class="o">*</span><span class="mf">24.0</span>
 
 <span class="c1"># simulate 1ms interval:</span>
-<span class="n">stop</span> <span class="o">=</span> <span class="n">start</span><span class="o">+</span><span class="mf">0.01</span>
+<span class="n">stop</span> <span class="o">=</span> <span class="n">start</span><span class="o">+</span><span class="mf">0.001</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;duration =&quot;</span><span class="p">,</span> <span class="n">stop</span><span class="o">-</span><span class="n">start</span><span class="p">)</span>
 </pre></div>
