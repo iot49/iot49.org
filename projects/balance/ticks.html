@@ -403,19 +403,12 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   “Troubled” Times
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem">
+   Problem
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#problem">
-     Problem
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#time-monotonic">
    <code class="docutils literal notranslate">
     <span class="pre">
@@ -424,12 +417,12 @@
    </code>
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#solution">
    Solution
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ticks">
    Ticks
   </a>
@@ -470,9 +463,8 @@
 </div>
 <p>This works. Except that every six days we get incorrect results since the timer “overflows”. Needless to say that such bugs are extremely difficult to diagnose since they occur so infrequently. Because of this they often escape testing, showing up only after the product has been relased to customers with possibly disastrous results.</p>
 </div>
-</div>
 <div class="section" id="time-monotonic">
-<h1><code class="docutils literal notranslate"><span class="pre">time.monotonic</span></code><a class="headerlink" href="#time-monotonic" title="Permalink to this headline">¶</a></h1>
+<h2><code class="docutils literal notranslate"><span class="pre">time.monotonic</span></code><a class="headerlink" href="#time-monotonic" title="Permalink to this headline">¶</a></h2>
 <p>C-Python has a function <code class="docutils literal notranslate"><span class="pre">time.monotonic()</span></code> that returns time (with arbitrary offset) in seconds as a 64-bit floating point number. With floating point the resolution decreases for long durations to less than microseconds after half a million years, but most of us won’t be around to notice.</p>
 <p><a class="reference external" href="https://circuitpython.org/">CircuitPython</a>, a fork of MicroPython, also offers <code class="docutils literal notranslate"><span class="pre">time.monotonic()</span></code> but returns a 32-bit float rather than 64-bits. Now the resolution drops quite quickly, well within our lifetime:</p>
 <div class="cell docutils container">
@@ -522,13 +514,13 @@ duration = 0.001
 <p>Perhaps you do not need millisecond resolution. But even 10ms cannot be resolved after 4 days.</p>
 </div>
 <div class="section" id="solution">
-<h1>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h1>
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
 <p>There are several solutions for this. We could allocate more bits for representing time, for example using Python bigints. In fact, CircuitPython’s <code class="docutils literal notranslate"><span class="pre">time.monotonic_ns()</span></code> does just this.</p>
 <p>It works fine and has the great benefit of being standard Python (i.e. code works also in C-Python) but has potential drawbacks. First, bigints are less efficient than (small) ints or floats. Secondly, and more importantly, they are allocated on the heap. Because of this they cannot be used in <a class="reference external" href="https://docs.micropython.org/en/latest/reference/isr_rules.html#isr-rules">interrupt service routines</a>. Since interrupts are precisely a situation where measuring time is often needed, that’s a quite significant gotcha.</p>
 <p>Note that CircuitPython does not implement interrupts in user code. That’s also a solution, if you don’t need them.</p>
 </div>
 <div class="section" id="ticks">
-<h1>Ticks<a class="headerlink" href="#ticks" title="Permalink to this headline">¶</a></h1>
+<h2>Ticks<a class="headerlink" href="#ticks" title="Permalink to this headline">¶</a></h2>
 <p>MicroPython chooses a different route. <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> and <code class="docutils literal notranslate"><span class="pre">time.ticks_us()</span></code> both return time as small ints. Because of this they “roll-over” after a few minutes or days. The special function <code class="docutils literal notranslate"><span class="pre">time.ticks_diff()</span></code> takes into account the roll over.</p>
 <p><strong>Example:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>  <span class="c1"># or ticks_ms</span>
@@ -549,6 +541,7 @@ duration = 0.001
 </div>
 <p>This works correctly as long as no more than one roll-over occurs during the measurement interval limiting the maximum duriation that can be measured with <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> to about six days. With <code class="docutils literal notranslate"><span class="pre">time.ticks_us()</span></code> the maximum is about nine minutes.</p>
 <p>Admittedly a bit contorted, but it works correctly, is efficient, and can be used even in interrupt service routines. After pondering the alternatives (and even implementing custom helpers in C), I always come back to using <code class="docutils literal notranslate"><span class="pre">ticks_XXX</span></code>.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
