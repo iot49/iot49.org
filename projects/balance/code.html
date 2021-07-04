@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MicroPython Code &#8212; Electronics for IoT</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://iot49.org/projects/balance/code.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Buttons" href="buttons.html" />
+    <link rel="prev" title="Assembly" href="assembly.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compiling MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flash MicroPython
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/reference.html">
+   Reference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services.html">
+     Services
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services/nginx.html">
+     Nginx
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services/jupyter.html">
+     Jupyter Lab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services/editor.html">
+     Editor
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services/plotserver.html">
+     Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services/balena-cli.html">
+     Balena CLI
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services/samba.html">
+     Samba
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services/mosquitto.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services/arm32.html">
+     arm32
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/services/esp-idf.html">
+     ESP IDF
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/reference/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../balance.html">
+   Kitchen Scale with MicroPython
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="mcu.html">
+     Microcontroller
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="assembly.html">
+     Assembly
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ticks.html">
+     Troubled Times
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  IoT
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../iot/micropython.html">
+   MicroPython
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../iot/gpio.html">
+   GPIO
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/projects/balance/code.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/balance/code.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/balance/code.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="micropython-code">
+<h1>MicroPython Code<a class="headerlink" href="#micropython-code" title="Permalink to this headline">¶</a></h1>
+<p>ADCs map analog input voltage to a digital code. The figure below shows the relationship for several gain settings. Since our signal is centered around <span class="math notranslate nohighlight">\(V_\textrm{ref}\approx 1.65V\)</span> we use the 11dB attenuation setting.</p>
+<p><img alt="" src="../../_images/esp32_adc_vin.png" /></p>
+<p>Below is the code to setup and read the ADC, adapted from the example in the <a class="reference external" href="https://docs.micropython.org/en/latest/esp32/quickref.html#adc-analog-to-digital-conversion">MicroPython documentation</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+<span class="o">%</span><span class="n">connect</span> <span class="n">huzzah32</span>
+
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">ADC</span><span class="p">,</span> <span class="n">Pin</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="c1"># configure ADC3 (output of the INA126)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">39</span><span class="p">))</span>
+<span class="n">out</span><span class="o">.</span><span class="n">atten</span><span class="p">(</span><span class="n">ADC</span><span class="o">.</span><span class="n">ATTN_11DB</span><span class="p">)</span>
+
+<span class="c1"># configure ADC6 (Vref)</span>
+<span class="n">ref</span> <span class="o">=</span> <span class="n">ADC</span><span class="p">(</span><span class="n">Pin</span><span class="p">(</span><span class="mi">34</span><span class="p">))</span>
+<span class="n">ref</span><span class="o">.</span><span class="n">atten</span><span class="p">(</span><span class="n">ADC</span><span class="o">.</span><span class="n">ATTN_11DB</span><span class="p">)</span>
+
+<span class="c1"># read the ADCs in a loop and display the result</span>
+<span class="c1"># _ just means that we don&#39;t care for the loop counter</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">vout</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">vref</span> <span class="o">=</span> <span class="n">ref</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;out = </span><span class="si">{:4}</span><span class="s2">  ref = </span><span class="si">{:4}</span><span class="s2">   delta = </span><span class="si">{:4}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">vout</span><span class="p">,</span> <span class="n">vref</span><span class="p">,</span> <span class="n">vout</span><span class="o">-</span><span class="n">vref</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>huzzah32  serial:///dev/ttyUSB0  
+<span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to huzzah32 @ serial:///dev/ttyUSB0</span>
+out = 1789  ref = 1729   delta =   60
+out = 1776  ref = 1719   delta =   57
+out = 1776  ref = 1717   delta =   59
+out = 1776  ref = 1724   delta =   52
+out = 1781  ref = 1709   delta =   72
+out = 1776  ref = 1713   delta =   63
+out = 1783  ref = 1727   delta =   56
+out = 1778  ref = 1723   delta =   55
+out = 1808  ref = 1721   delta =   87
+out = 1781  ref = 1715   delta =   66
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Playing around with the scale, you can see that the output (<code class="docutils literal notranslate"><span class="pre">delta</span></code>) changes when you put a weight (e.g. your finger) on the scale. But even with no weight applied, the <code class="docutils literal notranslate"><span class="pre">delta</span></code> is not zero. This error is called “offset” and comes from inacurracies in the load cell, the INA216, and the ADC.</p>
+<p>Further, values reported by the ADC change even for constant weight. This “noise” is the result of electrical interference and the ADC.</p>
+<p>Let’s try averaging a few samples to see if we can reduce the noise:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]:</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">vout</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">vref</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+            <span class="n">vout</span> <span class="o">+=</span> <span class="n">out</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="n">vref</span> <span class="o">+=</span> <span class="n">ref</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">vout</span> <span class="o">/=</span> <span class="n">N</span>
+        <span class="n">vref</span> <span class="o">/=</span> <span class="n">N</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;N = </span><span class="si">{:3}</span><span class="s2">  out = </span><span class="si">{:4.0f}</span><span class="s2">  ref = </span><span class="si">{:4.0f}</span><span class="s2">   delta = </span><span class="si">{:4.0f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">N</span><span class="p">,</span> <span class="n">vout</span><span class="p">,</span> <span class="n">vref</span><span class="p">,</span> <span class="n">vout</span><span class="o">-</span><span class="n">vref</span><span class="p">))</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N =   1  out = 1807  ref = 1725   delta =   82
+N =   1  out = 1782  ref = 1722   delta =   60
+N =   1  out = 1792  ref = 1725   delta =   67
+N =   1  out = 1776  ref = 1728   delta =   48
+N =   1  out = 1776  ref = 1731   delta =   45
+
+N =  10  out = 1779  ref = 1719   delta =   60
+N =  10  out = 1781  ref = 1724   delta =   57
+N =  10  out = 1780  ref = 1727   delta =   53
+N =  10  out = 1778  ref = 1723   delta =   55
+N =  10  out = 1778  ref = 1728   delta =   51
+
+N = 100  out = 1780  ref = 1724   delta =   56
+N = 100  out = 1780  ref = 1723   delta =   57
+N = 100  out = 1779  ref = 1725   delta =   54
+N = 100  out = 1778  ref = 1723   delta =   54
+N = 100  out = 1778  ref = 1722   delta =   55
+
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>In these tests I did not apply any force to the scale.</p>
+<p>Averaging definitely helps. In my trials it reduced the noise (variations of <code class="docutils literal notranslate"><span class="pre">delta</span></code>) from almost 40 without averaging (N=1) to less than 5 (N=100), an almost ten-fold improvement!</p>
+<p>Let’s update the code again, this time first measuring the offset and then subtracting it from subsequent measurements. We also create a function for reading the ADC and averaging its outputs. In <code class="docutils literal notranslate"><span class="pre">read_adc</span></code> we average the difference, a small optimization to keep the sum smaller, even for large N.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="nb">sum</span> <span class="o">+=</span> <span class="n">out</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">-</span> <span class="n">ref</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="o">/</span><span class="n">N</span>
+
+<span class="c1"># measure the offset</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
+
+<span class="c1"># weigh ...</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span> <span class="o">-</span> <span class="n">offset</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight = </span><span class="si">{:4.0f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">weight</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weight =    0
+weight =   -0
+weight =    2
+weight =  267
+weight =  361
+weight =   -0
+weight =    0
+weight =    3
+weight = -435
+weight = -308
+weight =    0
+weight =   -2
+weight =    2
+weight =    2
+weight =   -0
+weight =   -0
+weight =    0
+weight =    1
+weight =    0
+weight =   -1
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Not perfect but quite usable.</p>
+<p>Let’s now calibrate the scale so it’s output is in grams. For this we need a reference with known weight. If you do not have calibrated weights just get something with a weight close to the full scale of your load cell, get another scale to determine its weight, and then put it on your scale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight = </span><span class="si">{:4.0f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span> <span class="o">-</span> <span class="n">offset</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weight =    0
+weight =    1
+weight =  854
+weight =  841
+weight =  839
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>My reference weighs 500grams. The output of the scale is about 842 (averaged), so let’s redo the test with the output scaled by 500/842.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span> <span class="o">-</span> <span class="n">offset</span>
+    <span class="n">weight_scaled</span> <span class="o">=</span> <span class="n">weight</span> <span class="o">*</span> <span class="mi">500</span> <span class="o">/</span> <span class="mi">843</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight = </span><span class="si">{:4.0f}</span><span class="s2"> grams&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">weight_scaled</span><span class="p">))</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>weight =    0 grams
+weight =    6 grams
+weight = -499 grams
+weight = -497 grams
+weight = -498 grams
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ups, I forgot to remove the weight before I started the test. Now it comes out negative: I removed 500grams.</p>
+<p>Actually that’s quite useful, we can use this feature to implement a “tare” function: a button that, when pressed, zeroes the output. Very useful when you bake a cake to “null” the weight of the container you put the contents in.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./projects/balance"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="assembly.html" title="previous page">Assembly</a>
+    <a class='right-next' id="next-link" href="buttons.html" title="next page">Buttons</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

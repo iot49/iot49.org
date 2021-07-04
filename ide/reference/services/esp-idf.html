@@ -371,7 +371,10 @@
                 
   <div class="section" id="esp-idf">
 <h1><a class="reference external" href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html">ESP IDF</a><a class="headerlink" href="#esp-idf" title="Permalink to this headline">¶</a></h1>
-<p><strong>Note:</strong> No version for 64-bit Linux, see below:</p>
+<p><strong>Note:</strong> No version for 64-bit Linux, see error below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">tool</span> <span class="n">xtensa</span><span class="o">-</span><span class="n">esp32</span><span class="o">-</span><span class="n">elf</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">versions</span> <span class="n">compatible</span> <span class="k">with</span> <span class="n">platform</span> <span class="n">linux</span><span class="o">-</span><span class="n">arm64</span>
+</pre></div>
+</div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
@@ -425,6 +428,80 @@ Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/bt/host/nimble/nimble
 Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/expat/expat&#39;...
 Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/esptool_py/esptool&#39;...
 Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/esp_wifi/lib&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/json/cJSON&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/libsodium/libsodium&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/mqtt/esp-mqtt&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/lwip/lwip&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/mbedtls/mbedtls&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/protobuf-c/protobuf-c&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/nghttp/nghttp2&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/spiffs/spiffs&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/unity/unity&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/examples/build_system/cmake/import_lib/main/lib/tinyxml2&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/examples/peripherals/secure_element/atecc608_ecdsa/components/esp-cryptoauthlib&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/tinyusb/tinyusb&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/openthread/openthread&#39;...
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule path &#39;components/asio/asio&#39;: checked out &#39;f31694c9f1746ba189a4bcae2e34db15135ddb22&#39;
+Submodule path &#39;components/bootloader/subproject/components/micro-ecc/micro-ecc&#39;: checked out &#39;d037ec89546fad14b5c4d5456c2e23a71e554966&#39;
+Submodule path &#39;components/bt/controller/lib_esp32&#39;: checked out &#39;b5b115873cc84ab1114409a23e6ce13edeef39ae&#39;
+Submodule path &#39;components/bt/controller/lib_esp32c3_family&#39;: checked out &#39;4b93865b52ab92f0b7777ed415b6598b96ac1d6d&#39;
+Submodule path &#39;components/bt/host/nimble/nimble&#39;: checked out &#39;5bb7b402275210ed6f97fe4bd6e452bf0f659452&#39;
+Submodule path &#39;components/cbor/tinycbor&#39;: checked out &#39;7c349dbb6b8d76db39383b226d3ebdf59b8ab37d&#39;
+Submodule path &#39;components/cmock/CMock&#39;: checked out &#39;eeecc49ce8af123cf8ad40efdb9673e37b56230f&#39;
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule &#39;vendor/c_exception&#39; (https://github.com/throwtheswitch/cexception.git) registered for path &#39;components/cmock/CMock/vendor/c_exception&#39;
+Submodule &#39;vendor/unity&#39; (https://github.com/throwtheswitch/unity.git) registered for path &#39;components/cmock/CMock/vendor/unity&#39;
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/cmock/CMock/vendor/c_exception&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/cmock/CMock/vendor/unity&#39;...
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule path &#39;components/cmock/CMock/vendor/c_exception&#39;: checked out &#39;71b47be7c950f1bf5f7e5303779fa99a16224bb6&#39;
+Submodule path &#39;components/cmock/CMock/vendor/unity&#39;: checked out &#39;cf949f45ca6d172a177b00da21310607b97bc7a7&#39;
+Submodule path &#39;components/coap/libcoap&#39;: checked out &#39;98954eb30a2e728e172a6cd29430ae5bc999b585&#39;
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule &#39;ext/tinydtls&#39; (https://github.com/eclipse/tinydtls.git) registered for path &#39;components/coap/libcoap/ext/tinydtls&#39;
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/coap/libcoap/ext/tinydtls&#39;...
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule path &#39;components/coap/libcoap/ext/tinydtls&#39;: checked out &#39;7f8c86e501e690301630029fa9bae22424adf618&#39;
+Submodule path &#39;components/esp_phy/lib&#39;: checked out &#39;f2c056340505399429dbc8792e7109b7c69f5d77&#39;
+Submodule path &#39;components/esp_wifi/lib&#39;: checked out &#39;ebd0bc737e7dee849118df65ff294312c9141f91&#39;
+Submodule path &#39;components/esptool_py/esptool&#39;: checked out &#39;1c9fe7059738ecd8e2b77c66cf7e2be73e566c16&#39;
+Submodule path &#39;components/expat/expat&#39;: checked out &#39;a28238bdeebc087071777001245df1876a11f5ee&#39;
+Submodule path &#39;components/json/cJSON&#39;: checked out &#39;d2735278ed1c2e4556f53a7a782063b31331dbf7&#39;
+Submodule path &#39;components/libsodium/libsodium&#39;: checked out &#39;4f5e89fa84ce1d178a6765b8b46f2b6f91216677&#39;
+Submodule path &#39;components/lwip/lwip&#39;: checked out &#39;2195f7416fb3136831babf3e96c027a73075bd4f&#39;
+Submodule path &#39;components/mbedtls/mbedtls&#39;: checked out &#39;99c88bb7bd7c2d91c6873abd6e6d5ee04f4f164c&#39;
+Submodule path &#39;components/mqtt/esp-mqtt&#39;: checked out &#39;f10321a53b53a146ee299cfecc320b89c0cf6611&#39;
+Submodule path &#39;components/nghttp/nghttp2&#39;: checked out &#39;8f7b008b158e12de0e58247afd170f127dbb6456&#39;
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule &#39;third-party/mruby&#39; (https://github.com/mruby/mruby) registered for path &#39;components/nghttp/nghttp2/third-party/mruby&#39;
+Submodule &#39;third-party/neverbleed&#39; (https://github.com/tatsuhiro-t/neverbleed.git) registered for path &#39;components/nghttp/nghttp2/third-party/neverbleed&#39;
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/nghttp/nghttp2/third-party/mruby&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/nghttp/nghttp2/third-party/neverbleed&#39;...
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule path &#39;components/nghttp/nghttp2/third-party/mruby&#39;: checked out &#39;7c91efc1ffda769a5f1a872c646c82b00698f1b8&#39;
+Submodule path &#39;components/nghttp/nghttp2/third-party/neverbleed&#39;: checked out &#39;b967ca054f48a36f82d8fcdd32e54ec5144f2751&#39;
+Submodule path &#39;components/openthread/openthread&#39;: checked out &#39;d16edaa5ef73e9139ac9c9d3b71981bf21a5de17&#39;
+Submodule path &#39;components/protobuf-c/protobuf-c&#39;: checked out &#39;dac1a65feac4ad72f612aab99f487056fbcf5c1a&#39;
+Submodule path &#39;components/spiffs/spiffs&#39;: checked out &#39;f5e26c4e933189593a71c6b82cda381a7b21e41c&#39;
+Submodule path &#39;components/tinyusb/tinyusb&#39;: checked out &#39;c4badd394eda18199c0196ed0be1e2d635f0a5f6&#39;
+Submodule path &#39;components/unity/unity&#39;: checked out &#39;7d2bf62b7e6afaf38153041a9d53c21aeeca9a25&#39;
+Submodule path &#39;examples/build_system/cmake/import_lib/main/lib/tinyxml2&#39;: checked out &#39;7e8e249990ec491ec15990cf95b6d871a66cf64a&#39;
+Submodule path &#39;examples/peripherals/secure_element/atecc608_ecdsa/components/esp-cryptoauthlib&#39;: checked out &#39;bb672b0437485fc7420add178299631692b15ac3&#39;
 
 </pre></div>
 </div>
@@ -436,6 +513,21 @@ Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/esp_wifi/lib&#39;...
 
 <span class="n">cd</span> <span class="n">scratch</span><span class="o">/</span><span class="n">esp</span><span class="o">/</span><span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
 <span class="o">./</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Detecting the Python interpreter
+Checking &quot;python&quot; ...
+Python 3.8.10
+&quot;python&quot; has been detected
+Installing ESP-IDF tools
+Installing tools: xtensa-esp32-elf, xtensa-esp32s2-elf, xtensa-esp32s3-elf, riscv32-esp-elf, esp32ulp-elf, esp32s2ulp-elf, openocd-esp32
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: tool xtensa-esp32-elf does not have versions compatible with platform linux-arm64
+
 </pre></div>
 </div>
 </div>
