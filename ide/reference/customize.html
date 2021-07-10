@@ -53,7 +53,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Issues" href="../issues.html" />
-    <link rel="prev" title="GCC" href="services/gcc.html" />
+    <link rel="prev" title="ESP IDF" href="services/esp-idf.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -157,8 +157,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../micropython/files.html">
+     File Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../micropython/flash.html">
-     Flash MicroPython
+     Flash
     </a>
    </li>
   </ul>
@@ -219,8 +229,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="services/gcc.html">
-     GCC
+    <a class="reference internal" href="services/arm32.html">
+     arm32
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="services/esp-idf.html">
+     ESP IDF
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -245,10 +260,57 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../projects/balance.html">
-   Balance
+   Kitchen Scale with MicroPython
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/hx711.html">
+     Precision Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/ticks.html">
+     “Troubled” Times
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -373,7 +435,7 @@
 </div>
 </div>
 </div>
-<p>Go to the cloned folder and make desired changes. Then run the statements below. Replace <code class="docutils literal notranslate"><span class="pre">APP_NAME</span></code> with the name of the app on balena-cloud you want to update.</p>
+<p>Go to the cloned folder and make desired changes. Open a terminal run the statements below. Replace <code class="docutils literal notranslate"><span class="pre">APP_NAME</span></code> with the name of the app on balena-cloud you want to update.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>balena login
 balena push APP_NAME
 </pre></div>
@@ -407,7 +469,7 @@ balena push APP_NAME
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="services/gcc.html" title="previous page">GCC</a>
+    <a class='left-prev' id="prev-link" href="services/esp-idf.html" title="previous page">ESP IDF</a>
     <a class='right-next' id="next-link" href="../issues.html" title="next page">Issues</a>
 
         </div>

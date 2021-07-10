@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Circuit &#8212; Electronics for IoT</title>
+    <title>Display &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,13 +49,11 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <link rel="canonical" href="https://iot49.org/projects/balance/circuit.html" />
+    <link rel="canonical" href="https://iot49.org/projects/balance/display.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="MicroPython Code" href="code.html" />
-    <link rel="prev" title="Parts" href="parts.html" />
+    <link rel="next" title="Buttons" href="buttons.html" />
+    <link rel="prev" title="MicroPython Code" href="code.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -159,13 +157,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/files.html">
+     File Management
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../ide/micropython/compile.html">
-     Compiling MicroPython
+     Compile
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../ide/micropython/flash.html">
-     Flash MicroPython
+     Flash
     </a>
    </li>
   </ul>
@@ -272,8 +275,8 @@
      Parts
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="circuit.html">
      Circuit
     </a>
    </li>
@@ -282,14 +285,19 @@
      MicroPython Code
     </a>
    </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Display
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="display.html">
-     Display
+    <a class="reference internal" href="hx711.html">
+     Precision Scale
     </a>
    </li>
    <li class="toctree-l2">
@@ -298,8 +306,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hx711.html">
-     Improving the Accuracy
+    <a class="reference internal" href="app.html">
+     Standalone App
     </a>
    </li>
    <li class="toctree-l2">
@@ -367,7 +375,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/projects/balance/circuit.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/projects/balance/display.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -387,10 +395,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/balance/circuit.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/balance/display.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/balance/circuit.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/balance/display.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -410,34 +418,6 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#load-cell">
-   Load Cell
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#readout-circuit">
-   Readout Circuit
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#amplifier">
-   Amplifier
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adc">
-   ADC
-  </a>
- </li>
-</ul>
-
-            </nav>
         </div>
     </div>
 </div>
@@ -446,47 +426,154 @@
         
               <div>
                 
-  <div class="section" id="circuit">
-<h1>Circuit<a class="headerlink" href="#circuit" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="load-cell">
-<h2>Load Cell<a class="headerlink" href="#load-cell" title="Permalink to this headline">¶</a></h2>
-<p>Imagine a conductive rubber band. If you pull on it, it gets longer and narrower. Now current must take a more arduous path, and just like traffic on a congested highway, slows down. Hence the resistance of the stretched rubber band increases.</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Strain_gauge">Strain gauges</a> are not made of rubber but work similarly. They are used to measure distortion in cars, airplanes, buildings, bridges; they are quite versatile.</p>
-<p>Load cells consist of our strain gauges attached to a metal bar (image credit: <a class="reference external" href="https://learn.sparkfun.com/tutorials/getting-started-with-load-cells">Sparkfun</a>):</p>
-<p><img alt="Load Cell" src="../../_images/sparkfun_loadcell.png" /></p>
-<p>Many commercial scales are based on load-cells. We’ll use one that looks like this:</p>
-<p><img alt="" src="../../_images/load_cell.jpg" /></p>
-<p>You can get them online from many sources. I suggest you get one with a weight rating or <a class="reference external" href="https://www.sparkfun.com/products/14728">1kg or less</a> - unless you want to get a workout lifting weights.</p>
-<p>The bending of the load cell is imperceptibly small, even with the full rated weight applied. We need to build a very sensitive circuit to ovserve it.</p>
+  <div class="section" id="display">
+<h1>Display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h1>
+<p>Let’s add a diplay to our scale. The SSD1306 can be configured over I2C or SPI. We will use the I2C interface.</p>
+<p>The first step is getting a driver. Fortunately someone has already written it (<a class="reference external" href="https://randomnerdtutorials.com/micropython-oled-display-esp32-esp8266">Driver &amp; Tutorial</a>). For convenience it’s also included here:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT/iot49.org/docs/projects/balance
+%connect balance
+</pre></div>
 </div>
-<div class="section" id="readout-circuit">
-<h2>Readout Circuit<a class="headerlink" href="#readout-circuit" title="Permalink to this headline">¶</a></h2>
-<p>Reading out a load cell-the amount it bends and hence the force applied to it-is simple. Electrically the four strain gauges are just resistors. Arrange them in a “bridge configuration”, paring gauges in tension and compression like so:</p>
-<p><img alt="" src="../../_images/circuit_diagram.svg" /></p>
-<p><span class="math notranslate nohighlight">\(V_s\)</span> is the supply voltage (e.g. 3.3V, available from the micrcontroller breakout board) and <span class="math notranslate nohighlight">\(\Delta v\)</span> the output voltage.</p>
-<p>With no force applied, all resistors are (nominally) equal and <span class="math notranslate nohighlight">\(\Delta v=0\)</span>. With force applied, the values of <span class="math notranslate nohighlight">\(R_1\)</span> and <span class="math notranslate nohighlight">\(R_4\)</span> increase and <span class="math notranslate nohighlight">\(R_2\)</span> and <span class="math notranslate nohighlight">\(R_3\)</span> decrease. Consequently <span class="math notranslate nohighlight">\(\Delta v\)</span> increases proportional to <span class="math notranslate nohighlight">\(V_s\)</span> and the applied force. If you apply force in the other direction <span class="math notranslate nohighlight">\(\Delta v\)</span> goes negative.</p>
 </div>
-<div class="section" id="amplifier">
-<h2>Amplifier<a class="headerlink" href="#amplifier" title="Permalink to this headline">¶</a></h2>
-<p>A problem with this circuit is that <span class="math notranslate nohighlight">\(\Delta v\)</span>, even for the maximum rated force applied to the load cell, is very small, millivolts. Microcontrollers cannot accuratelyl measure such small voltages. Hence we need to first amplify it.</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Instrumentation_amplifier">Instrumentation amplifiers</a> are ideal for this purpose. They take a (small) voltage at the input. The output the input voltage multiplied with a gain factor <em>G</em> that is set with a resistor. For example, if <em>G=100</em> a 1mV input results in 100mV at the output.</p>
-<p>We’ll use an <a class="reference external" href="https://www.ti.com/product/INA126">INA126</a>, primarily since it operates down to 2.7V and hence can be powered from the same 3.3V supply as the microcontroller. Unlike many newer parts, it is available in a <a class="reference external" href="https://en.wikipedia.org/wiki/Dual_in-line_package">dual inline package</a> and therefore <a class="reference external" href="https://learn.sparkfun.com/tutorials/how-to-use-a-breadboard/all">breadboard</a> compatible.</p>
-<p>Here is the wiring diagram from <a class="reference external" href="https://www.ti.com/lit/ds/symlink/ina126.pdf">datasheet</a>:</p>
-<p><img alt="" src="../../_images/ina126.png" /></p>
-<p>Resistor <span class="math notranslate nohighlight">\(R_G\)</span> sets the gain. I use 180Ohm, which translates to a gain of approximately 450. The INA126 can go up to a gain of 10,000-try different values to see what works best with your load cell and microcontroller.</p>
-<p>Like most amplifiers, the INA126 takes both a positive (V+) and negative (V-) supply. The positive one we get from the microcontroller breakout board. But what about the negative supply? Rather than dealing with laboratory supplies or batteries, let’s generate it ouselves.</p>
-<p>Use two equal sized resistors in series to generate 1.65V from the 3.3V supply. Then connect that to ground (pin 5 of the INA126). The “real” ground (0V) from the breakout board goes to V- (pin 4) and the 3.3V supply is tied to V+ (pin 7). Just remember that the output of the INA126 for <span class="math notranslate nohighlight">\(\Delta v=0\)</span> is not zero but 1.65V.</p>
-<p>An updated circuit is shown below. <span class="math notranslate nohighlight">\(V_\textrm{ref}\)</span> is the 1.65V midpoint voltage produced by the divider <span class="math notranslate nohighlight">\(R_5\)</span> and <span class="math notranslate nohighlight">\(R_6\)</span>. Connect it to ground (pin 5) of the INA216. Also do not forget to connect the gain setting resistor, <span class="math notranslate nohighlight">\(R_G\)</span> (not shown in the diagram).</p>
-<p><img alt="" src="../../_images/full_diagram.svg" /></p>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cwd = /home/iot/iot49.org/docs/projects/balance
+<span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB0</span>
+</pre></div>
 </div>
-<div class="section" id="adc">
-<h2>ADC<a class="headerlink" href="#adc" title="Permalink to this headline">¶</a></h2>
-<p>The output from the INA126 (and the load cell) is an <em>analog</em> voltage. The microcontroller works with digital signals. Hence this voltage must be converted to a digital number.</p>
-<p>Many microcontrollers have ADCs (<a class="reference external" href="https://en.wikipedia.org/wiki/Analog-to-digital_converter">Analog-to-Digital Converters</a>) built-in. The ADC in the ESP32 isn’t particularly good (actually, pretty awful would be a better term), but ok for a simple demo.</p>
-<p>The <a class="reference external" href="https://www.adafruit.com/product/3405">Adafruit Huzzah32</a> makes five ADC channels available, marked blue in the diagram below:</p>
-<p><img alt="" src="../../_images/huzzah32-pinout.png" /></p>
-<p>Connect the output from the INA126 to <code class="docutils literal notranslate"><span class="pre">ADC3</span></code> and <span class="math notranslate nohighlight">\(V_\textrm{ref}\)</span> to <code class="docutils literal notranslate"><span class="pre">ADC6</span></code>. You can use different ADC pins, just remember to change the pin number in the code.</p>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!head lib/ssd1306.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># MicroPython SSD1306 OLED driver, I2C and SPI interfaces
+
+from micropython import const
+import time
+import framebuf
+
+# register definitions
+SET_CONTRAST        = const(0x81)
+SET_ENTIRE_ON       = const(0xa4)
+SET_NORM_INV        = const(0xa6)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To try out the display, we need to copy it to the microcontroller. Modify the device configuration as shown below (change the <code class="docutils literal notranslate"><span class="pre">UID</span></code> to match your device):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat devices/balance.yaml
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>balance:
+    uid: 24:0a:c4:12:87:7c
+    resources:
+        - lib
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">%rsync</span></code> uploads the files in <code class="docutils literal notranslate"><span class="pre">lib</span></code> to the microcontroller:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rsync</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verify:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rlist</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            <span class=" -Color -Color-Green">lib/</span>
+    738  Jul 09 17:33 2021      <span class=" -Color -Color-Blue">scale.py</span>
+   4899  Jul 09 17:33 2021      <span class=" -Color -Color-Blue">ssd1306.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s check out the display:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ssd1306</span> <span class="kn">import</span> <span class="n">SSD1306_I2C</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">I2C</span>
+
+<span class="n">i2c</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">22</span><span class="p">),</span> <span class="n">sda</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">23</span><span class="p">))</span>
+
+<span class="n">oled_width</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">oled_height</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">oled</span> <span class="o">=</span> <span class="n">SSD1306_I2C</span><span class="p">(</span><span class="n">oled_width</span><span class="p">,</span> <span class="n">oled_height</span><span class="p">,</span> <span class="n">i2c</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># clear display</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">3</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">5</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">7</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+    <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now let’s connect it to the scale.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">I2C</span>
+<span class="kn">from</span> <span class="nn">ssd1306</span> <span class="kn">import</span> <span class="n">SSD1306_I2C</span>
+<span class="kn">from</span> <span class="nn">scale</span> <span class="kn">import</span> <span class="n">Scale</span>
+
+<span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">22</span><span class="p">),</span> <span class="n">sda</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">23</span><span class="p">))</span>
+
+<span class="n">oled_width</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">oled_height</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">oled</span> <span class="o">=</span> <span class="n">SSD1306_I2C</span><span class="p">(</span><span class="n">oled_width</span><span class="p">,</span> <span class="n">oled_height</span><span class="p">,</span> <span class="n">i2c</span><span class="p">)</span>
+
+<span class="n">scale</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">()</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span>
+
+<span class="n">last_weight</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">(),</span> <span class="n">start</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">20000</span><span class="p">:</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">scale</span><span class="o">.</span><span class="n">measure</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">weight</span><span class="o">-</span><span class="n">last_weight</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:8.0f}</span><span class="s2"> gram&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">weight</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">last_weight</span> <span class="o">=</span> <span class="n">weight</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Great! We have a scale with a display.</p>
+<p>Let’s add some features.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -514,8 +601,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="parts.html" title="previous page">Parts</a>
-    <a class='right-next' id="next-link" href="code.html" title="next page">MicroPython Code</a>
+    <a class='left-prev' id="prev-link" href="code.html" title="previous page">MicroPython Code</a>
+    <a class='right-next' id="next-link" href="buttons.html" title="next page">Buttons</a>
 
         </div>
         

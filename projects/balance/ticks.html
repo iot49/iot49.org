@@ -53,7 +53,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="MicroPython" href="../../iot/micropython.html" />
-    <link rel="prev" title="Buttons" href="buttons.html" />
+    <link rel="prev" title="Standalone App" href="app.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -157,13 +157,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/files.html">
+     File Management
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../ide/micropython/compile.html">
-     Compiling MicroPython
+     Compile
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../ide/micropython/flash.html">
-     Flash MicroPython
+     Flash
     </a>
    </li>
   </ul>
@@ -266,8 +271,8 @@
   </label>
   <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="mcu.html">
-     Microcontroller
+    <a class="reference internal" href="parts.html">
+     Parts
     </a>
    </li>
    <li class="toctree-l2">
@@ -276,18 +281,33 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="assembly.html">
-     Assembly
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="buttons.html">
      Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hx711.html">
+     Precision Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="app.html">
+     Standalone App
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -441,7 +461,7 @@
   <div class="section" id="troubled-times">
 <h1>“Troubled” Times<a class="headerlink" href="#troubled-times" title="Permalink to this headline">¶</a></h1>
 <p>I am not talking about a disaster, merely the challenges of accurately “measuring” small time differences with microcontrollers.</p>
-<p>Depending on clock rate, microcontrollers can resolve sub-microsecond intervals. Conversely, using counters, they can track years or even millenia, provided that the power does not go out and someone is there to look at the result.</p>
+<p>Microcontrollers can resolve microsecond or even nanosecond intervals. Conversely, using counters, they can easily track years or even millenia, provided that the power stays on and someone is there to look at the result.</p>
 <div class="section" id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
 <p>In principle, representing such intervals is quite easy. A 64-bit integer can represent 584,942 years with microsecond resolution. The problem is that most microcontrollers use 32-bit integers. MicroPython “looses” a bit or two to represent the datatype. An additional bit is used for the sign, hence we are left with 29 bits. That’s sufficient to represent just 9 minutes with microsecond resolution. With millisecond resolution we get about 9000 minutes or a little over 6 days.</p>
@@ -466,7 +486,7 @@
 <div class="section" id="time-monotonic">
 <h2><code class="docutils literal notranslate"><span class="pre">time.monotonic</span></code><a class="headerlink" href="#time-monotonic" title="Permalink to this headline">¶</a></h2>
 <p>C-Python has a function <code class="docutils literal notranslate"><span class="pre">time.monotonic()</span></code> that returns time (with arbitrary offset) in seconds as a 64-bit floating point number. With floating point the resolution decreases for long durations to less than microseconds after half a million years, but most of us won’t be around to notice.</p>
-<p><a class="reference external" href="https://circuitpython.org/">CircuitPython</a>, a fork of MicroPython, also offers <code class="docutils literal notranslate"><span class="pre">time.monotonic()</span></code> but returns a 32-bit float rather than 64-bits. Now the resolution drops quite quickly, well within our lifetime:</p>
+<p><a class="reference external" href="https://circuitpython.org/">CircuitPython</a>, a fork of MicroPython, also offers <code class="docutils literal notranslate"><span class="pre">time.monotonic()</span></code> but returns a 32-bit float rather than 64-bits. Now the resolution drops quite quickly, in just days or minutes. Many applications keep microcontrollers busy for much longer than that.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">huzzah32</span>
@@ -510,13 +530,13 @@ duration = 0.001
 </div>
 </div>
 </div>
-<p>Zero? That’s clearly wrong and the consequence of the limited resolution of MicroPython 32-bit floats. If you play around with the above code you find that after one day, the smallest interval that can be resolved is 4ms, albeit the duration is reported as 7ms.</p>
+<p>Zero? That’s clearly wrong and the consequence of the limited resolution of 32-bit floats. If you play around with the above code you find that after one day, the smallest interval that can be resolved is 4ms, albeit the duration is reported as 7ms.</p>
 <p>Perhaps you do not need millisecond resolution. But even 10ms cannot be resolved after 4 days.</p>
 </div>
 <div class="section" id="solution">
 <h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
-<p>There are several solutions for this. We could allocate more bits for representing time, for example using Python bigints. In fact, CircuitPython’s <code class="docutils literal notranslate"><span class="pre">time.monotonic_ns()</span></code> does just this.</p>
-<p>It works fine and has the great benefit of being standard Python (i.e. code works also in C-Python) but has potential drawbacks. First, bigints are less efficient than (small) ints or floats. Secondly, and more importantly, they are allocated on the heap. Because of this they cannot be used in <a class="reference external" href="https://docs.micropython.org/en/latest/reference/isr_rules.html#isr-rules">interrupt service routines</a>. Since interrupts are precisely a situation where measuring time is often needed, that’s a quite significant gotcha.</p>
+<p>There are several solutions for this. We could allocate more bits for representing time, for example using Python <em>bigints</em>. In fact, (Circuit)Python’s <code class="docutils literal notranslate"><span class="pre">time.monotonic_ns()</span></code> does just this.</p>
+<p>This works correctly and has the great benefit of being standard Python (i.e. code works also in C-Python) but has potential drawbacks. First, <em>bigints</em> are less efficient than (small) ints or floats. Secondly, and more importantly, they are allocated on the heap. Because of this they cannot be used in <a class="reference external" href="https://docs.micropython.org/en/latest/reference/isr_rules.html#isr-rules">interrupt service routines</a>. Since interrupts are precisely a situation where measuring time is often needed, that’s a quite significant gotcha.</p>
 <p>Note that CircuitPython does not implement interrupts in user code. That’s also a solution, if you don’t need them.</p>
 </div>
 <div class="section" id="ticks">
@@ -536,11 +556,11 @@ duration = 0.001
 </pre></div>
 </div>
 <p>Rather than the (incorrect)</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">duration</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>  <span class="c1"># WRONG!</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">duration</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>  <span class="c1"># WRONG result in case of roll-over</span>
 </pre></div>
 </div>
-<p>This works correctly as long as no more than one roll-over occurs during the measurement interval limiting the maximum duriation that can be measured with <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> to about six days. With <code class="docutils literal notranslate"><span class="pre">time.ticks_us()</span></code> the maximum is about nine minutes.</p>
-<p>Admittedly a bit contorted, but it works correctly, is efficient, and can be used even in interrupt service routines. After pondering the alternatives (and even implementing custom helpers in C), I always come back to using <code class="docutils literal notranslate"><span class="pre">ticks_XXX</span></code>.</p>
+<p>This works correctly as long as no more than one roll-over occurs during the measurement interval. This limits the maximum duriation that can be measured with <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> to about six days. With <code class="docutils literal notranslate"><span class="pre">time.ticks_us()</span></code> the maximum is about nine minutes.</p>
+<p>Admittedly using <code class="docutils literal notranslate"><span class="pre">time.ticks_diff()</span></code> to compute time differences is a bit contorted. But it works correctly, is efficient, and can be used even in interrupt service routines. After pondering the alternatives (and even implementing custom helpers in C), I always come back to using <code class="docutils literal notranslate"><span class="pre">ticks_XXX</span></code>.</p>
 </div>
 </div>
 
@@ -569,7 +589,7 @@ duration = 0.001
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="buttons.html" title="previous page">Buttons</a>
+    <a class='left-prev' id="prev-link" href="app.html" title="previous page">Standalone App</a>
     <a class='right-next' id="next-link" href="../../iot/micropython.html" title="next page">MicroPython</a>
 
         </div>

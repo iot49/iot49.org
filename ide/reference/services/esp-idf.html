@@ -255,10 +255,57 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../../projects/balance.html">
-   Balance
+   Kitchen Scale with MicroPython
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/hx711.html">
+     Improving the Accuracy
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/ticks.html">
+     “Troubled” Times
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -371,10 +418,15 @@
                 
   <div class="section" id="esp-idf">
 <h1><a class="reference external" href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html">ESP IDF</a><a class="headerlink" href="#esp-idf" title="Permalink to this headline">¶</a></h1>
-<p><strong>Note:</strong> No version for 64-bit Linux, see error below</p>
+<p><strong>Note 1:</strong> No version for 64-bit Linux on arm, see error below</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">tool</span> <span class="n">xtensa</span><span class="o">-</span><span class="n">esp32</span><span class="o">-</span><span class="n">elf</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">versions</span> <span class="n">compatible</span> <span class="k">with</span> <span class="n">platform</span> <span class="n">linux</span><span class="o">-</span><span class="n">arm64</span>
 </pre></div>
 </div>
+<p><strong>Note 2:</strong> <code class="docutils literal notranslate"><span class="pre">aarch64</span></code> toolchain forthcoming:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/espressif/esp-idf/issues/6475">https://github.com/espressif/esp-idf/issues/6475</a></p></li>
+<li><p><a class="reference external" href="https://github.com/espressif/esp-idf/issues/6432">https://github.com/espressif/esp-idf/issues/6432</a></p></li>
+</ul>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>

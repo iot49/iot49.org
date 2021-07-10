@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flash MicroPython &#8212; Electronics for IoT</title>
+    <title>Flash &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,7 +53,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Reference" href="../reference.html" />
-    <link rel="prev" title="Compiling MicroPython" href="compile.html" />
+    <link rel="prev" title="Compile" href="compile.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -157,13 +157,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="files.html">
+     File Management
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="compile.html">
-     Compiling MicroPython
+     Compile
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Flash MicroPython
+     Flash
     </a>
    </li>
   </ul>
@@ -255,10 +260,57 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../projects/balance.html">
-   Balance
+   Kitchen Scale with MicroPython
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/hx711.html">
+     Precision Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/ticks.html">
+     “Troubled” Times
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -382,8 +434,8 @@
         
               <div>
                 
-  <div class="section" id="flash-micropython">
-<h1>Flash MicroPython<a class="headerlink" href="#flash-micropython" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="flash">
+<h1>Flash<a class="headerlink" href="#flash" title="Permalink to this headline">¶</a></h1>
 <p>The first step in flashing MicroPython to a microcontroller is to find its port. This is most easily accomplished with the <code class="docutils literal notranslate"><span class="pre">%discover</span> <span class="pre">--all</span></code> magic:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -582,7 +634,7 @@ Hard resetting via RTS pin...
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="compile.html" title="previous page">Compiling MicroPython</a>
+    <a class='left-prev' id="prev-link" href="compile.html" title="previous page">Compile</a>
     <a class='right-next' id="next-link" href="../reference.html" title="next page">Reference</a>
 
         </div>
