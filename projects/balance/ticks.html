@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>“Troubled” Times &#8212; Electronics for IoT</title>
+    <title>Time Intervals &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -262,7 +262,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../balance.html">
-   Kitchen Scale with MicroPython
+   Kitchen Scale
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -312,7 +312,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     “Troubled” Times
+     Time Intervals
     </a>
    </li>
   </ul>
@@ -458,10 +458,11 @@
         
               <div>
                 
-  <div class="section" id="troubled-times">
-<h1>“Troubled” Times<a class="headerlink" href="#troubled-times" title="Permalink to this headline">¶</a></h1>
-<p>I am not talking about a disaster, merely the challenges of accurately “measuring” small time differences with microcontrollers.</p>
-<p>Microcontrollers can resolve microsecond or even nanosecond intervals. Conversely, using counters, they can easily track years or even millenia, provided that the power stays on and someone is there to look at the result.</p>
+  <div class="section" id="time-intervals">
+<h1>Time Intervals<a class="headerlink" href="#time-intervals" title="Permalink to this headline">¶</a></h1>
+<p>The need to measure time intervals occurs frequently in microcontroller programming. Examples include detecting the duration of pulses in a Morse Code like signal as those emitted from infrared controllers, or measuring the frequency of button presses for debouncing.</p>
+<p>In principal microcontrollers are very well equipped for the task. Thanks to their high clock speed, they can resolve microsecond or even nanosecond intervals. Conversely, using counters, they can easily track years or even millenia, provided that the power stays on and someone is there to care.</p>
+<p>This large dynamic range, nanoseconds to millenia, poses some challenges that, if not properly dealt with, can result in erratic behavior.</p>
 <div class="section" id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
 <p>In principle, representing such intervals is quite easy. A 64-bit integer can represent 584,942 years with microsecond resolution. The problem is that most microcontrollers use 32-bit integers. MicroPython “looses” a bit or two to represent the datatype. An additional bit is used for the sign, hence we are left with 29 bits. That’s sufficient to represent just 9 minutes with microsecond resolution. With millisecond resolution we get about 9000 minutes or a little over 6 days.</p>
@@ -478,10 +479,10 @@
 <span class="n">stop</span> <span class="o">=</span> <span class="n">ticks_ms</span><span class="p">()</span>
 
 <span class="c1"># calculate the duration of the button press</span>
-<span class="n">duration</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>    <span class="c1"># BUG - see below</span>
 </pre></div>
 </div>
-<p>This works. Except that every six days we get incorrect results since the timer “overflows”. Needless to say that such bugs are extremely difficult to diagnose since they occur so infrequently. Because of this they often escape testing, showing up only after the product has been relased to customers with possibly disastrous results.</p>
+<p>This <em>mostly</em> works. Except that every six days we get incorrect results since the timer “overflows”. Needless to say that such bugs are extremely difficult to diagnose since they occur so infrequently. Because of this they often escape testing, showing up only after the product has been relased to customers with possibly disastrous results.</p>
 </div>
 <div class="section" id="time-monotonic">
 <h2><code class="docutils literal notranslate"><span class="pre">time.monotonic</span></code><a class="headerlink" href="#time-monotonic" title="Permalink to this headline">¶</a></h2>
@@ -560,7 +561,7 @@ duration = 0.001
 </pre></div>
 </div>
 <p>This works correctly as long as no more than one roll-over occurs during the measurement interval. This limits the maximum duriation that can be measured with <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> to about six days. With <code class="docutils literal notranslate"><span class="pre">time.ticks_us()</span></code> the maximum is about nine minutes.</p>
-<p>Admittedly using <code class="docutils literal notranslate"><span class="pre">time.ticks_diff()</span></code> to compute time differences is a bit contorted. But it works correctly, is efficient, and can be used even in interrupt service routines. After pondering the alternatives (and even implementing custom helpers in C), I always come back to using <code class="docutils literal notranslate"><span class="pre">ticks_XXX</span></code>.</p>
+<p>Admittedly using <code class="docutils literal notranslate"><span class="pre">time.ticks_diff()</span></code> to compute time differences is a bit clumsy. But it works correctly, is efficient, and can be used even in interrupt service routines. After pondering the alternatives (and even implementing custom helpers in C), I always come back to using <code class="docutils literal notranslate"><span class="pre">ticks_XXX</span></code>.</p>
 </div>
 </div>
 
