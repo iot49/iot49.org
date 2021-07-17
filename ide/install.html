@@ -171,11 +171,16 @@
      Flash
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="micropython/plotserver.html">
+     Plotserver
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="reference.html">
-   Reference
+  <a class="reference internal" href="app.html">
+   App
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -184,67 +189,12 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="reference/services.html">
-     Services
+    <a class="reference internal" href="app/overview.html">
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/nginx.html">
-     Nginx
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/jupyter.html">
-     Jupyter Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/editor.html">
-     Editor
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/backup.html">
-     Backup
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/plotserver.html">
-     Plotserver
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/balena-cli.html">
-     Balena CLI
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/samba.html">
-     Samba
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/mosquitto.html">
-     MQTT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/arm32.html">
-     arm32
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/esp-idf.html">
-     ESP IDF
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/storage.html">
-     Storage (flash)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/customize.html">
+    <a class="reference internal" href="app/customize.html">
      Customize
      <em>
       ide49
@@ -473,10 +423,12 @@
 <p>To install <em>ide49</em>, you need the following:</p>
 <p><strong>Hardware:</strong></p>
 <ul class="simple">
-<li><p>Host device:</p>
+<li><p>Host device: one of</p>
 <ul>
-<li><p>Raspberry Pi 4 (2GBytes suffice for <em>iot49</em>) or</p></li>
+<li><p>Raspberry Pi 4 (2GBytes suffice for <em>iot49</em>)</p></li>
 <li><p>Raspberry Pi 3</p></li>
+<li><p>Intel NUC or compatible
+Other devices supporting the 64-Bit ARM or Intel instruction set (<code class="docutils literal notranslate"><span class="pre">aarch64</span></code> or <code class="docutils literal notranslate"><span class="pre">amd64</span></code>) may work as well.</p></li>
 </ul>
 </li>
 <li><p>SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).</p></li>
