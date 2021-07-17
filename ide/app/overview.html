@@ -1,0 +1,953 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overview &#8212; Electronics for IoT</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/ide/app/overview.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Storage (flash)" href="storage.html" />
+    <link rel="prev" title="App" href="../app.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../micropython/files.html">
+     File Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../micropython/flash.html">
+     Flash
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../app.html">
+   App
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="storage.html">
+     Storage (flash)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/balance.html">
+   Kitchen Scale
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/hx711.html">
+     Precision Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/ticks.html">
+     “Troubled” Times
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  IoT
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../iot/micropython.html">
+   MicroPython
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../iot/gpio.html">
+   GPIO
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/ide/app/overview.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/app/overview.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/app/overview.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#balenaengine">
+   BalenaEngine
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#networking">
+   Networking
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#storage">
+   Storage
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#owned-by-the-container">
+     Owned by the container
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mounted-into-the-container-volumes">
+     Mounted into the container (volumes)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#samba-fileshare">
+     Samba fileshare
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-packages-pip">
+     Python packages (pip)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#host-acccess">
+     Host acccess
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mounts">
+     Mounts
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p><em>ide49</em> is based on <a class="reference external" href="https://www.balena.io/what-is-balena">Balena</a>, a version of <a class="reference external" href="https://www.docker.com/">Docker</a> optimized for IoT devices, rather than datacenters.</p>
+<a class="reference internal image-reference" href="../../_images/app.png"><img alt="balena_app" class="align-center" src="../../_images/app.png" style="width: 400px;" /></a>
+<p>The balenaOS takes the function of the host operating system. Unlike other operating systems (Windows, MacOS, …), it is highly specialized to run individual services in so-called containers. In <em>ide49</em> containers include jupyter, code-server, duplicati, etc.</p>
+<p>A set of <a class="reference external" href="https://github.com/iot49/ide49">configuration files</a> describes the application. The <a class="reference external" href="https://github.com/iot49/ide49/blob/main/docker-compose.yml">docker-compose.yml</a> file lists all user containers along with configuration parameters and information about how they interact.</p>
+<p>Each container presents a separate instance of Linux, and unsually implement just one function. This arrangement minizes undesired interaction e.g. between incompatible libraries used in various application programs. It’s like having a separate computer for each task (code editor, backup, etc).</p>
+<p>The software installed in each container is described with a Dockerfile. For example, the first line in the Dockerfile for the <a class="reference external" href="https://github.com/iot49/ide49/blob/main/core/jupyter/Dockerfile.template"><code class="docutils literal notranslate"><span class="pre">jupyter</span></code></a> container specifies that this service runs the Debian flavor of Linux with Python preinstalled. Adding additional libraries is as easy as including them in the Dockerfile and <a class="reference internal" href="customize.html"><span class="doc std std-doc">pushing the updated app</span></a> to your device.</p>
+<p>This is followed installing individual software and Python packages required by the Jupyter server. Finally the user <code class="docutils literal notranslate"><span class="pre">iot</span></code> is created and control passed to <a class="reference external" href="https://github.com/iot49/ide49/blob/main/core/jupyter/start.sh"><code class="docutils literal notranslate"><span class="pre">start.sh</span></code></a>, which starts jupyterlab.</p>
+<div class="section" id="balenaengine">
+<h2>BalenaEngine<a class="headerlink" href="#balenaengine" title="Permalink to this headline">¶</a></h2>
+<p>In Balena, the balenaEngine takes the function of the docker deamon in standard docker apps. It is accessed from the host with the <code class="docutils literal notranslate"><span class="pre">balena-engine</span></code> command.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span>
+<span class="n">balena</span><span class="o">-</span><span class="n">engine</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+Usage:	balena-engine [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default
+                           &quot;/home/root/.balena-engine&quot;)
+  -c, --context string     Name of the context to use to connect to the
+                           daemon (overrides DOCKER_HOST env var and
+                           default context set with &quot;docker context use&quot;)
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level
+                           (&quot;debug&quot;|&quot;info&quot;|&quot;warn&quot;|&quot;error&quot;|&quot;fatal&quot;)
+                           (default &quot;info&quot;)
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default
+                           &quot;/home/root/.balena-engine/ca.pem&quot;)
+      --tlscert string     Path to TLS certificate file (default
+                           &quot;/home/root/.balena-engine/cert.pem&quot;)
+      --tlskey string      Path to TLS key file (default
+                           &quot;/home/root/.balena-engine/key.pem&quot;)
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  container   Manage containers
+  engine      Manage the docker engine
+  image       Manage images
+  network     Manage networks
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container&#39;s changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container&#39;s filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container&#39;s filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run &#39;balena-engine COMMAND --help&#39; for more information on a command.
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>To get a list of all running containers, type:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span>
+<span class="n">balena</span><span class="o">-</span><span class="n">engine</span> <span class="n">ps</span> <span class="o">--</span><span class="nb">format</span> <span class="s2">&quot;table {{.Names}}</span><span class="se">\t</span><span class="s2">{{.Size}}</span><span class="se">\t</span><span class="s2">{{.Image}}&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAMES                         SIZE                      IMAGE
+jupyter_3834077_1864199       27.9kB (virtual 1.7GB)    17ed674e39be
+esp-idf_3834084_1864199       27.9kB (virtual 2.25GB)   5ccaf3068e5a
+balena-cli_3834085_1864199    0B (virtual 1.62GB)       74a76eccf611
+arm32_3834083_1864199         0B (virtual 1.69GB)       5a7c64cb8d95
+nginx_3834076_1864199         3B (virtual 28.9MB)       0fc36cfd415e
+duplicati_3834079_1864199     333kB (virtual 659MB)     70aa02f766b5
+code-server_3834078_1864199   334kB (virtual 543MB)     eab6f75bba26
+plotserver_3834082_1864199    0B (virtual 590MB)        f3ee00d5c1c6
+mosquitto_3834081_1864199     0B (virtual 9.95MB)       05117273e504
+smb_3834080_1864199           355kB (virtual 225MB)     edaa3074ac12
+resin_supervisor              45B (virtual 66.3MB)      registry2.balena-cloud.com/v2/d889d3981987f55bc74a78989588bf14:latest
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>The balenaEngine has many more features. For example, to get the build history for the arm32 image run</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span>
+<span class="n">balena</span><span class="o">-</span><span class="n">engine</span> <span class="n">history</span> <span class="mi">5</span><span class="n">a7c64cb8d95</span> <span class="o">--</span><span class="nb">format</span> <span class="s2">&quot;table {{.Size}}</span><span class="se">\t</span><span class="s2">{{.CreatedBy}}&quot;</span> <span class="c1"># --no-trunc</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SIZE                CREATED BY
+0B                  /bin/sh -c #(nop)  CMD [&quot;/bin/bash&quot; &quot;/usr/lo…
+0B                  /bin/sh -c #(nop) WORKDIR /home/iot
+0B                  /bin/sh -c #(nop)  USER iot
+336kB               /bin/sh -c chmod a+rx /usr/local/bin/start.s…
+699B                /bin/sh -c #(nop) COPY file:c2e922284a361f02…
+826MB               /bin/sh -c install_packages     git     cifs…
+0B                  /bin/sh -c #(nop)  ENV UDEV=1
+122kB               /bin/sh -c echo &#39;#!/bin/sh.real\nbalena-info…
+616B                /bin/sh -c [ ! -d /.balena/messages ] &amp;&amp; mkd…
+1.32MB              /bin/sh -c curl -SLO &quot;https://raw.githubuser…
+0B                  /bin/sh -c #(nop)  CMD [&quot;echo&quot; &quot;&#39;No CMD comm…
+0B                  /bin/sh -c #(nop)  ENV PYTHONPATH=/usr/lib/p…
+50B                 /bin/sh -c cd /usr/local/bin  &amp;&amp; ln -sf pip3…
+1.78MB              /bin/sh -c set -x  &amp;&amp; mkdir -p /usr/src/dbus…
+43MB                /bin/sh -c apt-get update &amp;&amp; apt-get install…
+0B                  /bin/sh -c #(nop)  ENV PYTHON_DBUS_VERSION=1…
+14.7MB              /bin/sh -c pip3 install --no-cache-dir virtu…
+110MB               /bin/sh -c set -x  &amp;&amp; curl -SLO &quot;http://resi…
+0B                  /bin/sh -c #(nop)  ENV SETUPTOOLS_VERSION=56…
+0B                  /bin/sh -c #(nop)  ENV PYTHON_PIP_VERSION=21…
+0B                  /bin/sh -c #(nop)  ENV PYTHON_VERSION=3.8.10
+71.4kB              /bin/sh -c gpg --batch --keyserver keyring.d…
+0B                  /bin/sh -c #(nop)  ENV LANG=C.UTF-8
+2.07MB              /bin/sh -c apt-get purge -y python.*
+122kB               /bin/sh -c echo &#39;#!/bin/sh.real\nbalena-info…
+520B                /bin/sh -c [ ! -d /.balena/messages ] &amp;&amp; mkd…
+4.94MB              /bin/sh -c apt-get update &amp;&amp; apt-get install…
+0B                  /bin/sh -c #(nop)  LABEL io.balena.device-ty…
+122kB               /bin/sh -c echo &#39;#!/bin/sh.real\nbalena-info…
+463B                /bin/sh -c [ ! -d /.balena/messages ] &amp;&amp; mkd…
+0B                  /bin/sh -c curl -SLO &quot;https://raw.githubuser…
+0B                  /bin/sh -c #(nop)  ENTRYPOINT [&quot;/usr/bin/ent…
+1.03kB              /bin/sh -c #(nop) COPY file:ddba37be3f874f81…
+202B                /bin/sh -c #(nop) COPY file:2d972097f28a121b…
+1.71kB              /bin/sh -c #(nop) COPY file:cc0a16214fb66527…
+0B                  /bin/sh -c mkdir -p /usr/share/man/man1
+99B                 /bin/sh -c echo &#39;APT::Get::Assume-Yes &quot;true&quot;…
+297B                /bin/sh -c echo &#39;path-exclude /usr/share/doc…
+0B                  /bin/sh -c #(nop)  ENV UDEV=off
+0B                  /bin/sh -c #(nop)  ENV DEBIAN_FRONTEND=nonin…
+0B                  /bin/sh -c #(nop)  ENV LC_ALL=C.UTF-8
+1.62MB              /bin/sh -c curl -SLO &quot;http://resin-packages.…
+572MB               /bin/sh -c apt-get update &amp;&amp; apt-get install…
+42.1MB              /bin/sh -c apt-get update &amp;&amp; apt-get install…
+0B                  /bin/sh -c #(nop)  LABEL io.balena.architect…
+0B                  /bin/sh -c #(nop)  CMD [&quot;bash&quot;]
+69.3MB              /bin/sh -c #(nop) ADD file:7362e0e50f30ff454…
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="networking">
+<h2>Networking<a class="headerlink" href="#networking" title="Permalink to this headline">¶</a></h2>
+<p>Containers use networks for communication. <em>ide49</em> makes use of two separate networks:</p>
+<ul class="simple">
+<li><p>an internal network used only for communication within the app, and</p></li>
+<li><p>the host network, used to access the Internet.</p></li>
+</ul>
+<p>Most containers have access only to the internal network. The <code class="docutils literal notranslate"><span class="pre">nginx</span></code> webserver acts as a reverse proxy to pass requests received from browsers on port 443 (and port 80, which is forwarded to 443) to the appropriate container on the internal network. The single ingress allows centralized handling of encryption and password verification in one place. The nginx configration is at</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat /service-config/nginx/nginx.conf
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># /etc/nginx/nginx.conf
+
+user                                nginx;
+worker_processes                    1;
+
+error_log                           /var/log/nginx/error.log warn;
+pid                                 /var/run/nginx.pid;
+
+
+events {
+    worker_connections              256;
+}
+
+http {
+    include                         /etc/nginx/mime.types;
+    default_type                    application/octet-stream;
+
+    log_format main                 &#39;$remote_addr - $remote_user &quot;$request&quot; &#39;
+                                    &#39;$status $body_bytes_sent &quot;$http_referer&quot; &#39;
+                                    &#39;&quot;$http_x_forwarded_for&quot;&#39;;
+
+    access_log                      /var/log/nginx/access.log main;
+
+    sendfile                        on;
+    keepalive_timeout               65;
+    # gzip                          on;
+
+    # http -&gt; https redirect
+    server {
+        listen                      80;
+        return                      301 https://$host$request_uri;
+    }
+
+    server {
+
+        # disable port 80 after enabling https redirect (above)
+        # listen                      80;
+
+        # Enable ssl/tls (https): copy certificate to /etc/nginx/ssl and uncomment lines below
+        listen                      443 ssl;
+        ssl_certificate             /etc/nginx/ssl/cert.crt;
+        ssl_certificate_key         /etc/nginx/ssl/cert.key;
+
+        # password authentication (default: iot49/iot49)
+        auth_basic                  &quot;iot49: Electronics for IoT&quot;;
+        auth_basic_user_file        htpasswd;
+
+        # Docker DNS
+        resolver                    127.0.0.11;       
+
+        # Jupyter
+        location /jupyter/ {
+            # proxy for network_mode: host
+            proxy_pass              http://172.17.0.1:8888;
+            proxy_redirect          off;
+            proxy_set_header        Host $host;
+
+            # websocket support
+            proxy_http_version      1.1;
+            proxy_set_header        Upgrade &quot;websocket&quot;;
+            proxy_set_header        Connection &quot;Upgrade&quot;;
+            proxy_read_timeout      86400;
+        }
+
+        # Code-server
+        location /code-server/ {
+            proxy_pass              http://code-server:8443/;
+            proxy_redirect          off;
+            proxy_set_header        Host $http_host;
+            proxy_http_version      1.1;
+            proxy_set_header        Upgrade $http_upgrade;
+            proxy_set_header        Connection &quot;upgrade&quot;;
+        }
+
+        # Duplicati
+        location /duplicati {
+            return                  301 $scheme://$host/duplicati/;
+        }
+        location ^~ /duplicati/ {
+            rewrite                 /duplicati(.*) $1 break;
+            proxy_pass              http://duplicati:8200;
+        }
+
+        # Plotserver 
+        location /plotserver/ {
+            proxy_redirect          off;
+            proxy_set_header        Host $http_host;
+            proxy_pass              http://plotserver:8080/;
+        }
+
+        include plotserver.conf;
+
+        # Balena-CLI
+        location /balena-cli/ {
+            # proxy for network_mode: host
+            proxy_pass              http://balena-cli:8889;
+            proxy_redirect          off;
+            proxy_set_header        Host $host;
+
+            # websocket support
+            proxy_http_version      1.1;
+            proxy_set_header        Upgrade &quot;websocket&quot;;
+            proxy_set_header        Connection &quot;Upgrade&quot;;
+            proxy_read_timeout      86400;
+        }
+
+        # static content
+        location / {
+            auth_basic              off;
+            root                    /home/iot/.html;
+            index                   index.html index.htm;
+        }
+
+    }
+
+}
+</pre></div>
+</div>
+</div>
+</div>
+<p>The network confiuration is available from the balena-engine:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span>
+<span class="n">balena</span><span class="o">-</span><span class="n">engine</span> <span class="n">ps</span> <span class="o">--</span><span class="nb">format</span> <span class="s2">&quot;table {{.Names}}</span><span class="se">\t</span><span class="s2">{{.Ports}}&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAMES                         PORTS
+jupyter_3834077_1864199       
+esp-idf_3834084_1864199       
+balena-cli_3834085_1864199    8889/tcp
+arm32_3834083_1864199         
+nginx_3834076_1864199         0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp
+duplicati_3834079_1864199     8200/tcp
+code-server_3834078_1864199   8443/tcp
+plotserver_3834082_1864199    8080/tcp
+mosquitto_3834081_1864199     0.0.0.0:1883-&gt;1883/tcp
+smb_3834080_1864199           0.0.0.0:139-&gt;139/tcp, 0.0.0.0:445-&gt;445/tcp
+resin_supervisor              
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Accordingly, the following ports are exposed on the internet (in addition to ports used by the BalenaOS):</p>
+<ul class="simple">
+<li><p>80 and 443 by <code class="docutils literal notranslate"><span class="pre">nginx</span></code></p></li>
+<li><p>1883 by <code class="docutils literal notranslate"><span class="pre">mosquitto</span></code></p></li>
+<li><p>139 and 445 by <code class="docutils literal notranslate"><span class="pre">samba</span></code></p></li>
+</ul>
+<p>In addition, <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> is in the host network: any server run in this container is visible outside, as if it was running on the host. In particular port 8888, used by the jupyterlab server, is exposed. Jupyter is configured to accept connections only from addresses on the internal network to avoid a security hole (encryption and password free access).</p>
+<p>All the other ports (8889, 8200, 8443, 8080) are used on the internal network only.</p>
+</div>
+<div class="section" id="storage">
+<h2>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h2>
+<p>Broadly, <a class="reference external" href="https://docs.docker.com/storage/">Docker</a> containers distinguish two kinds of data storage.</p>
+<div class="section" id="owned-by-the-container">
+<h3>Owned by the container<a class="headerlink" href="#owned-by-the-container" title="Permalink to this headline">¶</a></h3>
+<p>That’s the default and includes all operating system related files, installed software (compilers, etc).</p>
+<p>Although it’s possible to make changes (e.g. with <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> run inside the container), those changes do not persist between updates and hence should be avoided. Best practice is not to modify files “owned” by the container.</p>
+<p>This part of storage is “private” to the container and invisible from other containers in the same app.</p>
+</div>
+<div class="section" id="mounted-into-the-container-volumes">
+<h3>Mounted into the container (volumes)<a class="headerlink" href="#mounted-into-the-container-volumes" title="Permalink to this headline">¶</a></h3>
+<p>Storage can also be “mounted” from the “host”, the underlying operating system that runs the Docker app, <em>ide49</em>. For example, <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code> and <code class="docutils literal notranslate"><span class="pre">/service-config</span></code> are mounted. The <code class="docutils literal notranslate"><span class="pre">volumes</span></code> section of the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file lists all mounts.</p>
+<p>The same volumes can be mounted into several containers (at the same or different locations). This allows sharing data. For example, all volumes are mounted in the <code class="docutils literal notranslate"><span class="pre">duplicati</span></code> (backup) container.</p>
+<p>Likewise, configuration files, e.g. for <code class="docutils literal notranslate"><span class="pre">nginx</span></code> (webserver), are mounted in <code class="docutils literal notranslate"><span class="pre">/service-config</span></code> in the <code class="docutils literal notranslate"><span class="pre">code-server</span></code> and <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> containers for editing, and at the proper path in the various containers that need configuration (e.g. <code class="docutils literal notranslate"><span class="pre">/etc/nginx</span></code>).</p>
+<p>Changes to volumes persist between container updates.</p>
+</div>
+<div class="section" id="samba-fileshare">
+<h3>Samba fileshare<a class="headerlink" href="#samba-fileshare" title="Permalink to this headline">¶</a></h3>
+<p>In addition to the types of storage discussed above, <em>ide49</em> can also be configured to mount <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code> from a Samba file server.</p>
+<p>Uses include sharing the same data between several <em>ide49</em> instances or in situations where a shared file server, perhaps with centralized backup, is preferred.</p>
+<p>For convenience, the entire home directory is mounted. This can cause some undesired behavior. For example, databases frequently use status files (e.g. locks) used by the running instance. Sharing those with another device (running perhaps a different instance of the same database) results in conflicts.</p>
+<p>To prevent this, the local iot volume is always available at <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home</span></code>. Unlike <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>, this copy is never “hidden” by a Samba mount. <em>ide49</em> is configured to store status information (e.g. for <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>) in <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home</span></code> rather than <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>.</p>
+</div>
+<div class="section" id="python-packages-pip">
+<h3>Python packages (pip)<a class="headerlink" href="#python-packages-pip" title="Permalink to this headline">¶</a></h3>
+<p>In general, customizing <em>ide49</em> is accomplished by modifying the application (Dockerfiles etc). Fortunately that’s straightforward and can be accomplished right <a class="reference internal" href="customize.html"><span class="doc std std-doc">from within <em>ide49</em></span></a>. Installing additional linux packages (<code class="docutils literal notranslate"><span class="pre">apt-get</span></code>) should use this route.</p>
+<p>Python packages are a special case. App development invariably runs into situations where a needed package is not preinstalled in <em>ide49</em> and customization of the app each time can become distracting.</p>
+<p>To get around this, the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> container in <em>ide49</em> is configured for  installing Python packages by the user. Effectively using <code class="docutils literal notranslate"><span class="pre">pip</span></code> from the command line “just works”.</p>
+<p>This is how:</p>
+<ol class="simple">
+<li><p>The Python interpreter itself and core packages are owned by root and installed at a location owned by the container. Modify <em>ide49</em> to make changes to these (e.g. upgrade the interpreter).</p></li>
+<li><p>The Dockerfile installs packages (e.g. <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code>) as root. They are available on the Python path.</p></li>
+<li><p>Packages installed by the user are saved to <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home/.local</span></code> (configured by the environment variable <code class="docutils literal notranslate"><span class="pre">PYTHONUSERBASE</span></code>). This location persists between app updates. It is never shared/mounted by Samba, avoiding the possibility of package incompatibilities (e.g. different processor architectures, <code class="docutils literal notranslate"><span class="pre">aarch64</span></code> and <code class="docutils literal notranslate"><span class="pre">amd64</span></code>).</p></li>
+</ol>
+<p>Python is configured to look for packages in all these locations.</p>
+</div>
+<div class="section" id="host-acccess">
+<h3>Host acccess<a class="headerlink" href="#host-acccess" title="Permalink to this headline">¶</a></h3>
+<p>All mounted volumes can be accessed from the host. This is useful primarily for debugging.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span>
+<span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12702fc0072b0216c807317425f917d447edad4124b9197f7020ea607b034497
+1845020_code-server-config
+1845020_duplicati-config
+1845020_iot-home
+1845020_media
+1845020_mosquitto-config
+1845020_nginx-config
+2d8504e384df6fc92c0e65a4f77f72fbb99b6808a0186e861365c5ccebd6aca1
+3d7e2e043edc6bce9f0bc3cc1890f5f1d90c399ba5e033bdaedc9793bf4e6698
+536eb06434707e23e029ecb71f532966457ecf6f485e000ecc3f7ee4159fe560
+572928e84da3f435efb2086eaefc2c7273e1e60412d64b4dd342e00423f60835
+5887429a3d5a7384204f894d9f23d071e4983818260a5c66686b2ebe7af50107
+7db8cb8a4821d9c226d8f86ca940c950a75215e509bd951dbddb2a9b56824937
+94b32761bbc64a420462990b75a1cee0fb9201fdd47b77addc82026c1973ca8e
+da9243b68ec059a76a0216fb34b0b053c8068058ac85a2e20af22a46d39d7a8a
+metadata.db
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="mounts">
+<h3>Mounts<a class="headerlink" href="#mounts" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">duplicati</span></code> service automtically mounts USB storage devices at <code class="docutils literal notranslate"><span class="pre">/mnt</span></code>. These devices can also be manually mounted in the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> container following standard Linux practice. Avoid simultaneous access of the same storage device from multiple containers to avoid data corruption.</p>
+<p>Adapt the sample script to your situation.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+
+<span class="c1"># 1) find device, e.g. /dev/sdc1</span>
+<span class="n">sudo</span> <span class="n">fdisk</span> <span class="o">-</span><span class="n">l</span>
+
+<span class="c1"># 2) create mount point</span>
+<span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">media</span>
+
+<span class="c1"># 3) mount volume</span>
+<span class="n">sudo</span> <span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdc1</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">media</span>
+
+<span class="c1"># 4) use data ...</span>
+<span class="n">ls</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">media</span>
+
+<span class="c1"># 5) unmount</span>
+<span class="n">sudo</span> <span class="n">umount</span> <span class="o">/</span><span class="n">mnt</span><span class="o">/</span><span class="n">media</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./ide/app"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../app.html" title="previous page">App</a>
+    <a class='right-next' id="next-link" href="storage.html" title="next page">Storage (flash)</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

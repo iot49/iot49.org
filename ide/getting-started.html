@@ -157,15 +157,30 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="micropython/files.html">
+     File Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="micropython/flash.html">
-     Flash MicroPython
+     Flash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="micropython/plotserver.html">
+     Plotserver
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="reference.html">
-   Reference
+  <a class="reference internal" href="app.html">
+   App
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -174,57 +189,12 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="reference/services.html">
-     Services
+    <a class="reference internal" href="app/overview.html">
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/nginx.html">
-     Nginx
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/jupyter.html">
-     Jupyter Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/editor.html">
-     Editor
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/backup.html">
-     Backup
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/plotserver.html">
-     Plotserver
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/balena-cli.html">
-     Balena CLI
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/samba.html">
-     Samba
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/mosquitto.html">
-     MQTT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/services/gcc.html">
-     GCC
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="reference/customize.html">
+    <a class="reference internal" href="app/customize.html">
      Customize
      <em>
       ide49
@@ -245,10 +215,62 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../projects/balance.html">
-   Balance
+   Kitchen Scale
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/balance/hx711.html">
+     Precision Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/balance/app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/balance/ticks.html">
+     “Troubled” Times
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 <p class="caption">
@@ -397,7 +419,7 @@
 <p>Like all <em>Jupyter</em> kernels, you type code into <em>cells</em>, and click <code class="docutils literal notranslate"><span class="pre">shift-return</span></code> (return while holding down the shift key) to execute it.</p>
 <p>For example:</p>
 <a class="reference internal image-reference" href="../_images/no_device_connected.png"><img alt="../_images/no_device_connected.png" src="../_images/no_device_connected.png" style="width: 350px;" /></a>
-<p>Unless you have connected a microcontroller with MicroPython installed you get this error.</p>
+<p>Unless you have connected a microcontroller with MicroPython installed, you get this error.</p>
 <p>Like other <em>Jupyter</em> kernels, the <em>IoT Kernel</em> exposes its functionality through <em>magics</em>; lines that begin with a percent sign <code class="docutils literal notranslate"><span class="pre">%</span></code> in the first column. To get a list of magics available in the <em>IoT Kernel</em>, execute <code class="docutils literal notranslate"><span class="pre">%lsmagic%</span></code> by typing it into an empty cell and hitting <code class="docutils literal notranslate"><span class="pre">shift-return</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -443,50 +465,7 @@ Cell Magic:    -h shows help (e.g. %%connect -h)
 </div>
 </div>
 </div>
-<p>In addition, the magics from the Python3 kernel are also available. There are quite many! To get a list:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
-
-<span class="o">%</span><span class="n">lsmagic</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available line magics:
-%alias  %alias_magic  %autoawait  %autocall  %automagic  %autosave  %bookmark  %cat  %cd  %clear  %colors  %conda  %config  %connect_info  %cp  %debug  %dhist  %dirs  %doctest_mode  %ed  %edit  %env  %gui  %hist  %history  %killbgscripts  %ldir  %less  %lf  %lk  %ll  %load  %load_ext  %loadpy  %logoff  %logon  %logstart  %logstate  %logstop  %ls  %lsmagic  %lx  %macro  %magic  %man  %matplotlib  %mkdir  %more  %mv  %notebook  %page  %pastebin  %pdb  %pdef  %pdoc  %pfile  %pinfo  %pinfo2  %pip  %popd  %pprint  %precision  %prun  %psearch  %psource  %pushd  %pwd  %pycat  %pylab  %qtconsole  %quickref  %recall  %rehashx  %reload_ext  %rep  %rerun  %reset  %reset_selective  %rm  %rmdir  %run  %save  %sc  %set_env  %store  %sx  %system  %tb  %time  %timeit  %unalias  %unload_ext  %who  %who_ls  %whos  %xdel  %xmode
-
-Available cell magics:
-%%!  %%HTML  %%SVG  %%bash  %%capture  %%debug  %%file  %%html  %%javascript  %%js  %%latex  %%markdown  %%perl  %%prun  %%pypy  %%python  %%python2  %%python3  %%ruby  %%script  %%sh  %%svg  %%sx  %%system  %%time  %%timeit  %%writefile
-
-Automagic is ON, % prefix IS NOT needed for line magics.
-</pre></div>
-</div>
-</div>
-</div>
-<p>For more information about <em>IoT Kernel</em> magics, run it with the <code class="docutils literal notranslate"><span class="pre">-h</span></code> flag:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span> <span class="o">-</span><span class="n">h</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>usage: %%host [-h]
-
-Pass cell to host (cPython) for evaluation.
-
-optional arguments:
-  -h, --help  show this help message and exit
-
-</pre></div>
-</div>
-</div>
-</div>
-<p>Example:</p>
+<p>Code preceded by the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic is executed on the host. The documentation for the <a class="reference internal" href="micropython/iot-kernel.html"><span class="doc std std-doc">iot-kernel</span></a> has more information.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
@@ -502,7 +481,6 @@ optional arguments:
 </div>
 </div>
 </div>
-<p>Code preceded by the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic is submitted to the Raspberry Pi for execution. See <a class="reference internal" href="micropython/iot-kernel.html"><span class="doc std std-doc">iot-kernel</span></a> for more information.</p>
 </div>
 <div class="section" id="micropython">
 <h2>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h2>

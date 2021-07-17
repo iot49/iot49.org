@@ -1,0 +1,584 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESP IDF &#8212; Electronics for IoT</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/togglebutton.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/ide/app/services/esp-idf.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../index.html">
+      
+      <img src="../../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../micropython/files.html">
+     File Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../micropython/flash.html">
+     Flash
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../app.html">
+   App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../projects/balance.html">
+   Kitchen Scale
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/hx711.html">
+     Precision Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../projects/balance/ticks.html">
+     “Troubled” Times
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  IoT
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../iot/micropython.html">
+   MicroPython
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../iot/gpio.html">
+   GPIO
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../_sources/ide/app/services/esp-idf.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/app/services/esp-idf.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/app/services/esp-idf.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="esp-idf">
+<h1><a class="reference external" href="https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html">ESP IDF</a><a class="headerlink" href="#esp-idf" title="Permalink to this headline">¶</a></h1>
+<p><strong>Note 1:</strong> No version for 64-bit Linux on arm, see error below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">tool</span> <span class="n">xtensa</span><span class="o">-</span><span class="n">esp32</span><span class="o">-</span><span class="n">elf</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">versions</span> <span class="n">compatible</span> <span class="k">with</span> <span class="n">platform</span> <span class="n">linux</span><span class="o">-</span><span class="n">arm64</span>
+</pre></div>
+</div>
+<p><strong>Note 2:</strong> <code class="docutils literal notranslate"><span class="pre">aarch64</span></code> toolchain forthcoming:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/espressif/esp-idf/issues/6475">https://github.com/espressif/esp-idf/issues/6475</a></p></li>
+<li><p><a class="reference external" href="https://github.com/espressif/esp-idf/issues/6432">https://github.com/espressif/esp-idf/issues/6432</a></p></li>
+</ul>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
+
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">scratch</span><span class="o">/</span><span class="n">esp</span>
+<span class="n">cd</span> <span class="n">scratch</span><span class="o">/</span><span class="n">esp</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="o">--</span><span class="n">recursive</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">espressif</span><span class="o">/</span><span class="n">esp</span><span class="o">-</span><span class="n">idf</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Cloning into &#39;esp-idf&#39;...
+Checking out files: 100% (8739/8739), done.Checking out files:  26% (2273/8739)   Checking out files:  27% (2360/8739)   Checking out files:  28% (2447/8739)   Checking out files:  29% (2535/8739)   Checking out files:  30% (2622/8739)   Checking out files:  31% (2710/8739)   Checking out files:  32% (2797/8739)   Checking out files:  33% (2884/8739)   Checking out files:  34% (2972/8739)   Checking out files:  35% (3059/8739)   Checking out files:  36% (3147/8739)   Checking out files:  37% (3234/8739)   Checking out files:  38% (3321/8739)   Checking out files:  39% (3409/8739)   Checking out files:  40% (3496/8739)   Checking out files:  41% (3583/8739)   Checking out files:  42% (3671/8739)   Checking out files:  43% (3758/8739)   Checking out files:  44% (3846/8739)   Checking out files:  45% (3933/8739)   Checking out files:  46% (4020/8739)   Checking out files:  47% (4108/8739)   Checking out files:  48% (4195/8739)   Checking out files:  49% (4283/8739)   Checking out files:  50% (4370/8739)   Checking out files:  50% (4377/8739)   Checking out files:  51% (4457/8739)   Checking out files:  52% (4545/8739)   Checking out files:  53% (4632/8739)   Checking out files:  54% (4720/8739)   Checking out files:  55% (4807/8739)   Checking out files:  56% (4894/8739)   Checking out files:  57% (4982/8739)   Checking out files:  58% (5069/8739)   Checking out files:  59% (5157/8739)   Checking out files:  60% (5244/8739)   Checking out files:  61% (5331/8739)   Checking out files:  62% (5419/8739)   Checking out files:  63% (5506/8739)   Checking out files:  64% (5593/8739)   Checking out files:  65% (5681/8739)   Checking out files:  66% (5768/8739)   Checking out files:  67% (5856/8739)   Checking out files:  68% (5943/8739)   Checking out files:  69% (6030/8739)   Checking out files:  70% (6118/8739)   Checking out files:  71% (6205/8739)   Checking out files:  72% (6293/8739)   Checking out files:  73% (6380/8739)   Checking out files:  74% (6467/8739)   Checking out files:  75% (6555/8739)   Checking out files:  76% (6642/8739)   Checking out files:  77% (6730/8739)   Checking out files:  77% (6784/8739)   Checking out files:  78% (6817/8739)   Checking out files:  79% (6904/8739)   Checking out files:  80% (6992/8739)   Checking out files:  81% (7079/8739)   Checking out files:  82% (7166/8739)   Checking out files:  83% (7254/8739)   Checking out files:  84% (7341/8739)   Checking out files:  85% (7429/8739)   Checking out files:  86% (7516/8739)   Checking out files:  87% (7603/8739)   Checking out files:  88% (7691/8739)   Checking out files:  89% (7778/8739)   Checking out files:  90% (7866/8739)   Checking out files:  91% (7953/8739)   Checking out files:  92% (8040/8739)   Checking out files:  93% (8128/8739)   Checking out files:  94% (8215/8739)   Checking out files:  95% (8303/8739)   Checking out files:  96% (8390/8739)   Checking out files:  97% (8477/8739)   Checking out files:  98% (8565/8739)   Checking out files:  99% (8652/8739)   Checking out files: 100% (8739/8739)   
+Submodule &#39;components/asio/asio&#39; (https://github.com/espressif/asio.git) registered for path &#39;components/asio/asio&#39;
+Submodule &#39;components/bootloader/subproject/components/micro-ecc/micro-ecc&#39; (https://github.com/kmackay/micro-ecc.git) registered for path &#39;components/bootloader/subproject/components/micro-ecc/micro-ecc&#39;
+Submodule &#39;components/bt/controller/lib_esp32&#39; (https://github.com/espressif/esp32-bt-lib.git) registered for path &#39;components/bt/controller/lib_esp32&#39;
+Submodule &#39;components/bt/controller/lib_esp32c3_family&#39; (https://github.com/espressif/esp32c3-bt-lib.git) registered for path &#39;components/bt/controller/lib_esp32c3_family&#39;
+Submodule &#39;components/bt/host/nimble/nimble&#39; (https://github.com/espressif/esp-nimble.git) registered for path &#39;components/bt/host/nimble/nimble&#39;
+Submodule &#39;components/cbor/tinycbor&#39; (https://github.com/intel/tinycbor.git) registered for path &#39;components/cbor/tinycbor&#39;
+Submodule &#39;components/cmock/CMock&#39; (https://github.com/ThrowTheSwitch/CMock.git) registered for path &#39;components/cmock/CMock&#39;
+Submodule &#39;components/coap/libcoap&#39; (https://github.com/obgm/libcoap.git) registered for path &#39;components/coap/libcoap&#39;
+Submodule &#39;components/esp_phy/lib&#39; (https://github.com/espressif/esp-phy-lib.git) registered for path &#39;components/esp_phy/lib&#39;
+Submodule &#39;components/esp_wifi/lib&#39; (https://github.com/espressif/esp32-wifi-lib.git) registered for path &#39;components/esp_wifi/lib&#39;
+Submodule &#39;components/esptool_py/esptool&#39; (https://github.com/espressif/esptool.git) registered for path &#39;components/esptool_py/esptool&#39;
+Submodule &#39;components/expat/expat&#39; (https://github.com/libexpat/libexpat.git) registered for path &#39;components/expat/expat&#39;
+Submodule &#39;components/json/cJSON&#39; (https://github.com/DaveGamble/cJSON.git) registered for path &#39;components/json/cJSON&#39;
+Submodule &#39;components/libsodium/libsodium&#39; (https://github.com/jedisct1/libsodium.git) registered for path &#39;components/libsodium/libsodium&#39;
+Submodule &#39;components/lwip/lwip&#39; (https://github.com/espressif/esp-lwip.git) registered for path &#39;components/lwip/lwip&#39;
+Submodule &#39;components/mbedtls/mbedtls&#39; (https://github.com/espressif/mbedtls.git) registered for path &#39;components/mbedtls/mbedtls&#39;
+Submodule &#39;components/mqtt/esp-mqtt&#39; (https://github.com/espressif/esp-mqtt.git) registered for path &#39;components/mqtt/esp-mqtt&#39;
+Submodule &#39;components/nghttp/nghttp2&#39; (https://github.com/nghttp2/nghttp2.git) registered for path &#39;components/nghttp/nghttp2&#39;
+Submodule &#39;components/openthread/openthread&#39; (https://github.com/espressif/openthread.git) registered for path &#39;components/openthread/openthread&#39;
+Submodule &#39;components/protobuf-c/protobuf-c&#39; (https://github.com/protobuf-c/protobuf-c.git) registered for path &#39;components/protobuf-c/protobuf-c&#39;
+Submodule &#39;components/spiffs/spiffs&#39; (https://github.com/pellepl/spiffs.git) registered for path &#39;components/spiffs/spiffs&#39;
+Submodule &#39;components/tinyusb/tinyusb&#39; (https://github.com/espressif/tinyusb.git) registered for path &#39;components/tinyusb/tinyusb&#39;
+Submodule &#39;components/unity/unity&#39; (https://github.com/ThrowTheSwitch/Unity.git) registered for path &#39;components/unity/unity&#39;
+Submodule &#39;examples/build_system/cmake/import_lib/main/lib/tinyxml2&#39; (https://github.com/leethomason/tinyxml2.git) registered for path &#39;examples/build_system/cmake/import_lib/main/lib/tinyxml2&#39;
+Submodule &#39;examples/peripherals/secure_element/atecc608_ecdsa/components/esp-cryptoauthlib&#39; (https://github.com/espressif/esp-cryptoauthlib.git) registered for path &#39;examples/peripherals/secure_element/atecc608_ecdsa/components/esp-cryptoauthlib&#39;
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/asio/asio&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/bt/controller/lib_esp32c3_family&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/bootloader/subproject/components/micro-ecc/micro-ecc&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/cbor/tinycbor&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/bt/controller/lib_esp32&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/cmock/CMock&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/coap/libcoap&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/esp_phy/lib&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/bt/host/nimble/nimble&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/expat/expat&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/esptool_py/esptool&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/esp_wifi/lib&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/json/cJSON&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/libsodium/libsodium&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/mqtt/esp-mqtt&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/lwip/lwip&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/mbedtls/mbedtls&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/protobuf-c/protobuf-c&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/nghttp/nghttp2&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/spiffs/spiffs&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/unity/unity&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/examples/build_system/cmake/import_lib/main/lib/tinyxml2&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/examples/peripherals/secure_element/atecc608_ecdsa/components/esp-cryptoauthlib&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/tinyusb/tinyusb&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/openthread/openthread&#39;...
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule path &#39;components/asio/asio&#39;: checked out &#39;f31694c9f1746ba189a4bcae2e34db15135ddb22&#39;
+Submodule path &#39;components/bootloader/subproject/components/micro-ecc/micro-ecc&#39;: checked out &#39;d037ec89546fad14b5c4d5456c2e23a71e554966&#39;
+Submodule path &#39;components/bt/controller/lib_esp32&#39;: checked out &#39;b5b115873cc84ab1114409a23e6ce13edeef39ae&#39;
+Submodule path &#39;components/bt/controller/lib_esp32c3_family&#39;: checked out &#39;4b93865b52ab92f0b7777ed415b6598b96ac1d6d&#39;
+Submodule path &#39;components/bt/host/nimble/nimble&#39;: checked out &#39;5bb7b402275210ed6f97fe4bd6e452bf0f659452&#39;
+Submodule path &#39;components/cbor/tinycbor&#39;: checked out &#39;7c349dbb6b8d76db39383b226d3ebdf59b8ab37d&#39;
+Submodule path &#39;components/cmock/CMock&#39;: checked out &#39;eeecc49ce8af123cf8ad40efdb9673e37b56230f&#39;
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule &#39;vendor/c_exception&#39; (https://github.com/throwtheswitch/cexception.git) registered for path &#39;components/cmock/CMock/vendor/c_exception&#39;
+Submodule &#39;vendor/unity&#39; (https://github.com/throwtheswitch/unity.git) registered for path &#39;components/cmock/CMock/vendor/unity&#39;
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/cmock/CMock/vendor/c_exception&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/cmock/CMock/vendor/unity&#39;...
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule path &#39;components/cmock/CMock/vendor/c_exception&#39;: checked out &#39;71b47be7c950f1bf5f7e5303779fa99a16224bb6&#39;
+Submodule path &#39;components/cmock/CMock/vendor/unity&#39;: checked out &#39;cf949f45ca6d172a177b00da21310607b97bc7a7&#39;
+Submodule path &#39;components/coap/libcoap&#39;: checked out &#39;98954eb30a2e728e172a6cd29430ae5bc999b585&#39;
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule &#39;ext/tinydtls&#39; (https://github.com/eclipse/tinydtls.git) registered for path &#39;components/coap/libcoap/ext/tinydtls&#39;
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/coap/libcoap/ext/tinydtls&#39;...
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule path &#39;components/coap/libcoap/ext/tinydtls&#39;: checked out &#39;7f8c86e501e690301630029fa9bae22424adf618&#39;
+Submodule path &#39;components/esp_phy/lib&#39;: checked out &#39;f2c056340505399429dbc8792e7109b7c69f5d77&#39;
+Submodule path &#39;components/esp_wifi/lib&#39;: checked out &#39;ebd0bc737e7dee849118df65ff294312c9141f91&#39;
+Submodule path &#39;components/esptool_py/esptool&#39;: checked out &#39;1c9fe7059738ecd8e2b77c66cf7e2be73e566c16&#39;
+Submodule path &#39;components/expat/expat&#39;: checked out &#39;a28238bdeebc087071777001245df1876a11f5ee&#39;
+Submodule path &#39;components/json/cJSON&#39;: checked out &#39;d2735278ed1c2e4556f53a7a782063b31331dbf7&#39;
+Submodule path &#39;components/libsodium/libsodium&#39;: checked out &#39;4f5e89fa84ce1d178a6765b8b46f2b6f91216677&#39;
+Submodule path &#39;components/lwip/lwip&#39;: checked out &#39;2195f7416fb3136831babf3e96c027a73075bd4f&#39;
+Submodule path &#39;components/mbedtls/mbedtls&#39;: checked out &#39;99c88bb7bd7c2d91c6873abd6e6d5ee04f4f164c&#39;
+Submodule path &#39;components/mqtt/esp-mqtt&#39;: checked out &#39;f10321a53b53a146ee299cfecc320b89c0cf6611&#39;
+Submodule path &#39;components/nghttp/nghttp2&#39;: checked out &#39;8f7b008b158e12de0e58247afd170f127dbb6456&#39;
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule &#39;third-party/mruby&#39; (https://github.com/mruby/mruby) registered for path &#39;components/nghttp/nghttp2/third-party/mruby&#39;
+Submodule &#39;third-party/neverbleed&#39; (https://github.com/tatsuhiro-t/neverbleed.git) registered for path &#39;components/nghttp/nghttp2/third-party/neverbleed&#39;
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/nghttp/nghttp2/third-party/mruby&#39;...
+Cloning into &#39;/home/iot/scratch/esp/esp-idf/components/nghttp/nghttp2/third-party/neverbleed&#39;...
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Submodule path &#39;components/nghttp/nghttp2/third-party/mruby&#39;: checked out &#39;7c91efc1ffda769a5f1a872c646c82b00698f1b8&#39;
+Submodule path &#39;components/nghttp/nghttp2/third-party/neverbleed&#39;: checked out &#39;b967ca054f48a36f82d8fcdd32e54ec5144f2751&#39;
+Submodule path &#39;components/openthread/openthread&#39;: checked out &#39;d16edaa5ef73e9139ac9c9d3b71981bf21a5de17&#39;
+Submodule path &#39;components/protobuf-c/protobuf-c&#39;: checked out &#39;dac1a65feac4ad72f612aab99f487056fbcf5c1a&#39;
+Submodule path &#39;components/spiffs/spiffs&#39;: checked out &#39;f5e26c4e933189593a71c6b82cda381a7b21e41c&#39;
+Submodule path &#39;components/tinyusb/tinyusb&#39;: checked out &#39;c4badd394eda18199c0196ed0be1e2d635f0a5f6&#39;
+Submodule path &#39;components/unity/unity&#39;: checked out &#39;7d2bf62b7e6afaf38153041a9d53c21aeeca9a25&#39;
+Submodule path &#39;examples/build_system/cmake/import_lib/main/lib/tinyxml2&#39;: checked out &#39;7e8e249990ec491ec15990cf95b6d871a66cf64a&#39;
+Submodule path &#39;examples/peripherals/secure_element/atecc608_ecdsa/components/esp-cryptoauthlib&#39;: checked out &#39;bb672b0437485fc7420add178299631692b15ac3&#39;
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
+
+<span class="n">cd</span> <span class="n">scratch</span><span class="o">/</span><span class="n">esp</span><span class="o">/</span><span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
+<span class="o">./</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Detecting the Python interpreter
+Checking &quot;python&quot; ...
+Python 3.8.10
+&quot;python&quot; has been detected
+Installing ESP-IDF tools
+Installing tools: xtensa-esp32-elf, xtensa-esp32s2-elf, xtensa-esp32s3-elf, riscv32-esp-elf, esp32ulp-elf, esp32s2ulp-elf, openocd-esp32
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: tool xtensa-esp32-elf does not have versions compatible with platform linux-arm64
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./ide/app/services"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
