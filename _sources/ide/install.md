@@ -8,6 +8,7 @@ To install *ide49*, you need the following:
     * Raspberry Pi 4 (2GBytes suffice for *iot49*)
     * Raspberry Pi 3
     * Intel NUC or compatible
+    
   Other devices supporting the 64-Bit ARM or Intel instruction set (`aarch64` or `amd64`) may work as well.
 * SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).
 * A networked computer (e.g. a laptop) with an SD Card slot (only used for installation)
@@ -22,10 +23,7 @@ To install *ide49*, you need the following:
 Create an account on [balena.io](https://www.balena.io/) or login to your existing account.
 
 Open the [*ide49* repository on github](https://github.com/iot49/ide49) and click the 
-
-![Deploy with Balena](figures/deploy.svg)
-
-button. 
+![Deploy with Balena](figures/deploy.svg) button. 
 
 In the popup window, choose a name for your application (e.g. *ide49*). Click *advanced* and set the timezone (TZ) to the desired value. Click [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for a list of valid TZ names. 
 
