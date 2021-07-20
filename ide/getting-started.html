@@ -171,11 +171,6 @@
      Flash
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="micropython/plotserver.html">
-     Plotserver
-    </a>
-   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -217,7 +212,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../projects/balance.html">
-   Kitchen Scale
+   GPIO
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -268,6 +263,28 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../projects/balance/ticks.html">
      “Troubled” Times
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../projects/internet.html">
+   Internet
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/internet/encryption.html">
+     Encryption
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/internet/plotserver.html">
+     Plotserver
     </a>
    </li>
   </ul>
@@ -416,11 +433,11 @@
 <p>For illustration, the key features are highlighted. The main features are a <em>Python 3 Kernel</em> that executes Python 3 on the host (Raspberry Pi), a <em>Terminal</em> for running shell commands, and, the <a class="reference internal" href="micropython/iot-kernel.html"><span class="doc std std-doc"><strong>IoT Kernel</strong></span></a> for programming microcontrollers.</p>
 <p>To start an <em>IoT Kernel</em>, click on its icon:</p>
 <p><img alt="IoT Kernel" src="../_images/iot_kernel_annotated.png" /></p>
-<p>Like all <em>Jupyter</em> kernels, you type code into <em>cells</em>, and click <code class="docutils literal notranslate"><span class="pre">shift-return</span></code> (return while holding down the shift key) to execute it.</p>
+<p>Like all <em>Jupyter</em> kernels, you type code into <em>cells</em>, and click <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code> (return while holding down the shift key) to execute it.</p>
 <p>For example:</p>
 <a class="reference internal image-reference" href="../_images/no_device_connected.png"><img alt="../_images/no_device_connected.png" src="../_images/no_device_connected.png" style="width: 350px;" /></a>
 <p>Unless you have connected a microcontroller with MicroPython installed, you get this error.</p>
-<p>Like other <em>Jupyter</em> kernels, the <em>IoT Kernel</em> exposes its functionality through <em>magics</em>; lines that begin with a percent sign <code class="docutils literal notranslate"><span class="pre">%</span></code> in the first column. To get a list of magics available in the <em>IoT Kernel</em>, execute <code class="docutils literal notranslate"><span class="pre">%lsmagic%</span></code> by typing it into an empty cell and hitting <code class="docutils literal notranslate"><span class="pre">shift-return</span></code>:</p>
+<p>Like other <em>Jupyter</em> kernels, the <em>IoT Kernel</em> exposes its functionality through <em>magics</em>; lines that begin with a percent sign <code class="docutils literal notranslate"><span class="pre">%</span></code> in the first column. To get a list of magics available in the <em>IoT Kernel</em>, execute <code class="docutils literal notranslate"><span class="pre">%lsmagic%</span></code> by typing it into an empty cell and hitting <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">lsmagic</span>
@@ -430,7 +447,7 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Line Magic:    -h shows help (e.g. %discover -h)
   %cat         Print contents of named file on microcontroller
-  %cd          Change the working directory.
+  %cd          Change current working directory on host.
   %connect     Connect to device
   %cp          Copy files between host and microcontroller.
   %discover    Discover available devices
@@ -461,6 +478,7 @@ Cell Magic:    -h shows help (e.g. %%connect -h)
   %%host       Pass cell to host (cPython) for evaluation.
   %%service    Evaluate in named container using ssh.
   %%ssh        Pass cell body to ssh.
+  %%writefile  Write cell contents to file.
 </pre></div>
 </div>
 </div>
@@ -506,6 +524,11 @@ Cell Magic:    -h shows help (e.g. %%connect -h)
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to 50:02:91:a1:a7:2c @ serial:///dev/ttyUSB0</span>
+</pre></div>
+</div>
+</div>
 </div>
 <p>Code typed into notebook cells is sent to the microcontroller for execution and results reported back. For example:</p>
 <div class="cell docutils container">
@@ -541,12 +564,11 @@ Cell Magic:    -h shows help (e.g. %%connect -h)
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 <span class=" -Color -Color-Black -Color-Black-BGCyan">----- HOST</span>
 
-platform: linux   implementation: cpython
 
 <span class=" -Color -Color-Black -Color-Black-BGCyan">----- 50:02:91:a1:a7:2c</span>
 
 platform: esp32   implementation: micropython
-
+platform: linux   implementation: cpython
 </pre></div>
 </div>
 </div>
@@ -567,17 +589,25 @@ platform: esp32   implementation: micropython
 </pre></div>
 </div>
 <p>The <em>IoT Kernel</em> uses <em>UIDs</em> to unambiguously distinguish devices. Identifying microcontrollers with hexadecimal strings is useful for keeping track of devices (I have an entire drawer full), but about as informative and convenient to remember as a phone number.</p>
-<p>Fortunately it is easy to associate the device with a “name”, by simply recording this information in a file and saving it to folder <code class="docutils literal notranslate"><span class="pre">~/iot49/devices</span></code>. The <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> magic does this for us:</p>
+<p>Fortunately it is easy to associate the device with a “name”, by simply recording this information in a file and saving it to folder <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/devices</span></code>. The <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> magic does this for us:</p>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/pico.yaml
+pico:
+    uid: 50:02:91:a1:a7:2c
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="o">~/</span><span class="n">iot49</span><span class="o">/</span><span class="n">devices</span><span class="o">/</span><span class="n">my_microcontroller</span><span class="o">.</span><span class="n">yaml</span>
-<span class="n">pico</span><span class="p">:</span>
-    <span class="n">uid</span><span class="p">:</span> <span class="mi">50</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="n">a7</span><span class="p">:</span><span class="mi">2</span><span class="n">c</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat $IOT_PROJECTS/devices/pico.yaml
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing /home/iot/iot49/devices/my_microcontroller.yaml
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pico:
+    uid: 50:02:91:a1:a7:2c
 </pre></div>
 </div>
 </div>
