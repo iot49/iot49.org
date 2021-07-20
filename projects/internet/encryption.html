@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encryption &#8212; Electronics for IoT</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/projects/internet/encryption.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Plotserver" href="plotserver.html" />
+    <link rel="prev" title="Internet" href="../internet.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/files.html">
+     File Management
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flash
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/app.html">
+   App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../balance.html">
+   Kitchen Scale
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/hx711.html">
+     Precision Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/ticks.html">
+     “Troubled” Times
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../internet.html">
+   Internet
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Encryption
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plotserver.html">
+     Plotserver
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  IoT
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../iot/micropython.html">
+   MicroPython
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../iot/gpio.html">
+   GPIO
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/projects/internet/encryption.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/internet/encryption.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/internet/encryption.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Encryption
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#symmetric-key-encryption">
+   Symmetric Key Encryption
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#public-key-cryptography">
+     Public Key Cryptography
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#man-in-the-middle">
+     Man in the middle
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="encryption">
+<h1>Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h1>
+<p>Data sent over the internet can potentially be read by “anyone”. This overview examines steps that can be taken to prevent information from getting into the wrong hands.</p>
+<p><strong>Warning:</strong> The code presented here is for understanding. <strong>It is not secure!</strong> Don’t use this  in your projects!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">pico</span>
+<span class="o">%</span><span class="n">softreset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to pico @ serial:///dev/ttyUSB0</span>
+
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="symmetric-key-encryption">
+<h1>Symmetric Key Encryption<a class="headerlink" href="#symmetric-key-encryption" title="Permalink to this headline">¶</a></h1>
+<p>MicroPython has built-in support for the <a class="reference external" href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">Advanced Encryption Standard (AES)</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ucryptolib</span><span class="o">,</span> <span class="nn">os</span>
+
+<span class="n">key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;key =&quot;</span><span class="p">,</span> <span class="n">key</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+<span class="n">msg</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;iot49 is awesome!&#39;</span>
+
+<span class="c1"># encrypt</span>
+
+<span class="n">enc</span> <span class="o">=</span> <span class="n">ucryptolib</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1"># pad msg to multiple of 16 bytes</span>
+<span class="n">padded</span> <span class="o">=</span> <span class="n">msg</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">((</span><span class="mi">16</span> <span class="o">-</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">%</span> <span class="mi">16</span><span class="p">))</span> <span class="o">%</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">encrypted</span> <span class="o">=</span> <span class="n">enc</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">padded</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;encrypted =&quot;</span><span class="p">,</span> <span class="n">encrypted</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+
+<span class="c1"># decrypt</span>
+
+<span class="n">dec</span> <span class="o">=</span> <span class="n">ucryptolib</span><span class="o">.</span><span class="n">aes</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">decrypted</span> <span class="o">=</span> <span class="n">dec</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted</span><span class="p">)</span>
+<span class="c1"># decrypted message included padding, if any was added</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;decrypted =&quot;</span><span class="p">,</span> <span class="n">decrypted</span><span class="p">[:</span><span class="mi">20</span><span class="p">],</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+
+<span class="c1"># verify</span>
+<span class="k">assert</span> <span class="n">decrypted</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)]</span> <span class="o">==</span> <span class="n">msg</span><span class="p">,</span> <span class="s2">&quot;decrypted message differs!&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>key = b&#39;\x93\xcc\xc8\x99,\x14\xf7&lt;$m\xca\xe8\xb0O\x85\x07&#39; ...
+encrypted = b&#39;\xc0 \xb8\xc9\xd8\xcc\xc9\xc3\x80Y\xdb\xf7\xfb\xa4\xcf\xc1\xdc\xea\xd2y&#39; ...
+decrypted = b&#39;iot49 is awesome!\x00\x00\x00&#39; ...
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>This works-it would be difficult to “guess” the message from the encrypted data-without the key.</p>
+<p>But how do we share the key between devices? We need encryption! What looks like a recursive problem has an elegant solution.</p>
+<div class="section" id="public-key-cryptography">
+<h2>Public Key Cryptography<a class="headerlink" href="#public-key-cryptography" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Public-key_cryptography">Public Key Cryptography (PKC)</a> uses two keys: a public key for encryption, and a private key for decryption.</p>
+<p>To send me a secret message, you ask me for my public key. It’s public and hence can be transmitted without encryption. You use this public key to encrypt the message and send me the result. I recover the original, unencrypted message using my private key (that is never shared).</p>
+<p>The public and private keys are generated from prime numbers. Here is a simple (and inefficient) function to generate large random prime numbers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">log2</span>
+
+<span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
+    
+<span class="k">def</span> <span class="nf">gen_prime</span><span class="p">(</span><span class="n">bits</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">is_prime</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">p</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">gen_prime</span><span class="p">(</span><span class="n">bits</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:2}</span><span class="s2">: </span><span class="si">{:30}</span><span class="s2">  </span><span class="si">{:3}</span><span class="s2"> bits&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">log2</span><span class="p">(</span><span class="n">p</span><span class="p">))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0:                     3133134113   31 bits
+ 1:                      514661263   28 bits
+ 2:                     1059481411   29 bits
+ 3:                     1440859621   30 bits
+ 4:                     2049262793   30 bits
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now generate the keys:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">multinv</span><span class="p">(</span><span class="n">modulus</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Multiplicative inverse in a given modulus</span>
+
+<span class="sd">multinv(191, 138)</span>
+<span class="sd">        18</span>
+<span class="sd">18 * 138 % 191</span>
+<span class="sd">        1</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># http://en.wikipedia.org/wiki/Extended_Euclidean_algorithm</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">lastx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">modulus</span><span class="p">,</span> <span class="n">value</span>
+    <span class="k">while</span> <span class="n">b</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">//</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">lastx</span> <span class="o">=</span> <span class="n">lastx</span> <span class="o">-</span> <span class="n">q</span> <span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">lastx</span> <span class="o">*</span> <span class="n">modulus</span><span class="p">)</span> <span class="o">//</span> <span class="n">value</span>
+    <span class="k">return</span> <span class="n">result</span> <span class="o">+</span> <span class="n">modulus</span> <span class="k">if</span> <span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">keygen</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Generate public and private keys from primes up to N.</span>
+
+<span class="sd">pubkey, privkey = keygen(34)</span>
+<span class="sd">msg = 123456789012345</span>
+<span class="sd">coded = pow(msg, 65537, pubkey)</span>
+<span class="sd">plain = pow(coded, privkey, pubkey)</span>
+<span class="sd">assert msg == plain</span>
+
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># http://en.wikipedia.org/wiki/RSA</span>
+    <span class="n">prime1</span> <span class="o">=</span> <span class="n">gen_prime</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">prime2</span> <span class="o">=</span> <span class="n">gen_prime</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">totient</span> <span class="o">=</span> <span class="p">(</span><span class="n">prime1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">prime2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">prime1</span> <span class="o">*</span> <span class="n">prime2</span><span class="p">,</span> <span class="n">multinv</span><span class="p">(</span><span class="n">totient</span><span class="p">,</span> <span class="mi">65537</span><span class="p">)</span>
+
+<span class="n">pubkey</span><span class="p">,</span> <span class="n">privkey</span> <span class="o">=</span> <span class="n">keygen</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;keys: public=</span><span class="si">{}</span><span class="s2">, private=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pubkey</span><span class="p">,</span> <span class="n">privkey</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>keys: public=9986884116869176633, private=5122588709583204353
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>And use them to encrypt and decrypt a secret message. Note that <code class="docutils literal notranslate"><span class="pre">pow</span></code> expect an int.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="mi">359234562701343655</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;msg:       </span><span class="si">{:30}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+<span class="n">encrypted</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="mi">65537</span><span class="p">,</span> <span class="n">pubkey</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;encrypted: </span><span class="si">{:30}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">encrypted</span><span class="p">))</span>
+
+<span class="n">decrypted</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">encrypted</span><span class="p">,</span> <span class="n">privkey</span><span class="p">,</span> <span class="n">pubkey</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;decrypted: </span><span class="si">{:30}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">decrypted</span><span class="p">))</span>
+
+<span class="k">assert</span> <span class="n">msg</span> <span class="o">==</span> <span class="n">decrypted</span><span class="p">,</span> <span class="s2">&quot;MISMATCH!&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>msg:                   359234562701343655
+encrypted:            5358422032796723527
+decrypted:             359234562701343655
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>It would indeed be difficult to “guess” the dycrypted message from the encrypted value.</p>
+<p>To send strings, we need to convert them to ints first.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">pubkey</span><span class="p">):</span>
+    <span class="n">encoded</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">pow</span><span class="p">(</span><span class="n">encoded</span><span class="p">,</span> <span class="mi">65537</span><span class="p">,</span> <span class="n">pubkey</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">decrypt</span><span class="p">(</span><span class="n">encrypted</span><span class="p">,</span> <span class="n">pubkey</span><span class="p">,</span> <span class="n">privkey</span><span class="p">):</span>
+    <span class="n">decrypted</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="n">encrypted</span><span class="p">,</span> <span class="n">privkey</span><span class="p">,</span> <span class="n">pubkey</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">decrypted</span><span class="o">.</span><span class="n">to_bytes</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="n">decrypted</span><span class="p">)[</span><span class="mi">2</span><span class="p">:])</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;big&#39;</span><span class="p">)</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;iot49&quot;</span>
+
+<span class="n">encrypted</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">pubkey</span><span class="p">)</span>
+<span class="n">decrypted</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted</span><span class="p">,</span> <span class="n">pubkey</span><span class="p">,</span> <span class="n">privkey</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;message:  &quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;encrypted:&quot;</span><span class="p">,</span> <span class="n">encrypted</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;decrypted:&quot;</span><span class="p">,</span> <span class="n">decrypted</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">msg</span> <span class="o">==</span> <span class="n">decrypted</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>message:   b&#39;iot49&#39;
+encrypted: 2320697473865086478
+decrypted: b&#39;iot49&#39;
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>The code works as expected, but only for short messages (overflow).</p>
+<p>Now we can use PKC to transmit the AES key using the following steps:</p>
+<ol class="simple">
+<li><p>Recipient creates key pair &amp; sends public key to the sender.</p></li>
+<li><p>Sender encodes message with public key and transmits the encrypted message.</p></li>
+<li><p>Recipient uses its private key to decrypt the AES key.</p></li>
+<li><p>Both parties communicate using AES encryption.</p></li>
+</ol>
+<p>Although all information transmitted on the internet can potentially be read by an adversary, the encrypted message can only be recovered with the private key. Since that key is never (and, importantly, does not need to be) sent over the internet, the requirement for a “secure channel” is alleviated.</p>
+<p>PKC takes lots of CPU cycles. Because of this it is usually used to transmit only small amounts of data and then switch to symmetric key encryption.</p>
+</div>
+<div class="section" id="man-in-the-middle">
+<h2>Man in the middle<a class="headerlink" href="#man-in-the-middle" title="Permalink to this headline">¶</a></h2>
+<p>If you access a website (e.g. your bank) over the internet, how can you be sure it’s really your bank’s website and not a criminal that modified the information send? For example, if you are redirected to a website that looks like your bank’s you might enter your password, giving it to the crook.</p>
+<p>PKC can help with this as well. The basic strategy is to</p>
+<ol class="simple">
+<li><p>The bank creates a key pair. When your browser connects, the bank sends the public key, called “certificate” in this use case.</p></li>
+<li><p>Your browser verifies the certificate:</p>
+<ol class="simple">
+<li><p>It check that the website encoded in the certificate (an extension of just a public key) matches your bank’s URL.</p></li>
+<li><p>It sends a “challenge” to the bank, basically a question that can only be answered if the private key is known. Only the bank has it, provided it is good at safeguarding it.</p></li>
+<li><p>It checks that the certificate is genuine and belongs to your bank.</p></li>
+</ol>
+</li>
+</ol>
+<p>The last step is tricky, since it requires some form of “secure channel”. In the simplest case the bank could give you the certificate at a safe place (e.g. visiting a branch). Then your browser can verify that the certificate received matches what the bank gave you.</p>
+<p>Of course this approach is impractical. Because of this, browsers (and computer operating systems) come with a “built-in” collection of verified certificates. They also use chaining to limit the number of certificates that need be stored and avoid the need to get a new certificate each time a new website goes onling. The certificate received from the bank’s webserver is checked against these built-in certificates. If no match is found, the browser issues a warning (e.g. “Your connection is not private”) and refuses to connect.</p>
+<p>This seems to work, but begs the question how you received your webbrowser and computer OS and weather that procedure was safe …</p>
+<p>Security is difficult, as we well know from almost daily breaches.</p>
+<p>This document reflects my understanding and may well contain errors.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./projects/internet"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../internet.html" title="previous page">Internet</a>
+    <a class='right-next' id="next-link" href="plotserver.html" title="next page">Plotserver</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

@@ -1,0 +1,3 @@
+# Internet
+
+Wifi, sockets, requests, mqtt, ...

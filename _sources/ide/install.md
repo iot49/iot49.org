@@ -9,7 +9,7 @@ To install *ide49*, you need the following:
     * Raspberry Pi 3
     * Intel NUC or compatible
     
-  Other devices supporting the 64-Bit ARM or Intel instruction set (`aarch64` or `amd64`) may work as well.
+  Other 64-Bit ARM or Intel CPUs (`aarch64` or `amd64`) may work as well.
 * SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).
 * A networked computer (e.g. a laptop) with an SD Card slot (only used for installation)
 
