@@ -174,8 +174,8 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../reference.html">
-   Reference
+  <a class="reference internal" href="../app.html">
+   App
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -184,67 +184,12 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services.html">
-     Services
+    <a class="reference internal" href="../app/overview.html">
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services/nginx.html">
-     Nginx
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services/jupyter.html">
-     Jupyter Lab
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services/editor.html">
-     Editor
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services/backup.html">
-     Backup
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services/plotserver.html">
-     Plotserver
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services/balena-cli.html">
-     Balena CLI
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services/samba.html">
-     Samba
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services/mosquitto.html">
-     MQTT
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services/arm32.html">
-     arm32
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/services/esp-idf.html">
-     ESP IDF
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/storage.html">
-     Storage (flash)
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../reference/customize.html">
+    <a class="reference internal" href="../app/customize.html">
      Customize
      <em>
       ide49
@@ -267,7 +212,7 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../projects/balance.html">
-   Kitchen Scale
+   GPIO
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -318,6 +263,28 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../projects/balance/ticks.html">
      “Troubled” Times
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/internet.html">
+   Internet
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/encryption.html">
+     Encryption
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/plotserver.html">
+     Plotserver
     </a>
    </li>
   </ul>
@@ -473,7 +440,7 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Line Magic:    -h shows help (e.g. %discover -h)
   %cat         Print contents of named file on microcontroller
-  %cd          Change the working directory.
+  %cd          Change current working directory on host.
   %connect     Connect to device
   %cp          Copy files between host and microcontroller.
   %discover    Discover available devices
@@ -504,6 +471,7 @@ Cell Magic:    -h shows help (e.g. %%connect -h)
   %%host       Pass cell to host (cPython) for evaluation.
   %%service    Evaluate in named container using ssh.
   %%ssh        Pass cell body to ssh.
+  %%writefile  Write cell contents to file.
 </pre></div>
 </div>
 </div>
@@ -530,45 +498,6 @@ optional arguments:
 </div>
 </div>
 <p>Magics not recognized by the <em>IoT Kernel</em> are sent to to underlying ipython kernel for evaluation. E.g.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">main</span><span class="o">.</span><span class="n">py</span>
-<span class="c1"># sample program</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello from main.py!&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting main.py
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat main.py
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span># sample program
-print(&quot;Hello from main.py!&quot;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!rm main.py
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="micropython">
 <h2>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h2>

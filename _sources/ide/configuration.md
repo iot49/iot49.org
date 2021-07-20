@@ -8,4 +8,4 @@ Many aspects of *ide49* are configurable, including:
 * [Configure your browser/OS](config/https.ipynb) to treat the domain as secure,
 * Setting up a [Samba](config/samba.ipynb) file server or client to export or mount the *ide49* home directory, (`/home/iot`).
 
-For further customizations such as installing additional software or adding and removing services you can [rebuild the Balena *ide49* application](reference/customize.ipynb).
+For further customizations such as installing additional software or adding and removing services you can [rebuild the Balena *ide49* application](app/customize.ipynb).
