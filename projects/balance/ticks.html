@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>“Troubled” Times &#8212; Electronics for IoT</title>
+    <title>Time Intervals &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -157,8 +157,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ide/micropython/files.html">
-     File Management
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
     </a>
    </li>
    <li class="toctree-l2">
@@ -262,7 +262,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     “Troubled” Times
+     Time Intervals
     </a>
    </li>
   </ul>
@@ -288,23 +288,6 @@
     </a>
    </li>
   </ul>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  IoT
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/micropython.html">
-   MicroPython
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/gpio.html">
-   GPIO
-  </a>
  </li>
 </ul>
 
@@ -410,13 +393,17 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solution">
-   Solution
+  <a class="reference internal nav-link" href="#solutions">
+   Solutions
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ticks">
-   Ticks
+  <a class="reference internal nav-link" href="#time-ticks-xxx">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     time.ticks_XXX
+    </span>
+   </code>
   </a>
  </li>
 </ul>
@@ -430,15 +417,16 @@
         
               <div>
                 
-  <div class="section" id="troubled-times">
-<h1>“Troubled” Times<a class="headerlink" href="#troubled-times" title="Permalink to this headline">¶</a></h1>
-<p>I am not talking about a disaster, merely the challenges of accurately “measuring” small time differences with microcontrollers.</p>
-<p>Microcontrollers can resolve microsecond or even nanosecond intervals. Conversely, using counters, they can easily track years or even millenia, provided that the power stays on and someone is there to look at the result.</p>
+  <div class="section" id="time-intervals">
+<h1>Time Intervals<a class="headerlink" href="#time-intervals" title="Permalink to this headline">¶</a></h1>
+<p>The need to measure time intervals occurs frequently in microcontroller programming. Examples include detecting the duration of pulses in a Morse Code like signal as those emitted from infrared controllers, or measuring the frequency of button presses for debouncing.</p>
+<p>In principal microcontrollers are very well equipped for the task. Thanks to their high clock speed, they can programmatically resolve microsecond or even nanosecond intervals even without resorting to special hardware features. Conversely, using counters, they can easily track years or even millenia, provided that the power stays on and someone is there to care.</p>
+<p>This large dynamic range, nanoseconds to millenia, poses some challenges that, if not properly dealt with, can result in erratic behavior.</p>
 <div class="section" id="problem">
 <h2>Problem<a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h2>
-<p>In principle, representing such intervals is quite easy. A 64-bit integer can represent 584,942 years with microsecond resolution. The problem is that most microcontrollers use 32-bit integers. MicroPython “looses” a bit or two to represent the datatype. An additional bit is used for the sign, hence we are left with 29 bits. That’s sufficient to represent just 9 minutes with microsecond resolution. With millisecond resolution we get about 9000 minutes or a little over 6 days.</p>
-<p>Measuring time is typically implemented by arbitrarily resetting a clock variable to zero (usually on powerup) and incrementing its value every millisecond or so. MicroPython has a function <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> that returns the time in microseconds since the device was turned on.</p>
-<p>For example, to measure the duration of button presses (or some sensor input, let’s say the duration of a flash of light), we take the time when the button was pressed, and again when it was released and compute the difference.</p>
+<p>In principle, representing such intervals is quite easy. A 64-bit integer can represent 584,942 years with microsecond resolution. The problem is that most microcontrollers use 32-bit integers. MicroPython “looses” a bit or two to represent the datatype. An additional bit is used for the sign, hence we are left with 29 bits. That’s sufficient to represent just 9 minutes with microsecond resolution. With millisecond resolution we get a little over 6 days.</p>
+<p>Measuring time is typically accomplished with a counter initialized to zero on powerup and then incremented every millisecond or so. MicroPython has a function <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> that returns the time in microseconds since the device was turned on.</p>
+<p>For example, to measure the duration of button presses (or some sensor input, let’s say the duration of a flash of light), we take the time when the button was pressed and when it was released and compute the difference.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">ticks_ms</span>
 
 <span class="c1"># wait for button press</span>
@@ -450,10 +438,10 @@
 <span class="n">stop</span> <span class="o">=</span> <span class="n">ticks_ms</span><span class="p">()</span>
 
 <span class="c1"># calculate the duration of the button press</span>
-<span class="n">duration</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>
+<span class="n">duration</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>    <span class="c1"># BUG - see below</span>
 </pre></div>
 </div>
-<p>This works. Except that every six days we get incorrect results since the timer “overflows”. Needless to say that such bugs are extremely difficult to diagnose since they occur so infrequently. Because of this they often escape testing, showing up only after the product has been relased to customers with possibly disastrous results.</p>
+<p>This <em>mostly</em> works. Except that every six days the measured duration <em>may</em> be incorrect results if the timer “overflows”. Needless to say that such bugs are extremely difficult to diagnose since they occur so infrequently. Because of this they often escape testing, showing up only after the product has been relased to customers with possibly disastrous results.</p>
 </div>
 <div class="section" id="time-monotonic">
 <h2><code class="docutils literal notranslate"><span class="pre">time.monotonic</span></code><a class="headerlink" href="#time-monotonic" title="Permalink to this headline">¶</a></h2>
@@ -505,14 +493,14 @@ duration = 0.001
 <p>Zero? That’s clearly wrong and the consequence of the limited resolution of 32-bit floats. If you play around with the above code you find that after one day, the smallest interval that can be resolved is 4ms, albeit the duration is reported as 7ms.</p>
 <p>Perhaps you do not need millisecond resolution. But even 10ms cannot be resolved after 4 days.</p>
 </div>
-<div class="section" id="solution">
-<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="solutions">
+<h2>Solutions<a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h2>
 <p>There are several solutions for this. We could allocate more bits for representing time, for example using Python <em>bigints</em>. In fact, (Circuit)Python’s <code class="docutils literal notranslate"><span class="pre">time.monotonic_ns()</span></code> does just this.</p>
 <p>This works correctly and has the great benefit of being standard Python (i.e. code works also in C-Python) but has potential drawbacks. First, <em>bigints</em> are less efficient than (small) ints or floats. Secondly, and more importantly, they are allocated on the heap. Because of this they cannot be used in <a class="reference external" href="https://docs.micropython.org/en/latest/reference/isr_rules.html#isr-rules">interrupt service routines</a>. Since interrupts are precisely a situation where measuring time is often needed, that’s a quite significant gotcha.</p>
 <p>Note that CircuitPython does not implement interrupts in user code. That’s also a solution, if you don’t need them.</p>
 </div>
-<div class="section" id="ticks">
-<h2>Ticks<a class="headerlink" href="#ticks" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="time-ticks-xxx">
+<h2><code class="docutils literal notranslate"><span class="pre">time.ticks_XXX</span></code><a class="headerlink" href="#time-ticks-xxx" title="Permalink to this headline">¶</a></h2>
 <p>MicroPython chooses a different route. <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> and <code class="docutils literal notranslate"><span class="pre">time.ticks_us()</span></code> both return time as small ints. Because of this they “roll-over” after a few minutes or days. The special function <code class="docutils literal notranslate"><span class="pre">time.ticks_diff()</span></code> takes into account the roll over.</p>
 <p><strong>Example:</strong></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>  <span class="c1"># or ticks_ms</span>
@@ -524,15 +512,15 @@ duration = 0.001
 </pre></div>
 </div>
 <p>To get the duration</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">duration</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">stop</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">duration</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">stop</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>  <span class="c1"># CORRECT</span>
 </pre></div>
 </div>
 <p>Rather than the (incorrect)</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">duration</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>  <span class="c1"># WRONG result in case of roll-over</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">duration</span> <span class="o">=</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span>  <span class="c1"># WRONG in case of roll-over</span>
 </pre></div>
 </div>
-<p>This works correctly as long as no more than one roll-over occurs during the measurement interval. This limits the maximum duriation that can be measured with <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> to about six days. With <code class="docutils literal notranslate"><span class="pre">time.ticks_us()</span></code> the maximum is about nine minutes.</p>
-<p>Admittedly using <code class="docutils literal notranslate"><span class="pre">time.ticks_diff()</span></code> to compute time differences is a bit contorted. But it works correctly, is efficient, and can be used even in interrupt service routines. After pondering the alternatives (and even implementing custom helpers in C), I always come back to using <code class="docutils literal notranslate"><span class="pre">ticks_XXX</span></code>.</p>
+<p>The “correct” option works properly as long as no more than one roll-over occurs during the measurement interval. This limits the maximum duriation that can be measured with <code class="docutils literal notranslate"><span class="pre">time.ticks_ms()</span></code> to about six days. With <code class="docutils literal notranslate"><span class="pre">time.ticks_us()</span></code> the maximum is about nine minutes.</p>
+<p>Admittedly using <code class="docutils literal notranslate"><span class="pre">time.ticks_diff()</span></code> to compute time differences is a bit clumsy. But it works correctly, is efficient, and can be used even in interrupt service routines. After pondering the alternatives (and even implementing custom helpers in C), I always come back to using <code class="docutils literal notranslate"><span class="pre">ticks_XXX</span></code>.</p>
 </div>
 </div>
 

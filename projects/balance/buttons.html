@@ -157,8 +157,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ide/micropython/files.html">
-     File Management
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
     </a>
    </li>
    <li class="toctree-l2">
@@ -262,7 +262,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ticks.html">
-     “Troubled” Times
+     Time Intervals
     </a>
    </li>
   </ul>
@@ -288,23 +288,6 @@
     </a>
    </li>
   </ul>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  IoT
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/micropython.html">
-   MicroPython
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/gpio.html">
-   GPIO
-  </a>
  </li>
 </ul>
 
@@ -408,44 +391,29 @@
 <p>The code below assumes a button connected to <code class="docutils literal notranslate"><span class="pre">IO15</span></code> (button <code class="docutils literal notranslate"><span class="pre">A</span></code> of the OLED wing). The code for configuring the button with the pull-up enabled is below:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT/iot49.org/docs/projects/balance
-%connect balance
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">balance</span>
 
-# reset the microcontroller to start from a &quot;clean&quot; slate
-%softreset
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
-from machine import Pin
-import time
+<span class="n">button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">pull</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">PULL_UP</span><span class="p">)</span>
 
-button = Pin(15, mode=Pin.IN, pull=Pin.PULL_UP)
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_ms</span><span class="p">()</span>
+<span class="n">last_state</span> <span class="o">=</span> <span class="n">button</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
 
-start = time.ticks_ms()
-last_state = button.value()
-
-while True:
-    state = button.value()
-    if state != last_state:
-        if state == 0:
-            print(&quot;pressed&quot;)
-        else:
-            print(&quot;released&quot;)
-        last_state = state
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">button</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">state</span> <span class="o">!=</span> <span class="n">last_state</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pressed&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;released&quot;</span><span class="p">)</span>
+        <span class="n">last_state</span> <span class="o">=</span> <span class="n">state</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cwd = /home/iot/iot49.org/docs/projects/balance
-<span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB0</span>
-
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
-
-pressed
-released
-pressed
-released
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB0</span>
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Interrupted
@@ -562,7 +530,7 @@ tare
 <p>Use one of the other buttons to switch between weight in grams and ounces.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">lib</span><span class="o">/</span><span class="n">button</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">code</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">button</span><span class="o">.</span><span class="n">py</span>
 
 <span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -586,7 +554,7 @@ tare
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing lib/button.py
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting code/lib/button.py
 </pre></div>
 </div>
 </div>
@@ -598,7 +566,7 @@ tare
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">ADD     /lib/button.py</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">UPDATE  /lib/button.py</span>
 
 </pre></div>
 </div>

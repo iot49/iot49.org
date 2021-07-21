@@ -1,0 +1,774 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Device Configuration &#8212; Electronics for IoT</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/ide/micropython/dev_config.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Compile" href="compile.html" />
+    <link rel="prev" title="REPL prompt" href="REPL.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../micropython.html">
+   MicroPython
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Device Configuration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="flash.html">
+     Flash
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../app.html">
+   App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../app/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../app/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/balance.html">
+   GPIO
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/hx711.html">
+     Precision Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/ticks.html">
+     Time Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/internet.html">
+   Internet
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/encryption.html">
+     Encryption
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/plotserver.html">
+     Plotserver
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/ide/micropython/dev_config.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/micropython/dev_config.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/micropython/dev_config.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#device-name">
+   Device Name
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#file-management">
+   File Management
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reference">
+   Reference
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sample-folder-layout-on-the-host">
+     Sample Folder Layout on the Host
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#annotated-configuration">
+     Annotated Configuration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#secrets-py">
+   secrets.py
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="device-configuration">
+<h1>Device Configuration<a class="headerlink" href="#device-configuration" title="Permalink to this headline">¶</a></h1>
+<p>Device configuration files define the names and files on microcontrollers.</p>
+<p>They are in <code class="docutils literal notranslate"><span class="pre">yaml</span></code> format and located in <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/devices</span></code>. One or more configurations may by saved in the same or different files. The file name does not matter but must end with <code class="docutils literal notranslate"><span class="pre">.yaml</span></code>.</p>
+<div class="section" id="device-name">
+<h2>Device Name<a class="headerlink" href="#device-name" title="Permalink to this headline">¶</a></h2>
+<p><em>ide49</em> refers to devices by their UID, obtained from the micrcocontroller by executing</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">uid</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">machine</span>
+    <span class="n">uid</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">unique_id</span><span class="p">()</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">microcontroller</span>
+    <span class="n">uid</span> <span class="o">=</span> <span class="n">microcontroller</span><span class="o">.</span><span class="n">cpu</span><span class="o">.</span><span class="n">uid</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">uid</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">%discover</span></code> magic shows un-named devices by their UID.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>30:ae:a4:30:84:34  serial:///dev/ttyUSB1  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Names are assigned in configuration files in <code class="docutils literal notranslate"><span class="pre">$IOT_DEVICES</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/example.yaml
+esp32:
+    uid: 30:ae:a4:30:84:34
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing /home/iot/iot49.org/docs/projects/devices/example.yaml
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now the device is reported by it’s name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+<span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esp32  serial:///dev/ttyUSB1  
+<span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB1</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="file-management">
+<h2>File Management<a class="headerlink" href="#file-management" title="Permalink to this headline">¶</a></h2>
+<p>Copying all necessary libraries and other files to microcontrollers can be tedious. <em>ide49</em> helps with this. In addition to low level magics (<code class="docutils literal notranslate"><span class="pre">%cp</span></code>, <code class="docutils literal notranslate"><span class="pre">%rm</span></code>, …), the following magics help with the process:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">%rlist</span></code></strong>: list all files on the presently connected microcontroller</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">%rdiff</span></code></strong>: show the difference between files on the host and microcontroller</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">%rsync</span></code></strong>: copy &amp; delete files to synchronize the microcontroller and the host</p></li>
+</ul>
+<p>Which files to copy to a particular microcontroller is defined in its device configuration.</p>
+<p>The following configuration entry copies all files in <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/balance/code</span></code> to the microcontroller.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/example.yaml
+esp32:
+    uid: 30:ae:a4:30:84:34
+    path: balance
+    resources:
+        - code
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing /home/iot/iot49.org/docs/projects/devices/example.yaml
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+cd $IOT_PROJECTS/balance/code
+ls -R
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.:
+lib
+main.py
+
+./lib:
+ble_advertising.py
+ble_uart_peripheral.py
+button.py
+scale.py
+ssd1306.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show differences without making changes</span>
+<span class="o">%</span><span class="n">rdiff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">ADD     /lib/ble_advertising.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/ble_uart_peripheral.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/button.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/scale.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/ssd1306.py</span>
+<span class=" -Color -Color-Green">ADD     /main.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Commit the differences. By default, <code class="docutils literal notranslate"><span class="pre">%rsync</span></code> copies all specified files from the host to the micrcontroller and deletes files on the microcontroller that are not also on the host. Use the <code class="docutils literal notranslate"><span class="pre">-u</span></code> flag to only upload files but not delete any. It is also possible to specify <a class="reference internal" href="#adv-config"><span class="std std-ref">filters</span></a>, e.g. to copy only files of certain types or to ignore entire folders on the microcontroller or host from synchronization.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rsync</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">ADD     /lib/ble_advertising.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/ble_uart_peripheral.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/button.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/scale.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/ssd1306.py</span>
+<span class=" -Color -Color-Green">ADD     /main.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">%rsync</span></code> uses the file size and modification time to determine if a file needs updating.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!touch $IOT_PROJECTS/balance/code/lib/scale.py
+%rsync
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">UPDATE  /lib/scale.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Configuration files are quite flexible. The code searches for files on the host in <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/libs</span></code> and copies them the the microcontroller.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/example.yaml
+esp32:
+    uid: 30:ae:a4:30:84:34
+    path: libs
+    resources:
+        - code:
+            path: balance
+        - neopixel.py
+        - vl53l0x.py:
+            install-dir: /lib
+        - bno055: /lib
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing /home/iot/iot49.org/docs/projects/devices/example.yaml
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rdiff</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">ADD     /lib/bno055.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/bno055_base.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/bno055_test.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/vl53l0x.py</span>
+<span class=" -Color -Color-Green">ADD     /neopixel.py</span>
+<span class=" -Color -Color-Blue">UPDATE  /lib/scale.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">path</span></code> specifies where files can be found on the host, <code class="docutils literal notranslate"><span class="pre">install-dir</span></code> (default: <code class="docutils literal notranslate"><span class="pre">/</span></code>) determines where files copied to on the microcontroller. If a resource (e.g. <code class="docutils literal notranslate"><span class="pre">bno055</span></code> in the above example) refers to a directory on the host, the contents are copied. This behavior is different for packages: if a <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file is present in the directory, it will be copied verbatim.</p>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sample-folder-layout-on-the-host">
+<h3>Sample Folder Layout on the Host<a class="headerlink" href="#sample-folder-layout-on-the-host" title="Permalink to this headline">¶</a></h3>
+<p><em>Example:</em></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~/</span><span class="n">projects</span><span class="o">/</span>
+    <span class="n">libs</span><span class="o">/</span>
+        <span class="n">neopixel</span><span class="o">.</span><span class="n">py</span>
+        <span class="n">bno055</span><span class="o">/</span>
+            <span class="n">bno055</span><span class="o">.</span><span class="n">py</span>
+            <span class="n">bno055_base</span><span class="o">.</span><span class="n">py</span>
+            <span class="n">bno055_test</span><span class="o">.</span><span class="n">py</span>
+    <span class="n">my_project</span><span class="o">/</span>
+        <span class="n">code</span><span class="o">/</span>
+            <span class="n">main</span><span class="o">.</span><span class="n">py</span>
+            <span class="n">lib</span><span class="o">/</span>
+                <span class="n">adc</span><span class="o">.</span><span class="n">py</span>
+                <span class="n">robot</span><span class="o">/</span>
+                    <span class="n">motor</span><span class="o">.</span><span class="n">py</span>
+                    <span class="n">encoder</span><span class="o">.</span><span class="n">py</span>    
+</pre></div>
+</div>
+</div>
+<div class="section" id="annotated-configuration">
+<span id="adv-config"></span><h3>Annotated Configuration<a class="headerlink" href="#annotated-configuration" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span>
+    <span class="nt">uid</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">24:0a:02:12:87:7c</span>
+    <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">my_project</span>      <span class="c1"># relative to $IOT_PROJECTS, </span>
+                          <span class="c1"># Default: .</span>
+    <span class="nt">install-dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/flash</span>   <span class="c1"># location of files on microcontroller</span>
+                          <span class="c1"># Default: /</span>
+    <span class="nt">include-patterns</span><span class="p">:</span>     <span class="c1"># Files/folders to include</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;./**/*.py&quot;</span>     
+        <span class="p p-Indicator">-</span> <span class="s">&quot;./**/*.mpy&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;./**/&quot;</span>
+    <span class="nt">exclude-patterns</span><span class="p">:</span>     <span class="c1"># Files/folders to ignore (on host and MCU)</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;boot_out.txt&quot;</span>
+        <span class="p p-Indicator">-</span> <span class="s">&quot;/data&quot;</span>    
+    <span class="nt">resources</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">file1.py</span>        <span class="c1"># single file in $IOT_PROJECTS/my_project</span>
+                          <span class="c1"># copied to /flash</span>
+        <span class="p p-Indicator">-</span> <span class="nt">file2.py</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/lib</span>  <span class="c1"># copied to /lib</span>
+        <span class="p p-Indicator">-</span> <span class="nt">file3.py</span><span class="p">:</span>       <span class="c1"># override values specified above:</span>
+            <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">libs</span>    <span class="c1"># $IOT_PROJECTS/my_project/libs/file3.py copied to /</span>
+            <span class="nt">install_dir</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">dir1</span>            <span class="c1"># contents of folder copied /flash</span>
+        <span class="p p-Indicator">-</span> <span class="nt">dir2</span><span class="p">:</span>           <span class="c1"># folder dir2 copied /flash</span>
+            <span class="nt">unpack</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+        <span class="p p-Indicator">-</span> <span class="nt">dir3</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/ssd</span>      <span class="c1"># contents of /ssd copied to /flash</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">package1</span>        <span class="c1"># if package1 contains __init__.py,</span>
+                          <span class="c1"># entire folder (not just contents) is copied</span>
+        <span class="p p-Indicator">-</span> <span class="nt">package2</span><span class="p">:</span>       <span class="c1"># force unpacking:</span>
+            <span class="nt">unpack</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>  <span class="c1"># only contents are copied</span>
+</pre></div>
+</div>
+<p>Include patterns are processed by <a class="reference external" href="https://docs.python.org/3/library/glob.html">glob</a> and exclude uses the <a class="reference external" href="https://docs.python.org/3/library/fnmatch.html">fnmatch</a>. The defaults are:</p>
+<ul class="simple">
+<li><p>include-patterns: <code class="docutils literal notranslate"><span class="pre">./**/*.py</span></code>, <code class="docutils literal notranslate"><span class="pre">./**/*.mpy</span></code>, <code class="docutils literal notranslate"><span class="pre">./**/</span></code></p></li>
+<li><p>exclude-patterns: <code class="docutils literal notranslate"><span class="pre">boot_out.txt</span></code></p></li>
+</ul>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">%rdiff</span></code> magic to diagnose complex configurations.</p>
+</div>
+</div>
+<div class="section" id="secrets-py">
+<span id="secrets"></span><h2><a class="reference external" href="http://secrets.py">secrets.py</a><a class="headerlink" href="#secrets-py" title="Permalink to this headline">¶</a></h2>
+<p>A Python file at <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/libs/secrets.py</span></code> used to define confidential information such as passwords.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># secrets.py</span>
+
+<span class="c1"># wifi</span>
+<span class="n">wifi_ssid</span> <span class="o">=</span> <span class="s1">&#39;WIFI_SSID&#39;</span>
+<span class="n">wifi_pwd</span>  <span class="o">=</span> <span class="s1">&#39;WIFI_PASSWORD&#39;</span>
+
+<span class="c1"># timezone</span>
+<span class="n">tz_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="mi">3600</span>    <span class="c1"># PST</span>
+
+<span class="c1"># mp wireless &quot;repl&quot; password</span>
+<span class="n">mp_pwd</span>  <span class="o">=</span> <span class="s1">&#39;&amp;(*HFODjpwdlsdf30i%^&amp;&#39;</span>
+
+<span class="c1"># webrepl password, 4 .. 9 characters</span>
+<span class="n">webrepl_pwd</span> <span class="o">=</span> <span class="s1">&#39;fjlkflsad&#39;</span>
+
+<span class="c1"># https://openweathermap.org/</span>
+<span class="n">openweathermap_apiid</span> <span class="o">=</span> <span class="s2">&quot;354f336ac61afasf2b73af8f&quot;</span>
+</pre></div>
+</div>
+<p>Some of these variables (e.g <code class="docutils literal notranslate"><span class="pre">webrepl_pwd</span></code>) are used by MicroPython and <em>ide49</em>.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./ide/micropython"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="REPL.html" title="previous page">REPL prompt</a>
+    <a class='right-next' id="next-link" href="compile.html" title="next page">Compile</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

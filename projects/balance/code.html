@@ -159,8 +159,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ide/micropython/files.html">
-     File Management
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
     </a>
    </li>
    <li class="toctree-l2">
@@ -264,7 +264,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ticks.html">
-     “Troubled” Times
+     Time Intervals
     </a>
    </li>
   </ul>
@@ -290,23 +290,6 @@
     </a>
    </li>
   </ul>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  IoT
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/micropython.html">
-   MicroPython
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/gpio.html">
-   GPIO
-  </a>
  </li>
 </ul>
 
@@ -402,20 +385,19 @@
                 
   <div class="section" id="micropython-code">
 <h1>MicroPython Code<a class="headerlink" href="#micropython-code" title="Permalink to this headline">¶</a></h1>
-<p>ADCs map analog input voltage to a digital code. The figure below shows the relationship for several gain settings. Since our signal is centered around <span class="math notranslate nohighlight">\(V_\textrm{ref}\approx 1.65V\)</span> we use the 11dB attenuation setting.</p>
+<p>Let’s first convert the analog output from the load cell to a digital representation.</p>
+<p>The figure below shows the relationship between analog and digital values of the ESP32 for several ADC gain settings. Since our signal is centered around <span class="math notranslate nohighlight">\(V_\textrm{ref}\approx 1.65V\)</span> we use the 11dB attenuation setting.</p>
 <p>You can also try with less attenuation, possibly lowering <span class="math notranslate nohighlight">\(V_\textrm{ref}\)</span>. Check the minimum input voltage in the INA126 datasheet.</p>
 <p><img alt="" src="../../_images/esp32_adc_vin.png" /></p>
 <p>At the beginning of each notebook, we need to set up the path and connect to the microcontroller:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT/iot49.org/docs/projects/balance
-%connect balance
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">connect</span> balance
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cwd = /home/iot/iot49.org/docs/projects/balance
-<span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB0</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB0</span>
 </pre></div>
 </div>
 </div>
@@ -423,7 +405,7 @@
 <p>Now we are ready to setup and read the ADC. The code below is adapted from the example in the <a class="reference external" href="https://docs.micropython.org/en/latest/esp32/quickref.html#adc-analog-to-digital-conversion">MicroPython documentation</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">ADC</span><span class="p">,</span> <span class="n">Pin</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">ADC</span><span class="p">,</span> <span class="n">Pin</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
 <span class="c1"># configure ADC3 (output of the INA126)</span>
@@ -465,7 +447,7 @@ out = 1773  ref = 1725   delta =   48
 <p>Let’s try averaging a few samples to see if we can reduce the noise:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">N</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]:</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
         <span class="n">vout</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">vref</span> <span class="o">=</span> <span class="mi">0</span>
@@ -510,7 +492,7 @@ N = 100  out = 1777  ref = 1722   delta =    0
 <p>Let’s update the code again, this time first measuring the offset and then subtracting it from subsequent measurements. We also create a function for reading the ADC and averaging its outputs. In <code class="docutils literal notranslate"><span class="pre">read_adc</span></code> we average the difference, a small optimization to keep the sum smaller, even for large N.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
         <span class="nb">sum</span> <span class="o">+=</span> <span class="n">out</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> <span class="o">-</span> <span class="n">ref</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
@@ -547,7 +529,7 @@ weight =   -3
 <p>Let’s now calibrate the scale so it’s output is in grams. For this we need a reference with known weight. If you do not have calibrated weights just get something with a weight close to the full scale of your load cell, get another scale to determine its weight, and then put it on your scale.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight = </span><span class="si">{:4.0f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span> <span class="o">-</span> <span class="n">offset</span><span class="p">))</span>
@@ -569,7 +551,7 @@ weight =  839
 <p>My reference weighs 500grams. The output of the scale is about 840 (averaged), so let’s redo the test with the output scaled by 500/840.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">offset</span> <span class="o">=</span> <span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
     <span class="n">weight</span> <span class="o">=</span> <span class="n">read_adc</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">ref</span><span class="p">)</span> <span class="o">-</span> <span class="n">offset</span>
@@ -594,7 +576,7 @@ weight = -501 grams
 <p>As a final step, let’s wrap up the code in a class.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">ADC</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">ADC</span>
 <span class="kn">import</span> <span class="nn">time</span>
         
 <span class="k">class</span> <span class="nc">Scale</span><span class="p">:</span>
@@ -678,7 +660,7 @@ weight = -501 grams
 <p>But the <code class="docutils literal notranslate"><span class="pre">Scale</span></code> class looks ok, let’s save it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">lib</span><span class="o">/</span><span class="n">scale</span><span class="o">.</span><span class="n">py</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> code/lib/scale.py
 
 <span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">ADC</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -711,7 +693,7 @@ weight = -501 grams
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing lib/scale.py
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting code/lib/scale.py
 </pre></div>
 </div>
 </div>
@@ -727,16 +709,16 @@ weight = -501 grams
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "iot_kernel"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "iot_kernel",
+            kernelName: "python3",
             path: "./projects/balance"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'iot_kernel'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

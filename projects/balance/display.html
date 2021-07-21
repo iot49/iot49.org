@@ -157,8 +157,8 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ide/micropython/files.html">
-     File Management
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
     </a>
    </li>
    <li class="toctree-l2">
@@ -262,7 +262,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="ticks.html">
-     “Troubled” Times
+     Time Intervals
     </a>
    </li>
   </ul>
@@ -288,23 +288,6 @@
     </a>
    </li>
   </ul>
- </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  IoT
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/micropython.html">
-   MicroPython
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../iot/gpio.html">
-   GPIO
-  </a>
  </li>
 </ul>
 
@@ -404,21 +387,19 @@
 <p>The first step is getting a driver. Fortunately someone has already written it (<a class="reference external" href="https://randomnerdtutorials.com/micropython-oled-display-esp32-esp8266">Driver &amp; Tutorial</a>). For convenience it’s also included here:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT/iot49.org/docs/projects/balance
-%connect balance
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">balance</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cwd = /home/iot/iot49.org/docs/projects/balance
-<span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB0</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB0</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!head lib/ssd1306.py
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!head code/lib/ssd1306.py
 </pre></div>
 </div>
 </div>
@@ -440,20 +421,21 @@ SET_NORM_INV        = const(0xa6)
 <p>To try out the display, we need to copy it to the microcontroller. Modify the device configuration as shown below (change the <code class="docutils literal notranslate"><span class="pre">UID</span></code> to match your device):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat devices/balance.yaml
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat ../devices/balance.yaml
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>balance:
     uid: 24:0a:c4:12:87:7c
+    path: balance
     resources:
-        - lib
+        - code
 </pre></div>
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">%rsync</span></code> uploads the files in <code class="docutils literal notranslate"><span class="pre">lib</span></code> to the microcontroller:</p>
+<p><code class="docutils literal notranslate"><span class="pre">%rsync</span></code> uploads the files in the <code class="docutils literal notranslate"><span class="pre">code</span></code> directory to the microcontroller:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rsync</span>
@@ -476,8 +458,12 @@ SET_NORM_INV        = const(0xa6)
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                            <span class=" -Color -Color-Green">lib/</span>
-    738  Jul 09 17:33 2021      <span class=" -Color -Color-Blue">scale.py</span>
+   2713  Jul 09 18:28 2021      <span class=" -Color -Color-Blue">ble_advertising.py</span>
+   3475  Jul 09 18:28 2021      <span class=" -Color -Color-Blue">ble_uart_peripheral.py</span>
+    551  Jul 10 17:37 2021      <span class=" -Color -Color-Blue">button.py</span>
+    738  Jul 10 17:37 2021      <span class=" -Color -Color-Blue">scale.py</span>
    4899  Jul 09 17:33 2021      <span class=" -Color -Color-Blue">ssd1306.py</span>
+    776  Jul 09 20:47 2021  <span class=" -Color -Color-Blue">main.py</span>
 
 </pre></div>
 </div>
@@ -511,7 +497,7 @@ SET_NORM_INV        = const(0xa6)
 </div>
 </div>
 </div>
-<p>Now let’s connect it to the scale.</p>
+<p>Connect it to the scale:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">I2C</span>
