@@ -278,6 +278,11 @@
   </label>
   <ul>
    <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../internet/encryption.html">
      Encryption
     </a>
@@ -388,8 +393,7 @@
 <p>We choose the second, easier option. <code class="docutils literal notranslate"><span class="pre">ble_uart_peripheral.py</span></code> sends arbitrary (short) strings to a connected device. Let’s download it and <code class="docutils literal notranslate"><span class="pre">ble_advertising.py</span></code> which it imports from the examples folder.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT/iot49.org/docs/projects/balance
-%connect balance
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT_PROJECTS/balance/code
 
 %%bash
 
@@ -399,29 +403,10 @@ wget -nc -P lib https://raw.githubusercontent.com/micropython/micropython/master
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cwd = /home/iot/iot49.org/docs/projects/balance
-<span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB0</span>
---2021-07-09 18:28:11--  https://raw.githubusercontent.com/micropython/micropython/master/examples/bluetooth/ble_uart_peripheral.py
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.111.133, 185.199.110.133, 185.199.109.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.111.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 3475 (3.4K) [text/plain]
-Saving to: ‘lib/ble_uart_peripheral.py’
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cwd = /home/iot/iot49.org/docs/projects/balance/code
+File ‘lib/ble_uart_peripheral.py’ already there; not retrieving.
 
-     0K ...                                                   100% 4.85M=0.001s
-
-2021-07-09 18:28:11 (4.85 MB/s) - ‘lib/ble_uart_peripheral.py’ saved [3475/3475]
-
---2021-07-09 18:28:11--  https://raw.githubusercontent.com/micropython/micropython/master/examples/bluetooth/ble_advertising.py
-Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.111.133, 185.199.110.133, ...
-Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 2713 (2.6K) [text/plain]
-Saving to: ‘lib/ble_advertising.py’
-
-     0K ..                                                    100%  664K=0.004s
-
-2021-07-09 18:28:11 (664 KB/s) - ‘lib/ble_advertising.py’ saved [2713/2713]
+File ‘lib/ble_advertising.py’ already there; not retrieving.
 
 </pre></div>
 </div>
@@ -429,7 +414,8 @@ Saving to: ‘lib/ble_advertising.py’
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rsync</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">balance</span>
+<span class="o">%</span><span class="n">rsync</span>
 </pre></div>
 </div>
 </div>

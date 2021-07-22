@@ -1,0 +1,964 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sockets &#8212; Electronics for IoT</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/projects/internet/sockets.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Requests" href="requests.html" />
+    <link rel="prev" title="WiFi" href="wifi.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flash
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/app.html">
+   App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tours &amp; Projects
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../balance.html">
+   GPIO
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/hx711.html">
+     Precision Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/ticks.html">
+     Time Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../internet.html">
+   Internet
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mqtt.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="plotserver.html">
+     Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="encryption.html">
+     Encryption
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/projects/internet/sockets.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/internet/sockets.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/internet/sockets.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#http-client">
+   http Client
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#http-server">
+   http Server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#secure-client">
+   Secure Client
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#secure-server">
+   Secure Server
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="sockets">
+<h1>Sockets<a class="headerlink" href="#sockets" title="Permalink to this headline">¶</a></h1>
+<p>Once an internet connection has been established, MicroPython uses <a class="reference external" href="https://docs.micropython.org/en/latest/library/usocket.html">sockets</a> to access resources on the network, just like CPython (and pretty much <a class="reference external" href="https://en.wikipedia.org/wiki/Network_socket">all programming languages</a>).</p>
+<p>Sockets are quite low level; frequently higher level libraries can be used instead. But if you want to write your own webserver, for example, you likely will use sockets.</p>
+<p>Examples presented are adapted from the <a class="reference external" href="https://github.com/micropython/micropython/tree/master/examples/network">MicroPython github repository</a>. Check them out for additional information.</p>
+<div class="section" id="http-client">
+<h2>http Client<a class="headerlink" href="#http-client" title="Permalink to this headline">¶</a></h2>
+<p>The code below first looks up the ip address of the server (<code class="docutils literal notranslate"><span class="pre">google.com</span></code>). It then creates a <code class="docutils literal notranslate"><span class="pre">socket</span></code>, connects to it at port 80 and downloads 2000 bytes.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span> <span class="o">-</span><span class="n">q</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="n">ai</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Address information:&quot;</span><span class="p">,</span> <span class="n">ai</span><span class="p">)</span>
+<span class="n">addr</span> <span class="o">=</span> <span class="n">ai</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+<span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;GET / HTTP/1.0</span><span class="se">\r\n\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Response:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Address information: [(2, 1, 0, &#39;google.com&#39;, (&#39;216.58.194.174&#39;, 80))]
+
+Response:
+HTTP/1.0 200 OK
+Date: Thu, 22 Jul 2021 03:08:27 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+P3P: CP=&quot;This is not a P3P policy! See g.co/p3phelp for more info.&quot;
+Server: gws
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: 1P_JAR=2021-07-22-03; expires=Sat, 21-Aug-2021 03:08:27 GMT; path=/; domain=.google.com; Secure
+Set-Cookie: NID=219=R1eiu3eJy1QMHo1SQIl73n5yc_rtUafRdRoyA9J3l3t5e_NhZyyIkut1XIGY7qd35-IKc-wW3WNeYC1swiM9dfwDKJoJIyY9NiociLLKP7UIPzdGpfirkxf2_8bNfTsRh4PCKRb3Nk_2FOUyAZYyTuOrFMXkgDq8HwcUWH8zgQE; expires=Fri, 21-Jan-2022 03:08:27 GMT; path=/; domain=.google.com; HttpOnly
+Accept-Ranges: none
+Vary: Accept-Encoding
+
+&lt;!doctype html&gt;&lt;html itemscope=&quot;&quot; itemtype=&quot;http://schema.org/WebPage&quot; lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta content=&quot;Search the world&#39;s information, including webpages, images, videos and more. Google has many special features to help you find exactly what you&#39;re looking for.&quot; name=&quot;description&quot;&gt;&lt;meta content=&quot;noodp&quot; name=&quot;robots&quot;&gt;&lt;meta content=&quot;text/html; charset=UTF-8&quot; http-equiv=&quot;Content-Type&quot;&gt;&lt;meta content=&quot;/images/branding/googleg/1x/googleg_standard_color_128dp.png&quot; itemprop=&quot;image&quot;&gt;&lt;title&gt;Google&lt;/title&gt;&lt;script nonce=&quot;nACootAAy4uBXGeQN4xAog==&quot;&gt;(function(){window.google={kEI:&#39;K-H4YL6WIdP89APtmK_gDg&#39;,kEXPI:&#39;0,18167,754048,1,530320,56873,954,5105,206,4804,926,1390,383,246,5,1354,4936,314,1122516,1197729,554,302679,26305,51223,16115,17444,1954,9286,17572,4859,1361,284,9007,3029,2815,1929,12835,4020,978,13228,2677,1170,4192,6430,1142,13385,4520,2776,918,5081,1593,1279,2212,530,149,1103,842,1981,4314,3514,606,2023,1777,520,14670,3227,2845,7,5599,6755,5096,7877,5036,1483,1372,552,908,2,941,2614,3783,8927,432,3,346,1244,1,5445,148,11323,2652,4,3821,11,1242,5797,74,1983,1523,1103,2015,4067,7434,3824,3050,2658,4242,3113,32,5663,7965,2305,639,37,1456,5586,3772,4048,1945,770,665,5797,2560,4094,3138,6,614,294,3,3541,1,5349,9361,1,1813,283,38,874,5992,12346,180,2,1394,756,769,8,1,1272,1715,2,3057,2 ...
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>The response is quite wordy with embedded graphics meant for visualization in a browser, not parse by a microcontroller. Some sites, e.g. for weather data, can produce simpler responses optimized for parsing by machines.</p>
+</div>
+<div class="section" id="http-server">
+<h2>http Server<a class="headerlink" href="#http-server" title="Permalink to this headline">¶</a></h2>
+<p>Let’s do the opposite and create a simple webserver.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span> <span class="o">-</span><span class="n">q</span>
+
+<span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span> <span class="nn">network</span>
+
+
+<span class="n">CONTENT</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">HTTP/1.0 200 OK</span>
+
+<span class="s2">Hello #</span><span class="si">{}</span><span class="s2"> from MicroPython!</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">PORT</span> <span class="o">=</span> <span class="mi">8080</span>
+
+
+<span class="k">def</span> <span class="nf">webserver</span><span class="p">():</span>
+    <span class="n">my_ip</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">)</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+
+    <span class="c1"># Binding to all interfaces - server will be accessible to other hosts!</span>
+    <span class="n">ai</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)</span>
+    <span class="n">addr</span> <span class="o">=</span> <span class="n">ai</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Listening, connect your browser to http://</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">my_ip</span><span class="p">,</span> <span class="n">PORT</span><span class="p">))</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">client_sock</span><span class="p">,</span> <span class="n">client_addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Request from&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">client_addr</span><span class="p">))</span>
+            <span class="n">req</span> <span class="o">=</span> <span class="n">client_sock</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Request:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">h</span> <span class="o">=</span> <span class="n">client_sock</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">h</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+            <span class="n">client_sock</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">CONTENT</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
+
+            <span class="n">client_sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="nb">print</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">webserver</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Listening, connect your browser to http://10.39.40.135:8080/
+Request from
+b&#39;GET / HTTP/1.1\r\n&#39;
+b&#39;Host: 10.39.40.135:8080\r\n&#39;
+b&#39;Connection: keep-alive\r\n&#39;
+b&#39;DNT: 1\r\n&#39;
+b&#39;Upgrade-Insecure-Requests: 1\r\n&#39;
+b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36\r\n&#39;
+b&#39;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\n&#39;
+b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
+b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
+
+Request from
+b&#39;GET /favicon.ico HTTP/1.1\r\n&#39;
+b&#39;Host: 10.39.40.135:8080\r\n&#39;
+b&#39;Connection: keep-alive\r\n&#39;
+b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36\r\n&#39;
+b&#39;DNT: 1\r\n&#39;
+b&#39;Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8\r\n&#39;
+b&#39;Referer: http://10.39.40.135:8080/\r\n&#39;
+b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
+b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
+
+Request from
+b&#39;GET / HTTP/1.1\r\n&#39;
+b&#39;Host: 10.39.40.135:8080\r\n&#39;
+b&#39;Connection: keep-alive\r\n&#39;
+b&#39;Cache-Control: max-age=0\r\n&#39;
+b&#39;DNT: 1\r\n&#39;
+b&#39;Upgrade-Insecure-Requests: 1\r\n&#39;
+b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36\r\n&#39;
+b&#39;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\n&#39;
+b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
+b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
+
+Request from
+b&#39;GET /favicon.ico HTTP/1.1\r\n&#39;
+b&#39;Host: 10.39.40.135:8080\r\n&#39;
+b&#39;Connection: keep-alive\r\n&#39;
+b&#39;Pragma: no-cache\r\n&#39;
+b&#39;Cache-Control: no-cache\r\n&#39;
+b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36\r\n&#39;
+b&#39;DNT: 1\r\n&#39;
+b&#39;Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8\r\n&#39;
+b&#39;Referer: http://10.39.40.135:8080/\r\n&#39;
+b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
+b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
+
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Interrupted
+</pre></div>
+</div>
+</div>
+</div>
+<p>Click the <code class="docutils literal notranslate"><span class="pre">http</span></code> link above to open a browser window. Notice two things:</p>
+<ol class="simple">
+<li><p>The hello counter increases by two everytime you refresh the page in the browser. The reason is that the browser (at least mine) make two requests each time it loads the page.</p></li>
+<li><p>The browser sends lots of data with each request. The kind of browser, the languages it speaks, etc. That’s helpful for marketers to track users, but it’s a bit over the top for small microcontrollers with limited memory and processing power.</p></li>
+</ol>
+<p>We’ll check out more efficient means for microcontrollers to communicate over the internet.</p>
+</div>
+<div class="section" id="secure-client">
+<h2>Secure Client<a class="headerlink" href="#secure-client" title="Permalink to this headline">¶</a></h2>
+<p>The secure, https, client is almost the same except that the port has been changed from 80 to 443 and the line <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">ssl.wrap_socket(s)</span></code> been added.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span>
+<span class="o">%</span><span class="n">softreset</span>
+
+<span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span> <span class="nn">ssl</span>
+
+<span class="n">ai</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s2">&quot;google.com&quot;</span><span class="p">,</span> <span class="mi">443</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Address information:&quot;</span><span class="p">,</span> <span class="n">ai</span><span class="p">)</span>
+<span class="n">addr</span> <span class="o">=</span> <span class="n">ai</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+<span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;GET / HTTP/1.0</span><span class="se">\r\n\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Response:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+
+<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
+
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+
+Address information: [(2, 1, 0, &#39;google.com&#39;, (&#39;216.58.194.174&#39;, 443))]
+
+Response:
+HTTP/1.0 200 OK
+Date: Thu, 22 Jul 2021 03:05:33 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+P3P: CP=&quot;This is not a P3P policy! See g.co/p3phelp for more info.&quot;
+Server: gws
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: 1P_JAR=2021-07-22-03; expires=Sat, 21-Aug-2021 03:05:33 GMT; path=/; domain=.google.com; Secure
+Set-Cookie: NID=219=rjuTN3Kqr-3ZPMHKtq8jQjursFOga8OXMutFBj2WQzFgu6RWcH3siOduyS4k8FdDltMeoieIF612FtjMk1FeHPxhHzonnAw1J8LFjOcg7N4J45x9oBw2i5d4xrlcaN55HX_4JJXOI8hqNt5GRTSf8AXtMKpm_OGirlei0Fca3IU; expires=Fri, 21-Jan-2022 03:05:33 GMT; path=/; domain=.google.com; HttpOnly
+Alt-Svc: h3=&quot;:443&quot;; ma=2592000,h3-29=&quot;:443&quot;; ma=2592000,h3-T051=&quot;:443&quot;; ma=2592000,h3-Q050=&quot;:443&quot;; ma=2592000,h3-Q046=&quot;:443&quot;; ma=2592000,h3-Q043=&quot;:443&quot;; ma=2592000,quic=&quot;:443&quot;; ma=2592000; v=&quot;46,43&quot;
+Accept-Ranges: none
+Vary: Accept-Encoding
+
+&lt;!doctype html&gt;&lt;html itemscope=&quot;&quot; itemtype=&quot;http://schema.org/WebPage&quot; lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta content=&quot;Search the world&#39;s information, including webpages, images, videos and more. Google has many special features to help you find exactly what you&#39;re looking for.&quot; name=&quot;description&quot;&gt;&lt;meta content=&quot;noodp&quot; name=&quot;robots&quot;&gt;&lt;meta content=&quot;text/html; charset=UTF-8&quot; http-equiv=&quot;Content-Type&quot;&gt;&lt;meta content=&quot;/images/branding/googleg/1x/googleg_standard_color_128dp.png&quot; itemprop=&quot;image&quot;&gt;&lt;title&gt;Google&lt;/title&gt;&lt;script nonce=&quot;c6vjeNqb6uKpWxzJI0fCQQ==&quot;&gt;(function(){window.google={kEI:&#39;feD4YMPwDb_M0PEP9c6SiAs&#39;,kEXPI:&#39;0,772215,1,530320,56873,954,755,4349,207,4804,2316,383,246,5,1354,4936,314,1122516,1197739,544,104,328880,51223,16115,17444,11240,17572,4858,1362,283,9008,3022,2822,14764,4020,978,13228,1838,2009,10622,1142,13386,4518,2776,919,2372,4302,1279,2212,530,149,1103,840,1983,4314,4120,2025,1775,520,14670,3227,1990,855,7,12354,5096,7877,3747,1289,1483,1371,553,908,2,3555,12710,432,3,346,1244,1,5445,148,11323,2652,4,1253,274,2305,1236,5803,74,1983,2627,2014,4067,7434,2110,1714,3050,2658,4164,79,
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="secure-server">
+<h2>Secure Server<a class="headerlink" href="#secure-server" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>MicroPython ssl broken?</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/micropython/micropython/issues/5543">Github issue</a></p></li>
+<li><p><a class="reference external" href="https://forum.micropython.org/viewtopic.php?f=18&amp;t=10375&amp;hilit=cert">Forum Post</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://realpython.com/python-https/">CPython Tutorial</a></p></li>
+</ul>
+<p>Secure webservers use a certificate and a private key to encrypt data and “prove” their identity to the web client (e.g. browser).</p>
+<p>First we find the IP address of the microcontroller and save it in the jupyter store to access it later from bash.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span># get IP and save in the Jupyter store
+import network
+my_ip = network.WLAN(network.STA_IF).ifconfig()[0]
+%store my_ip
+
+# retrieve it on the host (CPython) and assign it to a shell environment variable
+%%host
+%store -r my_ip
+os.environ[&quot;my_ip&quot;] = my_ip
+
+# verify that bash has the correct IP
+%%bash
+echo &quot;microcontroller IP:&quot; $my_ip
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>microcontroller IP: 10.39.40.135
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we create the “configuration” from which the certificate and key will be generated. Change the values in the <code class="docutils literal notranslate"><span class="pre">[req_distinguished_name]</span></code> section if you wish (the defaults are ok).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT_PROJECTS/internet
+!mkdir -p ssl
+%cd ssl
+
+%%bash
+cat &lt;&lt; EOF &gt;cert.conf
+[req]
+distinguished_name = req_distinguished_name
+x509_extensions = v3_req
+prompt = no
+[req_distinguished_name]
+C = US
+ST = CA
+L = San Francisco
+O = MicroPython Webserver
+OU = iot49
+CN = iot49
+[v3_req]
+keyUsage = critical, digitalSignature, keyAgreement
+extendedKeyUsage = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = $my_ip
+IP.1  = $my_ip
+EOF
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cwd = /home/iot/iot49.org/docs/projects/internet
+cwd = /home/iot/iot49.org/docs/projects/internet/ssl
+cert.conf
+</pre></div>
+</div>
+</div>
+</div>
+<p>The next step is to generate the key and cert files from the configuration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+
+<span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">days</span> <span class="mi">3650</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">2048</span> \
+    <span class="o">-</span><span class="n">keyout</span> <span class="n">cert</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">cert</span><span class="o">.</span><span class="n">crt</span> <span class="o">-</span><span class="n">config</span> <span class="n">cert</span><span class="o">.</span><span class="n">conf</span>       
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating a RSA private key
+.........+++++
+.....................+++++
+writing new private key to &#39;cert.key&#39;
+-----
+total 12
+-rw-r--r-- 1 iot iot  366 Jul 22 09:58 cert.conf
+-rw-r--r-- 1 iot iot 1350 Jul 22 10:00 cert.crt
+-rw------- 1 iot iot 1704 Jul 22 10:00 cert.key
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now copy the contents (without the lines beginning with <code class="docutils literal notranslate"><span class="pre">-----</span></code>) to the webserver code below. The contents from <code class="docutils literal notranslate"><span class="pre">cert.key</span></code> go into the <code class="docutils literal notranslate"><span class="pre">key</span></code> variable; <code class="docutils literal notranslate"><span class="pre">cert.crt</span></code> goes into <code class="docutils literal notranslate"><span class="pre">cert</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+
+<span class="c1"># broken - certs not hex</span>
+<span class="c1"># should not be needed anyway?</span>
+
+<span class="k">def</span> <span class="nf">mangle</span><span class="p">(</span><span class="n">src_file</span><span class="p">,</span> <span class="n">dst_file</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">src_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">dst_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+        <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dst_file</span><span class="si">}</span><span class="s2"> = binascii.unhexlify(</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">l</span><span class="o">:=</span><span class="n">src</span><span class="o">.</span><span class="n">readline</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;-----&#39;</span><span class="p">):</span> <span class="k">continue</span>
+            <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    b&#39;</span><span class="si">{</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+<span class="n">mangle</span><span class="p">(</span><span class="s1">&#39;cert.key&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">)</span>
+<span class="n">mangle</span><span class="p">(</span><span class="s1">&#39;cert.crt&#39;</span><span class="p">,</span> <span class="s1">&#39;cert&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span> <span class="o">-</span><span class="n">q</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span> <span class="nn">network</span>
+
+
+<span class="n">CONTENT</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">HTTP/1.0 200 OK</span>
+
+<span class="s2">Hello #</span><span class="si">{}</span><span class="s2"> from MicroPython!</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">PORT</span> <span class="o">=</span> <span class="mi">443</span>
+
+<span class="c1"># Chrome refuses to connect, perhaps since domain does not match?</span>
+
+<span class="c1"># This self-signed key/cert pair is randomly generated and to be used for</span>
+<span class="c1"># testing/demonstration only.  You should always generate your own key/cert.</span>
+<span class="n">key</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span>
+    <span class="sa">b</span><span class="s2">&quot;3082013b020100024100cc20643fd3d9c21a0acba4f48f61aadd675f52175a9dcf07fbef&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;610a6a6ba14abb891745cd18a1d4c056580d8ff1a639460f867013c8391cdc9f2e573b0f&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;872d0203010001024100bb17a54aeb3dd7ae4edec05e775ca9632cf02d29c2a089b563b0&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;d05cdf95aeca507de674553f28b4eadaca82d5549a86058f9996b07768686a5b02cb240d&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;d9f1022100f4a63f5549e817547dca97b5c658038e8593cb78c5aba3c4642cc4cd031d86&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;8f022100d598d870ffe4a34df8de57047a50b97b71f4d23e323f527837c9edae88c79483&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;02210098560c89a70385c36eb07fd7083235c4c1184e525d838aedf7128958bedfdbb102&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;2051c0dab7057a8176ca966f3feb81123d4974a733df0f958525f547dfd1c271f9022044&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;6c2cafad455a671a8cf398e642e1be3b18a3d3aec2e67a9478f83c964c4f1f&quot;</span>
+<span class="p">)</span>
+<span class="n">cert</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span>
+    <span class="sa">b</span><span class="s2">&quot;308201d53082017f020203e8300d06092a864886f70d01010505003075310b3009060355&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;0406130258583114301206035504080c0b54686550726f76696e63653110300e06035504&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;070c075468654369747931133011060355040a0c0a436f6d70616e7958595a3113301106&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;0355040b0c0a436f6d70616e7958595a3114301206035504030c0b546865486f73744e61&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;6d65301e170d3139313231383033333935355a170d3239313231353033333935355a3075&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;310b30090603550406130258583114301206035504080c0b54686550726f76696e636531&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;10300e06035504070c075468654369747931133011060355040a0c0a436f6d70616e7958&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;595a31133011060355040b0c0a436f6d70616e7958595a3114301206035504030c0b5468&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;65486f73744e616d65305c300d06092a864886f70d0101010500034b003048024100cc20&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;643fd3d9c21a0acba4f48f61aadd675f52175a9dcf07fbef610a6a6ba14abb891745cd18&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;a1d4c056580d8ff1a639460f867013c8391cdc9f2e573b0f872d0203010001300d06092a&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;864886f70d0101050500034100b0513fe2829e9ecbe55b6dd14c0ede7502bde5d46153c8&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;e960ae3ebc247371b525caeb41bbcf34686015a44c50d226e66aef0a97a63874ca5944ef&quot;</span>
+    <span class="sa">b</span><span class="s2">&quot;979b57f0b3&quot;</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">webserver</span><span class="p">():</span>
+    <span class="n">my_ip</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">)</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+
+    <span class="c1"># Binding to all interfaces - server will be accessible to other hosts!</span>
+    <span class="n">ai</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)</span>
+    <span class="n">addr</span> <span class="o">=</span> <span class="n">ai</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Listening, connect your browser to https://</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">my_ip</span><span class="p">,</span> <span class="n">PORT</span><span class="p">))</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">client_sock</span><span class="p">,</span> <span class="n">client_addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span> 
+            <span class="c1"># OSError: [Errno 104] ECONNRESET</span>
+            <span class="n">client_sock</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">client_sock</span><span class="p">,</span> <span class="n">server_side</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="n">cert</span><span class="p">)</span>
+            
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Request from&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">client_addr</span><span class="p">))</span>
+            <span class="n">req</span> <span class="o">=</span> <span class="n">client_sock</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Request:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">h</span> <span class="o">=</span> <span class="n">client_sock</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">h</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+            <span class="n">client_sock</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">CONTENT</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
+
+            <span class="n">client_sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="nb">print</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;close server socket&quot;</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">webserver</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Listening, connect your browser to https://10.39.40.135:443/
+close server socket
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 82, in &lt;module&gt;
+  File &quot;&lt;stdin&gt;&quot;, line 62, in webserver
+OSError: [Errno 104] ECONNRESET
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./projects/internet"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="wifi.html" title="previous page">WiFi</a>
+    <a class='right-next' id="next-link" href="requests.html" title="next page">Requests</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

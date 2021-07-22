@@ -52,7 +52,7 @@
     <link rel="canonical" href="https://iot49.org/projects/internet/wifi.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Encryption" href="encryption.html" />
+    <link rel="next" title="Sockets" href="sockets.html" />
     <link rel="prev" title="Internet" href="../internet.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -206,7 +206,7 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Projects
+  Tours &amp; Projects
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -283,13 +283,28 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="encryption.html">
-     Encryption
+    <a class="reference internal" href="sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mqtt.html">
+     MQTT
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="plotserver.html">
      Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="encryption.html">
+     Encryption
     </a>
    </li>
   </ul>
@@ -673,7 +688,7 @@ esp32:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">UPDATE  /webrepl_cfg.py</span>
 
 </pre></div>
 </div>
@@ -695,7 +710,69 @@ Started webrepl in normal mode
 </div>
 </div>
 </div>
+<p>Advertise the webrepl with regular broadcast messages so <em>ide49</em> discovers it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">socket</span> <span class="kn">import</span> <span class="n">socket</span><span class="p">,</span> <span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span>
+<span class="kn">import</span> <span class="nn">_thread</span>
+
+<span class="k">def</span> <span class="nf">broadcaster</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+    <span class="n">so</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_DGRAM</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># pre-allocate address (on heap)</span>
+        <span class="n">addr</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;255.255.255.255&#39;</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">so</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">addr</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">so</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;ws://</span><span class="si">{}</span><span class="s2">:8266</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">)</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">machine</span><span class="o">.</span><span class="n">unique_id</span><span class="p">())</span>
+<span class="p">)</span>
+<span class="n">th</span> <span class="o">=</span> <span class="n">_thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">broadcaster</span><span class="p">,</span> <span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">secrets</span><span class="p">,</span> <span class="s1">&#39;broadcast_port&#39;</span><span class="p">,</span> <span class="mi">50000</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Connect wirelessly:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esp32  ws://10.39.40.135:8266  
+esp32  serial:///dev/ttyUSB0   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span> <span class="n">ws</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;connected to webrepl&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ ws://10.39.40.135:8266</span>
+connected to webrepl
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Unfortunately wireless connection via webrepl is slow. The primary reason is that webrepl lacks a feature to tell when it’s ready to receive code and when not. <em>ide49</em> takes a conservative approach and sends code only in small chunks with pauses inbetween.</p>
+<p><em>Note:</em> if you rather not use the broadcaster code to advertise the webrepl, you can instead connect with the url:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="s2">&quot;ws://10.39.40.135:8266&quot;</span>
@@ -708,20 +785,6 @@ Started webrepl in normal mode
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esp32  serial:///dev/ttyUSB1   
-esp32  ws://10.39.40.135:8266  
-</pre></div>
-</div>
-</div>
-</div>
-<p>Unfortunately wireless connection via webrepl is slow. The primary reason is that webrepl lacks a feature to tell when it’s ready to receive code and when not. <em>ide49</em> takes a conservative approach and sends code only in small chunks with pauses inbetween.</p>
 </div>
 <div class="section" id="boot-py">
 <h2><a class="reference external" href="http://boot.py">boot.py</a><a class="headerlink" href="#boot-py" title="Permalink to this headline">¶</a></h2>
@@ -751,18 +814,40 @@ def connect():
         print(&quot;Unable to connect to WiFi!&quot;)
         wlan.disconnect()
         return
-    print(&quot;IP&quot;, wlan.ifconfig()[0])
     # set clock to local time
     tm = time.localtime(ntptime.time() + getattr(secrets, &#39;tz_offset&#39;, 0))
     print(&quot;time&quot;, tm)
     machine.RTC().datetime((tm[0], tm[1], tm[2], tm[6] + 1, tm[3], tm[4], tm[5], 0))
+    return 
 
 # connect to WiFi
 connect()
 
-# start webrepl
-import webrepl
-webrepl.start()
+if hasattr(secrets, &#39;webrepl_pwd&#39;):
+    # start webrepl
+    import webrepl
+    webrepl.start()
+
+    # advertise
+    from socket import socket, AF_INET, SOCK_DGRAM
+    import _thread
+
+    def broadcaster(msg, port):
+        so = socket(AF_INET, SOCK_DGRAM)
+        try:
+            # pre-allocate address (on heap)
+            addr = (&#39;255.255.255.255&#39;, port)
+            while True:
+                so.sendto(msg, addr)
+                time.sleep(1)
+        finally:
+            so.close()
+
+    msg = &quot;ws://{}:8266\n{}&quot;.format(
+        network.WLAN(network.STA_IF).ifconfig()[0],
+        &quot;:&quot;.join(&quot;{:02x}&quot;.format(x) for x in machine.unique_id())
+    )
+    th = _thread.start_new_thread(broadcaster, (msg, getattr(secrets, &#39;broadcast_port&#39;, 50000)))
 </pre></div>
 </div>
 </div>
@@ -780,7 +865,11 @@ webrepl.start()
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
+<span class=" -Color -Color-Green">ADD     /boot.py</span>
+<span class=" -Color -Color-Green">ADD     /lib/http_server.py</span>
+<span class=" -Color -Color-Green">ADD     /secrets.py</span>
+<span class=" -Color -Color-Green">ADD     /webrepl_cfg.py</span>
 
 <span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
 <span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
@@ -799,7 +888,7 @@ webrepl.start()
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esp32  serial:///dev/ttyUSB1   
 esp32  ws://10.39.40.135:8266  
-ws://10.39.40.135:8266
+pico   serial:///dev/ttyUSB0   
 </pre></div>
 </div>
 </div>
@@ -812,7 +901,7 @@ ws://10.39.40.135:8266
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB1</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
 </pre></div>
 </div>
 </div>
@@ -860,7 +949,7 @@ ws://10.39.40.135:8266
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../internet.html" title="previous page">Internet</a>
-    <a class='right-next' id="next-link" href="encryption.html" title="next page">Encryption</a>
+    <a class='right-next' id="next-link" href="sockets.html" title="next page">Sockets</a>
 
         </div>
         
