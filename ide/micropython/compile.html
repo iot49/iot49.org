@@ -409,11 +409,6 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#optional-compile-the-unix-version">
-   Optional: Compile the Unix version
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id1">
    Compile
   </a>
@@ -426,6 +421,11 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#esp-idf">
      esp-idf
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#unix-version">
+     Unix version
     </a>
    </li>
   </ul>
@@ -473,66 +473,16 @@
 </div>
 </div>
 </div>
-<div class="section" id="optional-compile-the-unix-version">
-<h2>Optional: Compile the Unix version<a class="headerlink" href="#optional-compile-the-unix-version" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
-
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="n">make</span> <span class="n">submodules</span>
-<span class="n">make</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Check it out:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sys; print(sys.platform)&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>linux
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">m</span> <span class="n">upip</span> <span class="n">install</span> <span class="n">micropython</span><span class="o">-</span><span class="n">pystone</span>
-<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">m</span> <span class="n">pystone</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing to: /home/iot/.micropython/lib/
-Warning: micropython.org SSL certificate is not validated
-Installing micropython-pystone 3.4.2.post2 from https://micropython.org/pi/pystone/pystone-3.4.2.post2.tar.gz
-Pystone(1.2) time for 50000 passes = 0.981
-This machine benchmarks at 50968.4 pystones/second
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="section" id="id1">
 <h2>Compile<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Two services are available:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">arm32</span></code> for all ARM ports, e.g. <em>stm32</em>, <em>nrf52</em>, …</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arm32</span></code> for all ARM ports, e.g. <em>stm32</em>, <em>nrf52</em>, … and the unix version</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">esp-idf</span></code> for the ESP32.</p></li>
 </ul>
 <div class="section" id="arm32">
 <h3>arm32<a class="headerlink" href="#arm32" title="Permalink to this headline">¶</a></h3>
-<p>The example below is for the <em>stm32</em> port. The procedure for other ports is similar, follow the instructions on the github repository.</p>
+<p>The example below is for the <em>stm32</em> port. The procedure for other ports is similar, follow the instructions for the particular port on the <a class="reference external" href="https://github.com/micropython/micropython">MicroPython github repository</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
@@ -544,7 +494,7 @@ This machine benchmarks at 50968.4 pystones/second
 </div>
 </div>
 </div>
-<p>Replace <code class="docutils literal notranslate"><span class="pre">PYBV11</span></code> with your board.</p>
+<p>In the commands below, replace <code class="docutils literal notranslate"><span class="pre">PYBV11</span></code> with the name of your configuration.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
@@ -3612,7 +3562,450 @@ Generated /home/iot/micropython/ports/esp32/build-UM_TINYPICO/bootloader/bootloa
 [904/1259] Building C object esp-idf/json/CMakeFiles/__idf_json.dir/cJSON/cJSON.c.obj
 [905/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-sse41.c.obj
 [906/1259] Linking CXX static library esp-idf/json/libjson.a
+[907/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_hash/crypto_hash.c.obj
+[908/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-ssse3.c.obj
+[909/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_hash/sha256/hash_sha256.c.obj
+[910/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/generichash_blake2b.c.obj
+[911/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-ref.c.obj
+[912/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_hash/sha512/hash_sha512.c.obj
+[913/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_kdf/crypto_kdf.c.obj
+[914/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_kdf/blake2b/kdf_blake2b.c.obj
+[915/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_hash/sha256/cp/hash_sha256_cp.c.obj
+[916/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_onetimeauth/crypto_onetimeauth.c.obj
+[917/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_kx/crypto_kx.c.obj
+[918/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_onetimeauth/poly1305/sse2/poly1305_sse2.c.obj
+[919/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_onetimeauth/poly1305/onetimeauth_poly1305.c.obj
+[920/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/crypto_pwhash.c.obj
+[921/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_onetimeauth/poly1305/donna/poly1305_donna.c.obj
+[922/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-encoding.c.obj
+[923/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-core.c.obj
+[924/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-ssse3.c.obj
+[925/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2.c.obj
+[926/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/pwhash_argon2i.c.obj
+[927/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/blake2b-long.c.obj
+[928/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/crypto_scrypt-common.c.obj
+[929/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/pbkdf2-sha256.c.obj
+[930/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_hash/sha512/cp/hash_sha512_cp.c.obj
+[931/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/scrypt_platform.c.obj
+[932/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/pwhash_scryptsalsa208sha256.c.obj
+[933/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/sse/pwhash_scryptsalsa208sha256_sse.c.obj
+[934/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/scalarmult_curve25519.c.obj
+[935/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/crypto_scalarmult.c.obj
+[936/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/nosse/pwhash_scryptsalsa208sha256_nosse.c.obj
+[937/1259] Building ASM object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/consts.S.obj
+[938/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/donna_c64/curve25519_donna_c64.c.obj
+[939/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/curve25519_sandy2x.c.obj
+[940/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/ref10/x25519_ref10.c.obj
+[941/1259] Building ASM object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe51_nsquare.S.obj
+[942/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe51_invert.c.obj
+[943/1259] Building ASM object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe51_mul.S.obj
+[944/1259] Building ASM object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe51_pack.S.obj
+[945/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe_frombytes_sandy2x.c.obj
+[946/1259] Building ASM object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/ladder.S.obj
+[947/1259] Building ASM object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/ladder_base.S.obj
+[948/1259] Building ASM object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/sandy2x.S.obj
+[949/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_secretbox/crypto_secretbox.c.obj
+[950/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_secretbox/crypto_secretbox_easy.c.obj
+[951/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_secretbox/xchacha20poly1305/secretbox_xchacha20poly1305.c.obj
+[952/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_secretbox/xsalsa20poly1305/secretbox_xsalsa20poly1305.c.obj
+[953/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_shorthash/siphash24/shorthash_siphash24.c.obj
+[954/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_shorthash/siphash24/shorthash_siphashx24.c.obj
+[955/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_shorthash/crypto_shorthash.c.obj
+[956/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-ref.c.obj
+[957/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_sign/crypto_sign.c.obj
+[958/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_shorthash/siphash24/ref/shorthash_siphash24_ref.c.obj
+[959/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_sign/ed25519/sign_ed25519.c.obj
+[960/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_shorthash/siphash24/ref/shorthash_siphashx24_ref.c.obj
+[961/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/aes128ctr/stream_aes128ctr.c.obj
+[962/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_sign/ed25519/ref10/keypair.c.obj
+[963/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_sign/ed25519/ref10/obsolete.c.obj
+[964/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/crypto_stream.c.obj
+[965/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_sign/ed25519/ref10/sign.c.obj
+[966/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_sign/ed25519/ref10/open.c.obj
+[967/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/aes128ctr/nacl/consts_aes128ctr.c.obj
+[968/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/aes128ctr/nacl/stream_aes128ctr_nacl.c.obj
+[969/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/aes128ctr/nacl/int128_aes128ctr.c.obj
+[970/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/chacha20_dolbeau-avx2.c.obj
+[971/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_core/curve25519/ref10/curve25519_ref10.c.obj
+[972/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/chacha20/stream_chacha20.c.obj
+[973/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/chacha20_dolbeau-ssse3.c.obj
+[974/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/xmm6/salsa20_xmm6.c.obj
+[975/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/stream_salsa20.c.obj
+[976/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/chacha20/ref/chacha20_ref.c.obj
+[977/1259] Building ASM object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/xmm6/salsa20_xmm6-asm.S.obj
+[978/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/ref/salsa20_ref.c.obj
+[979/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/salsa20_xmm6int-avx2.c.obj
+[980/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/salsa20_xmm6int-sse2.c.obj
+[981/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/salsa2012/stream_salsa2012.c.obj
+[982/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/salsa208/stream_salsa208.c.obj
+[983/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_verify/sodium/verify.c.obj
+[984/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/salsa2012/ref/stream_salsa2012_ref.c.obj
+[985/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/salsa208/ref/stream_salsa208_ref.c.obj
+[986/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/xchacha20/stream_xchacha20.c.obj
+[987/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/aes128ctr/nacl/afternm_aes128ctr.c.obj
+[988/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/xsalsa20/stream_xsalsa20.c.obj
+[989/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/randombytes/sysrandom/randombytes_sysrandom.c.obj
+[990/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/randombytes/nativeclient/randombytes_nativeclient.c.obj
+[991/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/randombytes/randombytes.c.obj
+[992/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/aes128ctr/nacl/beforenm_aes128ctr.c.obj
+[993/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/sodium/runtime.c.obj
+[994/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/sodium/core.c.obj
+[995/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_stream/aes128ctr/nacl/xor_afternm_aes128ctr.c.obj
+[996/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/randombytes/salsa20/randombytes_salsa20_random.c.obj
+[997/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/sodium/version.c.obj
+[998/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/port/randombytes_esp32.c.obj
+[999/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/sodium/utils.c.obj
+[1000/1259] Building C object esp-idf/openssl/CMakeFiles/__idf_openssl.dir/library/ssl_cert.c.obj
+[1001/1259] Building C object esp-idf/mqtt/CMakeFiles/__idf_mqtt.dir/esp-mqtt/lib/platform_esp32_idf.c.obj
+[1002/1259] Building C object esp-idf/mqtt/CMakeFiles/__idf_mqtt.dir/esp-mqtt/lib/mqtt_outbox.c.obj
+[1003/1259] Building C object esp-idf/openssl/CMakeFiles/__idf_openssl.dir/library/ssl_methods.c.obj
+[1004/1259] Building C object esp-idf/openssl/CMakeFiles/__idf_openssl.dir/library/ssl_pkey.c.obj
+[1005/1259] Building C object esp-idf/openssl/CMakeFiles/__idf_openssl.dir/library/ssl_stack.c.obj
+[1006/1259] Building C object esp-idf/mqtt/CMakeFiles/__idf_mqtt.dir/esp-mqtt/lib/mqtt_msg.c.obj
+[1007/1259] Building C object esp-idf/openssl/CMakeFiles/__idf_openssl.dir/platform/ssl_port.c.obj
+[1008/1259] Building C object esp-idf/openssl/CMakeFiles/__idf_openssl.dir/library/ssl_x509.c.obj
+[1009/1259] Building C object esp-idf/openssl/CMakeFiles/__idf_openssl.dir/library/ssl_lib.c.obj
+[1010/1259] Building C object esp-idf/openssl/CMakeFiles/__idf_openssl.dir/platform/ssl_pm.c.obj
+[1011/1259] Linking CXX static library esp-idf/openssl/libopenssl.a
+[1012/1259] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs_api.c.obj
+[1013/1259] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_cache.c.obj
+[1014/1259] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/esp_spiffs.c.obj
+[1015/1259] Building C object esp-idf/mqtt/CMakeFiles/__idf_mqtt.dir/esp-mqtt/mqtt_client.c.obj
+[1016/1259] Building C object esp-idf/libsodium/CMakeFiles/__idf_libsodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-ref.c.obj
+[1017/1259] Linking CXX static library esp-idf/mqtt/libmqtt.a
+[1018/1259] Linking CXX static library esp-idf/libsodium/liblibsodium.a
+[1019/1259] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_gc.c.obj
+[1020/1259] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_port_esp32.c.obj
+[1021/1259] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_check.c.obj
+[1022/1259] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity_runner.c.obj
+[1023/1259] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_hydrogen.c.obj
+[1024/1259] Building C object esp-idf/unity/CMakeFiles/__idf_unity.dir/unity/src/unity.c.obj
+[1025/1259] Linking CXX static library esp-idf/unity/libunity.a
+[1026/1259] Building C object esp-idf/wifi_provisioning/CMakeFiles/__idf_wifi_provisioning.dir/src/scheme_softap.c.obj
+[1027/1259] Building C object esp-idf/wifi_provisioning/CMakeFiles/__idf_wifi_provisioning.dir/src/scheme_console.c.obj
+[1028/1259] Building C object esp-idf/wifi_provisioning/CMakeFiles/__idf_wifi_provisioning.dir/proto-c/wifi_config.pb-c.c.obj
+[1029/1259] cd /home/iot/micropython/ports/esp32/build-UM_TINYPICO/esp-idf/main &amp;&amp; echo -n
+[1030/1259] Building C object esp-idf/wifi_provisioning/CMakeFiles/__idf_wifi_provisioning.dir/proto-c/wifi_constants.pb-c.c.obj
+[1031/1259] Generating ../../genhdr/mpversion.h
+GEN /home/iot/micropython/ports/esp32/build-UM_TINYPICO/genhdr/mpversion.h
+[1032/1259] Building C object esp-idf/wifi_provisioning/CMakeFiles/__idf_wifi_provisioning.dir/proto-c/wifi_scan.pb-c.c.obj
+[1033/1259] Generating ../../genhdr/moduledefs.h
+[1034/1259] Building C object esp-idf/wifi_provisioning/CMakeFiles/__idf_wifi_provisioning.dir/src/manager.c.obj
+[1035/1259] Building C object esp-idf/spiffs/CMakeFiles/__idf_spiffs.dir/spiffs/src/spiffs_nucleus.c.obj
+[1036/1259] Building C object esp-idf/wifi_provisioning/CMakeFiles/__idf_wifi_provisioning.dir/src/scheme_ble.c.obj
+[1037/1259] Linking CXX static library esp-idf/spiffs/libspiffs.a
+[1038/1259] Linking CXX static library esp-idf/wifi_provisioning/libwifi_provisioning.a
+[1039/1259] Generating ../../genhdr/qstr.i.last
+[1040/1259] Generating ../../genhdr/qstr.split
+[1041/1259] Generating ../../genhdr/qstrdefs.collected.h
+QSTR updated
+[1042/1259] Generating ../../genhdr/qstrdefs.preprocessed.h
+[1043/1259] Generating ../../genhdr/qstrdefs.generated.h
+[1044/1259] Generating ../../frozen_content.c
+MPY neopixel.py
+MPY apa106.py
+MPY inisetup.py
+MPY _boot.py
+MPY flashbdev.py
+MPY upip.py
+MPY upip_utarfile.py
+MPY ntptime.py
+MPY dht.py
+MPY onewire.py
+MPY ds18x20.py
+MPY uasyncio/__init__.py
+MPY uasyncio/core.py
+MPY uasyncio/event.py
+MPY uasyncio/funcs.py
+MPY uasyncio/lock.py
+MPY uasyncio/stream.py
+MPY webrepl.py
+MPY webrepl_setup.py
+MPY websocket_helper.py
+MPY dotstar.py
+MPY tinypico.py
+GEN /home/iot/micropython/ports/esp32/build-UM_TINYPICO/frozen_content.c
+[1045/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/asmx86.c.obj
+[1046/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modcollections.c.obj
+[1047/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/argcheck.c.obj
+[1048/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modcmath.c.obj
+[1049/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modmicropython.c.obj
+[1050/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modbuiltins.c.obj
+[1051/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/asmbase.c.obj
+[1052/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/asmthumb.c.obj
+[1053/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/asmarm.c.obj
+[1054/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/asmx64.c.obj
+[1055/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/builtinevex.c.obj
+[1056/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitcommon.c.obj
+[1057/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/bc.c.obj
+[1058/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/asmxtensa.c.obj
+[1059/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/binary.c.obj
+[1060/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/builtinhelp.c.obj
+[1061/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/builtinimport.c.obj
+[1062/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitnx64.c.obj
+[1063/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitinlinethumb.c.obj
+[1064/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitglue.c.obj
+[1065/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitnarm.c.obj
+[1066/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitnthumb.c.obj
+[1067/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitinlinextensa.c.obj
+[1068/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/frozenmod.c.obj
+[1069/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitnxtensa.c.obj
+[1070/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitnx86.c.obj
+[1071/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitbc.c.obj
+[1072/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modarray.c.obj
+[1073/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/formatfloat.c.obj
+[1074/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/malloc.c.obj
+[1075/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/lexer.c.obj
+[1076/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/gc.c.obj
+[1077/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modgc.c.obj
+[1078/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/map.c.obj
+[1079/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modio.c.obj
+[1080/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/compile.c.obj
+[1081/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modmath.c.obj
+[1082/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modsys.c.obj
+[1083/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modstruct.c.obj
+[1084/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modthread.c.obj
+[1085/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/moduerrno.c.obj
+[1086/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitnxtensawin.c.obj
+[1087/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/mpprint.c.obj
+[1088/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/mpstate.c.obj
+[1089/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrpowerpc.c.obj
+[1090/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrthumb.c.obj
+[1091/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlr.c.obj
+[1092/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nativeglue.c.obj
+[1093/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrsetjmp.c.obj
+[1094/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrxtensa.c.obj
+[1095/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrx64.c.obj
+[1096/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrx86.c.obj
+[1097/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objboundmeth.c.obj
+[1098/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/obj.c.obj
+[1099/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/mpz.c.obj
+[1100/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objbool.c.obj
+[1101/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objarray.c.obj
+[1102/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objattrtuple.c.obj
+[1103/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objcell.c.obj
+[1104/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objclosure.c.obj
+[1105/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objcomplex.c.obj
+[1106/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objgenerator.c.obj
+[1107/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objenumerate.c.obj
+[1108/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objdeque.c.obj
+[1109/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objdict.c.obj
+[1110/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objfilter.c.obj
+[1111/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objfloat.c.obj
+[1112/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objexcept.c.obj
+[1113/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objgetitemiter.c.obj
+[1114/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objint.c.obj
+[1115/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objfun.c.obj
+[1116/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objint_longlong.c.obj
+[1117/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objlist.c.obj
+[1118/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objmap.c.obj
+[1119/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objobject.c.obj
+[1120/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objint_mpz.c.obj
+[1121/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objnone.c.obj
+[1122/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objnamedtuple.c.obj
+[1123/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objmodule.c.obj
+[1124/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objpolyiter.c.obj
+[1125/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objproperty.c.obj
+[1126/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objset.c.obj
+[1127/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objrange.c.obj
+[1128/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objsingleton.c.obj
+[1129/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objreversed.c.obj
+[1130/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objstringio.c.obj
+[1131/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/opmethods.c.obj
+[1132/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objslice.c.obj
+[1133/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objstrunicode.c.obj
+[1134/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objtuple.c.obj
+[1135/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objzip.c.obj
+[1136/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/pairheap.c.obj
+[1137/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/parsenumbase.c.obj
+[1138/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/persistentcode.c.obj
+[1139/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/parsenum.c.obj
+[1140/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objtype.c.obj
+[1141/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/profile.c.obj
+[1142/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/repl.c.obj
+[1143/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/pystack.c.obj
+[1144/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objstr.c.obj
+[1145/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/ringbuf.c.obj
+[1146/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/reader.c.obj
+[1147/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/parse.c.obj
+[1148/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/qstr.c.obj
+[1149/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/scheduler.c.obj
+[1150/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/runtime_utils.c.obj
+[1151/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/stackctrl.c.obj
+[1152/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/scope.c.obj
+[1153/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/showbc.c.obj
+[1154/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/smallint.c.obj
+[1155/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/sequence.c.obj
+[1156/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/warning.c.obj
+[1157/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/unicode.c.obj
+[1158/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/runtime.c.obj
+[1159/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/stream.c.obj
+[1160/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/libc/abort_.c.obj
+[1161/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/vstr.c.obj
+[1162/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/machine_pulse.c.obj
+[1163/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/libc/printf.c.obj
+[1164/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/machine_mem.c.obj
+[1165/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/vm.c.obj
+[1166/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/machine_i2c.c.obj
+[1167/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/machine_signal.c.obj
+[1168/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/machine_spi.c.obj
+[1169/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modframebuf.c.obj
+[1170/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modonewire.c.obj
+[1171/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modbtree.c.obj
+[1172/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modujson.c.obj
+[1173/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modubinascii.c.obj
+[1174/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduasyncio.c.obj
+[1175/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moducryptolib.c.obj
+[1176/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduhashlib.c.obj
+[1177/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduheapq.c.obj
+[1178/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modbluetooth.c.obj
+[1179/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modurandom.c.obj
+[1180/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moductypes.c.obj
+[1181/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/uos_dupterm.c.obj
+[1182/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modussl_axtls.c.obj
+[1183/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modutimeq.c.obj
+[1184/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduselect.c.obj
+[1185/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modussl_mbedtls.c.obj
+[1186/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduwebsocket.c.obj
+[1187/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modure.c.obj
+[1188/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_fat_diskio.c.obj
+[1189/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modwebrepl.c.obj
+[1190/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/utime_mphal.c.obj
+[1191/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduzlib.c.obj
+[1192/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_blockdev.c.obj
+[1193/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs.c.obj
+[1194/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/virtpin.c.obj
+[1195/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_fat_file.c.obj
+[1196/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_posix.c.obj
+[1197/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_fat.c.obj
+[1198/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_posix_file.c.obj
+[1199/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/lib/littlefs/lfs1_util.c.obj
+[1200/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_reader.c.obj
+[1201/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_lfs.c.obj
+[1202/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/runtime/interrupt_char.c.obj
+[1203/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/netutils/netutils.c.obj
+[1204/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/readline/readline.c.obj
+[1205/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/timeutils/timeutils.c.obj
+[1206/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/runtime/stdout_helpers.c.obj
+[1207/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/runtime/sys_stdio_mphal.c.obj
+[1208/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/nimble/modbluetooth_nimble.c.obj
+[1209/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/runtime/pyexec.c.obj
+[1210/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/lib/littlefs/lfs2_util.c.obj
+[1211/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/lib/oofatfs/ffunicode.c.obj
+[1212/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/lib/mbedtls_errors/mp_mbedtls_errors.c.obj
+[1213/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/uart.c.obj
+[1214/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/drivers/bus/softspi.c.obj
+[1215/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/drivers/dht/dht.c.obj
+[1216/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/lib/littlefs/lfs1.c.obj
+[1217/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/main.c.obj
+[1218/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/fatfs_port.c.obj
+[1219/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/gccollect.c.obj
+[1220/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/usb.c.obj
+[1221/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/help.c.obj
+[1222/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/lib/oofatfs/ff.c.obj
+[1223/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/mphalport.c.obj
+[1224/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modutime.c.obj
+[1225/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_pin.c.obj
+[1226/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/moduos.c.obj
+[1227/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_timer.c.obj
+[1228/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_i2c.c.obj
+[1229/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/lib/littlefs/lfs2.c.obj
+[1230/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_touchpad.c.obj
+[1231/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_adc.c.obj
+[1232/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_dac.c.obj
+[1233/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_pwm.c.obj
+[1234/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_uart.c.obj
+[1235/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modmachine.c.obj
+[1236/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/mpnimbleport.c.obj
+[1237/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_i2s.c.obj
+[1238/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modnetwork.c.obj
+[1239/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/network_ppp.c.obj
+[1240/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modesp.c.obj
+[1241/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/network_lan.c.obj
+[1242/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/esp32_partition.c.obj
+[1243/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/esp32_ulp.c.obj
+[1244/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/espneopixel.c.obj
+[1245/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/esp32_nvs.c.obj
+[1246/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/esp32_rmt.c.obj
+[1247/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modsocket.c.obj
+[1248/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modesp32.c.obj
+[1249/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_rtc.c.obj
+[1250/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_wdt.c.obj
+[1251/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/mpthreadport.c.obj
+[1252/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_hw_spi.c.obj
+[1253/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_sdcard.c.obj
+[1254/1259] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/__/frozen_content.c.obj
+[1255/1259] Linking CXX static library esp-idf/main/libmain.a
+[1256/1259] Generating ld/esp32.project.ld
+[1257/1259] Building C object CMakeFiles/micropython.elf.dir/project_elf_src.c.obj
+[1258/1259] Linking CXX executable micropython.elf
+[1259/1259] Generating binary image from built executable
+esptool.py v3.0
+Generated /home/iot/micropython/ports/esp32/build-UM_TINYPICO/micropython.bin
+Executing action: all (aliases: build)
+Running cmake in directory /home/iot/micropython/ports/esp32/build-UM_TINYPICO
+Executing &quot;cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DESP_PLATFORM=1 -DMICROPY_BOARD=UM_TINYPICO -DCCACHE_ENABLE=1 /home/iot/micropython/ports/esp32&quot;...
+Running ninja in directory /home/iot/micropython/ports/esp32/build-UM_TINYPICO
+Executing &quot;ninja all&quot;...
 
+Project build complete. To flash, run this command:
+/opt/esp/python_env/idf4.2_py3.7_env/bin/python ../../../../../opt/esp/idf/components/esptool_py/esptool/esptool.py -p (PORT) -b 460800 --before default_reset --after hard_reset --chip esp32  write_flash --flash_mode dio --flash_size detect --flash_freq 80m 0x1000 build-UM_TINYPICO/bootloader/bootloader.bin 0x8000 build-UM_TINYPICO/partition_table/partition-table.bin 0x10000 build-UM_TINYPICO/micropython.bin
+or run &#39;idf.py -p (PORT) flash&#39;
+bootloader  @0x001000    24656  (    4016 remaining)
+partitions  @0x008000     3072  (    1024 remaining)
+application @0x010000  1521200  (   51664 remaining)
+total                  1586736
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="unix-version">
+<h3>Unix version<a class="headerlink" href="#unix-version" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
+
+<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
+<span class="n">make</span> <span class="n">submodules</span>
+<span class="n">make</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check it out:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+
+<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
+<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sys; print(sys.platform)&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>linux
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+
+<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
+<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">m</span> <span class="n">upip</span> <span class="n">install</span> <span class="n">micropython</span><span class="o">-</span><span class="n">pystone</span>
+<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">m</span> <span class="n">pystone</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing to: /home/iot/.micropython/lib/
+Warning: micropython.org SSL certificate is not validated
+Installing micropython-pystone 3.4.2.post2 from https://micropython.org/pi/pystone/pystone-3.4.2.post2.tar.gz
+Pystone(1.2) time for 50000 passes = 0.981
+This machine benchmarks at 50968.4 pystones/second
 </pre></div>
 </div>
 </div>
