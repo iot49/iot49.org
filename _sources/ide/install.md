@@ -9,14 +9,17 @@ To install *ide49*, you need the following:
     * Raspberry Pi 3
     * Intel NUC or compatible
     
-  Other 64-Bit ARM or Intel CPUs (`aarch64` or `amd64`) may work as well.
+  Other 64-Bit ARM or Intel CPUs (`aarch64` or `amd64`) may work as well; these are the ones I have tried and am using.
 * SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).
+    * Not needed for installation on Intel NUC or compatible
 * A networked computer (e.g. a laptop) with an SD Card slot (only used for installation)
 
 **Software:**
 
 * Web-browser (e.g. Chrome)
+    * All access is from a browser
 * [Balena Etcher](https://www.balena.io/etcher/), available for Mac, Window, and Linux
+    * The only tool you need to install, and it's used only for installation
 
 ## Download Balena OS
 
@@ -34,21 +37,29 @@ Leave the other variables at their defaults (they can be changed later) and clic
 
 Accept the defaults for everything else and hit the `Download balenaOS` button. Keep the browser window open for checking progress later.
 
-## Flash Balena OS to SD Card
+## Install Balena OS
+
+### Raspberry PI
 
 Once the download finishes, start the [Balena Etcher](https://www.balena.io/etcher/) to flash the downloaded zip-file to an SD Card. Insert the card in your computer (laptop), click *Flash from file* and choose the *balena-cloud ... img.zip*, choose the SD Card as target and hit `Flash`. You may be asked to enter the administrator password to enable the flash.
 
-## Install *ide49* on the Raspberry Pi
+Remove the SD Card from the host and insert it into the Raspberry Pi.
 
-Remove the SD Card from the host and insert it into the Raspberry Pi, power up the device. It will automatically configure the OS. Head back to the browser window with the *Balena dashboard* and wait a few minutes for the new device to appear.
+### Intel NUC
+
+Intel NUC or compatibles typically install the OS from a thumb drive or other external medium to the internal disk. Detailed instructions are [here](https://www.balena.io/os/docs/intel-nuc/getting-started/).
+
+## Install *ide49*
+
+Power up the device. It will automatically configure the OS. Head back to the browser window with the *Balena dashboard* and wait a few minutes for the new device to appear.
 
 ![Balena dashboard](figures/device_dashboard.png)
 
-The new device has some creative name (like *hidden-sun*). Click on the device name. The top of the page show poetic device name. Click the pencil to change it. Also listed are some statistics of your Raspberry Pi (memory usage, device temperature, local ip address, etc). 
+The new device has some creative name (like *hidden-sun*). Click on the device name. The top of the page show poetic device name. Click the pencil to change it. Also listed are some statistics (memory usage, device temperature, local ip address, etc). 
 
 ![Balena device status](figures/device_stats.png)
 
-Click the application name in the Balena dashboard and wait for the release to complete (about twenty minutes). Once it's complete, the Raspberry Pi will automatically download it. You can see the progress in the device window with populates itself with a list of services. 
+Click the application name in the Balena dashboard and wait for the release to complete (about twenty minutes). Once it's complete, the Balena will automatically download *ide49*. You can see the progress in the device window with populates itself with a list of services. 
 
 ![Balena services](figures/balena_downloading.png)
 
@@ -58,9 +69,9 @@ After the download completes the application will automatically start.
 ![Balena services](figures/services.png)
 ```
 
-## Connect to the Raspberry Pi
+## Connect to *ide49*
 
-Once the download completes and the application started (as indicated in the device dashboard), connect to the Raspberry Pi at http://iot49.local.
+Once the download completes and the application started (as indicated in the device dashboard), connect to the IDE at http://iot49.local.
 
 If this does not work, try http://LOCAL_IP_ADDRESS instead. Substitute the value *LOCAL_IP_ADDRESS* with the address shown on the device dashboard.
 
@@ -72,9 +83,9 @@ Click on `Jupyter`. You will get a warning similar to:
 :width: 500px
 ```
 
-Click "Advanced" and then "proceed anyway". The page about [https & certificates](config/https) has information about this warning and explains how to eliminated it.
+Click "Advanced" and then "proceed anyway". The page [https & certificates](config/https) has information about this warning and explains how it can be eliminated.
 
-At the login window, enter the default username and password are (both *iot49*; [instructions for changing](config/password.ipynb)). 
+At the login window, enter the default username and password (both *iot49*; [instructions for changing](config/password.ipynb)). 
 
 <div style="font-size:15pt;font-weight:bold;text-align:center;color:green">Congratulations, you have completed the installation!</div>
 </p>
@@ -83,6 +94,6 @@ At the login window, enter the default username and password are (both *iot49*; 
 
 Proceed to the next section, [Getting Started](getting-started).
 
-## Turning off the Raspberry Pi
+## Shutdown
 
-To turn off your Raspberry Pi don't just pull the power cord. Instead head to the dashboard on https://balena.io. At the top right is a button. Click it to get several options, including *shutdown*.
+To turn off your computer don't just pull the power cord. Instead head to the dashboard on https://balena.io. At the top right is a button. Click it to get several options, including *shutdown*.

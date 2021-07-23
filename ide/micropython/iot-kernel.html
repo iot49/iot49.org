@@ -206,7 +206,7 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Projects
+  Tours &amp; Projects
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -278,13 +278,33 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/internet/encryption.html">
-     Encryption
+    <a class="reference internal" href="../../projects/internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/mqtt.html">
+     MQTT
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../projects/internet/plotserver.html">
      Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/encryption.html">
+     Encryption
     </a>
    </li>
   </ul>
@@ -480,12 +500,29 @@ optional arguments:
 </div>
 </div>
 </div>
-<p>Magics not recognized by the <em>IoT Kernel</em> are sent to to underlying ipython kernel for evaluation. E.g.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>usage: %%host [-h]
+
+Pass cell to host (cPython) for evaluation.
+
+optional arguments:
+  -h, --help  show this help message and exit
+
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="micropython">
 <h2>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h2>
-<p>At any one time, the kernel is connected to one (or no) microcontroller. Code typed into Jupyter cells is sent to the “connected” microcontroller for evaluation. The <code class="docutils literal notranslate"><span class="pre">%discover</span></code> magic scans USB ports and listens to DNS advertisements for available devices. For each device to which connection is successful, the magic reports the device name, URL, and UID. Device names are specified in <a class="reference external" href="#device-configuration">configuration files</a>).</p>
-<p><strong>Note:</strong> Use a powered USB hub to reliably connect more than one microcontroller to the Raspberry Pi!</p>
+<p>At any one time, the kernel is connected to one (or no) microcontroller. Code typed into Jupyter cells is sent to the “connected” microcontroller for evaluation. The <code class="docutils literal notranslate"><span class="pre">%discover</span></code> magic scans USB ports and listens for advertisements from available devices without hunting down USB port names or IP addresses. For each device to which connection is successful, the magic reports the device name, URL, and, optionally, UID (<code class="docutils literal notranslate"><span class="pre">-v</span></code> flag). Device names are specified in <a class="reference external" href="#device-configuration">configuration files</a>).</p>
+<p><strong>Note:</strong> Use a powered USB hub to reliably connect more than one microcontroller (especially power hungry ESP32’s) to a Raspberry Pi!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
@@ -504,10 +541,10 @@ huzzah32    serial:///dev/ttyUSB1
 </div>
 </div>
 </div>
-<p>The esp32 is available both over USB (serial:///dev/ttyUSB2) and wirelessly webrepl (ws://10.39.40.135:8266).</p>
+<p>The esp32 is available both over USB (serial:///dev/ttyUSB2) and wirelessly via webrepl (ws://10.39.40.135:8266).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="s2">&quot;ws://10.39.40.135:8266&quot;</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">test</span><span class="o">-</span><span class="n">esp32</span> <span class="n">ws</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">**</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
@@ -525,7 +562,8 @@ huzzah32    serial:///dev/ttyUSB1
 </div>
 </div>
 </div>
-<p>Connection to a device is maintained until changed. The <code class="docutils literal notranslate"><span class="pre">%%connect</span></code> cell magic runs code sequentially on one or more processors:</p>
+<p>Connection to a device is maintained until changed. <em>Hint:</em> open several notebooks to connect to more than one device simultaneously.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">%%connect</span></code> cell magic runs code sequentially on one or more processors:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">connect</span> <span class="o">--</span><span class="nb">all</span> <span class="o">--</span><span class="n">host</span>
@@ -606,7 +644,7 @@ NameError: name &#39;a&#39; isn&#39;t defined
 </div>
 </div>
 </div>
-<p>Check <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> for additional commands.</p>
+<p>Consult <a class="reference internal" href="dev_config.html"><span class="doc std std-doc">device configuration</span></a> for automated file upload. The kernel has many more features. <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> prints a complete list; use help (<code class="docutils literal notranslate"><span class="pre">-h</span></code> flag) on individual magics for documentation and examples.</p>
 </div>
 </div>
 

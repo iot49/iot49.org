@@ -206,7 +206,7 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Projects
+  Tours &amp; Projects
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -278,13 +278,33 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/internet/encryption.html">
-     Encryption
+    <a class="reference internal" href="../projects/internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/internet/sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/internet/requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/internet/mqtt.html">
+     MQTT
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../projects/internet/plotserver.html">
      Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/internet/encryption.html">
+     Encryption
     </a>
    </li>
   </ul>
@@ -410,10 +430,10 @@
 <p>All interaction with microcontrollers takes place in the <a class="reference external" href="https://jupyter.org/"><em>Jupyter Lab</em></a> service. <em>Jupyter</em> is a popular interactive Python programming environment. You can find many online tutorials and videos. Below we quickly go over the main features with special focus on the customizations for programming microcontrollers.</p>
 <div class="section" id="jupyter-lab">
 <h2>Jupyter Lab<a class="headerlink" href="#jupyter-lab" title="Permalink to this headline">¶</a></h2>
-<p>To access <em>Jupyter Lab</em> in <em>ide49</em>, go to <a class="reference external" href="https://iot49.local/jupyter">https://iot49.local/jupyter</a> (change the name if you modified the DNS name of the Raspberry Pi) or from the <em>Jupyter</em> link of <em>ide49</em> dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
+<p>To access <em>Jupyter Lab</em> in <em>ide49</em>, go to <a class="reference external" href="https://iot49.local/jupyter">https://iot49.local/jupyter</a> (change the name if you modified the DNS name) or from the <em>Jupyter</em> link of <em>ide49</em> dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
 <p>You will be presented with the page below.</p>
 <p><img alt="Jupyter" src="../_images/jupyter_annotated.png" /></p>
-<p>For illustration, the key features are highlighted. The main features are a <em>Python 3 Kernel</em> that executes Python 3 on the host (Raspberry Pi), a <em>Terminal</em> for running shell commands, and, the <a class="reference internal" href="micropython/iot-kernel.html"><span class="doc std std-doc"><strong>IoT Kernel</strong></span></a> for programming microcontrollers.</p>
+<p>For illustration, the key features are highlighted. The main features are a <em>Python 3 Kernel</em> that executes Python 3 on the host (e.g. Raspberry Pi), a <em>Terminal</em> for running shell commands, and, the <a class="reference internal" href="micropython/iot-kernel.html"><span class="doc std std-doc"><strong>IoT Kernel</strong></span></a> for programming microcontrollers.</p>
 <p>To start an <em>IoT Kernel</em>, click on its icon:</p>
 <p><img alt="IoT Kernel" src="../_images/iot_kernel_annotated.png" /></p>
 <p>Like all <em>Jupyter</em> kernels, you type code into <em>cells</em>, and click <code class="docutils literal notranslate"><span class="pre">shift-enter</span></code> (return while holding down the shift key) to execute it.</p>
@@ -485,7 +505,7 @@ Cell Magic:    -h shows help (e.g. %%connect -h)
 </div>
 <div class="section" id="micropython">
 <h2>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h2>
-<p>Connect a microcontroller to one of the USB ports of the Raspberry Pi. If MicroPython is not yet installed, follow the instructions <a class="reference internal" href="micropython/flash.html"><span class="doc std std-doc">here</span></a>.</p>
+<p>Connect a microcontroller to one of the USB ports. If MicroPython is not yet installed, follow the instructions <a class="reference internal" href="micropython/flash.html"><span class="doc std std-doc">here</span></a>.</p>
 <p>Then run the <code class="docutils literal notranslate"><span class="pre">%discover</span></code> magic:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -571,7 +591,7 @@ platform: linux   implementation: cpython
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">uid</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <em>IoT Kernel</em> uses <em>UIDs</em> to unambiguously distinguish devices. Identifying microcontrollers with hexadecimal strings is useful for keeping track of devices (I have an entire drawer full), but about as informative and convenient to remember as a phone number.</p>
+<p>The <em>IoT Kernel</em> uses <em>UIDs</em> to unambiguously distinguish devices. Identifying microcontrollers with hexadecimal strings is useful for keeping track of devices and interact with several simultaneously, but about as informative and convenient to remember as a phone number.</p>
 <p>Fortunately it is easy to associate the device with a “name”, by simply recording this information in a file and saving it to folder <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/devices</span></code>. The <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> magic does this for us:</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
