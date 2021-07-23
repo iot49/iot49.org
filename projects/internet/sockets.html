@@ -816,10 +816,11 @@ total 12
 
 <span class="n">PORT</span> <span class="o">=</span> <span class="mi">443</span>
 
-<span class="c1"># Chrome refuses to connect, perhaps since domain does not match?</span>
+<span class="c1"># Chrome refuses to connect, presumably because certificate &amp; url do not match</span>
 
 <span class="c1"># This self-signed key/cert pair is randomly generated and to be used for</span>
 <span class="c1"># testing/demonstration only.  You should always generate your own key/cert.</span>
+<span class="c1"># How produce hex certificate?</span>
 <span class="n">key</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span>
     <span class="sa">b</span><span class="s2">&quot;3082013b020100024100cc20643fd3d9c21a0acba4f48f61aadd675f52175a9dcf07fbef&quot;</span>
     <span class="sa">b</span><span class="s2">&quot;610a6a6ba14abb891745cd18a1d4c056580d8ff1a639460f867013c8391cdc9f2e573b0f&quot;</span>

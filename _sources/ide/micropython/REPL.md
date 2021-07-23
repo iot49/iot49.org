@@ -9,3 +9,5 @@ picocom -b115200 /dev/ttyUSB0
 ```{toggle}
 ![REPL](figures/repl.png)
 ```
+
+**Hint:** If MicroPython displays no output, it may be in "raw repl" mode. Type `ctrl-B` at the console to return to the "friendly repl".
