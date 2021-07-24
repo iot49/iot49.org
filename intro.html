@@ -50,6 +50,7 @@
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://iot49.org/intro.html" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Install" href="ide/install.html" />
@@ -174,7 +175,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="ide/app.html">
-   App
+   Docker App
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -402,7 +403,7 @@
                 
   <div class="section" id="micropython-ide">
 <h1>MicroPython IDE<a class="headerlink" href="#micropython-ide" title="Permalink to this headline">¶</a></h1>
-<p><em>ide49</em> offers a comprehensive set of tools &amp; growing list of examples for developing applications for microcontrollers with special support for <a class="reference external" href="https://micropython.org/">MicroPython</a>. The IDE runs on a dedicated computer (Raspberry PI or generic Intel/AMD processor) configured from the web with a one-click installer. All features are available through a standard web browser - no need to install and maintain complex software on your laptop!</p>
+<p><em>ide49</em> offers a comprehensive set of tools &amp; growing list of examples for developing applications for microcontrollers with special support for <a class="reference external" href="https://micropython.org/">MicroPython</a>. The IDE runs on a dedicated computer (Raspberry PI or generic Intel/AMD processor). Each feature runs in a separate <a class="reference external" href="https://www.docker.com/">Docker</a> container. All features - including installation - are available through a standard web browser - no need to install and maintain complex software on your laptop!</p>
 <ul class="simple">
 <li><p>Jupyter environment</p>
 <ul>
@@ -419,7 +420,10 @@
 <li><p>Wireshark (analyze network traffic)</p></li>
 <li><p>Samba/CIFS server and client</p></li>
 <li><p>Update IDE from within (modify or add features, e.g. support for databases)</p></li>
+<li><p>Shell terminal window (with password free sudo)</p></li>
 </ul>
+<p>Wouldn’t the same software run on a laptop? Absolutely! Without Docker, compatibility could be an issue. For example, jupyter and the balena ide require different version of node. Docker solves this. However, in <em>ide49</em> most containers have to be run “privileged”, giving them essentially root access. This may be an acceptable security risk on a dedicated device that does not store personal information, but a major concern on a computer used e.g. to do banking or store personal medical records.</p>
+<p>But isn’t this slow? No. I moved all my MicroPython development (including compiling the interpreter) from an Intel I7 CPU to a Raspberry Pi 4 with 2 GB memory without noticing performance degradation relevant for my workflow. Having all the tools available and in one place</p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">

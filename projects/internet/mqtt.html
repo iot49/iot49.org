@@ -50,6 +50,7 @@
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://iot49.org/projects/internet/mqtt.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Plotserver" href="plotserver.html" />
@@ -175,7 +176,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../ide/app.html">
-   App
+   Docker App
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -403,6 +404,93 @@
                 
   <div class="section" id="mqtt">
 <h1>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.hivemq.com/demos/websocket-client/">Web mqtt client</a></p></li>
+<li><p>Command line tools: mosquitto_pub, mosquitto_sub</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+
+<span class="kn">from</span> <span class="nn">paho.mqtt.client</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Event</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">USE_WS</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">BROKER</span> <span class="o">=</span> <span class="s1">&#39;10.39.40.200&#39;</span>
+
+<span class="k">if</span> <span class="n">USE_WS</span><span class="p">:</span>
+    <span class="n">PORT</span> <span class="o">=</span> <span class="mi">9001</span>
+    <span class="n">TRANSPORT</span> <span class="o">=</span> <span class="s1">&#39;websockets&#39;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">PORT</span> <span class="o">=</span> <span class="mi">1883</span>
+    <span class="n">TRANSPORT</span> <span class="o">=</span> <span class="s1">&#39;tcp&#39;</span>
+
+<span class="c1"># on_message runs on a different thread ...</span>
+<span class="n">connected</span> <span class="o">=</span> <span class="n">Event</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;message received: </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">topic</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">message</span><span class="o">.</span><span class="n">payload</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_connect</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">connected</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>
+    <span class="n">connected</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+    
+<span class="k">def</span> <span class="nf">on_disconnect</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">connected</span>
+    <span class="n">connected</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;disconnected, rc=</span><span class="si">{</span><span class="n">rc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> 
+    
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="s2">&quot;client-socks&quot;</span><span class="p">,</span> <span class="n">transport</span><span class="o">=</span><span class="n">TRANSPORT</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">on_message</span> <span class="o">=</span> <span class="n">on_message</span>
+<span class="n">client</span><span class="o">.</span><span class="n">on_connect</span> <span class="o">=</span> <span class="n">on_connect</span>
+<span class="n">client</span><span class="o">.</span><span class="n">on_disconnect</span> <span class="o">=</span> <span class="n">on_disconnect</span>
+<span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">BROKER</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)</span>
+
+<span class="c1"># start a separate thread listening to messages</span>
+<span class="n">client</span><span class="o">.</span><span class="n">loop_start</span><span class="p">()</span>
+
+<span class="c1"># wait for connection before publishing</span>
+<span class="n">connected</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;demo/topic_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">msg</span>   <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;msg </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">publish </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="c1"># keep listening to messages</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+publish demo/topic_0 = msg 0
+message received: demo/topic_0 = b&#39;msg 0&#39;
+
+publish demo/topic_1 = msg 1
+message received: demo/topic_1 = b&#39;msg 1&#39;
+
+publish demo/topic_2 = msg 2
+message received: demo/topic_2 = b&#39;msg 2&#39;
+
+publish demo/topic_3 = msg 3
+message received: demo/topic_3 = b&#39;msg 3&#39;
+
+publish demo/topic_4 = msg 4
+message received: demo/topic_4 = b&#39;msg 4&#39;
+
+disconnected, rc=0
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

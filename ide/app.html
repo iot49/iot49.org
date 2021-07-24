@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>App &#8212; Electronics for IoT</title>
+    <title>Docker App &#8212; Electronics for IoT</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -50,6 +50,7 @@
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="canonical" href="https://iot49.org/ide/app.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Overview" href="app/overview.html" />
@@ -175,7 +176,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
-   App
+   Docker App
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -206,7 +207,7 @@
 </ul>
 <p class="caption">
  <span class="caption-text">
-  Projects
+  Tours &amp; Projects
  </span>
 </p>
 <ul class="nav bd-sidenav">
@@ -278,13 +279,33 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/internet/encryption.html">
-     Encryption
+    <a class="reference internal" href="../projects/internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/internet/sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/internet/requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/internet/mqtt.html">
+     MQTT
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../projects/internet/plotserver.html">
      Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/internet/encryption.html">
+     Encryption
     </a>
    </li>
   </ul>
@@ -381,9 +402,10 @@
         
               <div>
                 
-  <div class="section" id="app">
-<h1>App<a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h1>
-<p>The softare needed to develop IoT applications varies widely. While <em>iot49</em> attempts to offer a comprehensive set of software, requirements invariably vary for different projects. Fortunately <em>ide49</em> can easily be customized.</p>
+  <div class="section" id="docker-app">
+<h1>Docker App<a class="headerlink" href="#docker-app" title="Permalink to this headline">¶</a></h1>
+<p><em>ide49</em> is a docker application, consisting of several containers, loosely coupled via shared data and a dedicated internal network. Each has its own copy of Linux, avoiding incompatibilites, e.g. from different libraries.</p>
+<p>Customization - both modifying existing features and adding new ones, e.g. database support or specialized or proprietary tools needed by your project - can be done easily and safely, right from within <em>ide49</em>.</p>
 <p>This chapter describes the <em>ide49</em> docker application and specific <a class="reference internal" href="app/customize.html"><span class="doc std std-doc">instructions</span></a> to customize it.</p>
 <div class="toctree-wrapper compound">
 </div>
