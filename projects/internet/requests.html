@@ -310,6 +310,23 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/particle.html">
+     MicroPython on a Particle Argon
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -404,6 +421,504 @@
                 
   <div class="section" id="requests">
 <h1>Requests<a class="headerlink" href="#requests" title="Permalink to this headline">¶</a></h1>
+<p>For downloading web content, Python features the <a class="reference external" href="https://docs.python-requests.org/en/master/user/quickstart/"><code class="docutils literal notranslate"><span class="pre">requests</span></code></a> library. MicroPython <code class="docutils literal notranslate"><span class="pre">urequests</span></code> implements a subset of this library. Let’s download it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span>
+<span class="o">%</span><span class="n">upip</span> <span class="o">-</span><span class="n">t</span> <span class="n">internet</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">lib</span> <span class="n">install</span> <span class="n">urequests</span>
+<span class="o">%</span><span class="n">rsync</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
+Installing micropython-urequests 0.6 from https://micropython.org/pi/urequests/urequests-0.6.tar.gz
+<span class=" -Color -Color-Blue">UPDATE  /lib/urequests.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Fetch a sample webpage:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urequests</span> <span class="k">as</span> <span class="nn">requests</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://micropython.org&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1"># recycle the memory when downloading large pages</span>
+<span class="n">res</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;!DOCTYPE html&gt;
+
+
+
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+    &lt;!-- The above 3 meta tags *must* come first in the head --&gt;
+
+    &lt;link rel=&quot;icon&quot; href=&quot;/static/img/favicon.ico&quot;&gt;
+
+    &lt;title&gt;MicroPython - Python for microcontrollers&lt;/title&gt;
+
+    &lt;link href=&quot;/static/bootstrap-3.3.7-dist/css/bootstrap.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+    &lt;link href=&quot;/static/css/style.css?v=2&quot; rel=&quot;stylesheet&quot;&gt;
+
+    
+  &lt;link href=&quot;/static/css/pygments.css&quot; rel=&quot;stylesheet&quot;&gt;
+  &lt;link href=&quot;/static/home/css/style.css&quot; rel=&quot;stylesheet&quot;&gt;
+
+
+    &lt;link href=&quot;https://fonts.googleapis.com/css?family=Open+Sans:400,700,800&quot; rel=&quot;stylesheet&quot;&gt;
+    &lt;link href=&quot;https://fonts.googleapis.com/css?family=Montserrat:400,700&quot; rel=&quot;stylesheet&quot;&gt;
+
+    &lt;meta property=&quot;og:type&quot; content=&quot;website&quot; /&gt;
+    &lt;meta property=&quot;og:url&quot; content=&quot;http://micropython.org/&quot; /&gt;
+    &lt;meta property=&quot;og:title&quot; content=&quot;MicroPython - Python for microcontrollers&quot; /&gt;
+    &lt;meta property=&quot;og:description&quot; content=&quot;MicroPython is a lean and efficient
+        implementation of the Python 3 programming language
+        that includes a small subset of the Python standard library and is
+        optimised to run on microcontrollers and in constrained environments.&quot; /&gt;
+    &lt;meta property=&quot;og:image&quot; content=&quot;http://micropython.org/static/img/Mlogo_138wh.png&quot; /&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;nav class=&quot;navbar navbar-dark&quot; role=&quot;navigation&quot;&gt;
+    &lt;div class=&quot;main-menu&quot;&gt;
+        &lt;a class=&quot;navbar-brand&quot; href=&#39;http://micropython.org&#39;&gt;
+            &lt;span&gt;
+                &lt;img src =&quot;/static/img/Mlogo_138wh.png&quot; width=&quot;50px&quot;&gt;
+            &lt;/span&gt;
+            &lt;span&gt;
+                MicroPython
+            &lt;/span&gt;
+        &lt;/a&gt;
+
+        &lt;button type=&quot;button&quot; class=&quot;navbar-toggle collapsed&quot; data-toggle=&quot;collapse&quot; data-target=&quot;#navbar&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;navbar&quot;&gt;
+            &lt;span class=&quot;sr-only&quot;&gt;Toggle navigation&lt;/span&gt;
+            &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+            &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+            &lt;span class=&quot;icon-bar&quot;&gt;&lt;/span&gt;
+        &lt;/button&gt;
+
+        &lt;div id=&quot;navbar&quot; class=&quot;collapse navbar-collapse&quot;&gt;
+        &lt;ul class=&quot;nav navbar-nav&quot;&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link&quot; href=&quot;http://forum.micropython.org&quot;&gt;FORUM&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link&quot; href=&quot;http://docs.micropython.org&quot;&gt;DOCS&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link&quot; href=&quot;http://docs.micropython.org/en/latest/pyboard/quickref.html&quot;&gt; QUICK-REF &lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link&quot; href=&quot;/download&quot;&gt;DOWNLOAD&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link&quot; href=&quot;https://store.micropython.org&quot;&gt;STORE&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li class=&quot;nav-item&quot;&gt;
+                &lt;a class=&quot;nav-link&quot; href=&quot;/contact&quot;&gt;CONTACT&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+
+    &lt;div id=&quot;sidebar&quot; style=&quot;float:right;margin-right:16px;&quot;&gt;
+        
+&lt;!--
+    &lt;a class=&quot;twitter-timeline&quot; width=&quot;250&quot; height=&quot;360&quot; data-dnt=&quot;true&quot; href=&quot;https://twitter.com/micropython&quot; data-widget-id=&quot;518789851701714944&quot;&gt;Tweets by @micropython&lt;/a&gt;
+    &lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?&#39;http&#39;:&#39;https&#39;;if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+&quot;://platform.twitter.com/widgets.js&quot;;fjs.parentNode.insertBefore(js,fjs);}}(document,&quot;script&quot;,&quot;twitter-wjs&quot;);&lt;/script&gt;
+    --&gt;
+
+    &lt;/div&gt;
+
+    &lt;div class=&quot;container&quot;&gt;
+        
+
+&lt;div class=&quot;headline&quot;&gt;
+  &lt;div class=&quot;row&quot;&gt;
+    &lt;div class=&quot;col-md-offset-1 col-md-5 col-xs-9&quot;&gt;
+      &lt;h1 class=&quot;huge-title&quot;&gt;MicroPython&lt;/h1&gt;
+      &lt;p&gt;
+        MicroPython is a lean and efficient implementation of the
+        &lt;a href=&quot;http://www.python.org/&quot;&gt;Python 3&lt;/a&gt; programming language
+        that includes a small subset of the Python standard library and is
+        optimised to run on microcontrollers and in constrained environments.
+      &lt;/p&gt;
+      &lt;p&gt;
+        The MicroPython &lt;a href=&quot;/pyboard&quot;&gt;pyboard&lt;/a&gt; is a compact electronic
+        circuit board that runs MicroPython on the bare metal, giving you a low-level
+        Python operating system that can be used to control all kinds of electronic
+        projects.
+      &lt;/p&gt;
+      &lt;p&gt;
+        MicroPython is packed full of advanced features such as an interactive
+        prompt, arbitrary precision integers, closures, list comprehension,
+        generators, exception handling and more.  Yet it is compact enough to fit and
+        run within just 256k of code space and 16k of RAM.
+      &lt;/p&gt;
+      &lt;p&gt;
+        MicroPython aims to be as compatible with normal Python as possible to
+        allow you to transfer code with ease from the desktop to a microcontroller
+        or embedded system.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;row&quot; style=&quot;margin:70px 0;&quot;&gt;
+    &lt;div class=&quot;col-md-12 text-center&quot;&gt;
+      &lt;span style=&quot;margin: 0 2em;&quot;&gt;
+        &lt;a href=&quot;http://micropython.org/live&quot; class=&quot;red-button&quot;&gt;TEST DRIVE A PYBOARD&lt;/a&gt;
+      &lt;/span&gt;
+      &lt;span style=&quot;margin: 0 2em;&quot;&gt;
+        &lt;a href=&quot;https://store.micropython.org&quot; class=&quot;red-button&quot; style=&quot;background-color:#33aa33&quot;&gt;BUY A PYBOARD&lt;/a&gt;
+      &lt;/span&gt;
+      &lt;span style=&quot;margin: 0 2em;&quot;&gt;
+        &lt;a href=&quot;/unicorn&quot; class=&quot;red-button&quot;&gt;USE MICROPYTHON ONLINE&lt;/a&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt; &lt;!-- headline --&gt;
+
+&lt;div class=&quot;row row-white&quot;&gt;
+  &lt;div class=&quot;col-md-12 text-center&quot;&gt;
+    &lt;h1&gt; Proper Python with hardware-specific modules &lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-md-offset-1 col-md-5&quot;&gt;
+    &lt;p&gt;
+    MicroPython is a full Python compiler and runtime that runs on the bare-metal.
+    You get an interactive prompt (the REPL) to execute commands immediately,
+    along with the ability to run and import scripts from the built-in filesystem.
+    The REPL has history, tab completion, auto-indent and paste mode for a great
+    user experience.
+    &lt;/p&gt;
+    &lt;p&gt;
+    MicroPython strives to be as compatible as possible with normal Python (known
+    as CPython) so that if you know Python you already know MicroPython.  On the
+    other hand, the more you learn about MicroPython the better you become at Python.
+    &lt;/p&gt;
+    &lt;p&gt;
+    In addition to implementing a selection of core Python libraries, MicroPython
+    includes modules such as &amp;quot;machine&amp;quot; for accessing low-level hardware.
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-md-5&quot;&gt;
+    &lt;div class=&quot;row&quot;&gt;
+      &lt;div id=&quot;example-code&quot; class=&quot;col-md-12&quot;&gt;&lt;/div&gt;
+      &lt;div id=&quot;example-prev&quot; class=&quot;col-md-offset-3 col-md-1 text-center&quot;&gt; &amp;#8592; &lt;/div&gt;
+      &lt;div id=&quot;example-index&quot; class=&quot;col-md-4 text-center&quot;&gt; &lt;/div&gt; 
+      &lt;div id=&quot;example-next&quot; class=&quot;col-md-1 text-center&quot;&gt; &amp;#8594; &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row row-white&quot;&gt;
+  &lt;div class=&quot;col-md-12 text-center&quot;&gt;
+    &lt;h1&gt; The pyboard &lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-6 col-xs-offset-3 col-md-offset-1 col-md-4&quot;&gt;
+    &lt;a href=&quot;/static/pyboard&quot;&gt;
+      &lt;img src =&quot;/static/home/img/pybv11-persp.jpg&quot; width=&quot;360px&quot; class=&quot;img-responsive&quot; alt=&quot;pyboard v1.1&quot;&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-12 col-md-6&quot;&gt;
+    The pyboard is the official MicroPython microcontroller board with
+    full support for software features.  The hardware has:
+    &lt;ul&gt;
+      &lt;li&gt; STM32F405RG microcontroller &lt;/li&gt;
+      &lt;li&gt; 168 MHz Cortex M4 CPU with hardware floating point &lt;/li&gt;
+      &lt;li&gt; 1024KiB flash ROM and 192KiB RAM &lt;/li&gt;
+      &lt;li&gt; Micro USB connector for power and serial communication &lt;/li&gt;
+      &lt;li&gt; Micro SD card slot, supporting standard and high capacity SD cards &lt;/li&gt;
+      &lt;li&gt; 3-axis accelerometer (MMA7660) &lt;/li&gt;
+      &lt;li&gt; Real time clock with optional battery backup &lt;/li&gt;
+      &lt;li&gt; 24 GPIO on left and right edges and 5 GPIO on bottom row, plus LED and switch GPIO available on bottom row &lt;/li&gt;
+      &lt;li&gt; 3x 12-bit analog to digital converters, available on 16 pins, 4 with analog ground shielding &lt;/li&gt;
+      &lt;li&gt; 2x 12-bit digital to analog (DAC) converters, available on pins X5 and X6 &lt;/li&gt;
+      &lt;li&gt; 4 LEDs (red, green, yellow and blue) &lt;/li&gt;
+      &lt;li&gt; 1 reset and 1 user switch &lt;/li&gt;
+      &lt;li&gt; On-board 3.3V LDO voltage regulator, capable of supplying up to 250mA, input voltage range 3.6V to 16V &lt;/li&gt;
+      &lt;li&gt; DFU bootloader in ROM for easy upgrading of firmware &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;!--
+        The pyboard is manufactured in the UK by &lt;a href=&quot;http://www.jaltek.com&quot;&gt;Jaltek Systems&lt;/a&gt;.
+        &lt;a href=&quot;http://www.jaltek.com&quot;&gt;&lt;img src =&quot;/static/home/img/jaltek.png&quot; width=&quot;200px&quot; style=&quot;margin-top:5em; margin-left:3em;&quot;&gt;&lt;/a&gt;
+        --&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-md-12 text-center&quot; style=&quot;margin:50px 0;&quot;&gt;
+    &lt;a href=&quot;https://store.micropython.org&quot; class=&quot;red-button&quot;&gt;Visit the store to order!&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-12 col-md-8 col-md-offset-2 text-center&quot;&gt;
+    &lt;a href=&quot;http://docs.micropython.org/en/latest/pyboard/quickref.html&quot;&gt;
+      &lt;img src =&quot;/static/home/img/pybv10b-pinout.jpg&quot; width=&quot;750px&quot; class=&quot;img-responsive&quot; alt=&quot;pyboard quick reference&quot;&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row row-black&quot;&gt;
+  &lt;div class=&quot;col-md-12 text-center&quot;&gt;
+    &lt;h1&gt; Watch MicroPython in action &lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-12 col-md-8 col-md-offset-2 text-center&quot;&gt;
+    &lt;iframe width=&quot;780&quot; height=&quot;439&quot; src=&quot;//www.youtube.com/embed/5LbgyDmRu9s?rel=0&quot; frameborder=&quot;0&quot; allowfullscreen style=&quot;width:100%;&quot;&gt;&lt;/iframe&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row row-white&quot;&gt;
+  &lt;div class=&quot;col-md-12 text-center&quot;&gt;
+    &lt;h1&gt; Completely free, open source software &lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-6 col-xs-offset-3 col-md-offset-2 col-md-4&quot;&gt;
+    &lt;img src =&quot;/static/home/img/opensource.jpg&quot; width=&quot;360px&quot; class=&quot;img-responsive&quot; alt=&quot;MicroPython is open-source&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-xs-12 col-md-4&quot;&gt;
+    &lt;p&gt;
+    MicroPython is written in C99 and the entire MicroPython core is
+    available for general use under the very liberal
+    &lt;a href=&quot;https://github.com/micropython/micropython/blob/master/LICENSE&quot;&gt;MIT license&lt;/a&gt;.
+    Most libraries and extension modules (some of which are from a third party) are
+    also available under MIT or similar licenses.
+    &lt;/p&gt;
+    &lt;p&gt;
+    You can freely use and adapt MicroPython for personal use, in education, and
+    in commercial products.
+    &lt;/p&gt;
+    &lt;p&gt;
+    MicroPython is developed in the open on GitHub and the source code is available
+    at &lt;a href=&quot;https://github.com/micropython/micropython&quot;&gt;the GitHub page&lt;/a&gt;,
+    and on the &lt;a href=&quot;/download&quot;&gt;download page&lt;/a&gt;.
+    Everyone is welcome to contribute to the project.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row row-white&quot;&gt;
+  &lt;div class=&quot;col-md-12 text-center&quot;&gt;
+    &lt;h1&gt; Code: state-of-the-art and highly robust &lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-md-offset-2 col-md-8&quot;&gt;
+    &lt;p&gt;
+    MicroPython employs many advanced coding techniques, and lots of tricks
+    to maintain a compact size while still having a full set of features.
+    &lt;/p&gt;
+    &lt;p&gt;
+    Some of the more notable items are:
+    &lt;ul&gt;
+      &lt;li&gt; highly configurable due to many compile-time configuration options &lt;/li&gt;
+      &lt;li&gt; support for many architectures (x86, x86-64, ARM, ARM Thumb, Xtensa)&lt;/li&gt;
+      &lt;li&gt; extensive &lt;a href=&quot;https://github.com/micropython/micropython/tree/master/tests&quot;&gt;test suite&lt;/a&gt; with over 590 tests, and more than 18,500 individual testcases &lt;/li&gt;
+      &lt;li&gt; code coverage at 98.4% for the core and &lt;a href=&quot;https://coveralls.io/github/micropython/micropython&quot;&gt;at 96.3%&lt;/a&gt; for the core plus extended modules &lt;/li&gt;
+      &lt;li&gt; fast start-up time from boot to loading of first script (150 microseconds to get to boot.py, on PYBv1.1 running at 168MHz) &lt;/li&gt;
+      &lt;li&gt; a simple, fast and robust mark-sweep garbage collector for heap memory &lt;/li&gt;
+      &lt;li&gt; a MemoryError exception is raised if the heap is exhausted &lt;/li&gt;
+      &lt;li&gt; a RuntimeError exception is raised if the stack limit is reached &lt;/li&gt;
+      &lt;li&gt; support for running Python code on a hard interrupt with minimal latency &lt;/li&gt;
+      &lt;li&gt; errors have a backtrace and report the line number of the source code &lt;/li&gt;
+      &lt;li&gt; constant folding in the parser/compiler &lt;/li&gt;
+      &lt;li&gt; &lt;a href=&quot;https://github.com/micropython/micropython/blob/master/py/mpconfig.h#L51-L95&quot;&gt;pointer tagging&lt;/a&gt; to fit small integers, strings and objects in a machine word &lt;/li&gt;
+      &lt;li&gt; transparent transition from small integers to big integers &lt;/li&gt;
+      &lt;li&gt; support for 64-bit NaN boxing object model &lt;/li&gt;
+      &lt;li&gt; support for 30-bit stuffed floats, which don&#39;t require heap memory  &lt;/li&gt;
+      &lt;li&gt; a cross-compiler and frozen bytecode, to have pre-compiled scripts that don&#39;t take any RAM (except for any dynamic objects they create) &lt;/li&gt;
+      &lt;li&gt; multithreading via the &amp;quot;_thread&amp;quot; module, with an optional global-interpreter-lock (still work in progress, only available on selected ports) &lt;/li&gt;
+      &lt;li&gt; a native emitter that targets machine code directly rather than the bytecode virtual machine&lt;/li&gt;
+      &lt;li&gt; inline assembler (currently Thumb and Xtensa instruction sets only) &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row row-white&quot;&gt;
+  &lt;div class=&quot;col-md-12 text-center&quot;&gt;
+    &lt;h1&gt; Online resources &lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-md-offset-2 col-md-8&quot;&gt;
+    You can learn more about MicroPython and keep up-to-date with developments
+    via the following resources:
+    &lt;ul&gt;
+      &lt;li&gt; subscribe to &lt;a href=&quot;/newsletter&quot;&gt;the newsletter&lt;/a&gt; &lt;/li&gt;
+      &lt;li&gt; read &lt;a href=&quot;http://docs.micropython.org&quot;&gt;the documentation&lt;/a&gt; &lt;/li&gt;
+      &lt;li&gt; join the community at &lt;a href=&quot;http://forum.micropython.org&quot;&gt;the forum&lt;/a&gt; &lt;/li&gt;
+      &lt;li&gt; submit bug reports, and follow and join in development &lt;a href=&quot;https://github.com/micropython/micropython&quot;&gt;on GitHub&lt;/a&gt; &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;row row-black&quot;&gt;
+  &lt;div class=&quot;col-xs-12 col-md-offset-2 col-md-8&quot;&gt;
+    &lt;a href=&quot;https://store.micropython.org/#/products/HOUSING-OB-1&quot;&gt;
+      &lt;img src =&quot;/static/home/img/colourhousings.jpg&quot; width=&quot;780px&quot; class=&quot;img-responsive&quot; alt=&quot;pyboards on parade&quot;&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;col-md-12 text-center&quot; style=&quot;margin-top:30px;&quot;&gt;
+    &lt;a href=&quot;https://store.micropython.org&quot; class=&quot;red-button&quot;&gt;Take me to the store!&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+        &lt;div class=&quot;row&quot; style=&quot;margin:30px 0;&quot;&gt;
+          &lt;div class=&quot;col-md-offset-2 col-md-8&quot;&gt;
+            
+          &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+&lt;footer&gt;
+    &lt;div class=&quot;container footercontent&quot;&gt;
+        &lt;div class=&quot;row&quot;&gt;
+            &lt;div class=&quot;col-xs-12 col-sm-3 col-md-2 col-md-offset-2&quot;&gt;
+                &lt;h3&gt;MicroPython&lt;/h3&gt;
+                &lt;ul&gt;
+                    &lt;li&gt; &lt;a href=&quot;http://micropython.org&quot;&gt;Home&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;http://wiki.micropython.org&quot;&gt;Wiki&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;http://forum.micropython.org&quot;&gt;Forum&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;http://www.github.com/micropython&quot;&gt;GitHub&lt;/a&gt; &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-xs-12 col-sm-3 col-md-2&quot;&gt;
+                &lt;h3&gt;Resources&lt;/h3&gt;
+                &lt;ul&gt;
+                    &lt;li&gt; &lt;a href=&quot;/help&quot;&gt;Help!&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;http://docs.micropython.org/en/latest/pyboard/tutorial/index.html&quot;&gt;Tutorials&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;http://docs.micropython.org&quot;&gt;Documentation&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;/download&quot;&gt;Download&lt;/a&gt; &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-xs-12 col-sm-3 col-md-2&quot;&gt;
+                &lt;h3&gt;Contact&lt;/h3&gt;
+                &lt;ul&gt;
+                    &lt;li&gt; &lt;a href=&quot;/contact&quot;&gt;Contact us&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;irc://freenode/micropython&quot;&gt;IRC&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;http://twitter.com/micropython&quot;&gt;Twitter&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;http://www.facebook.com/micropython&quot;&gt;Facebook&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;/privacypolicy&quot;&gt;Privacy Policy&lt;/a&gt; &lt;/li&gt;
+                    &lt;li&gt; &lt;a href=&quot;/termsandconditions&quot;&gt;Terms &amp;amp; Conditions&lt;/a&gt; &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;col-xs-12 col-md-8 col-md-offset-2&quot;&gt;
+                &lt;p&gt;A project by &lt;a href=&quot;http://dpgeorge.net&quot;&gt;Damien George&lt;/a&gt;&lt;/p&gt;
+                &lt;p&gt;&amp;copy; 2014-2018 George Robotics Limited&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/footer&gt;
+
+    &lt;script src=&quot;/static/js/jquery-2.1.0.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;/static/bootstrap-3.3.7-dist/js/bootstrap.min.js&quot;&gt;&lt;/script&gt;
+    
+    
+  &lt;script src=&quot;/static/home/js/codeexamples.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+
+    &lt;!--                        
+        &lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+        &lt;script src=&quot;site/js/functions.js&quot;&gt;&lt;/script&gt;
+    --&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>The output is rather verbose, with many links to images, etc. Great for humans, not so useful for computers.</p>
+<p>Fortunately many sites offer special APIs with data formatted for computers. As an example, let’s fetch weather data from <a class="reference external" href="https://openweathermap.org/">https://openweathermap.org/</a>. You’ll need to first sign in and get an “API Key”. I’ve added mine to <code class="docutils literal notranslate"><span class="pre">secrets.py</span></code>.</p>
+<p>Then consult the API (tab at the top of the page) for the correct formatting of the request. For example, to get current weather data, we send the following request:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urequests</span> <span class="k">as</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">secrets</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://api.openweathermap.org/data/2.5/weather?q=</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">,</span><span class="si">{}</span><span class="s1">&amp;appid=</span><span class="si">{}</span><span class="s1">&#39;</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+    <span class="s1">&#39;Tahoe&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;CA&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;US&#39;</span><span class="p">,</span>
+    <span class="n">secrets</span><span class="o">.</span><span class="n">openweathermap_apiid</span>
+<span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&quot;coord&quot;:{&quot;lon&quot;:-115.8071,&quot;lat&quot;:46.0963},&quot;weather&quot;:[{&quot;id&quot;:800,&quot;main&quot;:&quot;Clear&quot;,&quot;description&quot;:&quot;clear sky&quot;,&quot;icon&quot;:&quot;01d&quot;}],&quot;base&quot;:&quot;stations&quot;,&quot;main&quot;:{&quot;temp&quot;:303.62,&quot;feels_like&quot;:301.65,&quot;temp_min&quot;:302.21,&quot;temp_max&quot;:305.08,&quot;pressure&quot;:1013,&quot;humidity&quot;:13,&quot;sea_level&quot;:1013,&quot;grnd_level&quot;:905},&quot;visibility&quot;:10000,&quot;wind&quot;:{&quot;speed&quot;:1.21,&quot;deg&quot;:4,&quot;gust&quot;:1.67},&quot;clouds&quot;:{&quot;all&quot;:0},&quot;dt&quot;:1627179321,&quot;sys&quot;:{&quot;type&quot;:2,&quot;id&quot;:2039021,&quot;country&quot;:&quot;US&quot;,&quot;sunrise&quot;:1627128986,&quot;sunset&quot;:1627183364},&quot;timezone&quot;:-25200,&quot;id&quot;:5599665,&quot;name&quot;:&quot;Tahoe&quot;,&quot;cod&quot;:200}
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>The response is formatted in <a class="reference external" href="https://www.json.org/json-en.html">json</a> and can easily be parsed with Python. In fact, json decoding is built right into the requests libray. Let’s read and format the output:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">j</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">j</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="c1"># format and truncate long lines ...</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:10}</span><span class="s2">   </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)[:</span><span class="mi">60</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>timezone     -25200
+cod          200
+dt           1627179321
+base         stations
+weather      [{&#39;id&#39;: 800, &#39;icon&#39;: &#39;01d&#39;, &#39;main&#39;: &#39;Clear&#39;, &#39;description&#39;: 
+sys          {&#39;country&#39;: &#39;US&#39;, &#39;sunrise&#39;: 1627128986, &#39;sunset&#39;: 162718336
+name         Tahoe
+clouds       {&#39;all&#39;: 0}
+coord        {&#39;lon&#39;: -115.8071, &#39;lat&#39;: 46.0963}
+visibility   10000
+wind         {&#39;gust&#39;: 1.67, &#39;speed&#39;: 1.21, &#39;deg&#39;: 4}
+id           5599665
+main         {&#39;feels_like&#39;: 301.65, &#39;pressure&#39;: 1013, &#39;temp_max&#39;: 305.08,
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>The weather information is stored in <code class="docutils literal notranslate"><span class="pre">main</span></code>. Let’s display just that:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Weather in </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]))</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">j</span><span class="p">[</span><span class="s1">&#39;main&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  </span><span class="si">{:10}</span><span class="s2">   </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weather in Tahoe
+  feels_like   301.65
+  pressure     1013
+  temp_max     305.08
+  temp         303.62
+  temp_min     302.21
+  humidity     13
+  sea_level    1013
+  grnd_level   905
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Many websites offer APIs for communicating with computers. For example, <a class="reference external" href="https://ifttt.com/">IFTTT</a> is site entirely organized around offering services for computer automation.</p>
+<p>Cloud service providers, like <a class="reference external" href="https://www.ibm.com/cloud">IBM</a>, <a class="reference external" href="https://azure.microsoft.com/">Microsoft Azure</a>, <a class="reference external" href="https://cloud.google.com/">Google Cloud</a>, <a class="reference external" href="https://aws.amazon.com/">Amazon AWS</a> and many more offer web APIs.</p>
+<p>In fact, most websites and apps are backed by one of these services. Typically IoT devices, like ESP32’s or Raspberry PIs, send data to the cloud service via one of these APIs. The data are analyzed and stored in the cloud and made available as web pages for human viewing.</p>
 </div>
 
     <script type="text/x-thebe-config">

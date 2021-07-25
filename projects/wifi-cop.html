@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Internet &#8212; Electronics for IoT</title>
+    <title>WiFi Coprocessor &#8212; Electronics for IoT</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,12 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://iot49.org/projects/internet.html" />
+    <link rel="canonical" href="https://iot49.org/projects/wifi-cop.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="WiFi" href="internet/wifi.html" />
-    <link rel="prev" title="Time Intervals" href="balance/ticks.html" />
+    <link rel="next" title="MicroPython on a Particle Argon" href="wifi-cop/particle.html" />
+    <link rel="prev" title="Encryption" href="internet/encryption.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -268,11 +268,11 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="internet.html">
    Internet
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
@@ -310,11 +310,11 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="wifi-cop.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
    WiFi Coprocessor
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
   <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
@@ -368,7 +368,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/projects/internet.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/projects/wifi-cop.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -388,10 +388,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/internet.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/wifi-cop.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/internet.md"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/wifi-cop.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -419,9 +419,10 @@
         
               <div>
                 
-  <div class="section" id="internet">
-<h1>Internet<a class="headerlink" href="#internet" title="Permalink to this headline">¶</a></h1>
-<p>Wifi, sockets, requests, mqtt, …</p>
+  <div class="section" id="wifi-coprocessor">
+<h1>WiFi Coprocessor<a class="headerlink" href="#wifi-coprocessor" title="Permalink to this headline">¶</a></h1>
+<p>Some CPUs or breakout boards come with built-in WiFi. But what if the chosen processor, an STM32 or NRF52, does not and it’s needed for your IoT project?</p>
+<p>The solution is to add a wifi radio. This project uses an ESP32 to add WiFi. To minimize software development, we’ll run MicroPython on the ESP32 and communicate over a serial port with just two wires.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -451,8 +452,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="balance/ticks.html" title="previous page">Time Intervals</a>
-    <a class='right-next' id="next-link" href="internet/wifi.html" title="next page">WiFi</a>
+    <a class='left-prev' id="prev-link" href="internet/encryption.html" title="previous page">Encryption</a>
+    <a class='right-next' id="next-link" href="wifi-cop/particle.html" title="next page">MicroPython on a Particle Argon</a>
 
         </div>
         
