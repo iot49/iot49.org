@@ -439,7 +439,8 @@
   <div class="section" id="encryption">
 <h1>Encryption<a class="headerlink" href="#encryption" title="Permalink to this headline">¶</a></h1>
 <p>Data sent over the internet can potentially be read by “anyone”. This overview examines steps that can be taken to prevent information from getting into the wrong hands.</p>
-<p><strong>Warning:</strong> The code presented here is for understanding. <strong>It is not secure!</strong> Don’t use this  in your projects!</p>
+<p><strong>Warning:</strong></p>
+<p>These are my “step” to explore encryption. <strong>It is not secure!</strong> Don’t use the code in your projects - use standard libraries instead. Some of this may be outright wrong - check other sources to learn the fundamentals of encryption.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">pico</span>
@@ -499,7 +500,7 @@ decrypted = b&#39;iot49 is awesome!\x00\x00\x00&#39; ...
 </div>
 </div>
 </div>
-<p>This works-it would be difficult to “guess” the message from the encrypted data-without the key.</p>
+<p>This “works” - it would be difficult to “guess” the message from the encrypted data without knowing the key.</p>
 <p>But how do we share the key between devices? We need encryption! What looks like a recursive problem has an elegant solution.</p>
 <div class="section" id="public-key-cryptography">
 <h2>Public Key Cryptography<a class="headerlink" href="#public-key-cryptography" title="Permalink to this headline">¶</a></h2>
@@ -645,7 +646,7 @@ decrypted: b&#39;iot49&#39;
 </div>
 </div>
 </div>
-<p>The code works as expected, but only for short messages (overflow).</p>
+<p>The code works as expected, but only for short messages. Longer ones result in overflow.</p>
 <p>Now we can use PKC to transmit the AES key using the following steps:</p>
 <ol class="simple">
 <li><p>Recipient creates key pair &amp; sends public key to the sender.</p></li>
@@ -674,7 +675,6 @@ decrypted: b&#39;iot49&#39;
 <p>Of course this approach is impractical. Because of this, browsers (and computer operating systems) come with a “built-in” collection of verified certificates. They also use chaining to limit the number of certificates that need be stored and avoid the need to get a new certificate each time a new website goes onling. The certificate received from the bank’s webserver is checked against these built-in certificates. If no match is found, the browser issues a warning (e.g. “Your connection is not private”) and refuses to connect.</p>
 <p>This seems to work, but begs the question how you received your webbrowser and computer OS and weather that procedure was safe …</p>
 <p>Security is difficult, as we well know from almost daily breaches.</p>
-<p>This document reflects my understanding and may well contain errors.</p>
 </div>
 </div>
 
