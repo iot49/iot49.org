@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Plotserver" href="plotserver.html" />
+    <link rel="next" title="Wireshark" href="wireshark.html" />
     <link rel="prev" title="Requests" href="requests.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -299,6 +299,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="wireshark.html">
+     Wireshark
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="plotserver.html">
      Plotserver
     </a>
@@ -394,6 +399,46 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#broker">
+   Broker
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clients">
+   Clients
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#web-client">
+     Web Client
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#command-line">
+     Command Line
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cpython">
+     CPython
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#micropython">
+     MicroPython
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -404,10 +449,59 @@
                 
   <div class="section" id="mqtt">
 <h1>MQTT<a class="headerlink" href="#mqtt" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference external" href="http://www.hivemq.com/demos/websocket-client/">Web mqtt client</a></p></li>
-<li><p>Command line tools: mosquitto_pub, mosquitto_sub</p></li>
-</ul>
+<p><a class="reference external" href="https://mqtt.org/">MQTT</a> is an efficient protocol for communication between IoT devices.</p>
+<div class="section" id="broker">
+<h2>Broker<a class="headerlink" href="#broker" title="Permalink to this headline">¶</a></h2>
+<p><em>ide49</em> comes with a built-in <a class="reference external" href="https://mosquitto.org/">mosquitto</a> MQTT broker. By default it is configured to accept connections on ports 1883 and 9001 (websockets). Modify the configuration at <code class="docutils literal notranslate"><span class="pre">/service-config/mosquitto/config/</span></code> to enable additional features such as encryption and passwords.</p>
+</div>
+<div class="section" id="clients">
+<h2>Clients<a class="headerlink" href="#clients" title="Permalink to this headline">¶</a></h2>
+<p>Below we show several examples of MQTT clients. The <em>Web Client</em> and <em>Command Line</em> tools are mostly useful for debugging. The <em>CPython</em> and <em>MicroPython</em> are examples of what you might incorporate in an application.</p>
+<div class="section" id="web-client">
+<h3>Web Client<a class="headerlink" href="#web-client" title="Permalink to this headline">¶</a></h3>
+<p>Web clients are great to observe diagnose MQTT communication. Below is an example using the <a class="reference external" href="http://www.hivemq.com/demos/websocket-client/">HiveMQ client</a>. Change the <code class="docutils literal notranslate"><span class="pre">Host</span></code> field below to the URL of your instance of <em>ide49</em> (e.g. <code class="docutils literal notranslate"><span class="pre">https://iot49.local/</span></code>) and make sure <code class="docutils literal notranslate"><span class="pre">Port</span></code> is set to 9001. The <code class="docutils literal notranslate"><span class="pre">ClientID</span></code> is a random string generated automatically and must be different for evey client connecting to the broker.</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/hivemq_connect.png"><img alt="../../_images/hivemq_connect.png" src="../../_images/hivemq_connect.png" style="width: 500px;" /></a>
+</div>
+<p>Click connect and add subscriptions and publish messages. The example below publishes and subscribes to the same topic. Normally these would differ to communicate with other MQTT clients.</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/hivemq_publish.png"><img alt="../../_images/hivemq_publish.png" src="../../_images/hivemq_publish.png" style="width: 500px;" /></a>
+</div>
+</div>
+<div class="section" id="command-line">
+<h3>Command Line<a class="headerlink" href="#command-line" title="Permalink to this headline">¶</a></h3>
+<p>Alternatively use <a class="reference external" href="https://mosquitto.org/man/mosquitto_sub-1.html">mosquitto_sub</a> and <a class="reference external" href="https://mosquitto.org/man/mosquitto_pub-1.html">mosquitto_pub</a> in a terminal window or from a notebook like in the examples below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!mosquitto_sub -h 10.39.40.200 -t &quot;testtopic/#&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello, how are you today?
+Great to hear! I&#39;m happy for you.
+^C
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!mosquitto_pub -h 10.39.40.200 -t &quot;testtopic/hello&quot; -m &quot;Grüezi&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="cpython">
+<h3>CPython<a class="headerlink" href="#cpython" title="Permalink to this headline">¶</a></h3>
+<p>A common use case of MQTT is communication between microcontrollers and host computers. Below is a simple example receiving and sending MQTT messages. It first publishes a few messages to <code class="docutils literal notranslate"><span class="pre">testtopic</span></code> and then waits for 20 seconds for messages published to <code class="docutils literal notranslate"><span class="pre">testpub</span></code>. Use the web client to command line discussed above to listen and send to these topics.</p>
+<p>Before running the code below, update the broker address.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
@@ -434,7 +528,7 @@
 
 <span class="k">def</span> <span class="nf">on_connect</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">flags</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">connected</span>
-    <span class="n">client</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="s1">&#39;testpub/#&#39;</span><span class="p">)</span>
     <span class="n">connected</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
     
 <span class="k">def</span> <span class="nf">on_disconnect</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">userdata</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
@@ -455,9 +549,9 @@
 <span class="n">connected</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-    <span class="n">topic</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;demo/topic_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">topic</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;testtopic/topic_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="n">msg</span>   <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;msg </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">publish </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;publish </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
 
@@ -470,25 +564,138 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-publish demo/topic_0 = msg 0
-message received: demo/topic_0 = b&#39;msg 0&#39;
-
-publish demo/topic_1 = msg 1
-message received: demo/topic_1 = b&#39;msg 1&#39;
-
-publish demo/topic_2 = msg 2
-message received: demo/topic_2 = b&#39;msg 2&#39;
-
-publish demo/topic_3 = msg 3
-message received: demo/topic_3 = b&#39;msg 3&#39;
-
-publish demo/topic_4 = msg 4
-message received: demo/topic_4 = b&#39;msg 4&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>publish testtopic/topic_0 = msg 0
+publish testtopic/topic_1 = msg 1
+publish testtopic/topic_2 = msg 2
+publish testtopic/topic_3 = msg 3
+publish testtopic/topic_4 = msg 4
+message received: testpub/1 = b&quot;Great to hear! I&#39;m happy for you.&quot;
+message received: testpub/1 = b&#39;As always&#39;
 
 disconnected, rc=0
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+<div class="section" id="micropython">
+<h3>MicroPython<a class="headerlink" href="#micropython" title="Permalink to this headline">¶</a></h3>
+<p>Several MQTT clients are available for MicroPython. The sample below uses a simple client from the “official” library, <a class="reference external" href="https://github.com/micropython/micropython-lib">micropython-lib</a>.</p>
+<p>Let’s first download the code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+src=https://raw.githubusercontent.com/micropython/micropython-lib/master/micropython/umqtt.simple/umqtt/simple.py
+dest_dir=$IOT_PROJECTS/internet/code/lib/
+
+mkdir -p $dest_dir
+curl -o $dest_dir/mqtt_client.py $src
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  6479  100  6479    0     0  17510      0 --:--:-- --:--:-- --:--:-- 17463
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span> <span class="o">-</span><span class="n">q</span>
+<span class="o">%</span><span class="n">rsync</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">UPDATE  /lib/mqtt_client.py</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>The examples below are taken from the <a class="reference external" href="https://github.com/micropython/micropython-lib/tree/master/micropython/umqtt.simple">github archive</a>. Set up a client (e.g. HiveMQ) to check them out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mqtt_client</span> <span class="kn">import</span> <span class="n">MQTTClient</span>
+
+<span class="c1"># Test e.g. with:</span>
+<span class="c1"># mosquitto_sub -h 10.39.40.200 -t testtpic</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">MQTTClient</span><span class="p">(</span><span class="s1">&#39;umqtt_client&#39;</span><span class="p">,</span> <span class="s1">&#39;10.39.40.200&#39;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;testtopic&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;Hello from micropython!&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This example subscribes to topic <code class="docutils literal notranslate"><span class="pre">led</span></code> (note that topics and messages are <code class="docutils literal notranslate"><span class="pre">bytes</span></code>, not strings) to control an LED. Change the LED pin number to match your board.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mqtt_client</span> <span class="kn">import</span> <span class="n">MQTTClient</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="kn">import</span> <span class="nn">ubinascii</span>
+<span class="kn">import</span> <span class="nn">machine</span>
+<span class="kn">import</span> <span class="nn">micropython</span>
+
+<span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">sub_cb</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">quit</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;topic </span><span class="si">{}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">topic</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="n">msg</span><span class="o">.</span><span class="n">decode</span><span class="p">()))</span>
+    <span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;on&quot;</span><span class="p">:</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;off&quot;</span><span class="p">:</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;toggle&quot;</span><span class="p">:</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+    <span class="k">elif</span> <span class="n">msg</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;quit&quot;</span><span class="p">:</span>
+        <span class="n">quit</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">MQTTClient</span><span class="p">(</span><span class="s1">&#39;mqtt_led_client&#39;</span><span class="p">,</span> <span class="s1">&#39;10.39.40.200&#39;</span><span class="p">)</span>
+
+<span class="c1"># Subscribed messages will be delivered to this callback</span>
+<span class="n">client</span><span class="o">.</span><span class="n">set_callback</span><span class="p">(</span><span class="n">sub_cb</span><span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;led&#39;</span><span class="p">)</span>
+
+<span class="n">quit</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">quit</span><span class="p">:</span>
+        <span class="c1"># call this to receive messages</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">wait_msg</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*****&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>topic led = toggle
+topic led = toggle
+topic led = toggle
+topic led = toggle
+topic led = off
+topic led = quit
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that it is necessary to call <code class="docutils literal notranslate"><span class="pre">client.wait_msg()</span></code> to receive messages, i.e. place this instruction somewhere in your program where it will be executed regularly.</p>
+<p>In simple programs like the example above that’s easy enough to do, but in more complex applications this may not be trivial.</p>
+<p>An alternative is to use an mqtt client that uses the <code class="docutils literal notranslate"><span class="pre">asyncio</span></code>, a cooperative multitasking framework. An asyncronous MQTT client for MicroPython is available <a class="reference external" href="https://github.com/peterhinch/micropython-mqtt/tree/master/mqtt_as">here</a>.</p>
 </div>
 </div>
 </div>
@@ -519,7 +726,7 @@ disconnected, rc=0
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="requests.html" title="previous page">Requests</a>
-    <a class='right-next' id="next-link" href="plotserver.html" title="next page">Plotserver</a>
+    <a class='right-next' id="next-link" href="wireshark.html" title="next page">Wireshark</a>
 
         </div>
         

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>REPL prompt &#8212; Electronics for IoT</title>
+    <title>Wireshark &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,12 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://iot49.org/ide/micropython/REPL.html" />
+    <link rel="canonical" href="https://iot49.org/projects/internet/wireshark.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Device Configuration" href="dev_config.html" />
-    <link rel="prev" title="IoT Kernel" href="iot-kernel.html" />
+    <link rel="next" title="Plotserver" href="plotserver.html" />
+    <link rel="prev" title="MQTT" href="mqtt.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -89,19 +89,19 @@
   ide49
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../install.html">
+  <a class="reference internal" href="../../ide/install.html">
    Install
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../getting-started.html">
+  <a class="reference internal" href="../../ide/getting-started.html">
    Getting Started
   </a>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../configuration.html">
+  <a class="reference internal" href="../../ide/configuration.html">
    Configuration
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -111,71 +111,71 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../config/password.html">
+    <a class="reference internal" href="../../ide/config/password.html">
      Change Password
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../config/backup.html">
+    <a class="reference internal" href="../../ide/config/backup.html">
      Backup
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../config/dns.html">
+    <a class="reference internal" href="../../ide/config/dns.html">
      Domain Name
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../config/https.html">
+    <a class="reference internal" href="../../ide/config/https.html">
      Https &amp; Certificates
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../config/samba.html">
+    <a class="reference internal" href="../../ide/config/samba.html">
      Samba File Server/Client
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="../micropython.html">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/micropython.html">
    MicroPython
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="iot-kernel.html">
+    <a class="reference internal" href="../../ide/micropython/iot-kernel.html">
      IoT Kernel
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/REPL.html">
      REPL prompt
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="dev_config.html">
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
      Device Configuration
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="compile.html">
+    <a class="reference internal" href="../../ide/micropython/compile.html">
      Compile
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="flash.html">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
      Flash
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../app.html">
+  <a class="reference internal" href="../../ide/app.html">
    Docker App
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -185,12 +185,12 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../app/overview.html">
+    <a class="reference internal" href="../../ide/app/overview.html">
      Overview
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../app/customize.html">
+    <a class="reference internal" href="../../ide/app/customize.html">
      Customize
      <em>
       ide49
@@ -200,7 +200,7 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../issues.html">
+  <a class="reference internal" href="../../ide/issues.html">
    Issues
   </a>
  </li>
@@ -210,9 +210,9 @@
   Tours &amp; Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../projects/balance.html">
+  <a class="reference internal" href="../balance.html">
    GPIO
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -222,94 +222,94 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/parts.html">
+    <a class="reference internal" href="../balance/parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/circuit.html">
+    <a class="reference internal" href="../balance/circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/code.html">
+    <a class="reference internal" href="../balance/code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/display.html">
+    <a class="reference internal" href="../balance/display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/buttons.html">
+    <a class="reference internal" href="../balance/buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/hx711.html">
+    <a class="reference internal" href="../balance/hx711.html">
      Precision Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/ble.html">
+    <a class="reference internal" href="../balance/ble.html">
      Bluetooth
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/app.html">
+    <a class="reference internal" href="../balance/app.html">
      Standalone App
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/ticks.html">
+    <a class="reference internal" href="../balance/ticks.html">
      Time Intervals
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../projects/internet.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../internet.html">
    Internet
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/internet/wifi.html">
+    <a class="reference internal" href="wifi.html">
      WiFi
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/internet/sockets.html">
+    <a class="reference internal" href="sockets.html">
      Sockets
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/internet/requests.html">
+    <a class="reference internal" href="requests.html">
      Requests
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/internet/mqtt.html">
+    <a class="reference internal" href="mqtt.html">
      MQTT
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/internet/wireshark.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Wireshark
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/internet/plotserver.html">
+    <a class="reference internal" href="plotserver.html">
      Plotserver
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/internet/encryption.html">
+    <a class="reference internal" href="encryption.html">
      Encryption
     </a>
    </li>
@@ -356,9 +356,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/ide/micropython/REPL.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/projects/internet/wireshark.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -376,10 +376,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/micropython/REPL.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/internet/wireshark.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/micropython/REPL.md"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/internet/wireshark.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -407,16 +407,48 @@
         
               <div>
                 
-  <div class="section" id="repl-prompt">
-<h1>REPL prompt<a class="headerlink" href="#repl-prompt" title="Permalink to this headline">¶</a></h1>
-<p>To connect directly to the REPL of your microcontroller, launch a Terminal (click the blue <code class="docutils literal notranslate"><span class="pre">+</span></code> icon at the upper left of Jupyter Lab and then the Terminal icon). At the shell prompt type</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>picocom -b115200 /dev/ttyUSB0
+  <div class="section" id="wireshark">
+<h1>Wireshark<a class="headerlink" href="#wireshark" title="Permalink to this headline">¶</a></h1>
+<p>Internet communication is great - until it fails. Frequently error messages are insufficient to diagnose the problem.</p>
+<p><em>ide49</em> comes with <a class="reference external" href="https://www.wireshark.org/">Wireshark</a>, an IP and Bluetooth package capture and analysis tool, that can help.</p>
+<p>Let’s look at a simple example of capturing an MQTT conversation. Start Wireshark by clicking on the link in the <em>iot49</em> home window. You will be greeted with a page similar to this one:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/wireshark_interfaces.png"><img alt="../../_images/wireshark_interfaces.png" src="../../_images/wireshark_interfaces.png" style="width: 500px;" /></a>
+</div>
+<p>The center shows all interfaces. We are interested in wireless (WiFi) traffic which is sent on <code class="docutils literal notranslate"><span class="pre">wlp3s0</span></code>. Click it to highlight it. Then press the blue shark fin to start a capture. Now run the code below to send some MQTT data. After the program finishes, click the red square next to the shark fin to stop the capture. The window now will look similar to this:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/wireshark_capture.png"><img alt="../../_images/wireshark_capture.png" src="../../_images/wireshark_capture.png" style="width: 500px;" /></a>
+</div>
+<p>Wireshark will have captured a large amount of traffic, most of which has nothing to do with MQTT. In “Apply a display filter”, type <code class="docutils literal notranslate"><span class="pre">mqtt</span></code> and hit return to get just the messages related to MQTT.</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/wireshark_mqtt.png"><img alt="../../_images/wireshark_mqtt.png" src="../../_images/wireshark_mqtt.png" style="width: 500px;" /></a>
+</div>
+<p>Clicking on any of them shows details below. For example, details of the <code class="docutils literal notranslate"><span class="pre">Publish</span></code> message reval the topic and message sent. Note also that the ping request has been combind with publish to safe communication bandwidth. Ideal for small IoT devices like the ESP32.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span> <span class="o">-</span><span class="n">q</span> 
+
+<span class="kn">from</span> <span class="nn">mqtt_client</span> <span class="kn">import</span> <span class="n">MQTTClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">MQTTClient</span><span class="p">(</span><span class="s1">&#39;umqtt_client&#39;</span><span class="p">,</span> <span class="s1">&#39;10.39.40.200&#39;</span><span class="p">,</span> <span class="n">keepalive</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="sa">b</span><span class="s2">&quot;testtopic&quot;</span><span class="p">,</span> <span class="sa">b</span><span class="s2">&quot;Hello from micropython!&quot;</span><span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">ping</span><span class="p">()</span>
+
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">client</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="toggle docutils container">
-<p><img alt="REPL" src="../../_images/repl.png" /></p>
 </div>
-<p><strong>Hint:</strong> If MicroPython displays no output, it may be in “raw repl” mode. Type <code class="docutils literal notranslate"><span class="pre">ctrl-B</span></code> at the console to return to the “friendly repl”.</p>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Wireshark has many more features. If you are not familiar with the program you may want to look into one of the many online tutorials.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -428,24 +460,24 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "iot_kernel"
         },
         kernelOptions: {
-            kernelName: "python3",
-            path: "./ide/micropython"
+            kernelName: "iot_kernel",
+            path: "./projects/internet"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'iot_kernel'</script>
 
               </div>
               
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="iot-kernel.html" title="previous page">IoT Kernel</a>
-    <a class='right-next' id="next-link" href="dev_config.html" title="next page">Device Configuration</a>
+    <a class='left-prev' id="prev-link" href="mqtt.html" title="previous page">MQTT</a>
+    <a class='right-next' id="next-link" href="plotserver.html" title="next page">Plotserver</a>
 
         </div>
         

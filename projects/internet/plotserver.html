@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Encryption" href="encryption.html" />
-    <link rel="prev" title="MQTT" href="mqtt.html" />
+    <link rel="prev" title="Wireshark" href="wireshark.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -298,6 +298,11 @@
      MQTT
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="wireshark.html">
+     Wireshark
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Plotserver
@@ -404,7 +409,7 @@
                 
   <div class="section" id="plotserver">
 <h1>Plotserver<a class="headerlink" href="#plotserver" title="Permalink to this headline">¶</a></h1>
-<p>The need to plot sensor and other data from microcontrollers occurs frequently. The plotserver shows data published to <a class="reference external" href="https://en.wikipedia.org/wiki/MQTT">MQTT</a> in a browser window.</p>
+<p>The need to plot sensor and other data from microcontrollers occurs frequently. The plotserver plots data published to <a class="reference external" href="https://en.wikipedia.org/wiki/MQTT">MQTT</a> in a browser window.</p>
 <p>Let’s look at the LinePlot application, installed in <code class="docutils literal notranslate"><span class="pre">~/plotserver/lib</span></code>. The <code class="docutils literal notranslate"><span class="pre">LinePlot</span></code> class runs in the plotserver service. It uses the <a class="reference external" href="https://bokeh.org/">Bokeh Visualization Library</a> to render plots in a webbrowser.</p>
 <p>To plot a sinusoid, we first set up a proxy on the host (microcontroller, or, in this example, the Raspberry Pi). The first parameter in the <em>LinePlotProxy</em> constructor is the app name and must be a valid Python identified. The next parameter lists the name of the x-axis and of the traces that will be plotted.</p>
 <p>The optional <em>rollover</em> parameter controls how much data will be retained. Once that value is reached, the plot scrolls. The default is to retain all data.</p>
@@ -544,7 +549,7 @@ class LinePlotProxy(PlotProxy):
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="mqtt.html" title="previous page">MQTT</a>
+    <a class='left-prev' id="prev-link" href="wireshark.html" title="previous page">Wireshark</a>
     <a class='right-next' id="next-link" href="encryption.html" title="next page">Encryption</a>
 
         </div>
