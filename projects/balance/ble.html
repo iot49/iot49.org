@@ -153,6 +153,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../ide/micropython/REPL.html">
      REPL prompt
     </a>
@@ -412,14 +417,19 @@
 <p>The ESP32 has a built-in <a class="reference external" href="https://en.wikipedia.org/wiki/Bluetooth_Low_Energy">Bluetooth LE</a> radio. LE stands for Low Energy. Unlike standard Bluetooth which is great for streaming audio,  BLE sends only short strings but uses much less energy. It’s used e.g. in wireless mice and keyboards. And in our scale!</p>
 <p>You can get the details on using the <a class="reference external" href="https://docs.micropython.org/en/latest/library/ubluetooth.html">MicroPython Bluetooth Library</a> online. Alternatively, just copy and adapt one of the examples in the <a class="reference external" href="https://github.com/micropython/micropython/tree/master/examples/bluetooth">MicroPython github repository</a>.</p>
 <p>We choose the second, easier option. <code class="docutils literal notranslate"><span class="pre">ble_uart_peripheral.py</span></code> sends arbitrary (short) strings to a connected device. Let’s download it and <code class="docutils literal notranslate"><span class="pre">ble_advertising.py</span></code> which it imports from the examples folder.</p>
-<div class="cell tag_hide-output docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT_PROJECTS/balance/code
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
 
-%%bash
-
-wget -nc -P lib https://raw.githubusercontent.com/micropython/micropython/master/examples/bluetooth/ble_uart_peripheral.py
-wget -nc -P lib https://raw.githubusercontent.com/micropython/micropython/master/examples/bluetooth/ble_advertising.py
+<span class="n">wget</span> <span class="o">-</span><span class="n">nc</span> <span class="o">-</span><span class="n">P</span> <span class="n">lib</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">micropython</span><span class="o">/</span><span class="n">micropython</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">bluetooth</span><span class="o">/</span><span class="n">ble_uart_peripheral</span><span class="o">.</span><span class="n">py</span>
+<span class="n">wget</span> <span class="o">-</span><span class="n">nc</span> <span class="o">-</span><span class="n">P</span> <span class="n">lib</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">micropython</span><span class="o">/</span><span class="n">micropython</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">examples</span><span class="o">/</span><span class="n">bluetooth</span><span class="o">/</span><span class="n">ble_advertising</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 </div>

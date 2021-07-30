@@ -153,6 +153,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../ide/micropython/REPL.html">
      REPL prompt
     </a>
@@ -713,8 +718,13 @@ echo &quot;microcontroller IP:&quot; $my_ip
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT_PROJECTS/internet
 !mkdir -p ssl
 %cd ssl
-
-%%bash
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
 cat &lt;&lt; EOF &gt;cert.conf
 [req]
 distinguished_name = req_distinguished_name

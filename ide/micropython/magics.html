@@ -848,11 +848,17 @@ settrace() -- set the global debug tracing function
 </div>
 </div>
 </div>
-<div class="cell tag_hide-output docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
 
 *get*?
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>get_ipython
+getattr
 </pre></div>
 </div>
 </div>
@@ -873,6 +879,127 @@ Get a named attribute from an object; getattr(x, &#39;y&#39;) is equivalent to x
 When a default argument is given, it is returned when the attribute doesn&#39;t
 exist; without it, an exception is raised in that case.
 <span class=" -Color -Color-Red">Type:</span>      builtin_function_or_method
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+
+%%script?
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Docstring:</span>
+::
+
+  %shebang
+       [--no-raise-error]
+       [--proc PROC]
+       [--bg]
+       [--err ERR]
+       [--out OUT]
+
+Run a cell via a shell command
+
+The `%%script` line is like the #! line of script,
+specifying a program (bash, perl, ruby, etc.) with which to run.
+
+The rest of the cell is run by that program.
+
+Examples
+--------
+::
+
+    In [1]: %%script bash
+       ...: for i in 1 2 3; do
+       ...:   echo $i
+       ...: done
+    1
+    2
+    3
+
+optional arguments:
+  --no-raise-error
+    Whether you
+    should
+    raise an
+    error
+    message in
+    addition to
+    a stream on
+    stderr if
+    you get a
+    nonzero
+    exit code.
+  --proc PROC
+    The
+    variable in
+    which to
+    store Popen
+    instance.
+    This is
+    used only
+    when --bg
+    option is
+    given.
+  --bg
+    Whether to
+    run the
+    script in
+    the
+    background.
+    If given,
+    the only
+    way to see
+    the output
+    of the
+    command is
+    with
+    --out/err.
+  --err ERR
+    The
+    variable in
+    which to
+    store
+    stderr from
+    the script.
+    If the
+    script is b
+    ackgrounded
+    , this will
+    be the
+    stderr
+    *pipe*,
+    instead of
+    the stderr
+    text itself
+    and will
+    not be
+    autoclosed.
+  --out OUT
+    The
+    variable in
+    which to
+    store
+    stdout from
+    the script.
+    If the
+    script is b
+    ackgrounded
+    , this will
+    be the
+    stdout
+    *pipe*,
+    instead of
+    the stderr
+    text itself
+    and will
+    not be auto
+    closed.
+<span class=" -Color -Color-Red">File:</span>      /usr/local/lib/python3.8/site-packages/IPython/core/magics/script.py
 </pre></div>
 </div>
 </div>

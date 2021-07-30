@@ -153,6 +153,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../micropython/REPL.html">
      REPL prompt
     </a>
@@ -411,7 +416,7 @@
 <h1>Customize <em>ide49</em><a class="headerlink" href="#customize-ide49" title="Permalink to this headline">¶</a></h1>
 <p><em>ide49</em> is a <a class="reference external" href="https://www.docker.com">docker</a> application served by the <a class="reference external" href="https://www.balena.io/cloud/">balena cloud</a>, a version of docker customized for devices with low resources (compared to <a class="reference external" href="https://hub.docker.com/bundles/docker-datacenter">datacenters</a>, a primary target of docker).</p>
 <p><em>ide49</em> is completely customizable: you can alter, add, and remove services-right from within <em>ide49</em>.</p>
-<p>Go to <a class="reference external" href="https://iot49.local/balena_cli">https://iot49.local/balena_cli</a> and clone <a class="reference external" href="https://github.com/iot49/ide49"><em>ide49</em></a>:</p>
+<p>Clone <a class="reference external" href="https://github.com/iot49/ide49"><em>ide49</em></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
@@ -421,13 +426,14 @@
 </div>
 </div>
 </div>
-<p>Go to the cloned folder and make desired changes. Open a terminal run the statements below. Replace <code class="docutils literal notranslate"><span class="pre">APP_NAME</span></code> with the name of the app on balena-cloud you want to update.</p>
+<p>Go to the cloned folder and make desired changes.</p>
+<p>Now connect to the Balena CLI at <a class="reference external" href="https://iot49.local/balena_cli">https://iot49.local/balena_cli</a> and open a terminal to run the statements below. Replace <code class="docutils literal notranslate"><span class="pre">APP_NAME</span></code> with the name of the app on balena-cloud you want to update.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>balena login
 balena push APP_NAME
 </pre></div>
 </div>
 <p>You may want to create a separate application for experimenting to avoid getting locked out of <em>ide49</em> in case of errors.</p>
-<p>Check the online documentation for docker and balena for further information.</p>
+<p>Check the online documentation for [docker])<a class="reference external" href="https://docs.docker.com/">https://docs.docker.com/</a>) and <a class="reference external" href="https://www.balena.io/docs">balena</a> for further information.</p>
 </div>
 
     <script type="text/x-thebe-config">

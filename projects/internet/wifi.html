@@ -153,6 +153,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../ide/micropython/REPL.html">
      REPL prompt
     </a>
@@ -654,8 +659,13 @@ rtt min/avg/max/mdev = 112.327/201.696/257.435/63.837 ms
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!mkdir -p $IOT_PROJECTS/internet/code
-
-%%writefile $IOT_PROJECTS/internet/code/webrepl_cfg.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/internet/code/webrepl_cfg.py
 from secrets import webrepl_pwd
 
 PASS = webrepl_pwd
