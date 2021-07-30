@@ -496,7 +496,7 @@
 <div class="section" id="ipython-kernel">
 <h2>IPython Kernel<a class="headerlink" href="#ipython-kernel" title="Permalink to this headline">¶</a></h2>
 <p>The Jupyter Python kernel is provided by <a class="reference external" href="https://ipython.org/">IPython</a>. It <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/python-ipython-diff.html">extends the Python syntax</a> with additional features e.g. to interact with the Linux shell, to profile and debug Python code, and run code written in different languages such as Javascript. These extensions are accessed through <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">magics</a>, commands preceeded by one or two percent signs.</p>
-<p>With the IoT Kernel these features are available in cells starting with the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic.</p>
+<p>With the IoT Kernel these features are available in cells marked with the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic.</p>
 <p>For example:</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
@@ -856,9 +856,23 @@ settrace() -- set the global debug tracing function
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+
+getattr?
+</pre></div>
+</div>
+</div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>get_ipython
-getattr
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Docstring:</span>
+getattr(object, name[, default]) -&gt; value
+
+Get a named attribute from an object; getattr(x, &#39;y&#39;) is equivalent to x.y.
+When a default argument is given, it is returned when the attribute doesn&#39;t
+exist; without it, an exception is raised in that case.
+<span class=" -Color -Color-Red">Type:</span>      builtin_function_or_method
 </pre></div>
 </div>
 </div>
