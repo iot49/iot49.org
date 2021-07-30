@@ -247,11 +247,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="hx711.html">
-     “Precision” Scale
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="ble.html">
      Bluetooth
     </a>
@@ -259,6 +254,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="app.html">
      Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="hx711.html">
+     “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
@@ -418,7 +418,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB0</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB1</span>
 </pre></div>
 </div>
 </div>
@@ -500,6 +500,7 @@ SET_NORM_INV        = const(0xa6)
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ssd1306</span> <span class="kn">import</span> <span class="n">SSD1306_I2C</span>
 <span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">I2C</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="n">i2c</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">22</span><span class="p">),</span> <span class="n">sda</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">23</span><span class="p">))</span>
 
@@ -514,11 +515,6 @@ SET_NORM_INV        = const(0xa6)
     <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">**</span><span class="mi">7</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
     <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>

@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Device Configuration" href="dev_config.html" />
-    <link rel="prev" title="IoT Kernel" href="iot-kernel.html" />
+    <link rel="prev" title="Magics" href="magics.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -152,6 +152,11 @@
      IoT Kernel
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="magics.html">
+     Magics
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      REPL prompt
@@ -247,11 +252,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/hx711.html">
-     “Precision” Scale
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../../projects/balance/ble.html">
      Bluetooth
     </a>
@@ -259,6 +259,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../projects/balance/app.html">
      Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/hx711.html">
+     “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
@@ -399,6 +404,24 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#picocom">
+   picocom
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rshell">
+   rshell
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -409,6 +432,8 @@
                 
   <div class="section" id="repl-prompt">
 <h1>REPL prompt<a class="headerlink" href="#repl-prompt" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="picocom">
+<h2>picocom<a class="headerlink" href="#picocom" title="Permalink to this headline">¶</a></h2>
 <p>To connect directly to the REPL of your microcontroller, launch a Terminal (click the blue <code class="docutils literal notranslate"><span class="pre">+</span></code> icon at the upper left of Jupyter Lab and then the Terminal icon). At the shell prompt type</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>picocom -b115200 /dev/ttyUSB0
 </pre></div>
@@ -417,6 +442,46 @@
 <p><img alt="REPL" src="../../_images/repl.png" /></p>
 </div>
 <p><strong>Hint:</strong> If MicroPython displays no output, it may be in “raw repl” mode. Type <code class="docutils literal notranslate"><span class="pre">ctrl-B</span></code> at the console to return to the “friendly repl”.</p>
+</div>
+<div class="section" id="rshell">
+<h2>rshell<a class="headerlink" href="#rshell" title="Permalink to this headline">¶</a></h2>
+<p>Alternatively you can use David Hyland’s <a class="reference internal" href="../micropython.html"><span class="doc std std-doc">rshell</span></a> in <em>ide49</em>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>iot@server:~$ rshell -p /dev/ttyUSB0
+Using buffer-size of <span class="m">32</span>
+Connecting to /dev/ttyUSB0 <span class="o">(</span>buffer-size <span class="m">32</span><span class="o">)</span>...
+Trying to connect to REPL  connected
+Retrieving sysname ... esp32
+Testing <span class="k">if</span> ubinascii.unhexlify exists ... Y
+Retrieving root directories ... /boot.py/ /lib/ /secrets.py/ /webrepl_cfg.py/
+Setting <span class="nb">time</span> ... Jul <span class="m">30</span>, <span class="m">2021</span> <span class="m">13</span>:39:37
+Evaluating board_name ... pyboard
+Retrieving <span class="nb">time</span> epoch ... Jan <span class="m">01</span>, <span class="m">2000</span>
+Welcome to rshell. Use Control-D <span class="o">(</span>or the <span class="nb">exit</span> <span class="nb">command</span><span class="o">)</span> to <span class="nb">exit</span> rshell.
+/home/iot&gt; repl
+Entering REPL. Use Control-X to exit.
+&gt;
+MicroPython v1.16-78-ge3291e180 on <span class="m">2021</span>-07-22<span class="p">;</span> 4MB/OTA module with ESP32
+Type <span class="s2">&quot;help()&quot;</span> <span class="k">for</span> more information.
+&gt;&gt;&gt; 
+&gt;&gt;&gt; <span class="k">for</span> i <span class="k">in</span> range<span class="o">(</span><span class="m">4</span><span class="o">)</span>:
+...     print<span class="o">(</span>i**10<span class="o">)</span>   
+... 
+<span class="m">0</span>
+<span class="m">1</span>
+<span class="m">1024</span>
+<span class="m">59049</span>
+&gt;&gt;&gt; 
+MPY: soft reboot
+WebREPL daemon started on ws://10.39.40.135:8266
+Started webrepl <span class="k">in</span> normal mode
+MicroPython v1.16-78-ge3291e180 on <span class="m">2021</span>-07-22<span class="p">;</span> 4MB/OTA module with ESP32
+Type <span class="s2">&quot;help()&quot;</span> <span class="k">for</span> more information.
+&gt;&gt;&gt; 
+/home/iot&gt; 
+iot@server:~$ 
+</pre></div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -444,7 +509,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="iot-kernel.html" title="previous page">IoT Kernel</a>
+    <a class='left-prev' id="prev-link" href="magics.html" title="previous page">Magics</a>
     <a class='right-next' id="next-link" href="dev_config.html" title="next page">Device Configuration</a>
 
         </div>

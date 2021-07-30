@@ -1,0 +1,1012 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magics &#8212; Electronics for IoT</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/ide/micropython/magics.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="REPL prompt" href="REPL.html" />
+    <link rel="prev" title="IoT Kernel" href="iot-kernel.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../micropython.html">
+   MicroPython
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="dev_config.html">
+     Device Configuration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="flash.html">
+     Flash
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../app.html">
+   Docker App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../app/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../app/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tours &amp; Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/balance.html">
+   GPIO
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/hx711.html">
+     “Precision” Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/ticks.html">
+     Time Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/internet.html">
+   Internet
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/mqtt.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/wireshark.html">
+     Wireshark
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/plotserver.html">
+     Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/encryption.html">
+     Encryption
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/ide/micropython/magics.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/micropython/magics.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/micropython/magics.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ipython-kernel">
+   IPython Kernel
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#help">
+     Help
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shell-to-python">
+     Shell to Python
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-to-shell">
+     Python to shell
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#iot-kernel">
+   IoT Kernel
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lsmagic">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       %lsmagic
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Help
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#differences">
+   Differences
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bash">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       %%bash
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#shell">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       !
+      </span>
+     </code>
+     (shell)
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="magics">
+<h1>Magics<a class="headerlink" href="#magics" title="Permalink to this headline">¶</a></h1>
+<p>The IoT Kernel is derived from the “standard” IPython kernel in Jupyter. Normally, code entered into a cell is sent to the currently connected microcontroller for execution. The IoT kernel also processes magics. These differ from those in the IPython kernel.</p>
+<p>If a cell stars with <code class="docutils literal notranslate"><span class="pre">%%host</span></code>, all content is instead sent to the IPython kernel: code is evaluated by the Python interpreter on the host (the device on which the Jupyter server is running). Likewise, magics that follow <code class="docutils literal notranslate"><span class="pre">%%host</span></code> are handled by IPython rather than the IoT Kernel.</p>
+<div class="section" id="ipython-kernel">
+<h2>IPython Kernel<a class="headerlink" href="#ipython-kernel" title="Permalink to this headline">¶</a></h2>
+<p>The Jupyter Python kernel is provided by <a class="reference external" href="https://ipython.org/">IPython</a>. It <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/python-ipython-diff.html">extends the Python syntax</a> with additional features e.g. to interact with the Linux shell, to profile and debug Python code, and run code written in different languages such as Javascript. These extensions are accessed through <a class="reference external" href="https://ipython.readthedocs.io/en/stable/interactive/magics.html">magics</a>, commands preceeded by one or two percent signs.</p>
+<p>With the IoT Kernel these features are available in cells starting with the <code class="docutils literal notranslate"><span class="pre">%%host</span></code> magic.</p>
+<p>For example:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+
+<span class="o">%</span><span class="n">lsmagic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available line magics:
+%alias  %alias_magic  %autoawait  %autocall  %automagic  %autosave  %bookmark  %cat  %cd  %clear  %colors  %conda  %config  %connect_info  %cp  %debug  %dhist  %dirs  %doctest_mode  %ed  %edit  %env  %gui  %hist  %history  %killbgscripts  %ldir  %less  %lf  %lk  %ll  %load  %load_ext  %loadpy  %logoff  %logon  %logstart  %logstate  %logstop  %ls  %lsmagic  %lx  %macro  %magic  %man  %matplotlib  %mkdir  %more  %mv  %notebook  %page  %pastebin  %pdb  %pdef  %pdoc  %pfile  %pinfo  %pinfo2  %pip  %popd  %pprint  %precision  %prun  %psearch  %psource  %pushd  %pwd  %pycat  %pylab  %qtconsole  %quickref  %recall  %rehashx  %reload_ext  %rep  %rerun  %reset  %reset_selective  %rm  %rmdir  %run  %save  %sc  %set_env  %store  %sx  %system  %tb  %time  %timeit  %unalias  %unload_ext  %who  %who_ls  %whos  %xdel  %xmode
+
+Available cell magics:
+%%!  %%HTML  %%SVG  %%bash  %%capture  %%debug  %%file  %%html  %%javascript  %%js  %%latex  %%markdown  %%perl  %%prun  %%pypy  %%python  %%python2  %%python3  %%ruby  %%script  %%sh  %%svg  %%sx  %%system  %%time  %%timeit  %%writefile
+
+Automagic is ON, % prefix IS NOT needed for line magics.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+
+<span class="o">%%</span><span class="n">timeit</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">a</span> <span class="o">+=</span> <span class="n">i</span><span class="o">**</span><span class="n">i</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.3 µs ± 187 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="help">
+<h3>Help<a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+
+%alias?
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Docstring:</span>
+Define an alias for a system command.
+
+&#39;%alias alias_name cmd&#39; defines &#39;alias_name&#39; as an alias for &#39;cmd&#39;
+
+Then, typing &#39;alias_name params&#39; will execute the system command &#39;cmd
+params&#39; (from your underlying operating system).
+
+Aliases have lower precedence than magic functions and Python normal
+variables, so if &#39;foo&#39; is both a Python variable and an alias, the
+alias can not be executed until &#39;del foo&#39; removes the Python variable.
+
+You can use the %l specifier in an alias definition to represent the
+whole line when the alias is called.  For example::
+
+  In [2]: alias bracket echo &quot;Input in brackets: &lt;%l&gt;&quot;
+  In [3]: bracket hello world
+  Input in brackets: &lt;hello world&gt;
+
+You can also define aliases with parameters using %s specifiers (one
+per parameter)::
+
+  In [1]: alias parts echo first %s second %s
+  In [2]: %parts A B
+  first A second B
+  In [3]: %parts A
+  Incorrect number of arguments: 2 expected.
+  parts is an alias to: &#39;echo first %s second %s&#39;
+
+Note that %l and %s are mutually exclusive.  You can only use one or
+the other in your aliases.
+
+Aliases expand Python variables just like system calls using ! or !!
+do: all expressions prefixed with &#39;$&#39; get expanded.  For details of
+the semantic rules, see PEP-215:
+http://www.python.org/peps/pep-0215.html.  This is the library used by
+IPython for variable expansion.  If you want to access a true shell
+variable, an extra $ is necessary to prevent its expansion by
+IPython::
+
+  In [6]: alias show echo
+  In [7]: PATH=&#39;A Python string&#39;
+  In [8]: show $PATH
+  A Python string
+  In [9]: show $$PATH
+  /usr/local/lf9560/bin:/usr/local/intel/compiler70/ia32/bin:...
+
+You can use the alias facility to access all of $PATH.  See the %rehashx
+function, which automatically creates aliases for the contents of your
+$PATH.
+
+If called with no parameters, %alias prints the current alias table
+for your system.  For posix systems, the default aliases are &#39;cat&#39;,
+&#39;cp&#39;, &#39;mv&#39;, &#39;rm&#39;, &#39;rmdir&#39;, and &#39;mkdir&#39;, and other platform-specific
+aliases are added.  For windows-based systems, the default aliases are
+&#39;copy&#39;, &#39;ddir&#39;, &#39;echo&#39;, &#39;ls&#39;, &#39;ldir&#39;, &#39;mkdir&#39;, &#39;ren&#39;, and &#39;rmdir&#39;.
+
+You can see the definition of alias by adding a question mark in the
+end::
+
+  In [1]: cat?
+  Repr: &lt;alias cat for &#39;cat&#39;&gt;
+<span class=" -Color -Color-Red">File:</span>      /usr/local/lib/python3.8/site-packages/IPython/core/magics/osm.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>IPython magics have a number of features for exchanging data with Python (not supported in the IoT Kernel).</p>
+</div>
+<div class="section" id="shell-to-python">
+<h3>Shell to Python<a class="headerlink" href="#shell-to-python" title="Permalink to this headline">¶</a></h3>
+<p>To pass shell outputs to Python use</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+
+folder = !ls
+print(folder)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;bin&#39;, &#39;ide49&#39;, &#39;iot-device&#39;, &#39;iot-kernel&#39;, &#39;iot49-dev&#39;, &#39;iot49.org&#39;, &#39;micropython&#39;, &#39;scratch&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>With <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> use the following syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+<span class="o">%%</span><span class="n">bash</span> <span class="o">--</span><span class="n">out</span> <span class="n">output</span> <span class="o">--</span><span class="n">err</span> <span class="n">error</span>
+<span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;hi, stdout&quot;</span>
+<span class="n">echo</span> <span class="o">-</span><span class="n">n</span> <span class="s2">&quot;hello, stderr&quot;</span> <span class="o">&gt;&amp;</span><span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;out = </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2"> &amp; err = </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>out = hi, stdout &amp; err = hello, stderr
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="python-to-shell">
+<h3>Python to shell<a class="headerlink" href="#python-to-shell" title="Permalink to this headline">¶</a></h3>
+<p>It is also possible to pass the values of python variables to the shell:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+%%bash -s &quot;{__doc__}&quot;
+echo I got this from Python: $1
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>I got this from Python: Automatically created module for IPython interactive environment
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+%%timeit?
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Docstring:</span>
+Time execution of a Python statement or expression
+
+Usage, in line mode:
+  %timeit [-n&lt;N&gt; -r&lt;R&gt; [-t|-c] -q -p&lt;P&gt; -o] statement
+or in cell mode:
+  %%timeit [-n&lt;N&gt; -r&lt;R&gt; [-t|-c] -q -p&lt;P&gt; -o] setup_code
+  code
+  code...
+
+Time execution of a Python statement or expression using the timeit
+module.  This function can be used both as a line and cell magic:
+
+- In line mode you can time a single-line statement (though multiple
+  ones can be chained with using semicolons).
+
+- In cell mode, the statement in the first line is used as setup code
+  (executed but not timed) and the body of the cell is timed.  The cell
+  body has access to any variables created in the setup code.
+
+Options:
+-n&lt;N&gt;: execute the given statement &lt;N&gt; times in a loop. If &lt;N&gt; is not
+provided, &lt;N&gt; is determined so as to get sufficient accuracy.
+
+-r&lt;R&gt;: number of repeats &lt;R&gt;, each consisting of &lt;N&gt; loops, and take the
+best result.
+Default: 7
+
+-t: use time.time to measure the time, which is the default on Unix.
+This function measures wall time.
+
+-c: use time.clock to measure the time, which is the default on
+Windows and measures wall time. On Unix, resource.getrusage is used
+instead and returns the CPU user time.
+
+-p&lt;P&gt;: use a precision of &lt;P&gt; digits to display the timing result.
+Default: 3
+
+-q: Quiet, do not print result.
+
+-o: return a TimeitResult that can be stored in a variable to inspect
+    the result in more details.
+
+.. versionchanged:: 7.3
+    User variables are no longer expanded,
+    the magic line is always left unmodified.
+
+Examples
+--------
+::
+
+  In [1]: %timeit pass
+  8.26 ns ± 0.12 ns per loop (mean ± std. dev. of 7 runs, 100000000 loops each)
+
+  In [2]: u = None
+
+  In [3]: %timeit u is None
+  29.9 ns ± 0.643 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+
+  In [4]: %timeit -r 4 u == None
+
+  In [5]: import time
+
+  In [6]: %timeit -n1 time.sleep(2)
+
+
+The times reported by %timeit will be slightly higher than those
+reported by the timeit.py script when variables are accessed. This is
+due to the fact that %timeit executes the statement in the namespace
+of the shell, compared with timeit.py, which uses a single setup
+statement to import function or create variables. Generally, the bias
+does not matter as long as results from timeit.py are not mixed with
+those from %timeit.
+<span class=" -Color -Color-Red">File:</span>      /usr/local/lib/python3.8/site-packages/IPython/core/magics/execution.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Consult the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/">IPython documentation</a> for additional information.</p>
+</div>
+</div>
+<div class="section" id="iot-kernel">
+<h2>IoT Kernel<a class="headerlink" href="#iot-kernel" title="Permalink to this headline">¶</a></h2>
+<p>Cells that do not begin with <code class="docutils literal notranslate"><span class="pre">%%host</span></code> are handled by the IoT kernel. Code is sent to the currently connected microcontroller for evaluation, or, if no controller is connected, the kernel tries to connect to the last device the notebook was connected to.</p>
+<p>The IoT Kernel implements its own set of magics and rules for using them. Although there is overlap, the <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> cell magic for example is available both in the IoT and the IPython kernel, in general they are different.</p>
+<p><code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> is also available in both kernels and return a different set of magics. Running magics from the “wrong” kernel results in errors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="mi">2</span><span class="o">**</span><span class="mi">32</span>
+<span class="o">%</span><span class="n">discover</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>40.5 ns ± 0.145 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>UsageError: Line magic function `%discover` not found.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+<span class="o">%</span><span class="n">timeit</span> <span class="mi">2</span><span class="o">**</span><span class="mi">32</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>argon  serial:///dev/ttyACM0  
+esp32  serial:///dev/ttyUSB0  
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>***** name &#39;magic&#39; is not defined
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>The descriptions below apply to magics in the <em>IoT Kernel</em>.</p>
+<div class="section" id="lsmagic">
+<h3><code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code><a class="headerlink" href="#lsmagic" title="Permalink to this headline">¶</a></h3>
+<p>Shows a brief synopsis of all magics available in the IoT Kernel:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">lsmagic</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Line Magic:    -h shows help (e.g. %discover -h)
+  %cat         Output contents of file stored on microcontroller
+  %cd          Change current working directory on host
+  %connect     Connect to device by name, uid, or url
+  %cp          Copy files between host and microcontroller
+  %discover    Discover available devices
+  %gettime     Query microcontroller time
+  %info        Summary about connected device
+  %loglevel    Set logging level.
+  %lsmagic     List all magic functions
+  %mkdirs      Create all directories on the microcontroller, as needed (similar to Linux mkdir -p)
+  %name        Name of currently connected microcontroller
+  %pip         Install packages from PyPi
+  %platform    sys.platform of currently connected device
+  %rdiff       Show differences between microcontroller and host directories
+  %register    Register device
+  %rlist       List files on microcontroller
+  %rm          Remove files on microcontroller
+  %rsync       Synchronize microcontroller to host directories
+  %softreset   Reset microcontroller. Similar to pressing the reset button.
+  %store       Copy variables between microcontroller and storage
+  %synctime    Synchronize microcontroller time to host
+  %uid         UID of currently connected microcontroller
+  %unregister  Unregister device
+  %upip        Install MicroPython packages
+  %url         URL of currently connected microcontroller
+  !            Pass line to bash shell for evaluation
+
+Cell Magic:    -h shows help (e.g. %%connect -h)
+  %%bash       Pass cell to bash shell for evaluation
+  %%connect    Generalization of %connect to run code on several devices sequentially
+  %%service    Send code to bash in named container for execution
+  %%ssh        Pass cell body to ssh.
+  %%writefile  Write cell contents to file
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Help<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Use built-in help for usage information:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>usage: %%service [-h] [--err ERR] [--out OUT] container
+
+Send code to bash in named container for execution
+
+positional arguments:
+  container   name of container to ssh into
+
+optional arguments:
+  -h, --help  show this help message and exit
+  --err ERR   store stderr in shell environment variable
+  --out OUT   store stdout in shell environment variable
+
+This specifically supports docker/balena apps.
+
+Before running the instructions, the file .init_${container}.sh
+is sourced, if it exists. ${container} is the name of the service given.
+
+Note: Code submitted to bash for evaluation. Execution fails if 
+      container does not have bash installed.
+
+Example:
+    %%service esp-idf
+    printenv | grep BALENA_SERVICE_NAME
+    which idf.py
+
+    # lookup mdns address and assign to $OUT
+    %%service host --out OUT
+    ping -c 2 pi4server.local | awk -F&quot;[()]&quot; &#39;{print $2}&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="differences">
+<h2>Differences<a class="headerlink" href="#differences" title="Permalink to this headline">¶</a></h2>
+<p>Mostly IoT and IPython magics differ, but there is some overlap.</p>
+<div class="section" id="bash">
+<h3><code class="docutils literal notranslate"><span class="pre">%%bash</span></code><a class="headerlink" href="#bash" title="Permalink to this headline">¶</a></h3>
+<p>The IoT Kernel implementation of <code class="docutils literal notranslate"><span class="pre">%%bash</span></code> incrementally prints output, whereas the IPython version waits for shell execution to end before printing output. The former behavior is useful for long running commands such as compilation.</p>
+<p>On the other hand, the IPython implementation permits passing in Python variable. The IoT Kernel does not support this feature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+<span class="n">some_variable</span> <span class="o">=</span> <span class="s2">&quot;some value&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+%%bash -s &quot;{some_variable}&quot;
+echo some variable = $1
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>some variable = some value
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="shell">
+<h3><code class="docutils literal notranslate"><span class="pre">!</span></code> (shell)<a class="headerlink" href="#shell" title="Permalink to this headline">¶</a></h3>
+<p>The IPython kernel support assigning shell output to a Python variable. The IoT Kernel does not support this feature.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+folder = !ls /
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">folder</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;bin&#39;, &#39;boot&#39;, &#39;dev&#39;, &#39;etc&#39;, &#39;home&#39;, &#39;host&#39;, &#39;lib&#39;, &#39;lib64&#39;, &#39;media&#39;, &#39;mnt&#39;, &#39;opt&#39;, &#39;proc&#39;, &#39;root&#39;, &#39;run&#39;, &#39;sbin&#39;, &#39;service-config&#39;, &#39;srv&#39;, &#39;sys&#39;, &#39;tmp&#39;, &#39;usr&#39;, &#39;var&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./ide/micropython"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="iot-kernel.html" title="previous page">IoT Kernel</a>
+    <a class='right-next' id="next-link" href="REPL.html" title="next page">REPL prompt</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

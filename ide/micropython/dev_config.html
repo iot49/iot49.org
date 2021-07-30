@@ -153,6 +153,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="REPL.html">
      REPL prompt
     </a>
@@ -247,11 +252,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/hx711.html">
-     “Precision” Scale
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../../projects/balance/ble.html">
      Bluetooth
     </a>
@@ -259,6 +259,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../projects/balance/app.html">
      Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/balance/hx711.html">
+     “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
@@ -715,7 +720,31 @@ esp32:
 <li><p>include-patterns: <code class="docutils literal notranslate"><span class="pre">./**/*.py</span></code>, <code class="docutils literal notranslate"><span class="pre">./**/*.mpy</span></code>, <code class="docutils literal notranslate"><span class="pre">./**/</span></code></p></li>
 <li><p>exclude-patterns: <code class="docutils literal notranslate"><span class="pre">boot_out.txt</span></code></p></li>
 </ul>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">%rdiff</span></code> magic to diagnose complex configurations.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">%rdiff</span></code> and <code class="docutils literal notranslate"><span class="pre">%info</span> <span class="pre">-v</span></code> magics to diagnose complex configurations.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">info</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>name            esp32
+platform        esp32
+implementation  micropython
+uid             30:ae:a4:30:84:34
+url             serial:///dev/ttyUSB0
+configuration   example.yaml
+resources:
+   317 /secrets.py                    libs/secrets.py
+    51 /webrepl_cfg.py                internet/code/webrepl_cfg.py
+  1737 /boot.py                       internet/code/boot.py
+  6479 /lib/mqtt_client.py            internet/code/lib/mqtt_client.py
+  3181 /lib/urequests.py              internet/code/lib/urequests.py
+  1883 /lib/http_server.py            internet/code/lib/http_server.py
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="secrets-py">

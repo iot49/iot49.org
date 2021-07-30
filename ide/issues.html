@@ -153,6 +153,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="micropython/REPL.html">
      REPL prompt
     </a>
@@ -247,11 +252,6 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/hx711.html">
-     “Precision” Scale
-    </a>
-   </li>
-   <li class="toctree-l2">
     <a class="reference internal" href="../projects/balance/ble.html">
      Bluetooth
     </a>
@@ -259,6 +259,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../projects/balance/app.html">
      Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/balance/hx711.html">
+     “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
@@ -405,19 +410,38 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#jupyter-lab-extensions">
-   Jupyter Lab Extensions
+  <a class="reference internal nav-link" href="#no-esp-idf-idf-py-on-aarch64">
+   No
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     esp-idf/idf.py
+    </span>
+   </code>
+   on aarch64
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#armv7hf-32-bit-arm-not-supported">
+  <a class="reference internal nav-link" href="#mdns-for-local-domains-not-working">
+   mDNS for
    <code class="docutils literal notranslate">
     <span class="pre">
-     armv7hf
+     .local
     </span>
    </code>
-   (32-Bit ARM) not supported
+   domains not working
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#workaround">
+     Workaround
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#solution">
+     Solution?
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -432,30 +456,62 @@
                 
   <div class="section" id="issues">
 <h1>Issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="jupyter-lab-extensions">
-<h2>Jupyter Lab Extensions<a class="headerlink" href="#jupyter-lab-extensions" title="Permalink to this headline">¶</a></h2>
-<p>Installing jupyterlab extensions does not work. They are stored in <code class="docutils literal notranslate"><span class="pre">/usr/local/share/jupyter/lab</span></code> which is owned by the container root.</p>
-<p>Installing with <code class="docutils literal notranslate"><span class="pre">--app-dir</span></code> does not solve the problem.</p>
+<div class="section" id="no-esp-idf-idf-py-on-aarch64">
+<h2>No <code class="docutils literal notranslate"><span class="pre">esp-idf/idf.py</span></code> on aarch64<a class="headerlink" href="#no-esp-idf-idf-py-on-aarch64" title="Permalink to this headline">¶</a></h2>
+<p>IDF not released for 64-Bit Linux. See <a class="reference external" href="https://github.com/espressif/esp-idf/issues/6432">https://github.com/espressif/esp-idf/issues/6432</a>.</p>
+</div>
+<div class="section" id="mdns-for-local-domains-not-working">
+<h2>mDNS for <code class="docutils literal notranslate"><span class="pre">.local</span></code> domains not working<a class="headerlink" href="#mdns-for-local-domains-not-working" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="workaround">
+<h3>Workaround<a class="headerlink" href="#workaround" title="Permalink to this headline">¶</a></h3>
+<p>This sample code uses the <code class="docutils literal notranslate"><span class="pre">host</span></code> service (which supports mdns) to lookup the IP address and assigns it to the shell environment variable <code class="docutils literal notranslate"><span class="pre">OUT</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!jupyter lab paths
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span> <span class="o">--</span><span class="n">out</span> <span class="n">OUT</span>
+<span class="n">ping</span> <span class="o">-</span><span class="n">c</span> <span class="mi">2</span> <span class="n">pi4server</span><span class="o">.</span><span class="n">local</span> <span class="o">|</span> <span class="n">awk</span> <span class="o">-</span><span class="sa">F</span><span class="s2">&quot;[()]&quot;</span> <span class="s1">&#39;{print $2}&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!echo $OUT
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Application directory:   /usr/local/share/jupyter/lab
-User Settings directory: /home/iot/.jupyter/lab/user-settings
-Workspaces directory: /home/iot/.jupyter/lab/workspaces
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.39.40.151
+</pre></div>
+</div>
+</div>
+</div>
+<p>Optionally assign to CPython variable:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+out = !echo $OUT
+print(out)
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;10.39.40.151&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="armv7hf-32-bit-arm-not-supported">
-<h2><code class="docutils literal notranslate"><span class="pre">armv7hf</span></code> (32-Bit ARM) not supported<a class="headerlink" href="#armv7hf-32-bit-arm-not-supported" title="Permalink to this headline">¶</a></h2>
-<p><img alt="" src="../_images/arm32_build_fail.png" /></p>
-<p>Apparently bokeh (or paho?) not available:</p>
-<p><img alt="" src="../_images/arm32_build_fail_detail.png" /></p>
+<div class="section" id="solution">
+<h3>Solution?<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Discussion: <a class="reference external" href="https://forums.balena.io/t/dns-resolver-in-container/341650/3">https://forums.balena.io/t/dns-resolver-in-container/341650/3</a></p></li>
+<li><p>Proposed solution: <a class="reference external" href="https://github.com/balena-io-examples/balena-avahi">https://github.com/balena-io-examples/balena-avahi</a></p>
+<ul>
+<li><p>tried in the jupyter container, then it would not start</p></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 </div>
 
