@@ -415,11 +415,6 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#help">
-     Help
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#shell-to-python">
      Shell to Python
     </a>
@@ -427,6 +422,11 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#python-to-shell">
      Python to shell
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#help">
+     Help
     </a>
    </li>
   </ul>
@@ -536,86 +536,7 @@ Automagic is ON, % prefix IS NOT needed for line magics.
 </div>
 </div>
 </div>
-<div class="section" id="help">
-<h3>Help<a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
-
-%alias?
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Docstring:</span>
-Define an alias for a system command.
-
-&#39;%alias alias_name cmd&#39; defines &#39;alias_name&#39; as an alias for &#39;cmd&#39;
-
-Then, typing &#39;alias_name params&#39; will execute the system command &#39;cmd
-params&#39; (from your underlying operating system).
-
-Aliases have lower precedence than magic functions and Python normal
-variables, so if &#39;foo&#39; is both a Python variable and an alias, the
-alias can not be executed until &#39;del foo&#39; removes the Python variable.
-
-You can use the %l specifier in an alias definition to represent the
-whole line when the alias is called.  For example::
-
-  In [2]: alias bracket echo &quot;Input in brackets: &lt;%l&gt;&quot;
-  In [3]: bracket hello world
-  Input in brackets: &lt;hello world&gt;
-
-You can also define aliases with parameters using %s specifiers (one
-per parameter)::
-
-  In [1]: alias parts echo first %s second %s
-  In [2]: %parts A B
-  first A second B
-  In [3]: %parts A
-  Incorrect number of arguments: 2 expected.
-  parts is an alias to: &#39;echo first %s second %s&#39;
-
-Note that %l and %s are mutually exclusive.  You can only use one or
-the other in your aliases.
-
-Aliases expand Python variables just like system calls using ! or !!
-do: all expressions prefixed with &#39;$&#39; get expanded.  For details of
-the semantic rules, see PEP-215:
-http://www.python.org/peps/pep-0215.html.  This is the library used by
-IPython for variable expansion.  If you want to access a true shell
-variable, an extra $ is necessary to prevent its expansion by
-IPython::
-
-  In [6]: alias show echo
-  In [7]: PATH=&#39;A Python string&#39;
-  In [8]: show $PATH
-  A Python string
-  In [9]: show $$PATH
-  /usr/local/lf9560/bin:/usr/local/intel/compiler70/ia32/bin:...
-
-You can use the alias facility to access all of $PATH.  See the %rehashx
-function, which automatically creates aliases for the contents of your
-$PATH.
-
-If called with no parameters, %alias prints the current alias table
-for your system.  For posix systems, the default aliases are &#39;cat&#39;,
-&#39;cp&#39;, &#39;mv&#39;, &#39;rm&#39;, &#39;rmdir&#39;, and &#39;mkdir&#39;, and other platform-specific
-aliases are added.  For windows-based systems, the default aliases are
-&#39;copy&#39;, &#39;ddir&#39;, &#39;echo&#39;, &#39;ls&#39;, &#39;ldir&#39;, &#39;mkdir&#39;, &#39;ren&#39;, and &#39;rmdir&#39;.
-
-You can see the definition of alias by adding a question mark in the
-end::
-
-  In [1]: cat?
-  Repr: &lt;alias cat for &#39;cat&#39;&gt;
-<span class=" -Color -Color-Red">File:</span>      /usr/local/lib/python3.8/site-packages/IPython/core/magics/osm.py
-</pre></div>
-</div>
-</div>
-</div>
 <p>IPython magics have a number of features for exchanging data with Python (not supported in the IoT Kernel).</p>
-</div>
 <div class="section" id="shell-to-python">
 <h3>Shell to Python<a class="headerlink" href="#shell-to-python" title="Permalink to this headline">¶</a></h3>
 <p>To pass shell outputs to Python use</p>
@@ -758,6 +679,186 @@ statement to import function or create variables. Generally, the bias
 does not matter as long as results from timeit.py are not mixed with
 those from %timeit.
 <span class=" -Color -Color-Red">File:</span>      /usr/local/lib/python3.8/site-packages/IPython/core/magics/execution.py
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="help">
+<h3>Help<a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+
+%alias?
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Docstring:</span>
+Define an alias for a system command.
+
+&#39;%alias alias_name cmd&#39; defines &#39;alias_name&#39; as an alias for &#39;cmd&#39;
+
+Then, typing &#39;alias_name params&#39; will execute the system command &#39;cmd
+params&#39; (from your underlying operating system).
+
+Aliases have lower precedence than magic functions and Python normal
+variables, so if &#39;foo&#39; is both a Python variable and an alias, the
+alias can not be executed until &#39;del foo&#39; removes the Python variable.
+
+You can use the %l specifier in an alias definition to represent the
+whole line when the alias is called.  For example::
+
+  In [2]: alias bracket echo &quot;Input in brackets: &lt;%l&gt;&quot;
+  In [3]: bracket hello world
+  Input in brackets: &lt;hello world&gt;
+
+You can also define aliases with parameters using %s specifiers (one
+per parameter)::
+
+  In [1]: alias parts echo first %s second %s
+  In [2]: %parts A B
+  first A second B
+  In [3]: %parts A
+  Incorrect number of arguments: 2 expected.
+  parts is an alias to: &#39;echo first %s second %s&#39;
+
+Note that %l and %s are mutually exclusive.  You can only use one or
+the other in your aliases.
+
+Aliases expand Python variables just like system calls using ! or !!
+do: all expressions prefixed with &#39;$&#39; get expanded.  For details of
+the semantic rules, see PEP-215:
+http://www.python.org/peps/pep-0215.html.  This is the library used by
+IPython for variable expansion.  If you want to access a true shell
+variable, an extra $ is necessary to prevent its expansion by
+IPython::
+
+  In [6]: alias show echo
+  In [7]: PATH=&#39;A Python string&#39;
+  In [8]: show $PATH
+  A Python string
+  In [9]: show $$PATH
+  /usr/local/lf9560/bin:/usr/local/intel/compiler70/ia32/bin:...
+
+You can use the alias facility to access all of $PATH.  See the %rehashx
+function, which automatically creates aliases for the contents of your
+$PATH.
+
+If called with no parameters, %alias prints the current alias table
+for your system.  For posix systems, the default aliases are &#39;cat&#39;,
+&#39;cp&#39;, &#39;mv&#39;, &#39;rm&#39;, &#39;rmdir&#39;, and &#39;mkdir&#39;, and other platform-specific
+aliases are added.  For windows-based systems, the default aliases are
+&#39;copy&#39;, &#39;ddir&#39;, &#39;echo&#39;, &#39;ls&#39;, &#39;ldir&#39;, &#39;mkdir&#39;, &#39;ren&#39;, and &#39;rmdir&#39;.
+
+You can see the definition of alias by adding a question mark in the
+end::
+
+  In [1]: cat?
+  Repr: &lt;alias cat for &#39;cat&#39;&gt;
+<span class=" -Color -Color-Red">File:</span>      /usr/local/lib/python3.8/site-packages/IPython/core/magics/osm.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+
+import sys
+
+sys?
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Type:</span>        module
+<span class=" -Color -Color-Red">String form:</span> &lt;module &#39;sys&#39; (built-in)&gt;
+<span class=" -Color -Color-Red">Docstring:</span>  
+This module provides access to some objects used or maintained by the
+interpreter and to functions that interact strongly with the interpreter.
+
+Dynamic objects:
+
+argv -- command line arguments; argv[0] is the script pathname if known
+path -- module search path; path[0] is the script directory, else &#39;&#39;
+modules -- dictionary of loaded modules
+
+displayhook -- called to show results in an interactive session
+excepthook -- called to handle any uncaught exception other than SystemExit
+  To customize printing in an interactive session or to install a custom
+  top-level exception handler, assign other functions to replace these.
+
+stdin -- standard input file object; used by input()
+stdout -- standard output file object; used by print()
+stderr -- standard error object; used for error messages
+  By assigning other file objects (or objects that behave like files)
+  to these, it is possible to redirect all of the interpreter&#39;s I/O.
+
+last_type -- type of last uncaught exception
+last_value -- value of last uncaught exception
+last_traceback -- traceback of last uncaught exception
+  These three are only available in an interactive session after a
+  traceback has been printed.
+
+Static objects:
+
+builtin_module_names -- tuple of module names built into this interpreter
+copyright -- copyright notice pertaining to this interpreter
+exec_prefix -- prefix used to find the machine-specific Python library
+executable -- absolute path of the executable binary of the Python interpreter
+float_info -- a named tuple with information about the float implementation.
+float_repr_style -- string indicating the style of repr() output for floats
+hash_info -- a named tuple with information about the hash algorithm.
+hexversion -- version information encoded as a single integer
+implementation -- Python implementation information.
+int_info -- a named tuple with information about the int implementation.
+maxsize -- the largest supported length of containers.
+maxunicode -- the value of the largest Unicode code point
+platform -- platform identifier
+prefix -- prefix used to find the Python library
+thread_info -- a named tuple with information about the thread implementation.
+version -- the version of this interpreter as a string
+version_info -- version information as a named tuple
+__stdin__ -- the original stdin; don&#39;t touch!
+__stdout__ -- the original stdout; don&#39;t touch!
+__stderr__ -- the original stderr; don&#39;t touch!
+__displayhook__ -- the original displayhook; don&#39;t touch!
+__excepthook__ -- the original excepthook; don&#39;t touch!
+
+Functions:
+
+displayhook() -- print an object to the screen, and save it in builtins._
+excepthook() -- print an exception and its traceback to sys.stderr
+exc_info() -- return thread-safe information about the current exception
+exit() -- exit the interpreter by raising SystemExit
+getdlopenflags() -- returns flags to be used for dlopen() calls
+getprofile() -- get the global profiling function
+getrefcount() -- return the reference count for an object (plus one :-)
+getrecursionlimit() -- return the max recursion depth for the interpreter
+getsizeof() -- return the size of an object in bytes
+gettrace() -- get the global debug tracing function
+setcheckinterval() -- control how often the interpreter checks for events
+setdlopenflags() -- set the flags to be used for dlopen() calls
+setprofile() -- set the global profiling function
+setrecursionlimit() -- set the max recursion depth for the interpreter
+settrace() -- set the global debug tracing function
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+
+*get*?
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>get_ipython
+getattr
 </pre></div>
 </div>
 </div>
