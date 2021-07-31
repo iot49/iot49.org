@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="REPL prompt" href="REPL.html" />
+    <link rel="next" title="Magics" href="magics.html" />
     <link rel="prev" title="MicroPython" href="../micropython.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -150,6 +150,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="magics.html">
+     Magics
     </a>
    </li>
    <li class="toctree-l2">
@@ -434,8 +439,8 @@
 <li><p>softreset (<code class="docutils literal notranslate"><span class="pre">%softreset</span></code>)</p></li>
 <li><p>evaluate code on the host (<code class="docutils literal notranslate"><span class="pre">%%host</span></code>)</p></li>
 <li><p>exchange variables between microcontrollers and the host (<code class="docutils literal notranslate"><span class="pre">%store</span></code>)</p></li>
-<li><p>access the host shell (<code class="docutils literal notranslate"><span class="pre">%%bash</span></code>)</p></li>
-<li><p>access other services of <em>iot49</em> (<code class="docutils literal notranslate"><span class="pre">%%service</span></code>)</p></li>
+<li><p>access the shell (<code class="docutils literal notranslate"><span class="pre">%%bash</span></code>)</p></li>
+<li><p>access other services of <em>ide49</em>, e.g. cross-compilers (<code class="docutils literal notranslate"><span class="pre">%%service</span></code>)</p></li>
 </ul>
 <div class="section" id="magics">
 <h2>Magics<a class="headerlink" href="#magics" title="Permalink to this headline">¶</a></h2>
@@ -648,7 +653,8 @@ NameError: name &#39;a&#39; isn&#39;t defined
 </div>
 </div>
 </div>
-<p>Consult <a class="reference internal" href="dev_config.html"><span class="doc std std-doc">device configuration</span></a> for automated file upload. The kernel has many more features. <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> prints a complete list; use help (<code class="docutils literal notranslate"><span class="pre">-h</span></code> flag) on individual magics for documentation and examples.</p>
+<p>Consult the documentation for <a class="reference internal" href="dev_config.html"><span class="doc std std-doc">device configuration</span></a> for automated file upload.</p>
+<p>The kernel has many more features. <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> prints a complete list; use help (<code class="docutils literal notranslate"><span class="pre">-h</span></code> flag) on individual magics for documentation and examples.</p>
 </div>
 </div>
 
@@ -678,7 +684,7 @@ NameError: name &#39;a&#39; isn&#39;t defined
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../micropython.html" title="previous page">MicroPython</a>
-    <a class='right-next' id="next-link" href="REPL.html" title="next page">REPL prompt</a>
+    <a class='right-next' id="next-link" href="magics.html" title="next page">Magics</a>
 
         </div>
         
