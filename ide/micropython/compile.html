@@ -314,6 +314,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/internet/ota.html">
+     ESP32 OTA
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../projects/internet/encryption.html">
      Encryption
     </a>
@@ -429,11 +434,13 @@
      arm32
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#esp-idf">
-     esp-idf
-    </a>
-   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#esp-idf">
+   esp-idf
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#unix-version">
      Unix version
@@ -899,8 +906,9 @@ GEN build-PYBV11/firmware.hex
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="esp-idf">
-<h3>esp-idf<a class="headerlink" href="#esp-idf" title="Permalink to this headline">¶</a></h3>
+<h2>esp-idf<a class="headerlink" href="#esp-idf" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
@@ -912,8 +920,8 @@ GEN build-PYBV11/firmware.hex
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>git submodule update --init ../../lib/berkeley-db-1.xx
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>setting up IDF ...
+git submodule update --init ../../lib/berkeley-db-1.xx
 </pre></div>
 </div>
 </div>
@@ -1118,7 +1126,6 @@ flashbdev         uasyncio/funcs    upip_utarfile
 Plus any modules on the filesystem
 
 </pre></div>
-</div>
 </div>
 </div>
 </div>
