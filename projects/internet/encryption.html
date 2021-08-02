@@ -454,17 +454,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">pico</span>
-<span class="o">%</span><span class="n">softreset</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to pico @ serial:///dev/ttyUSB0</span>
-
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to pico @ serial:///dev/ttyUSB1</span>
 </pre></div>
 </div>
 </div>
@@ -502,10 +496,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>key = b&#39;\x93\xcc\xc8\x99,\x14\xf7&lt;$m\xca\xe8\xb0O\x85\x07&#39; ...
-encrypted = b&#39;\xc0 \xb8\xc9\xd8\xcc\xc9\xc3\x80Y\xdb\xf7\xfb\xa4\xcf\xc1\xdc\xea\xd2y&#39; ...
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>key = b&#39;\x18\xee\x1f\xb3\xe7O\x9c\xc2\x03\xfc\xce[s\x97\x13c&#39; ...
+encrypted = b&#39;\xf0D4zUO\xc9\x85\xe9yM\x19\xff_\xe2\xdd\x00\xb9\xbe\x01&#39; ...
 decrypted = b&#39;iot49 is awesome!\x00\x00\x00&#39; ...
-
 </pre></div>
 </div>
 </div>
@@ -516,7 +509,7 @@ decrypted = b&#39;iot49 is awesome!\x00\x00\x00&#39; ...
 <h2>Public Key Cryptography<a class="headerlink" href="#public-key-cryptography" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Public-key_cryptography">Public Key Cryptography (PKC)</a> uses two keys: a public key for encryption, and a private key for decryption.</p>
 <p>To send me a secret message, you ask me for my public key. It’s public and hence can be transmitted without encryption. You use this public key to encrypt the message and send me the result. I recover the original, unencrypted message using my private key (that is never shared).</p>
-<p>The public and private keys are generated from prime numbers. Here is a simple (and inefficient) function to generate large random prime numbers.</p>
+<p>The public and private keys are generated from prime numbers. Here is a simple (and inefficient) function to generate (not so) large random prime numbers.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
@@ -539,12 +532,11 @@ decrypted = b&#39;iot49 is awesome!\x00\x00\x00&#39; ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0:                     3133134113   31 bits
- 1:                      514661263   28 bits
- 2:                     1059481411   29 bits
- 3:                     1440859621   30 bits
- 4:                     2049262793   30 bits
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 0:                      439392509   28 bits
+ 1:                     3161980531   31 bits
+ 2:                     3662739161   31 bits
+ 3:                     2941471303   31 bits
+ 4:                     4239141733   31 bits
 </pre></div>
 </div>
 </div>
@@ -559,7 +551,6 @@ decrypted = b&#39;iot49 is awesome!\x00\x00\x00&#39; ...
 <span class="sd">        18</span>
 <span class="sd">18 * 138 % 191</span>
 <span class="sd">        1</span>
-
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="c1"># http://en.wikipedia.org/wiki/Extended_Euclidean_algorithm</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">lastx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
@@ -592,13 +583,12 @@ decrypted = b&#39;iot49 is awesome!\x00\x00\x00&#39; ...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>keys: public=9986884116869176633, private=5122588709583204353
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>keys: public=4567550543301076511, private=3040759113385555553
 </pre></div>
 </div>
 </div>
 </div>
-<p>And use them to encrypt and decrypt a secret message. Note that <code class="docutils literal notranslate"><span class="pre">pow</span></code> expect an int.</p>
+<p>Use these keys to encrypt and decrypt a secret message. Note that <code class="docutils literal notranslate"><span class="pre">pow</span></code> expects an int.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="mi">359234562701343655</span>
@@ -616,9 +606,8 @@ decrypted = b&#39;iot49 is awesome!\x00\x00\x00&#39; ...
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>msg:                   359234562701343655
-encrypted:            5358422032796723527
+encrypted:            2415327350779094472
 decrypted:             359234562701343655
-
 </pre></div>
 </div>
 </div>
@@ -649,14 +638,39 @@ decrypted:             359234562701343655
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>message:   b&#39;iot49&#39;
-encrypted: 2320697473865086478
+encrypted: 146271442467418660
 decrypted: b&#39;iot49&#39;
-
 </pre></div>
 </div>
 </div>
 </div>
-<p>The code works as expected, but only for short messages. Longer ones result in overflow.</p>
+<p>The code works as expected, but only for short messages (CPython fails with overflow, MicroPython silently):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;iot49 is awesome&quot;</span>
+
+<span class="n">encrypted</span> <span class="o">=</span> <span class="n">encrypt</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">pubkey</span><span class="p">)</span>
+<span class="n">decrypted</span> <span class="o">=</span> <span class="n">decrypt</span><span class="p">(</span><span class="n">encrypted</span><span class="p">,</span> <span class="n">pubkey</span><span class="p">,</span> <span class="n">privkey</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;message:  &quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;encrypted:&quot;</span><span class="p">,</span> <span class="n">encrypted</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;decrypted:&quot;</span><span class="p">,</span> <span class="n">decrypted</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">msg</span> <span class="o">==</span> <span class="n">decrypted</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Success!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mismatch:  </span><span class="si">{}</span><span class="s2"> != </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">decrypted</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>message:   b&#39;iot49 is awesome&#39;
+encrypted: 3736966150267381513
+decrypted: b&#39;!\xa7]pw\x88*.&#39;
+Mismatch:  b&#39;iot49 is awesome&#39; != b&#39;!\xa7]pw\x88*.&#39;
+</pre></div>
+</div>
+</div>
+</div>
 <p>Now we can use PKC to transmit the AES key using the following steps:</p>
 <ol class="simple">
 <li><p>Recipient creates key pair &amp; sends public key to the sender.</p></li>
@@ -683,7 +697,7 @@ decrypted: b&#39;iot49&#39;
 </ol>
 <p>The last step is tricky, since it requires some form of “secure channel”. In the simplest case the bank could give you the certificate at a safe place (e.g. visiting a branch). Then your browser can verify that the certificate received matches what the bank gave you.</p>
 <p>Of course this approach is impractical. Because of this, browsers (and computer operating systems) come with a “built-in” collection of verified certificates. They also use chaining to limit the number of certificates that need be stored and avoid the need to get a new certificate each time a new website goes onling. The certificate received from the bank’s webserver is checked against these built-in certificates. If no match is found, the browser issues a warning (e.g. “Your connection is not private”) and refuses to connect.</p>
-<p>This seems to work, but begs the question how you received your webbrowser and computer OS and weather that procedure was safe …</p>
+<p>This seems to work, but begs the question how you received your webbrowser and computer OS and if that procedure was safe …</p>
 <p>Security is difficult, as we well know from almost daily breaches.</p>
 </div>
 </div>
