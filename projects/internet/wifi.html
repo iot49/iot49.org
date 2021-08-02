@@ -460,7 +460,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB1</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
 Welcome to MicroPython on the ESP32!
 
 For generic online docs please visit http://docs.micropython.org/
@@ -494,7 +494,6 @@ Control commands:
 
 For further help on a specific object, type help(obj)
 For a list of available modules, type help(&#39;modules&#39;)
-
 </pre></div>
 </div>
 </div>
@@ -560,7 +559,6 @@ esp32:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>connected: True
-
 </pre></div>
 </div>
 </div>
@@ -575,7 +573,6 @@ esp32:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.39.40.135
-
 </pre></div>
 </div>
 </div>
@@ -589,13 +586,13 @@ esp32:
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PING 10.39.40.135 (10.39.40.135) 56(84) bytes of data.
-64 bytes from 10.39.40.135: icmp_seq=1 ttl=255 time=112 ms
-64 bytes from 10.39.40.135: icmp_seq=2 ttl=255 time=235 ms
-64 bytes from 10.39.40.135: icmp_seq=3 ttl=255 time=257 ms
+64 bytes from 10.39.40.135: icmp_seq=1 ttl=255 time=1385 ms
+64 bytes from 10.39.40.135: icmp_seq=2 ttl=255 time=328 ms
+64 bytes from 10.39.40.135: icmp_seq=3 ttl=255 time=248 ms
 
 --- 10.39.40.135 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 5ms
-rtt min/avg/max/mdev = 112.327/201.696/257.435/63.837 ms
+3 packets transmitted, 3 received, 0% packet loss, time 59ms
+rtt min/avg/max/mdev = 247.953/653.696/1384.908/518.082 ms, pipe 2
 </pre></div>
 </div>
 </div>
@@ -613,8 +610,7 @@ rtt min/avg/max/mdev = 112.327/201.696/257.435/63.837 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2000, 1, 1, 0, 0, 38, 5, 1)
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2021, 8, 1, 20, 27, 17, 6, 213)
 </pre></div>
 </div>
 </div>
@@ -635,8 +631,7 @@ rtt min/avg/max/mdev = 112.327/201.696/257.435/63.837 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time (2021, 7, 20, 18, 52, 0, 1, 201)
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>time (2021, 8, 1, 20, 27, 19, 6, 213)
 </pre></div>
 </div>
 </div>
@@ -651,8 +646,7 @@ rtt min/avg/max/mdev = 112.327/201.696/257.435/63.837 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-07-20 18:54
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2021-08-01 20:27
 </pre></div>
 </div>
 </div>
@@ -709,7 +703,7 @@ esp32:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">UPDATE  /webrepl_cfg.py</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
 
 </pre></div>
 </div>
@@ -726,7 +720,6 @@ esp32:
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WebREPL daemon started on ws://10.39.40.135:8266
 Started webrepl in normal mode
-
 </pre></div>
 </div>
 </div>
@@ -756,11 +749,6 @@ Started webrepl in normal mode
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
-</div>
 </div>
 <p>Connect wirelessly:</p>
 <div class="cell docutils container">
@@ -770,8 +758,8 @@ Started webrepl in normal mode
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esp32  ws://10.39.40.135:8266  
-esp32  serial:///dev/ttyUSB0   
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esp32  serial:///dev/ttyUSB0   
+esp32  ws://10.39.40.135:8266  
 </pre></div>
 </div>
 </div>
@@ -787,7 +775,6 @@ esp32  serial:///dev/ttyUSB0
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ ws://10.39.40.135:8266</span>
 connected to webrepl
-
 </pre></div>
 </div>
 </div>
@@ -886,29 +873,11 @@ if hasattr(secrets, &#39;webrepl_pwd&#39;):
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
-<span class=" -Color -Color-Green">ADD     /boot.py</span>
-<span class=" -Color -Color-Green">ADD     /lib/http_server.py</span>
-<span class=" -Color -Color-Green">ADD     /secrets.py</span>
-<span class=" -Color -Color-Green">ADD     /webrepl_cfg.py</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Blue">UPDATE  /boot.py</span>
 
 <span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
 <span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
 <span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
-
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esp32  serial:///dev/ttyUSB1   
-esp32  ws://10.39.40.135:8266  
 </pre></div>
 </div>
 </div>
