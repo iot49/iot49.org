@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Compile &#8212; Electronics for IoT</title>
+    <title>External C modules &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,12 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://iot49.org/ide/micropython/compile.html" />
+    <link rel="canonical" href="https://iot49.org/ide/micropython/mp_ext_c.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Flash" href="flash.html" />
-    <link rel="prev" title="Device Configuration" href="dev_config.html" />
+    <link rel="next" title="Docker App" href="../app.html" />
+    <link rel="prev" title="Flash" href="flash.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -167,8 +167,8 @@
      Device Configuration
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="compile.html">
      Compile
     </a>
    </li>
@@ -177,8 +177,8 @@
      Flash
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="mp_ext_c.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      External C modules
     </a>
    </li>
@@ -371,7 +371,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/ide/micropython/compile.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/ide/micropython/mp_ext_c.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -391,10 +391,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/micropython/compile.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/micropython/mp_ext_c.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/micropython/compile.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/micropython/mp_ext_c.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -420,28 +420,18 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#clone-micropython">
-   Clone MicroPython
+  <a class="reference internal nav-link" href="#unix-port">
+   Unix port
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mpy-cross">
-   mpy-cross
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arm-ports">
-   ARM Ports
+  <a class="reference internal nav-link" href="#stm32-port">
+   stm32 port
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#esp32-port">
-   ESP32 Port
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#unix-port">
-   Unix Port
+   esp32 port
   </a>
  </li>
 </ul>
@@ -455,105 +445,105 @@
         
               <div>
                 
-  <div class="section" id="compile">
-<h1>Compile<a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h1>
-<p>The need to compile the MicroPython interpreter arises frequently, for example to <a class="reference external" href="https://docs.micropython.org/en/latest/reference/packages.html?highlight=freeze">“freeze” pre-compiled Python code</a> into the interpreter or <a class="reference external" href="https://docs.micropython.org/en/latest/develop/extendingmicropython.html">add features</a>.</p>
-<p>Below we briefly outline the steps for compiling MicroPython in <em>ide49</em>.</p>
-<p><strong>Note:</strong> Compiling for the ESP32 is is <a class="reference external" href="https://github.com/espressif/esp-idf/issues/6432">not yet available</a> for 64-Bit Linux.</p>
-<div class="section" id="clone-micropython">
-<h2>Clone MicroPython<a class="headerlink" href="#clone-micropython" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-
-<span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">micropython</span><span class="o">/</span><span class="n">micropython</span><span class="o">.</span><span class="n">git</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="mpy-cross">
-<h2>mpy-cross<a class="headerlink" href="#mpy-cross" title="Permalink to this headline">¶</a></h2>
-<p>See the <a class="reference external" href="https://github.com/micropython/micropython">MicroPython github repository</a> for more information.</p>
-<p><strong>Note:</strong> The cross-compiler is installed in a separate container, access is with the <code class="docutils literal notranslate"><span class="pre">%%service</span></code> macro.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
-
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">mpy</span><span class="o">-</span><span class="n">cross</span>
-<span class="n">make</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="arm-ports">
-<h2>ARM Ports<a class="headerlink" href="#arm-ports" title="Permalink to this headline">¶</a></h2>
-<p>The example below is for the <em>stm32</em> port. The procedure for other ports is similar, follow the instructions for the particular port on the <a class="reference external" href="https://github.com/micropython/micropython">MicroPython github repository</a>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
-
-<span class="c1"># submodules</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">stm32</span>
-<span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span> <span class="o">--</span><span class="n">init</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>In the commands below, replace <code class="docutils literal notranslate"><span class="pre">PYBV11</span></code> with the name of your configuration.</p>
+  <div class="section" id="external-c-modules">
+<h1>External C modules<a class="headerlink" href="#external-c-modules" title="Permalink to this headline">¶</a></h1>
+<p>MicroPython can be extended with <a class="reference external" href="https://docs.micropython.org/en/latest/develop/cmodules.html">external C modules</a>.</p>
+<div class="section" id="unix-port">
+<h2>Unix port<a class="headerlink" href="#unix-port" title="Permalink to this headline">¶</a></h2>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
 
-<span class="c1"># compile</span>
+<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
+<span class="n">make</span> <span class="n">clean</span> 
+<span class="n">make</span> <span class="n">submodules</span>
+<span class="n">make</span> <span class="n">USER_C_MODULES</span><span class="o">=../../</span><span class="n">examples</span><span class="o">/</span><span class="n">usercmodule</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+
+<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
+<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import cexample; print(cexample.add_ints(4, -7))&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-3
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="stm32-port">
+<h2>stm32 port<a class="headerlink" href="#stm32-port" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
+
 <span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">stm32</span>
-<span class="n">make</span> <span class="n">clean</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">PYBV11</span>
-<span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">PYBV11</span>
+<span class="c1"># make clean </span>
+<span class="c1"># make submodules</span>
+<span class="n">make</span> <span class="n">USER_C_MODULES</span><span class="o">=../../</span><span class="n">examples</span><span class="o">/</span><span class="n">usercmodule</span><span class="o">/</span><span class="n">micropython</span><span class="o">.</span><span class="n">cmake</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Use make V=1 or set BUILD_VERBOSE in your environment to increase build verbosity.
-rm -rf build-PYBV11 
-Use make V=1 or set BUILD_VERBOSE in your environment to increase build verbosity.
-mkdir -p build-PYBV11/genhdr
-GEN build-PYBV11/genhdr/pins.h
-GEN stmconst build-PYBV11/modstm_qstr.h
-GEN build-PYBV11/genhdr/mpversion.h
-GEN build-PYBV11/genhdr/moduledefs.h
-GEN build-PYBV11/genhdr/pybcdc.inf
-GEN build-PYBV11/genhdr/pybcdc_inf.h
-GEN build-PYBV11/genhdr/pllfreqtable.h
-GEN build-PYBV11/genhdr/qstr.i.last
-GEN build-PYBV11/genhdr/qstr.split
-GEN build-PYBV11/genhdr/qstrdefs.collected.h
+Updating submodules: lib/libhydrogen lib/lwip lib/mbedtls lib/stm32lib
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>error: could not lock config file /home/iot/micropython/.git/modules/lib/libhydrogen/config: Permission denied
+fatal: could not set &#39;core.worktree&#39; to &#39;../../../../lib/libhydrogen&#39;
+error: could not lock config file /home/iot/micropython/.git/modules/lib/lwip/config: Permission denied
+fatal: could not set &#39;core.worktree&#39; to &#39;../../../../lib/lwip&#39;
+error: could not lock config file /home/iot/micropython/.git/modules/lib/mbedtls/config: Permission denied
+fatal: could not set &#39;core.worktree&#39; to &#39;../../../../lib/mbedtls&#39;
+error: could not lock config file /home/iot/micropython/.git/modules/lib/stm32lib/config: Permission denied
+fatal: could not set &#39;core.worktree&#39; to &#39;../../../../lib/stm32lib&#39;
+
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Use make V=1 or set BUILD_VERBOSE in your environment to increase build verbosity.
+mkdir -p build-PYBV10/genhdr
+GEN build-PYBV10/genhdr/pins.h
+GEN stmconst build-PYBV10/modstm_qstr.h
+GEN build-PYBV10/genhdr/pybcdc.inf
+GEN build-PYBV10/genhdr/pybcdc_inf.h
+GEN build-PYBV10/genhdr/pllfreqtable.h
+GEN build-PYBV10/genhdr/mpversion.h
+GEN build-PYBV10/genhdr/moduledefs.h
+GEN build-PYBV10/genhdr/qstr.i.last
+GEN build-PYBV10/genhdr/qstr.split
+GEN build-PYBV10/genhdr/qstrdefs.collected.h
 QSTR updated
-GEN build-PYBV11/genhdr/qstrdefs.generated.h
-GEN build-PYBV11/genhdr/compressed.split
-GEN build-PYBV11/genhdr/compressed.collected
+GEN build-PYBV10/genhdr/qstrdefs.generated.h
+GEN build-PYBV10/genhdr/compressed.split
+GEN build-PYBV10/genhdr/compressed.collected
 Compressed data updated
-GEN build-PYBV11/genhdr/compressed.data.h
-mkdir -p build-PYBV11/build-PYBV11/
-mkdir -p build-PYBV11/drivers/bus/
-mkdir -p build-PYBV11/drivers/dht/
-mkdir -p build-PYBV11/drivers/memory/
-mkdir -p build-PYBV11/extmod/
-mkdir -p build-PYBV11/lib/embed/
-mkdir -p build-PYBV11/lib/libc/
-mkdir -p build-PYBV11/lib/libm/
-mkdir -p build-PYBV11/lib/littlefs/
-mkdir -p build-PYBV11/lib/mp-readline/
-mkdir -p build-PYBV11/lib/netutils/
-mkdir -p build-PYBV11/lib/oofatfs/
-mkdir -p build-PYBV11/lib/stm32lib/CMSIS/STM32F4xx/Source/Templates/
-mkdir -p build-PYBV11/lib/stm32lib/CMSIS/STM32F4xx/Source/Templates/gcc/
-mkdir -p build-PYBV11/lib/stm32lib/STM32F4xx_HAL_Driver/Src/
-mkdir -p build-PYBV11/lib/timeutils/
-mkdir -p build-PYBV11/lib/utils/
-mkdir -p build-PYBV11/py/
-mkdir -p build-PYBV11/usbdev/class/src/
-mkdir -p build-PYBV11/usbdev/core/src/
+GEN build-PYBV10/genhdr/compressed.data.h
+mkdir -p build-PYBV10/build-PYBV10/
+mkdir -p build-PYBV10/drivers/bus/
+mkdir -p build-PYBV10/drivers/dht/
+mkdir -p build-PYBV10/drivers/memory/
+mkdir -p build-PYBV10/extmod/
+mkdir -p build-PYBV10/lib/libm/
+mkdir -p build-PYBV10/lib/littlefs/
+mkdir -p build-PYBV10/lib/oofatfs/
+mkdir -p build-PYBV10/lib/stm32lib/CMSIS/STM32F4xx/Source/Templates/
+mkdir -p build-PYBV10/lib/stm32lib/CMSIS/STM32F4xx/Source/Templates/gcc/
+mkdir -p build-PYBV10/lib/stm32lib/STM32F4xx_HAL_Driver/Src/
+mkdir -p build-PYBV10/py/
+mkdir -p build-PYBV10/shared/libc/
+mkdir -p build-PYBV10/shared/netutils/
+mkdir -p build-PYBV10/shared/readline/
+mkdir -p build-PYBV10/shared/runtime/
+mkdir -p build-PYBV10/shared/timeutils/
+mkdir -p build-PYBV10/usbdev/class/src/
+mkdir -p build-PYBV10/usbdev/core/src/
 CC ../../py/mpstate.c
 CC ../../py/nlr.c
 CC ../../py/nlrx86.c
@@ -675,7 +665,6 @@ CC ../../py/frozenmod.c
 CC ../../extmod/moduasyncio.c
 CC ../../extmod/moductypes.c
 CC ../../extmod/modujson.c
-CC ../../extmod/modumsgpack.c
 CC ../../extmod/modure.c
 CC ../../extmod/moduzlib.c
 CC ../../extmod/moduheapq.c
@@ -698,7 +687,6 @@ CC ../../extmod/moduselect.c
 CC ../../extmod/moduwebsocket.c
 CC ../../extmod/modwebrepl.c
 CC ../../extmod/modframebuf.c
-CC ../../extmod/modfinaliserproxy.c
 CC ../../extmod/vfs.c
 CC ../../extmod/vfs_blockdev.c
 CC ../../extmod/vfs_reader.c
@@ -710,8 +698,8 @@ CC ../../extmod/vfs_fat_file.c
 CC ../../extmod/vfs_lfs.c
 CC ../../extmod/utime_mphal.c
 CC ../../extmod/uos_dupterm.c
-CC ../../lib/embed/abort_.c
-CC ../../lib/utils/printf.c
+CC ../../shared/libc/abort_.c
+CC ../../shared/libc/printf.c
 MPY uasyncio/__init__.py
 MPY uasyncio/core.py
 MPY uasyncio/event.py
@@ -722,19 +710,8 @@ MPY dht.py
 MPY lcd160cr.py
 MPY lcd160cr_test.py
 MPY onewire.py
-GEN build-PYBV11/frozen_content.c
-CC build-PYBV11/frozen_content.c
-CC ../../lib/libc/string0.c
-CC ../../lib/mp-readline/readline.c
-CC ../../lib/netutils/netutils.c
-CC ../../lib/netutils/trace.c
-CC ../../lib/netutils/dhcpserver.c
-CC ../../lib/timeutils/timeutils.c
-CC ../../lib/utils/gchelper_native.c
-CC ../../lib/utils/pyexec.c
-CC ../../lib/utils/interrupt_char.c
-CC ../../lib/utils/sys_stdio_mphal.c
-CC ../../lib/utils/mpirq.c
+GEN build-PYBV10/frozen_content.c
+CC build-PYBV10/frozen_content.c
 CC ../../lib/libm/math.c
 CC ../../lib/libm/acoshf.c
 CC ../../lib/libm/asinfacosf.c
@@ -762,6 +739,18 @@ CC ../../lib/libm/sf_tan.c
 CC ../../lib/libm/wf_lgamma.c
 CC ../../lib/libm/wf_tgamma.c
 CC ../../lib/libm/thumb_vfp_sqrtf.c
+CC ../../shared/libc/string0.c
+CC ../../shared/netutils/dhcpserver.c
+CC ../../shared/netutils/netutils.c
+CC ../../shared/netutils/trace.c
+CC ../../shared/readline/readline.c
+CC ../../shared/runtime/gchelper_native.c
+CC ../../shared/runtime/interrupt_char.c
+CC ../../shared/runtime/mpirq.c
+CC ../../shared/runtime/pyexec.c
+CC ../../shared/runtime/stdout_helpers.c
+CC ../../shared/runtime/sys_stdio_mphal.c
+CC ../../shared/timeutils/timeutils.c
 CC ../../extmod/modonewire.c
 CC ../../drivers/bus/softspi.c
 CC ../../drivers/bus/softqspi.c
@@ -797,6 +786,8 @@ CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.c
 CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
 CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dcmi.c
 CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c
+CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s.c
+CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s_ex.c
 CC usbdev/core/src/usbd_core.c
 CC usbdev/core/src/usbd_ctlreq.c
 CC usbdev/core/src/usbd_ioreq.c
@@ -845,6 +836,7 @@ CC gccollect.c
 CC help.c
 CC machine_adc.c
 CC machine_i2c.c
+CC machine_i2s.c
 CC machine_spi.c
 CC machine_timer.c
 CC machine_uart.c
@@ -876,293 +868,52 @@ AS ../../lib/stm32lib/CMSIS/STM32F4xx/Source/Templates/gcc/startup_stm32f405xx.s
 CC ../../lib/stm32lib/CMSIS/STM32F4xx/Source/Templates/system_stm32f4xx.c
 CC system_stm32.c
 AS resethandler.s
-AS ../../lib/utils/gchelper_m3.s
+AS ../../shared/runtime/gchelper_m3.s
 CC ../../lib/oofatfs/ff.c
 CC ../../lib/oofatfs/ffunicode.c
 CC ../../lib/littlefs/lfs2.c
 CC ../../lib/littlefs/lfs2_util.c
-CC build-PYBV11/pins_PYBV11.c
-LINK build-PYBV11/firmware.elf
+CC build-PYBV10/pins_PYBV10.c
+LINK build-PYBV10/firmware.elf
    text	   data	    bss	    dec	    hex	filename
- 363636	     16	  27272	 390924	  5f70c	build-PYBV11/firmware.elf
-GEN build-PYBV11/firmware0.bin
-GEN build-PYBV11/firmware1.bin
-GEN build-PYBV11/firmware.dfu
-GEN build-PYBV11/firmware.hex
-
+ 367480	     16	  27296	 394792	  60628	build-PYBV10/firmware.elf
+GEN build-PYBV10/firmware0.bin
+GEN build-PYBV10/firmware1.bin
+GEN build-PYBV10/firmware.dfu
+GEN build-PYBV10/firmware.hex
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="esp32-port">
-<h2>ESP32 Port<a class="headerlink" href="#esp32-port" title="Permalink to this headline">¶</a></h2>
+<h2>esp32 port<a class="headerlink" href="#esp32-port" title="Permalink to this headline">¶</a></h2>
+<p>Place custom modules in <code class="docutils literal notranslate"><span class="pre">~/micropython_modules</span></code>.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
 
-<span class="c1"># submodules</span>
 <span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">esp32</span>
-<span class="n">make</span> <span class="n">submodules</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>setting up IDF ...
-git submodule update --init ../../lib/berkeley-db-1.xx
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
-
-<span class="c1"># compile</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">esp32</span>
-<span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">GENERIC_OTA</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>setting up IDF ...
-idf.py -D MICROPY_BOARD=GENERIC_OTA -B build-GENERIC_OTA  build
-[1/203] cd /home/iot/micropython/ports/esp32/build-GENERIC_OTA/esp-idf/main &amp;&amp; echo -n
-[2/4] Performing build step for &#39;bootloader&#39;
-ninja: no work to do.
-Executing action: all (aliases: build)
-Running ninja in directory /home/iot/micropython/ports/esp32/build-GENERIC_OTA
-Executing &quot;ninja all&quot;...
-
-Project build complete. To flash, run this command:
-/opt/esp/python_env/idf4.2_py3.7_env/bin/python ../../../../../opt/esp/idf/components/esptool_py/esptool/esptool.py -p (PORT) -b 460800 --before default_reset --after hard_reset --chip esp32  write_flash --flash_mode dio --flash_size detect --flash_freq 40m 0x1000 build-GENERIC_OTA/bootloader/bootloader.bin 0x8000 build-GENERIC_OTA/partition_table/partition-table.bin 0xd000 build-GENERIC_OTA/ota_data_initial.bin 0x10000 build-GENERIC_OTA/micropython.bin
-or run &#39;idf.py -p (PORT) flash&#39;
-bootloader  @0x001000    22720  (    5952 remaining)
-partitions  @0x008000     3072  (    1024 remaining)
-application @0x010000  1448064  (  124800 remaining)
-total                  1513600
-
-</pre></div>
-</div>
-</div>
-</div>
-<p>Find port …</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span> <span class="o">-</span><span class="n">a</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/dev/ttyUSB0
-  hwid         USB VID:PID=10C4:EA60 SER=0160B5B8 LOCATION=1-5.2
-  manufacturer Silicon Labs
-  product      CP2104 USB to UART Bridge Controller
-  interface    CP2104 USB to UART Bridge Controller
-
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
-
-<span class="c1"># flash</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">esp32</span>
-<span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">GENERIC_OTA</span> <span class="n">PORT</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span> <span class="n">deploy</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>setting up IDF ...
-idf.py -D MICROPY_BOARD=GENERIC_OTA -B build-GENERIC_OTA  -p /dev/ttyUSB0 -b 460800 flash
-[1/204] cd /home/iot/micropython/ports/esp32/build-GENERIC_OTA/esp-idf/main &amp;&amp; echo -n
-[2/5] Performing build step for &#39;bootloader&#39;
-ninja: no work to do.
-[2/3] cd /opt/esp/idf/components/esptool_py &amp;&amp; /opt/esp/tools/cmake/3.16.4/bin/cmake -D IDF_PATH=&quot;/opt/esp/idf&quot; -D ESPTOOLPY=&quot;/opt/esp/python_env/idf4.2_py3.7_env/bin/python /opt/esp/idf/components/esptool_py/esptool/esptool.py --chip esp32&quot; -D ESPTOOL_ARGS=&quot;--before=default_reset --after=hard_reset write_flash @flash_args&quot; -D WORKING_DIRECTORY=&quot;/home/iot/micropython/ports/esp32/build-GENERIC_OTA&quot; -P /opt/esp/idf/components/esptool_py/run_esptool.cmake
-esptool.py --chip esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 4MB 0x8000 partition_table/partition-table.bin 0xd000 ota_data_initial.bin 0x1000 bootloader/bootloader.bin 0x10000 micropython.bin
-esptool.py v3.0
-Serial port /dev/ttyUSB0
-Connecting....
-Chip is ESP32-D0WDQ6 (revision 1)
-Features: WiFi, BT, Dual Core, Coding Scheme None
-Crystal is 40MHz
-MAC: 30:ae:a4:30:84:34
-Uploading stub...
-Running stub...
-Stub running...
-Changing baud rate to 460800
-Changed.
-Configuring flash size...
-Compressed 3072 bytes to 139...
-Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (139 compressed) at 0x00008000 in 0.0 seconds (effective 4847.8 kbit/s)...
-Hash of data verified.
-Compressed 8192 bytes to 31...
-Writing at 0x0000d000... (100 %)
-Wrote 8192 bytes (31 compressed) at 0x0000d000 in 0.0 seconds (effective 26054.8 kbit/s)...
-Hash of data verified.
-Compressed 22720 bytes to 14201...
-Writing at 0x00001000... (100 %)
-Wrote 22720 bytes (14201 compressed) at 0x00001000 in 0.3 seconds (effective 537.2 kbit/s)...
-Hash of data verified.
-Compressed 1448064 bytes to 960828...
-Writing at 0x00010000... (1 %)
-Writing at 0x00014000... (3 %)
-Writing at 0x00018000... (5 %)
-Writing at 0x0001c000... (6 %)
-Writing at 0x00020000... (8 %)
-Writing at 0x00024000... (10 %)
-Writing at 0x00028000... (11 %)
-Writing at 0x0002c000... (13 %)
-Writing at 0x00030000... (15 %)
-Writing at 0x00034000... (16 %)
-Writing at 0x00038000... (18 %)
-Writing at 0x0003c000... (20 %)
-Writing at 0x00040000... (22 %)
-Writing at 0x00044000... (23 %)
-Writing at 0x00048000... (25 %)
-Writing at 0x0004c000... (27 %)
-Writing at 0x00050000... (28 %)
-Writing at 0x00054000... (30 %)
-Writing at 0x00058000... (32 %)
-Writing at 0x0005c000... (33 %)
-Writing at 0x00060000... (35 %)
-Writing at 0x00064000... (37 %)
-Writing at 0x00068000... (38 %)
-Writing at 0x0006c000... (40 %)
-Writing at 0x00070000... (42 %)
-Writing at 0x00074000... (44 %)
-Writing at 0x00078000... (45 %)
-Writing at 0x0007c000... (47 %)
-Writing at 0x00080000... (49 %)
-Writing at 0x00084000... (50 %)
-Writing at 0x00088000... (52 %)
-Writing at 0x0008c000... (54 %)
-Writing at 0x00090000... (55 %)
-Writing at 0x00094000... (57 %)
-Writing at 0x00098000... (59 %)
-Writing at 0x0009c000... (61 %)
-Writing at 0x000a0000... (62 %)
-Writing at 0x000a4000... (64 %)
-Writing at 0x000a8000... (66 %)
-Writing at 0x000ac000... (67 %)
-Writing at 0x000b0000... (69 %)
-Writing at 0x000b4000... (71 %)
-Writing at 0x000b8000... (72 %)
-Writing at 0x000bc000... (74 %)
-Writing at 0x000c0000... (76 %)
-Writing at 0x000c4000... (77 %)
-Writing at 0x000c8000... (79 %)
-Writing at 0x000cc000... (81 %)
-Writing at 0x000d0000... (83 %)
-Writing at 0x000d4000... (84 %)
-Writing at 0x000d8000... (86 %)
-Writing at 0x000dc000... (88 %)
-Writing at 0x000e0000... (89 %)
-Writing at 0x000e4000... (91 %)
-Writing at 0x000e8000... (93 %)
-Writing at 0x000ec000... (94 %)
-Writing at 0x000f0000... (96 %)
-Writing at 0x000f4000... (98 %)
-Writing at 0x000f8000... (100 %)
-Wrote 1448064 bytes (960828 compressed) at 0x00010000 in 23.1 seconds (effective 501.3 kbit/s)...
-Hash of data verified.
-
-Leaving...
-Hard resetting via RTS pin...
-Executing action: flash
-Running ninja in directory /home/iot/micropython/ports/esp32/build-GENERIC_OTA
-Executing &quot;ninja flash&quot;...
-Done
-
-</pre></div>
-</div>
-</div>
-</div>
-<p>Verify it’s working …</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span> 
-<span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;installed modules ...&quot;</span><span class="p">)</span>
-<span class="n">help</span><span class="p">(</span><span class="s1">&#39;modules&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esp32  serial:///dev/ttyUSB0  
-<span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
-installed modules ...
-__main__          framebuf          uasyncio/lock     urandom
-_boot             gc                uasyncio/stream   ure
-_onewire          inisetup          ubinascii         uselect
-_thread           machine           ubluetooth        usocket
-_uasyncio         math              ucollections      ussl
-_webrepl          micropython       ucryptolib        ustruct
-apa106            neopixel          uctypes           usys
-btree             network           uerrno            utime
-builtins          ntptime           uhashlib          utimeq
-cmath             onewire           uheapq            uwebsocket
-dht               uarray            uio               uzlib
-ds18x20           uasyncio/__init__ ujson             webrepl
-esp               uasyncio/core     uos               webrepl_setup
-esp32             uasyncio/event    upip              websocket_helper
-flashbdev         uasyncio/funcs    upip_utarfile
-Plus any modules on the filesystem
-
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="unix-port">
-<h2>Unix Port<a class="headerlink" href="#unix-port" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
-
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="n">make</span> <span class="n">submodules</span>
-<span class="n">make</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p>Check it out:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sys; print(sys.platform)&quot;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>linux
+<span class="c1"># make submodules</span>
+<span class="c1"># make clean </span>
+<span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">GENERIC_OTA</span> \
+     <span class="n">USER_C_MODULES</span><span class="o">=../../../../</span><span class="n">micropython_modules</span><span class="o">/</span><span class="n">micropython</span><span class="o">.</span><span class="n">cmake</span> \
+     <span class="n">deploy</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
-
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">m</span> <span class="n">upip</span> <span class="n">install</span> <span class="n">micropython</span><span class="o">-</span><span class="n">pystone</span>
-<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">m</span> <span class="n">pystone</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span>
+<span class="kn">import</span> <span class="nn">cexample</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cexample</span><span class="o">.</span><span class="n">add_ints</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Installing to: /home/iot/.micropython/lib/
-Warning: micropython.org SSL certificate is not validated
-Installing micropython-pystone 3.4.2.post2 from https://micropython.org/pi/pystone/pystone-3.4.2.post2.tar.gz
-Pystone(1.2) time for 50000 passes = 0.981
-This machine benchmarks at 50968.4 pystones/second
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
+12
 </pre></div>
 </div>
 </div>
@@ -1195,8 +946,8 @@ This machine benchmarks at 50968.4 pystones/second
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="dev_config.html" title="previous page">Device Configuration</a>
-    <a class='right-next' id="next-link" href="flash.html" title="next page">Flash</a>
+    <a class='left-prev' id="prev-link" href="flash.html" title="previous page">Flash</a>
+    <a class='right-next' id="next-link" href="../app.html" title="next page">Docker App</a>
 
         </div>
         

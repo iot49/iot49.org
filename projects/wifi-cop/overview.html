@@ -1,0 +1,1322 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Approach &#8212; Electronics for IoT</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/projects/wifi-cop/overview.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Custom C Modules" href="custom_c.html" />
+    <link rel="prev" title="WiFi Coprocessor" href="../wifi-cop.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <p class="caption">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flash
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/mp_ext_c.html">
+     External C modules
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/app.html">
+   Docker App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Tours &amp; Projects
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../balance.html">
+   GPIO
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/hx711.html">
+     “Precision” Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/ticks.html">
+     Time Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../internet.html">
+   Internet
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/mqtt.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wireshark.html">
+     Wireshark
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/plotserver.html">
+     Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/ota.html">
+     ESP32 OTA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/encryption.html">
+     Encryption
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="custom_c.html">
+     Custom C Modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="uart.html">
+     UART
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="rpc.html">
+     RPC
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/projects/wifi-cop/overview.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/wifi-cop/overview.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/wifi-cop/overview.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#software-on-esp32">
+   Software on ESP32
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#messagepack">
+   MessagePack
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uart">
+   UART
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rpc">
+   RPC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   UART
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="approach">
+<h1>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h1>
+<p>These are the key components of the WiFi co-processor:</p>
+<ul class="simple">
+<li><p><strong>Software on ESP32:</strong> MicroPython. No need to reinvent the wheel. And it’s guaranteed MicroPython compatible.</p></li>
+<li><p><strong>Interface:</strong> We’ll use remote procedure calls (RPC) to invoke functions on the ESP32 (server) from the client.</p></li>
+<li><p><strong>Data Encoding:</strong> <a class="reference external" href="https://msgpack.org/">MessagePack</a> is used to encode Python objects sent to or received from the ESP32.</p></li>
+<li><p><strong>Communications Channel:</strong> <a class="reference external" href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter">UART</a> - it’s widely available on virtually all microcontrollers, requires only two wires, and is symmetrical: both endpoints can communicate at any time without complex handshaking. Most microcontrollers support baud rates up to and in excess of 1Mbps, sufficient for communication not to be the bottleneck in this application.</p></li>
+</ul>
+<div class="section" id="software-on-esp32">
+<h2>Software on ESP32<a class="headerlink" href="#software-on-esp32" title="Permalink to this headline">¶</a></h2>
+<p>Nothing special here. Get whatever ESP32 you wish to use - a full development board with USB or a module for as little as two Dollars. Then flash a MicroPython interpreter.</p>
+</div>
+<div class="section" id="messagepack">
+<h2>MessagePack<a class="headerlink" href="#messagepack" title="Permalink to this headline">¶</a></h2>
+<p>Follow these <a class="reference internal" href="custom_c.html"><span class="doc std std-doc">instructions</span></a> to compile a custom version of MicroPython with support for MessagePack.</p>
+</div>
+<div class="section" id="uart">
+<h2>UART<a class="headerlink" href="#uart" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="rpc">
+<h2>RPC<a class="headerlink" href="#rpc" title="Permalink to this headline">¶</a></h2>
+<p>Python is ideally suited for encapsulating calls for remote execution. Let’s cook up a simple class to check out how this could work.</p>
+<p>It’s standard Python - you can run this on any (Micro)Python interpreter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Demo</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+        
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2"> + </span><span class="si">{}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
+    
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+    
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Demo </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+    
+<span class="n">d</span> <span class="o">=</span> <span class="n">Demo</span><span class="p">(</span><span class="s2">&quot;rpc test&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ADD &quot;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;STR &quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ADD  rpc test: 5 + 7 = 12
+NAME rpc test
+STR  Demo rpc test
+</pre></div>
+</div>
+</div>
+</div>
+<p>To perform these operations remotely, we need a handle to the remote <em>Demo</em> instance <em>d</em>. Let’s create a <em>Proxy</em> for this purpose: the proxy exists on the client, the object (<em>d</em> in the example) on the server.</p>
+<p>For development we can run both parts in the same interpreter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Proxy</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ext_type</span><span class="p">:</span> <span class="n">msgpack</span><span class="o">.</span><span class="n">ExtType</span><span class="p">):</span>
+        <span class="c1"># _Proxy is a reference (msgpack.ExtType) to an object on the remote</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ext_type</span><span class="p">,</span> <span class="n">msgpack</span><span class="o">.</span><span class="n">ExtType</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ext_type</span> <span class="o">=</span> <span class="n">ext_type</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__del__</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ext_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ext_type</span>
+
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># Note:</span>
+        <span class="c1"># We return an accessor function rather than a reference to the</span>
+        <span class="c1"># actual object (method, property) on the server.</span>
+        <span class="c1"># This avoids an extra rpc call but has the disadvantage that</span>
+        <span class="c1"># properties cannot accessed the standard way.</span>
+        <span class="c1"># (_Proxy.x just returns the accessor method, not the property value).</span>
+        <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">_send</span><span class="p">((</span><span class="s2">&quot;cm&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ext_type</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">method</span>
+
+    <span class="k">def</span> <span class="nf">get_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># get object property</span>
+        <span class="k">return</span> <span class="n">_send</span><span class="p">((</span><span class="s2">&quot;gp&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ext_type</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">set_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="c1"># set object property</span>
+        <span class="k">return</span> <span class="n">_send</span><span class="p">((</span><span class="s2">&quot;sp&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ext_type</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">readinto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">):</span>
+        <span class="k">global</span> <span class="n">_stream</span>
+        <span class="n">_clear_rx_buffer</span><span class="p">()</span>
+        <span class="n">msgpack</span><span class="o">.</span><span class="n">pack</span><span class="p">((</span><span class="s2">&quot;ri&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ext_type</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">buffer</span><span class="p">)),</span> <span class="n">_stream</span><span class="p">)</span>
+        <span class="n">_ready_to_read</span><span class="p">()</span>
+        <span class="c1"># get actual number of bytes read OR handle error (if any)</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="n">msgpack</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">_stream</span><span class="p">,</span> <span class="n">ext_hook</span><span class="o">=</span><span class="n">_ext_handler</span><span class="p">,</span> <span class="n">use_list</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="c1"># read data; not all versions of readinto support length argument</span>
+        <span class="n">mv</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+        <span class="c1"># print(&quot;urpc client.readinto [sz]&quot;)</span>
+        <span class="n">_stream</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">mv</span><span class="p">[:</span><span class="n">sz</span><span class="p">])</span>
+        <span class="c1"># server sends an extra None</span>
+        <span class="k">assert</span> <span class="n">msgpack</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">_stream</span><span class="p">)</span> <span class="o">==</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;readinto expects terminating &#39;None&#39;&quot;</span>
+        <span class="k">return</span> <span class="n">sz</span>
+
+    <span class="c1"># pre-allocate (heap locked in __del__)</span>
+    <span class="n">DEL</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;_d&quot;</span><span class="p">,</span> <span class="kc">None</span> <span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># reclaim object on remote</span>
+        <span class="k">global</span> <span class="n">_stream</span>
+        <span class="n">_Proxy</span><span class="o">.</span><span class="n">DEL</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ext_type</span><span class="o">.</span><span class="n">data</span>
+        <span class="n">msgpack</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DEL</span><span class="p">,</span> <span class="n">_stream</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">msgpack</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="n">_stream</span><span class="p">)</span>  <span class="c1"># read response (None)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">_send</span><span class="p">((</span><span class="s2">&quot;_s&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ext_type</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">id_</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="n">id_</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Update local MicroPython branch:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+
+<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">master</span>
+<span class="n">git</span> <span class="n">pull</span>
+<span class="n">git</span> <span class="n">merge</span> <span class="n">master</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Already on &#39;master&#39;
+Your branch is up to date with &#39;origin/master&#39;.
+From https://github.com/micropython/micropython
+   e3291e180..71722c84c  master     -&gt; origin/master
+Updating e3291e180..71722c84c
+Fast-forward
+ .github/workflows/ports_unix.yml                   |  12 +
+ docs/esp32/quickref.rst                            |   2 +-
+ docs/esp8266/quickref.rst                          |   6 +-
+ docs/library/machine.I2C.rst                       |  38 +-
+ docs/library/machine.I2S.rst                       |   2 +-
+ docs/library/machine.SPI.rst                       |  14 +-
+ docs/library/pyb.I2C.rst                           |  54 +-
+ docs/library/pyb.SPI.rst                           |  20 +-
+ docs/library/uasyncio.rst                          |   8 +
+ docs/library/utime.rst                             |   9 +
+ docs/pyboard/quickref.rst                          |  12 +-
+ docs/pyboard/tutorial/amp_skin.rst                 |   2 +-
+ docs/pyboard/tutorial/lcd_skin.rst                 |   6 +-
+ docs/rp2/general.rst                               |  26 +-
+ docs/rp2/img/pico_pinout.png                       | Bin 0 -&gt; 186434 bytes
+ docs/rp2/img/rpipico.jpg                           | Bin 89259 -&gt; 0 bytes
+ docs/rp2/quickref.rst                              |  96 ++--
+ docs/wipy/quickref.rst                             |  14 +-
+ extmod/btstack/btstack.mk                          |   2 +-
+ extmod/modbluetooth.c                              |   4 +-
+ extmod/modure.c                                    |   6 +-
+ extmod/moduselect.c                                |   4 +
+ extmod/moduzlib.c                                  |   2 +-
+ extmod/nimble/hal/hal_uart.c                       |   6 +
+ extmod/nimble/modbluetooth_nimble.c                |  59 +-
+ extmod/nimble/modbluetooth_nimble.h                |   3 +
+ extmod/uasyncio/stream.py                          |   4 +-
+ extmod/utime_mphal.c                               |   2 +-
+ ports/esp32/boards/GENERIC_C3/mpconfigboard.cmake  |  10 +
+ ports/esp32/boards/GENERIC_C3/mpconfigboard.h      |   8 +
+ ports/esp32/espneopixel.c                          |  13 +-
+ ports/esp32/gccollect.c                            |  19 +-
+ ports/esp32/machine_adc.c                          |   6 +
+ ports/esp32/machine_dac.c                          |  12 +-
+ ports/esp32/machine_hw_spi.c                       |  66 ++-
+ ports/esp32/machine_i2s.c                          |  18 +-
+ ports/esp32/machine_pin.c                          |  62 +++
+ ports/esp32/machine_rtc.c                          |   4 +-
+ ports/esp32/machine_timer.c                        |   2 +-
+ ports/esp32/machine_uart.c                         |   2 +-
+ ports/esp32/main.c                                 |  11 +-
+ ports/esp32/main/CMakeLists.txt                    |   6 +
+ ports/esp32/modesp32.c                             |   5 +-
+ ports/esp32/modmachine.c                           |  17 +-
+ ports/esp32/mpconfigport.h                         |  11 +
+ ports/esp32/mphalport.c                            |  16 +-
+ ports/esp32/mphalport.h                            |   4 +
+ ports/esp32/uart.c                                 |   2 +-
+ ports/esp8266/Makefile                             |   8 +
+ ports/esp8266/mpconfigport.h                       |   3 +
+ ports/mimxrt/Makefile                              |   5 +-
+ ports/mimxrt/boards/MIMXRT1010_EVK/mpconfigboard.h |  13 +
+ .../mimxrt/boards/MIMXRT1010_EVK/mpconfigboard.mk  |   3 +
+ ports/mimxrt/boards/MIMXRT1020_EVK/mpconfigboard.h |  18 +-
+ .../mimxrt/boards/MIMXRT1020_EVK/mpconfigboard.mk  |   3 +
+ ports/mimxrt/boards/MIMXRT1050_EVK/mpconfigboard.h |  13 +
+ .../mimxrt/boards/MIMXRT1050_EVK/mpconfigboard.mk  |   3 +
+ .../boards/MIMXRT1050_EVKB/MIMXRT1050_EVKB.ld      |   1 +
+ .../evkbmimxrt1050_flexspi_nor_config.h            | 263 +++++++++
+ ports/mimxrt/boards/MIMXRT1050_EVKB/flash_config.c | 186 +++++++
+ .../mimxrt/boards/MIMXRT1050_EVKB/mpconfigboard.h  |  69 +++
+ .../mimxrt/boards/MIMXRT1050_EVKB/mpconfigboard.mk |  12 +
+ ports/mimxrt/boards/MIMXRT1050_EVKB/pins.csv       |  31 ++
+ ports/mimxrt/boards/MIMXRT1052.ld                  |   4 +-
+ .../mimxrt/boards/MIMXRT1060_EVK/MIMXRT1060_EVK.ld |   2 +-
+ .../evkmimxrt1060_flexspi_nor_config.h             |  10 +-
+ ports/mimxrt/boards/MIMXRT1060_EVK/flash_config.c  | 242 +++++---
+ ports/mimxrt/boards/MIMXRT1060_EVK/mpconfigboard.h |  13 +
+ .../mimxrt/boards/MIMXRT1060_EVK/mpconfigboard.mk  |   3 +
+ ports/mimxrt/boards/MIMXRT1064.ld                  |   6 +-
+ .../mimxrt/boards/MIMXRT1064_EVK/MIMXRT1064_EVK.ld |   2 +-
+ .../evkmimxrt1064_flexspi_nor_config.h             |  15 +-
+ ports/mimxrt/boards/MIMXRT1064_EVK/flash_config.c  | 241 +++++---
+ ports/mimxrt/boards/MIMXRT1064_EVK/mpconfigboard.h |  13 +
+ .../mimxrt/boards/MIMXRT1064_EVK/mpconfigboard.mk  |   3 +
+ ports/mimxrt/boards/TEENSY40/mpconfigboard.h       |  15 +
+ ports/mimxrt/boards/TEENSY40/mpconfigboard.mk      |   3 +
+ ports/mimxrt/boards/TEENSY41/mpconfigboard.h       |  15 +
+ ports/mimxrt/boards/TEENSY41/mpconfigboard.mk      |   3 +
+ ports/mimxrt/boards/common.ld                      |   5 +
+ ports/mimxrt/hal/flexspi_hyper_flash.c             | 247 +++++++++
+ ports/mimxrt/hal/flexspi_hyper_flash.h             |  71 +++
+ ports/mimxrt/hal/flexspi_nor_flash.h               |  21 +
+ ports/mimxrt/machine_i2c.c                         | 217 ++++++++
+ ports/mimxrt/machine_led.c                         |   2 +-
+ ports/mimxrt/mimxrt_flash.c                        |  25 +-
+ ports/mimxrt/modmachine.c                          |   1 +
+ ports/mimxrt/modmachine.h                          |   1 +
+ ports/mimxrt/mpconfigport.h                        |   1 +
+ ports/minimal/Makefile                             |  17 +-
+ ports/nrf/modules/machine/spi.c                    |   8 +-
+ .../boards/ADAFRUIT_FEATHER_RP2040/mpconfigboard.h |  23 +-
+ .../ADAFRUIT_ITSYBITSY_RP2040/mpconfigboard.cmake  |   1 +
+ .../ADAFRUIT_ITSYBITSY_RP2040/mpconfigboard.h      |  21 +
+ .../ADAFRUIT_QTPY_RP2040/mpconfigboard.cmake       |   1 +
+ .../boards/ADAFRUIT_QTPY_RP2040/mpconfigboard.h    |  28 +
+ .../PIMORONI_PICOLIPO_16MB/mpconfigboard.cmake     |   1 +
+ .../boards/PIMORONI_PICOLIPO_16MB/mpconfigboard.h  |  28 +
+ .../PIMORONI_PICOLIPO_4MB/mpconfigboard.cmake      |   1 +
+ .../boards/PIMORONI_PICOLIPO_4MB/mpconfigboard.h   |  28 +
+ .../boards/PIMORONI_TINY2040/mpconfigboard.cmake   |   1 +
+ ports/rp2/boards/PIMORONI_TINY2040/mpconfigboard.h |  17 +
+ ports/rp2/boards/SPARKFUN_PROMICRO/mpconfigboard.h |  25 +-
+ .../rp2/boards/SPARKFUN_THINGPLUS/mpconfigboard.h  |  34 +-
+ ports/rp2/machine_i2c.c                            |  18 +-
+ ports/rp2/machine_spi.c                            |  22 +-
+ ports/rp2/machine_uart.c                           |  91 ++-
+ ports/rp2/tusb_port.c                              |  12 +-
+ ports/samd/Makefile                                |  19 +-
+ ports/samd/main.c                                  |   5 +
+ ports/samd/sections.ld                             |  16 +-
+ ports/stm32/Makefile                               |   4 +-
+ ports/stm32/README.md                              |  42 +-
+ ports/stm32/boards/LEGO_HUB_NO6/README.md          |  79 +++
+ ports/stm32/boards/LEGO_HUB_NO6/bdev.c             |  63 +++
+ .../LEGO_HUB_NO6/bluetooth_init_cc2564C_1.5.c      | 616 +++++++++++++++++++++
+ ports/stm32/boards/LEGO_HUB_NO6/board_init.c       | 170 ++++++
+ ports/stm32/boards/LEGO_HUB_NO6/cc2564.c           |  85 +++
+ ports/stm32/boards/LEGO_HUB_NO6/hub_display.c      | 180 ++++++
+ ports/stm32/boards/LEGO_HUB_NO6/hub_display.h      |   4 +
+ ports/stm32/boards/LEGO_HUB_NO6/mboot_memory.ld    |  10 +
+ ports/stm32/boards/LEGO_HUB_NO6/mpconfigboard.h    | 122 ++++
+ ports/stm32/boards/LEGO_HUB_NO6/mpconfigboard.mk   |  22 +
+ ports/stm32/boards/LEGO_HUB_NO6/pins.csv           | 114 ++++
+ ports/stm32/boards/LEGO_HUB_NO6/stm32f413xg.ld     |  27 +
+ .../stm32/boards/LEGO_HUB_NO6/stm32f4xx_hal_conf.h |  19 +
+ ports/stm32/boards/NUCLEO_F439ZI/mpconfigboard.h   |  81 +++
+ ports/stm32/boards/NUCLEO_F439ZI/mpconfigboard.mk  |  11 +
+ ports/stm32/boards/NUCLEO_F439ZI/pins.csv          | 129 +++++
+ .../boards/NUCLEO_F439ZI/stm32f4xx_hal_conf.h      |  19 +
+ ports/stm32/boards/NUCLEO_F446RE/mpconfigboard.h   |  10 +-
+ ports/stm32/boards/SPARKFUN_MICROMOD_STM32/bdev.c  |  28 +
+ .../boards/SPARKFUN_MICROMOD_STM32/board_init.c    |  11 +
+ .../boards/SPARKFUN_MICROMOD_STM32/mpconfigboard.h | 100 ++++
+ .../SPARKFUN_MICROMOD_STM32/mpconfigboard.mk       |  16 +
+ .../stm32/boards/SPARKFUN_MICROMOD_STM32/pins.csv  |  57 ++
+ .../SPARKFUN_MICROMOD_STM32/stm32f4xx_hal_conf.h   |  19 +
+ ports/stm32/boards/STM32F429DISC/mpconfigboard.h   |   8 +-
+ ports/stm32/boards/stm32h7xx_hal_conf_base.h       |   1 +
+ ports/stm32/boards/stm32l0xx_hal_conf_base.h       |   1 +
+ ports/stm32/boards/stm32l4xx_hal_conf_base.h       |   1 +
+ ports/stm32/boards/stm32wbxx_hal_conf_base.h       |   1 +
+ ports/stm32/main.c                                 |   2 +-
+ ports/stm32/pyb_i2c.c                              |  63 ++-
+ ports/stm32/pyb_spi.c                              |  19 +-
+ ports/stm32/sdram.c                                |  88 ++-
+ ports/stm32/sdram.h                                |   2 +-
+ ports/stm32/spi.c                                  |   4 +-
+ ports/stm32/systick.c                              |   4 +-
+ ports/stm32/uart.c                                 |  41 +-
+ ports/stm32/uart.h                                 |   1 +
+ ports/unix/Makefile                                |   1 +
+ ports/unix/modjni.c                                |   4 +-
+ ports/unix/variants/dev/mpconfigvariant.h          |   2 +
+ ports/unix/variants/standard/mpconfigvariant.h     |   2 +
+ ports/windows/.appveyor.yml                        |   4 +-
+ py/builtinimport.c                                 |   2 +-
+ py/dynruntime.h                                    |   1 +
+ py/emitnative.c                                    |  21 +-
+ py/modbuiltins.c                                   |   4 +-
+ py/modsys.c                                        |   6 +-
+ py/mpconfig.h                                      |   7 +
+ py/mpstate.h                                       |   3 +
+ py/obj.h                                           |   9 +-
+ py/objdict.c                                       |   6 +-
+ py/objexcept.c                                     |  33 +-
+ py/objgenerator.c                                  |  36 +-
+ py/objgetitemiter.c                                |   1 -
+ py/objset.c                                        |   2 +-
+ py/objstr.c                                        |   2 +-
+ py/pystack.c                                       |   3 +-
+ py/runtime.c                                       |  37 +-
+ py/runtime.h                                       |   7 +
+ py/vm.c                                            |  13 +-
+ tests/basics/gen_yield_from_stopped.py             |  12 +
+ tests/basics/stopiteration.py                      |  63 +++
+ tests/basics/subclass_native3.py                   |  20 +
+ tests/basics/unary_op.py                           |   7 +
+ tests/micropython/native_misc.py                   |  10 +
+ tests/micropython/native_misc.py.exp               |   2 +
+ tests/pyb/i2c.py                                   |   2 +-
+ tests/pyb/i2c_accel.py                             |   2 +-
+ tests/pyb/i2c_error.py                             |   2 +-
+ tests/pyb/pyb_f405.py                              |   2 +-
+ tests/pyb/spi.py                                   |  14 +-
+ tests/pyb/spi.py.exp                               |   4 +-
+ tools/autobuild/autobuild.sh                       |  15 +-
+ tools/autobuild/build-esp32-latest.sh              |  14 +-
+ tools/autobuild/build-mimxrt-latest.sh             |   1 +
+ tools/ci.sh                                        |  26 +-
+ tools/mpremote/mpremote/pyboardextended.py         |  14 +-
+ 191 files changed, 4997 insertions(+), 629 deletions(-)
+ create mode 100644 docs/rp2/img/pico_pinout.png
+ delete mode 100644 docs/rp2/img/rpipico.jpg
+ create mode 100644 ports/esp32/boards/GENERIC_C3/mpconfigboard.cmake
+ create mode 100644 ports/esp32/boards/GENERIC_C3/mpconfigboard.h
+ create mode 100644 ports/mimxrt/boards/MIMXRT1050_EVKB/MIMXRT1050_EVKB.ld
+ create mode 100644 ports/mimxrt/boards/MIMXRT1050_EVKB/evkbmimxrt1050_flexspi_nor_config.h
+ create mode 100644 ports/mimxrt/boards/MIMXRT1050_EVKB/flash_config.c
+ create mode 100644 ports/mimxrt/boards/MIMXRT1050_EVKB/mpconfigboard.h
+ create mode 100644 ports/mimxrt/boards/MIMXRT1050_EVKB/mpconfigboard.mk
+ create mode 100644 ports/mimxrt/boards/MIMXRT1050_EVKB/pins.csv
+ create mode 100644 ports/mimxrt/hal/flexspi_hyper_flash.c
+ create mode 100644 ports/mimxrt/hal/flexspi_hyper_flash.h
+ create mode 100644 ports/mimxrt/machine_i2c.c
+ create mode 100644 ports/rp2/boards/ADAFRUIT_ITSYBITSY_RP2040/mpconfigboard.cmake
+ create mode 100644 ports/rp2/boards/ADAFRUIT_ITSYBITSY_RP2040/mpconfigboard.h
+ create mode 100644 ports/rp2/boards/ADAFRUIT_QTPY_RP2040/mpconfigboard.cmake
+ create mode 100644 ports/rp2/boards/ADAFRUIT_QTPY_RP2040/mpconfigboard.h
+ create mode 100644 ports/rp2/boards/PIMORONI_PICOLIPO_16MB/mpconfigboard.cmake
+ create mode 100644 ports/rp2/boards/PIMORONI_PICOLIPO_16MB/mpconfigboard.h
+ create mode 100644 ports/rp2/boards/PIMORONI_PICOLIPO_4MB/mpconfigboard.cmake
+ create mode 100644 ports/rp2/boards/PIMORONI_PICOLIPO_4MB/mpconfigboard.h
+ create mode 100644 ports/rp2/boards/PIMORONI_TINY2040/mpconfigboard.cmake
+ create mode 100644 ports/rp2/boards/PIMORONI_TINY2040/mpconfigboard.h
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/README.md
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/bdev.c
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/bluetooth_init_cc2564C_1.5.c
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/board_init.c
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/cc2564.c
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/hub_display.c
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/hub_display.h
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/mboot_memory.ld
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/mpconfigboard.h
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/mpconfigboard.mk
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/pins.csv
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/stm32f413xg.ld
+ create mode 100644 ports/stm32/boards/LEGO_HUB_NO6/stm32f4xx_hal_conf.h
+ create mode 100644 ports/stm32/boards/NUCLEO_F439ZI/mpconfigboard.h
+ create mode 100644 ports/stm32/boards/NUCLEO_F439ZI/mpconfigboard.mk
+ create mode 100644 ports/stm32/boards/NUCLEO_F439ZI/pins.csv
+ create mode 100644 ports/stm32/boards/NUCLEO_F439ZI/stm32f4xx_hal_conf.h
+ create mode 100644 ports/stm32/boards/SPARKFUN_MICROMOD_STM32/bdev.c
+ create mode 100644 ports/stm32/boards/SPARKFUN_MICROMOD_STM32/board_init.c
+ create mode 100644 ports/stm32/boards/SPARKFUN_MICROMOD_STM32/mpconfigboard.h
+ create mode 100644 ports/stm32/boards/SPARKFUN_MICROMOD_STM32/mpconfigboard.mk
+ create mode 100644 ports/stm32/boards/SPARKFUN_MICROMOD_STM32/pins.csv
+ create mode 100644 ports/stm32/boards/SPARKFUN_MICROMOD_STM32/stm32f4xx_hal_conf.h
+ create mode 100644 tests/basics/stopiteration.py
+Already up to date.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Find port:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">info</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compile and flash:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
+
+<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">esp32</span>
+<span class="c1"># make submodules</span>
+<span class="c1"># make clean </span>
+<span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">GENERIC_OTA</span> \
+     <span class="n">USER_C_MODULES</span><span class="o">=../../../../</span><span class="n">micropython_modules</span><span class="o">/</span><span class="n">micropython</span><span class="o">.</span><span class="n">cmake</span> \
+     <span class="n">PORT</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span> <span class="n">deploy</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>setting up IDF ...
+idf.py -D MICROPY_BOARD=GENERIC_OTA -B build-GENERIC_OTA  -DUSER_C_MODULES=../../../../micropython_modules/micropython.cmake -p /dev/ttyUSB0 -b 460800 flash
+[1/206] cd /home/iot/micropython/ports/esp32/build-GENERIC_OTA/esp-idf/main &amp;&amp; echo -n
+[2/203] Performing build step for &#39;bootloader&#39;
+ninja: no work to do.
+[3/201] Generating ../../genhdr/qstr.split
+[4/201] Generating ../../genhdr/qstrdefs.collected.h
+QSTR updated
+[5/201] Generating ../../genhdr/qstrdefs.preprocessed.h
+[6/201] Generating ../../genhdr/qstrdefs.generated.h
+[7/201] Generating ../../frozen_content.c
+[8/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/frozenmod.c.obj
+[9/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/argcheck.c.obj
+[10/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/map.c.obj
+[11/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/bc.c.obj
+[12/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/gc.c.obj
+[13/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/asmbase.c.obj
+[14/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/builtinhelp.c.obj
+[15/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/binary.c.obj
+[16/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/builtinevex.c.obj
+[17/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitcommon.c.obj
+[18/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/builtinimport.c.obj
+[19/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitinlinethumb.c.obj
+[20/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitglue.c.obj
+[21/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitinlinextensa.c.obj
+[22/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitbc.c.obj
+[23/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitnx86.c.obj
+[24/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/emitnxtensawin.c.obj
+[25/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/malloc.c.obj
+[26/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modarray.c.obj
+[27/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/lexer.c.obj
+[28/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modcmath.c.obj
+[29/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modcollections.c.obj
+[30/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modgc.c.obj
+[31/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modbuiltins.c.obj
+[32/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modsys.c.obj
+[33/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modio.c.obj
+[34/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modmicropython.c.obj
+[35/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modmath.c.obj
+[36/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modstruct.c.obj
+[37/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/modthread.c.obj
+[38/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/mpprint.c.obj
+[39/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/compile.c.obj
+[40/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/moduerrno.c.obj
+[41/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/mpstate.c.obj
+[42/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlr.c.obj
+[43/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrsetjmp.c.obj
+[44/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrpowerpc.c.obj
+[45/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nativeglue.c.obj
+[46/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrx86.c.obj
+[47/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrthumb.c.obj
+[48/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrx64.c.obj
+[49/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objboundmeth.c.obj
+[50/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/nlrxtensa.c.obj
+[51/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objarray.c.obj
+[52/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objattrtuple.c.obj
+[53/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objbool.c.obj
+[54/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/obj.c.obj
+[55/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objcell.c.obj
+[56/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objcomplex.c.obj
+[57/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objgenerator.c.obj
+[58/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objclosure.c.obj
+[59/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objgetitemiter.c.obj
+[60/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objenumerate.c.obj
+[61/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objdeque.c.obj
+[62/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objfilter.c.obj
+[63/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objdict.c.obj
+[64/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objexcept.c.obj
+[65/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objint_longlong.c.obj
+[66/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objfloat.c.obj
+[67/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objmap.c.obj
+[68/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objfun.c.obj
+[69/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objint.c.obj
+[70/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objnone.c.obj
+[71/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objint_mpz.c.obj
+[72/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objmodule.c.obj
+[73/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objnamedtuple.c.obj
+[74/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objlist.c.obj
+[75/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objobject.c.obj
+[76/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objproperty.c.obj
+[77/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objpolyiter.c.obj
+[78/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objreversed.c.obj
+[79/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objrange.c.obj
+[80/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objset.c.obj
+[81/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objsingleton.c.obj
+[82/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objslice.c.obj
+[83/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/opmethods.c.obj
+[84/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objstringio.c.obj
+[85/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objtuple.c.obj
+[86/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objstrunicode.c.obj
+[87/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objzip.c.obj
+[88/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/pairheap.c.obj
+[89/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/parsenum.c.obj
+[90/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objstr.c.obj
+[91/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/profile.c.obj
+[92/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/objtype.c.obj
+[93/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/repl.c.obj
+[94/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/persistentcode.c.obj
+[95/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/parse.c.obj
+[96/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/pystack.c.obj
+[97/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/reader.c.obj
+[98/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/runtime_utils.c.obj
+[99/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/qstr.c.obj
+[100/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/scheduler.c.obj
+[101/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/sequence.c.obj
+[102/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/scope.c.obj
+[103/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/stackctrl.c.obj
+[104/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/showbc.c.obj
+[105/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/libc/abort_.c.obj
+[106/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/vstr.c.obj
+[107/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/warning.c.obj
+[108/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/stream.c.obj
+[109/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/runtime.c.obj
+[110/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/machine_mem.c.obj
+[111/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/libc/printf.c.obj
+[112/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/machine_pulse.c.obj
+[113/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/machine_signal.c.obj
+[114/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/py/vm.c.obj
+[115/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/machine_spi.c.obj
+[116/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modframebuf.c.obj
+[117/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/machine_i2c.c.obj
+[118/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modbtree.c.obj
+[119/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduasyncio.c.obj
+[120/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modussl_axtls.c.obj
+[121/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduheapq.c.obj
+[122/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modonewire.c.obj
+[123/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduhashlib.c.obj
+[124/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modubinascii.c.obj
+[125/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moducryptolib.c.obj
+[126/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modbluetooth.c.obj
+[127/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modujson.c.obj
+[128/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moductypes.c.obj
+[129/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modurandom.c.obj
+[130/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduwebsocket.c.obj
+[131/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modutimeq.c.obj
+[132/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modure.c.obj
+[133/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduselect.c.obj
+[134/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/uos_dupterm.c.obj
+[135/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modussl_mbedtls.c.obj
+[136/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_blockdev.c.obj
+[137/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/utime_mphal.c.obj
+[138/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/modwebrepl.c.obj
+[139/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_posix_file.c.obj
+[140/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs.c.obj
+[141/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/moduzlib.c.obj
+[142/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_fat_diskio.c.obj
+[143/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_fat_file.c.obj
+[144/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_fat.c.obj
+[145/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_posix.c.obj
+[146/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_lfs.c.obj
+[147/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/virtpin.c.obj
+[148/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/vfs_reader.c.obj
+[149/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/netutils/netutils.c.obj
+[150/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/readline/readline.c.obj
+[151/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/runtime/interrupt_char.c.obj
+[152/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/timeutils/timeutils.c.obj
+[153/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/runtime/stdout_helpers.c.obj
+[154/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/runtime/sys_stdio_mphal.c.obj
+[155/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/extmod/nimble/modbluetooth_nimble.c.obj
+[156/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/shared/runtime/pyexec.c.obj
+[157/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_adc.c.obj
+[158/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/drivers/bus/softspi.c.obj
+[159/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_dac.c.obj
+[160/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython/drivers/dht/dht.c.obj
+[161/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/main.c.obj
+[162/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/help.c.obj
+[163/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/usb.c.obj
+[164/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/gccollect.c.obj
+[165/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/uart.c.obj
+[166/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/mphalport.c.obj
+[167/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modutime.c.obj
+[168/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/moduos.c.obj
+[169/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_touchpad.c.obj
+[170/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_timer.c.obj
+[171/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_pin.c.obj
+[172/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_i2c.c.obj
+[173/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_pwm.c.obj
+[174/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/network_ppp.c.obj
+[175/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_i2s.c.obj
+[176/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/mpnimbleport.c.obj
+[177/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_uart.c.obj
+[178/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modmachine.c.obj
+[179/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/esp32_nvs.c.obj
+[180/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modesp.c.obj
+[181/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/network_lan.c.obj
+[182/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modnetwork.c.obj
+[183/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modesp32.c.obj
+[184/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/esp32_partition.c.obj
+[185/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/esp32_ulp.c.obj
+[186/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/esp32_rmt.c.obj
+[187/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_wdt.c.obj
+[188/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/espneopixel.c.obj
+[189/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/mpthreadport.c.obj
+[190/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/modsocket.c.obj
+[191/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_hw_spi.c.obj
+[192/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/__/frozen_content.c.obj
+[193/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_rtc.c.obj
+[194/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/__/machine_sdcard.c.obj
+[195/201] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/home/iot/micropython_modules/finaliserproxy/finaliserproxy.c.obj
+[196/201] Linking CXX static library esp-idf/main/libmain.a
+[197/201] Generating ld/esp32.project.ld
+[198/201] Building C object CMakeFiles/micropython.elf.dir/home/iot/micropython_modules/finaliserproxy/finaliserproxy.c.obj
+[199/201] Linking CXX executable micropython.elf
+[200/201] Generating binary image from built executable
+esptool.py v3.0
+Generated /home/iot/micropython/ports/esp32/build-GENERIC_OTA/micropython.bin
+[200/201] cd /opt/esp/idf/components/esptool_py &amp;&amp; /opt/esp/tools/cmake/3.16.4/bin/cmake -D IDF_PATH=&quot;/opt/esp/idf&quot; -D ESPTOOLPY=&quot;/opt/esp/python_env/idf4.2_py3.7_env/bin/python /opt/esp/idf/components/esptool_py/esptool/esptool.py --chip esp32&quot; -D ESPTOOL_ARGS=&quot;--before=default_reset --after=hard_reset write_flash @flash_args&quot; -D WORKING_DIRECTORY=&quot;/home/iot/micropython/ports/esp32/build-GENERIC_OTA&quot; -P /opt/esp/idf/components/esptool_py/run_esptool.cmake
+esptool.py --chip esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 4MB 0x8000 partition_table/partition-table.bin 0xd000 ota_data_initial.bin 0x1000 bootloader/bootloader.bin 0x10000 micropython.bin
+esptool.py v3.0
+Serial port /dev/ttyUSB0
+Connecting.....
+Chip is ESP32-D0WDQ6 (revision 1)
+Features: WiFi, BT, Dual Core, Coding Scheme None
+Crystal is 40MHz
+MAC: 30:ae:a4:30:84:34
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Compressed 3072 bytes to 139...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (139 compressed) at 0x00008000 in 0.0 seconds (effective 4796.2 kbit/s)...
+Hash of data verified.
+Compressed 8192 bytes to 31...
+Writing at 0x0000d000... (100 %)
+Wrote 8192 bytes (31 compressed) at 0x0000d000 in 0.0 seconds (effective 28233.1 kbit/s)...
+Hash of data verified.
+Compressed 22720 bytes to 14201...
+Writing at 0x00001000... (100 %)
+Wrote 22720 bytes (14201 compressed) at 0x00001000 in 0.3 seconds (effective 535.6 kbit/s)...
+Hash of data verified.
+Compressed 1448384 bytes to 961305...
+Writing at 0x00010000... (1 %)
+Writing at 0x00014000... (3 %)
+Writing at 0x00018000... (5 %)
+Writing at 0x0001c000... (6 %)
+Writing at 0x00020000... (8 %)
+Writing at 0x00024000... (10 %)
+Writing at 0x00028000... (11 %)
+Writing at 0x0002c000... (13 %)
+Writing at 0x00030000... (15 %)
+Writing at 0x00034000... (16 %)
+Writing at 0x00038000... (18 %)
+Writing at 0x0003c000... (20 %)
+Writing at 0x00040000... (22 %)
+Writing at 0x00044000... (23 %)
+Writing at 0x00048000... (25 %)
+Writing at 0x0004c000... (27 %)
+Writing at 0x00050000... (28 %)
+Writing at 0x00054000... (30 %)
+Writing at 0x00058000... (32 %)
+Writing at 0x0005c000... (33 %)
+Writing at 0x00060000... (35 %)
+Writing at 0x00064000... (37 %)
+Writing at 0x00068000... (38 %)
+Writing at 0x0006c000... (40 %)
+Writing at 0x00070000... (42 %)
+Writing at 0x00074000... (44 %)
+Writing at 0x00078000... (45 %)
+Writing at 0x0007c000... (47 %)
+Writing at 0x00080000... (49 %)
+Writing at 0x00084000... (50 %)
+Writing at 0x00088000... (52 %)
+Writing at 0x0008c000... (54 %)
+Writing at 0x00090000... (55 %)
+Writing at 0x00094000... (57 %)
+Writing at 0x00098000... (59 %)
+Writing at 0x0009c000... (61 %)
+Writing at 0x000a0000... (62 %)
+Writing at 0x000a4000... (64 %)
+Writing at 0x000a8000... (66 %)
+Writing at 0x000ac000... (67 %)
+Writing at 0x000b0000... (69 %)
+Writing at 0x000b4000... (71 %)
+Writing at 0x000b8000... (72 %)
+Writing at 0x000bc000... (74 %)
+Writing at 0x000c0000... (76 %)
+Writing at 0x000c4000... (77 %)
+Writing at 0x000c8000... (79 %)
+Writing at 0x000cc000... (81 %)
+Writing at 0x000d0000... (83 %)
+Writing at 0x000d4000... (84 %)
+Writing at 0x000d8000... (86 %)
+Writing at 0x000dc000... (88 %)
+Writing at 0x000e0000... (89 %)
+Writing at 0x000e4000... (91 %)
+Writing at 0x000e8000... (93 %)
+Writing at 0x000ec000... (94 %)
+Writing at 0x000f0000... (96 %)
+Writing at 0x000f4000... (98 %)
+Writing at 0x000f8000... (100 %)
+Wrote 1448384 bytes (961305 compressed) at 0x00010000 in 23.2 seconds (effective 499.4 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+Executing action: flash
+Running ninja in directory /home/iot/micropython/ports/esp32/build-GENERIC_OTA
+Executing &quot;ninja flash&quot;...
+Done
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">finaliser_proxy</span> <span class="kn">import</span> <span class="n">FinaliserProxy</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># CPython compatibility (and ports that do not implement this feature)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;no finaliser proxy ...&quot;</span><span class="p">)</span>
+    <span class="k">class</span> <span class="nc">FinaliserProxy</span><span class="p">:</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
+            <span class="k">pass</span>
+    
+<span class="kn">import</span> <span class="nn">gc</span>
+
+<span class="k">class</span> <span class="nc">FP</span><span class="p">(</span><span class="n">FinaliserProxy</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="fm">__del__</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;finalise&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">desc</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">FP</span><span class="p">(</span><span class="s2">&quot;obj </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------- collect ...&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DONE&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>no finaliser proxy ...
+--------- collect ... 0
+--------- collect ... 4
+--------- collect ... 8
+--------- collect ... 12
+--------- collect ... 16
+DONE
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>UART<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./projects/wifi-cop"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../wifi-cop.html" title="previous page">WiFi Coprocessor</a>
+    <a class='right-next' id="next-link" href="custom_c.html" title="next page">Custom C Modules</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
