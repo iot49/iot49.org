@@ -53,7 +53,8 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="UART" href="uart.html" />
+    <link rel="next" title="Networking" href="networking.html" />
+    <link rel="prev" title="Custom MicroPython" href="custom_c.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -95,8 +96,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install-custom.html">
+   Custom Install
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../ide/getting-started.html">
    Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/docs.html">
+   Documention
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -167,13 +178,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ide/micropython/compile.html">
-     Compile
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flashing
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ide/micropython/flash.html">
-     Flash
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compile
     </a>
    </li>
    <li class="toctree-l2">
@@ -346,17 +357,17 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="custom_c.html">
-     Custom C Modules
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="uart.html">
-     UART
+     Custom MicroPython
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="networking.html">
+     Networking
     </a>
    </li>
   </ul>
@@ -445,6 +456,29 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-server">
+   Configure Server
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configure-client">
+   Configure Client
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   RPC
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -455,41 +489,127 @@
                 
   <div class="section" id="rpc">
 <h1>RPC<a class="headerlink" href="#rpc" title="Permalink to this headline">¶</a></h1>
-<p>Python is ideally suited for encapsulating calls for remote execution. Let’s cook up a simple class to check out how this could work.</p>
-<p>It’s standard Python - you can run this on any (Micro)Python interpreter.</p>
+<p>Identify appropriate UART interfaces on the server and client and wire up RX and TX. Do not forget to wire “cross”, i.e. RX on one processor to TX on the other.</p>
+<p>Optionally also wire flow control (RTS and CTS). Doing so protects from dataloss with large packages that to not fit in the UART receive buffers.</p>
+<div class="section" id="configure-server">
+<h2>Configure Server<a class="headerlink" href="#configure-server" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">wifi</span><span class="o">-</span><span class="n">server</span>
+<span class="o">%</span><span class="n">rsync</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to wifi-server @ serial:///dev/ttyUSB0</span>
+<span class=" -Color -Color-Green">Directories match</span>
+
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Demo</span><span class="p">:</span>
-    
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
-        
-    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2"> + </span><span class="si">{}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span>
-    
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
-    
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s2">&quot;Demo </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
-    
-<span class="n">d</span> <span class="o">=</span> <span class="n">Demo</span><span class="p">(</span><span class="s2">&quot;rpc test&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ADD &quot;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;STR &quot;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># run boot.py &amp; main.py</span>
+<span class="o">%</span><span class="n">hardreset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   hardreset ...     !!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="configure-client">
+<h2>Configure Client<a class="headerlink" href="#configure-client" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">wifi</span><span class="o">-</span><span class="n">client</span>
+<span class="o">%</span><span class="n">rsync</span>
+<span class="o">%</span><span class="n">softreset</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to wifi-client @ serial:///dev/ttyACM0</span>
+<span class=" -Color -Color-Green">Directories match</span>
+
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>RPC<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">wifi</span><span class="o">-</span><span class="n">client</span>
+
+<span class="kn">from</span> <span class="nn">urpc</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys_</span> <span class="o">=</span> <span class="n">import_</span><span class="p">(</span><span class="s1">&#39;sys&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Platforms:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   host:    </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   server:  </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys_</span><span class="o">.</span><span class="n">get_</span><span class="p">(</span><span class="s1">&#39;platform&#39;</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to wifi-client @ serial:///dev/ttyACM0</span>
+Platforms:
+   host:    pyboard
+   server:  esp32
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat code/server/rpc_test.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>class RPC_Test:
+
+    def __init__(self, name):
+        self._name = name
+
+    def add(self, a, b):
+        return &quot;{}: {} + {} = {}&quot;.format(self._name, a, b, a+b)
+
+    @property
+    def name(self):
+        return self._name
+
+    def __str__(self):
+        return &quot;Demo {}&quot;.format(self._name)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">rpc_test</span> <span class="o">=</span> <span class="n">import_</span><span class="p">(</span><span class="s1">&#39;rpc_test&#39;</span><span class="p">)</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">rpc_test</span><span class="o">.</span><span class="n">RPC_Test</span><span class="p">(</span><span class="s2">&quot;rpc test&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ADD &quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">get_</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;STR &quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">change name ...&quot;</span><span class="p">)</span>
+<span class="n">t</span><span class="o">.</span><span class="n">set_</span><span class="p">(</span><span class="s1">&#39;_name&#39;</span><span class="p">,</span> <span class="s1">&#39;new name&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ADD &quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NAME&quot;</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">get_</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;STR &quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -497,12 +617,73 @@
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ADD  rpc test: 5 + 7 = 12
 NAME rpc test
 STR  Demo rpc test
+
+change name ...
+ADD  new name: 3 + -9 = -6
+NAME new name
+STR  Demo new name
 </pre></div>
 </div>
 </div>
 </div>
-<p>To perform these operations remotely, we need a handle to the remote <em>Demo</em> instance <em>d</em>. Let’s create a <em>Proxy</em> for this purpose: the proxy exists on the client, the object (<em>d</em> in the example) on the server.</p>
-<p>For development we can run both parts in the same interpreter.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">urpc</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">builtins_</span> <span class="o">=</span> <span class="n">import_</span><span class="p">(</span><span class="s1">&#39;builtins&#39;</span><span class="p">)</span>
+<span class="n">builtins_</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">help(&#39;modules&#39;)</span>
+<span class="sd">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>__main__          framebuf          uasyncio/lock     ure
+_boot             gc                uasyncio/stream   uselect
+_onewire          inisetup          ubinascii         usocket
+_thread           machine           ubluetooth        ussl
+_uasyncio         math              ucollections      ustruct
+_webrepl          micropython       ucryptolib        usys
+apa106            msgpack           uctypes           utime
+btree             neopixel          uerrno            utimeq
+builtins          network           uhashlib          uwebsocket
+cmath             ntptime           uheapq            uzlib
+dht               onewire           uio               webrepl
+ds18x20           uarray            ujson             webrepl_setup
+esp               uasyncio/__init__ uos               websocket_helper
+esp32             uasyncio/core     upip
+finaliserproxy    uasyncio/event    upip_utarfile
+flashbdev         uasyncio/funcs    urandom
+Plus any modules on the filesystem
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">gc_</span> <span class="o">=</span> <span class="n">import_</span><span class="p">(</span><span class="s1">&#39;gc&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1) cop mem_free: &quot;</span><span class="p">,</span> <span class="n">gc_</span><span class="o">.</span><span class="n">mem_free</span><span class="p">())</span>
+<span class="n">gc_</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2) cop mem_free: &quot;</span><span class="p">,</span> <span class="n">gc_</span><span class="o">.</span><span class="n">mem_free</span><span class="p">())</span>
+
+<span class="kn">import</span> <span class="nn">gc</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1) host mem_free:&quot;</span><span class="p">,</span> <span class="n">gc</span><span class="o">.</span><span class="n">mem_free</span><span class="p">())</span>
+<span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2) host mem_free:&quot;</span><span class="p">,</span> <span class="n">gc</span><span class="o">.</span><span class="n">mem_free</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1) cop mem_free:  77824
+2) cop mem_free:  98688
+1) host mem_free: 22400
+2) host mem_free: 88256
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -530,7 +711,8 @@ STR  Demo rpc test
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="uart.html" title="previous page">UART</a>
+    <a class='left-prev' id="prev-link" href="custom_c.html" title="previous page">Custom MicroPython</a>
+    <a class='right-next' id="next-link" href="networking.html" title="next page">Networking</a>
 
         </div>
         

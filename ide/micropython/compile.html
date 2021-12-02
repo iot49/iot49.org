@@ -53,8 +53,8 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Flash" href="flash.html" />
-    <link rel="prev" title="Device Configuration" href="dev_config.html" />
+    <link rel="next" title="External C modules" href="mp_ext_c.html" />
+    <link rel="prev" title="Flashing" href="flash.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -93,6 +93,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../install.html">
    Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install-custom.html">
+   Custom Install
   </a>
  </li>
  <li class="toctree-l1">
@@ -167,14 +172,14 @@
      Device Configuration
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="flash.html">
+     Flashing
+    </a>
+   </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Compile
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="flash.html">
-     Flash
     </a>
    </li>
    <li class="toctree-l2">
@@ -330,6 +335,38 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/overview.html">
+     Approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -457,16 +494,49 @@
                 
   <div class="section" id="compile">
 <h1>Compile<a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h1>
-<p>The need to compile the MicroPython interpreter arises frequently, for example to <a class="reference external" href="https://docs.micropython.org/en/latest/reference/packages.html?highlight=freeze">“freeze” pre-compiled Python code</a> into the interpreter or <a class="reference external" href="https://docs.micropython.org/en/latest/develop/extendingmicropython.html">add features</a>.</p>
+<p>The need to compile the MicroPython interpreter arises frequently, for example to <a class="reference external" href="https://docs.micropython.org/en/latest/reference/packages.html?highlight=freeze">“freeze” pre-compiled Python code</a> into the interpreter or <a class="reference external" href="https://docs.micropython.org/en/latest/develop/extendingmicropython.html">add new features</a>.</p>
 <p>Below we briefly outline the steps for compiling MicroPython in <em>ide49</em>.</p>
 <p><strong>Note:</strong> Compiling for the ESP32 is is <a class="reference external" href="https://github.com/espressif/esp-idf/issues/6432">not yet available</a> for 64-Bit Linux.</p>
 <div class="section" id="clone-micropython">
 <h2>Clone MicroPython<a class="headerlink" href="#clone-micropython" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
+<p>Download from github or update an existing copy.</p>
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
 
-<span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">micropython</span><span class="o">/</span><span class="n">micropython</span><span class="o">.</span><span class="n">git</span>
+# $IOT/mp is ide49&#39;s default folder for MicroPython source code and customizations
+mkdir -p $IOT/mp
+
+cd $IOT/mp
+if [ ! -d micropython ]; then
+    # clone the repo
+    git clone https://github.com/micropython/micropython.git
+else
+    # update a previously downloaded repo
+    cd micropython
+    git checkout master
+    git pull
+    git merge master
+fi
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Already on &#39;master&#39;
+Your branch is up to date with &#39;origin/master&#39;.
+From github.com:micropython/micropython
+   e2ca8ab8f..bb7aae557  master     -&gt; origin/master
+Updating e2ca8ab8f..bb7aae557
+Fast-forward
+ ports/stm32/boards/NUCLEO_WB55/mpconfigboard.mk           |  7 -------
+ ports/stm32/boards/STM32F769DISC/mpconfigboard.mk         |  3 ---
+ tools/autobuild/autobuild.sh                              |  7 ++++---
+ tools/autobuild/build-boards.sh                           | 15 ++++++++++-----
+ .../{build-stm32-latest.sh =&gt; build-stm32-extra.sh}       | 13 ++-----------
+ tools/ci.sh                                               |  8 ++++++--
+ 6 files changed, 22 insertions(+), 31 deletions(-)
+ rename tools/autobuild/{build-stm32-latest.sh =&gt; build-stm32-extra.sh} (82%)
+Already up to date.
 </pre></div>
 </div>
 </div>
@@ -474,14 +544,165 @@
 </div>
 <div class="section" id="mpy-cross">
 <h2>mpy-cross<a class="headerlink" href="#mpy-cross" title="Permalink to this headline">¶</a></h2>
-<p>See the <a class="reference external" href="https://github.com/micropython/micropython">MicroPython github repository</a> for more information.</p>
-<p><strong>Note:</strong> The cross-compiler is installed in a separate container, access is with the <code class="docutils literal notranslate"><span class="pre">%%service</span></code> macro.</p>
-<div class="cell docutils container">
+<p>Now follow the instructions at <a class="reference external" href="https://github.com/micropython/micropython">MicroPython github repository</a>.</p>
+<p>The first step is to compile the MicroPython cross-compiler.</p>
+<p><strong>Note:</strong> The cross-compiler is installed in a separate container, <code class="docutils literal notranslate"><span class="pre">arm32</span></code>, accessed via the the <code class="docutils literal notranslate"><span class="pre">%%service</span></code> magic. Alternatively you can login to the <span class="xref myst">arm32 service</span> and open a terminal to run commands.</p>
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service arm32
 
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">mpy</span><span class="o">-</span><span class="n">cross</span>
-<span class="n">make</span>
+cd $IOT/mp/micropython/mpy-cross
+make
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>README.md
+bin
+ide49
+iot-device
+iot-kernel
+iot49-dev
+iot49.org
+micropython
+micropython_github
+micropython_modules
+scratch
+Use make V=1 or set BUILD_VERBOSE in your environment to increase build verbosity.
+mkdir -p build/genhdr
+GEN build/genhdr/mpversion.h
+GEN build/genhdr/moduledefs.h
+GEN build/genhdr/qstr.i.last
+GEN build/genhdr/qstr.split
+GEN build/genhdr/qstrdefs.collected.h
+QSTR updated
+GEN build/genhdr/qstrdefs.generated.h
+mkdir -p build/py/
+mkdir -p build/shared/runtime/
+CC ../py/mpstate.c
+CC ../py/nlr.c
+CC ../py/nlrx86.c
+CC ../py/nlrx64.c
+CC ../py/nlrthumb.c
+CC ../py/nlraarch64.c
+CC ../py/nlrpowerpc.c
+CC ../py/nlrxtensa.c
+CC ../py/nlrsetjmp.c
+CC ../py/malloc.c
+CC ../py/gc.c
+CC ../py/pystack.c
+CC ../py/qstr.c
+CC ../py/vstr.c
+CC ../py/mpprint.c
+CC ../py/unicode.c
+CC ../py/mpz.c
+CC ../py/reader.c
+CC ../py/lexer.c
+CC ../py/parse.c
+CC ../py/scope.c
+CC ../py/compile.c
+CC ../py/emitcommon.c
+CC ../py/emitbc.c
+CC ../py/asmbase.c
+CC ../py/asmx64.c
+CC ../py/emitnx64.c
+CC ../py/asmx86.c
+CC ../py/emitnx86.c
+CC ../py/asmthumb.c
+CC ../py/emitnthumb.c
+CC ../py/emitinlinethumb.c
+CC ../py/asmarm.c
+CC ../py/emitnarm.c
+CC ../py/asmxtensa.c
+CC ../py/emitnxtensa.c
+CC ../py/emitinlinextensa.c
+CC ../py/emitnxtensawin.c
+CC ../py/formatfloat.c
+CC ../py/parsenumbase.c
+CC ../py/parsenum.c
+CC ../py/emitglue.c
+CC ../py/persistentcode.c
+CC ../py/runtime.c
+CC ../py/runtime_utils.c
+CC ../py/scheduler.c
+CC ../py/nativeglue.c
+CC ../py/pairheap.c
+CC ../py/ringbuf.c
+CC ../py/stackctrl.c
+CC ../py/argcheck.c
+CC ../py/warning.c
+CC ../py/profile.c
+CC ../py/map.c
+CC ../py/obj.c
+CC ../py/objarray.c
+CC ../py/objattrtuple.c
+CC ../py/objbool.c
+CC ../py/objboundmeth.c
+CC ../py/objcell.c
+CC ../py/objclosure.c
+CC ../py/objcomplex.c
+CC ../py/objdeque.c
+CC ../py/objdict.c
+CC ../py/objenumerate.c
+CC ../py/objexcept.c
+CC ../py/objfilter.c
+CC ../py/objfloat.c
+CC ../py/objfun.c
+CC ../py/objgenerator.c
+CC ../py/objgetitemiter.c
+CC ../py/objint.c
+CC ../py/objint_longlong.c
+CC ../py/objint_mpz.c
+CC ../py/objlist.c
+CC ../py/objmap.c
+CC ../py/objmodule.c
+CC ../py/objobject.c
+CC ../py/objpolyiter.c
+CC ../py/objproperty.c
+CC ../py/objnone.c
+CC ../py/objnamedtuple.c
+CC ../py/objrange.c
+CC ../py/objreversed.c
+CC ../py/objset.c
+CC ../py/objsingleton.c
+CC ../py/objslice.c
+CC ../py/objstr.c
+CC ../py/objstrunicode.c
+CC ../py/objstringio.c
+CC ../py/objtuple.c
+CC ../py/objtype.c
+CC ../py/objzip.c
+CC ../py/opmethods.c
+CC ../py/sequence.c
+CC ../py/stream.c
+CC ../py/binary.c
+CC ../py/builtinimport.c
+CC ../py/builtinevex.c
+CC ../py/builtinhelp.c
+CC ../py/modarray.c
+CC ../py/modbuiltins.c
+CC ../py/modcollections.c
+CC ../py/modgc.c
+CC ../py/modio.c
+CC ../py/modmath.c
+CC ../py/modcmath.c
+CC ../py/modmicropython.c
+CC ../py/modstruct.c
+CC ../py/modsys.c
+CC ../py/moduerrno.c
+CC ../py/modthread.c
+CC ../py/vm.c
+CC ../py/bc.c
+CC ../py/showbc.c
+CC ../py/repl.c
+CC ../py/smallint.c
+CC ../py/frozenmod.c
+CC main.c
+CC gccollect.c
+CC ../shared/runtime/gchelper_generic.c
+LINK mpy-cross
+   text	   data	    bss	    dec	    hex	filename
+ 287984	  17128	    896	 306008	  4ab58	mpy-cross
 </pre></div>
 </div>
 </div>
@@ -492,11 +713,11 @@
 <p>The example below is for the <em>stm32</em> port. The procedure for other ports is similar, follow the instructions for the particular port on the <a class="reference external" href="https://github.com/micropython/micropython">MicroPython github repository</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service arm32
 
-<span class="c1"># submodules</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">stm32</span>
-<span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span> <span class="o">--</span><span class="n">init</span>
+# submodules
+cd $IOT/mp/micropython/ports/stm32
+git submodule update --init
 </pre></div>
 </div>
 </div>
@@ -504,12 +725,12 @@
 <p>In the commands below, replace <code class="docutils literal notranslate"><span class="pre">PYBV11</span></code> with the name of your configuration.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service arm32
 
-<span class="c1"># compile</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">stm32</span>
-<span class="n">make</span> <span class="n">clean</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">PYBV11</span>
-<span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">PYBV11</span>
+# compile
+cd $IOT/mp/mp/micropython/ports/stm32
+make clean BOARD=PYBV11
+make BOARD=PYBV11
 </pre></div>
 </div>
 </div>
@@ -897,13 +1118,14 @@ GEN build-PYBV11/firmware.hex
 </div>
 <div class="section" id="esp32-port">
 <h2>ESP32 Port<a class="headerlink" href="#esp32-port" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="../micropython.html"><span class="doc std std-doc">esp-idf</span></a> compiler is installed in container with the same name. You can also get a console at <span class="xref myst">arm32 service</span>.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service esp-idf
 
-<span class="c1"># submodules</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">esp32</span>
-<span class="n">make</span> <span class="n">submodules</span>
+# submodules
+cd $IOT/mp/mp/micropython/ports/esp32
+make submodules
 </pre></div>
 </div>
 </div>
@@ -916,11 +1138,11 @@ git submodule update --init ../../lib/berkeley-db-1.xx
 </div>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service esp-idf
 
-<span class="c1"># compile</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">esp32</span>
-<span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">GENERIC_OTA</span>
+# compile
+cd $IOT/mp/mp/micropython/ports/esp32
+make BOARD=GENERIC_OTA
 </pre></div>
 </div>
 </div>
@@ -964,13 +1186,14 @@ total                  1513600
 </div>
 </div>
 </div>
+<p>Update the port to match the output from the previous cell (e.g. /dev/ttyUSB0), then run the next cell to flash the code to the microcontroller.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service esp-idf
 
-<span class="c1"># flash</span>
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">esp32</span>
-<span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">GENERIC_OTA</span> <span class="n">PORT</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyUSB0</span> <span class="n">deploy</span>
+# flash
+cd $IOT/mp/mp/micropython/ports/esp32
+make BOARD=GENERIC_OTA PORT=/dev/ttyUSB0 deploy
 </pre></div>
 </div>
 </div>
@@ -1122,11 +1345,11 @@ Plus any modules on the filesystem
 <h2>Unix Port<a class="headerlink" href="#unix-port" title="Permalink to this headline">¶</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service arm32
 
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="n">make</span> <span class="n">submodules</span>
-<span class="n">make</span>
+cd $IOT/mp/mp/micropython/ports/unix
+make submodules
+make
 </pre></div>
 </div>
 </div>
@@ -1134,10 +1357,10 @@ Plus any modules on the filesystem
 <p>Check it out:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
 
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sys; print(sys.platform)&quot;</span>
+cd $IOT/mp/mp/micropython/ports/unix
+./micropython -c &quot;import sys; print(sys.platform)&quot;
 </pre></div>
 </div>
 </div>
@@ -1149,11 +1372,11 @@ Plus any modules on the filesystem
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
 
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">m</span> <span class="n">upip</span> <span class="n">install</span> <span class="n">micropython</span><span class="o">-</span><span class="n">pystone</span>
-<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">m</span> <span class="n">pystone</span>
+cd $IOT/mp/mp/micropython/ports/unix
+./micropython -m upip install micropython-pystone
+./micropython -m pystone
 </pre></div>
 </div>
 </div>
@@ -1195,8 +1418,8 @@ This machine benchmarks at 50968.4 pystones/second
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="dev_config.html" title="previous page">Device Configuration</a>
-    <a class='right-next' id="next-link" href="flash.html" title="next page">Flash</a>
+    <a class='left-prev' id="prev-link" href="flash.html" title="previous page">Flashing</a>
+    <a class='right-next' id="next-link" href="mp_ext_c.html" title="next page">External C modules</a>
 
         </div>
         

@@ -96,8 +96,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="install-custom.html">
+   Custom Install
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="getting-started.html">
    Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="docs.html">
+   Documention
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -168,13 +178,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="micropython/flash.html">
+     Flashing
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="micropython/compile.html">
      Compile
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="micropython/flash.html">
-     Flash
+    <a class="reference internal" href="micropython/mp_ext_c.html">
+     External C modules
     </a>
    </li>
   </ul>
@@ -325,6 +340,38 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../projects/wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/wifi-cop/overview.html">
+     Approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -426,6 +473,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flashing-dfu-files-not-working">
+   Flashing DFU files not working
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#mdns-for-local-domains-not-working">
    mDNS for
    <code class="docutils literal notranslate">
@@ -465,6 +517,10 @@
 <h2>No <code class="docutils literal notranslate"><span class="pre">esp-idf/idf.py</span></code> on aarch64<a class="headerlink" href="#no-esp-idf-idf-py-on-aarch64" title="Permalink to this headline">¶</a></h2>
 <p>IDF not released for 64-Bit Linux. See <a class="reference external" href="https://github.com/espressif/esp-idf/issues/6432">https://github.com/espressif/esp-idf/issues/6432</a>.</p>
 </div>
+<div class="section" id="flashing-dfu-files-not-working">
+<h2>Flashing DFU files not working<a class="headerlink" href="#flashing-dfu-files-not-working" title="Permalink to this headline">¶</a></h2>
+<p>Flashing DFU files (stm32) from the IDE is not working.</p>
+</div>
 <div class="section" id="mdns-for-local-domains-not-working">
 <h2>mDNS for <code class="docutils literal notranslate"><span class="pre">.local</span></code> domains not working<a class="headerlink" href="#mdns-for-local-domains-not-working" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="workaround">
@@ -472,15 +528,15 @@
 <p>This sample code uses the <code class="docutils literal notranslate"><span class="pre">host</span></code> service (which supports mdns) to lookup the IP address and assigns it to the shell environment variable <code class="docutils literal notranslate"><span class="pre">OUT</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span> <span class="o">--</span><span class="n">out</span> <span class="n">OUT</span>
-<span class="n">ping</span> <span class="o">-</span><span class="n">c</span> <span class="mi">2</span> <span class="n">pi4server</span><span class="o">.</span><span class="n">local</span> <span class="o">|</span> <span class="n">awk</span> <span class="o">-</span><span class="sa">F</span><span class="s2">&quot;[()]&quot;</span> <span class="s1">&#39;{print $2}&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">service</span> host --out OUT
+ping -c 2 pi4server.local | awk -F&quot;[()]&quot; &#39;{print $2}&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!echo $OUT
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">echo</span> <span class="nv">$OUT</span>
 </pre></div>
 </div>
 </div>
@@ -493,7 +549,7 @@
 <p>Optionally assign to CPython variable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">host</span>
 out = !echo $OUT
 print(out)
 </pre></div>
@@ -529,16 +585,16 @@ print(out)
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "iot_kernel"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "iot_kernel",
+            kernelName: "python3",
             path: "./ide"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'iot_kernel'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

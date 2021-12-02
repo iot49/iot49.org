@@ -96,8 +96,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../install-custom.html">
+   Custom Install
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../getting-started.html">
    Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs.html">
+   Documention
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -168,13 +178,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../micropython/flash.html">
+     Flashing
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../micropython/compile.html">
      Compile
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../micropython/flash.html">
-     Flash
+    <a class="reference internal" href="../micropython/mp_ext_c.html">
+     External C modules
     </a>
    </li>
   </ul>
@@ -325,6 +340,38 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/overview.html">
+     Approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -432,13 +479,14 @@
 </div>
 </div>
 <p>Go to the cloned folder and make desired changes.</p>
-<p>Now connect to the Balena CLI at <a class="reference external" href="https://iot49.local/balena_cli">https://iot49.local/balena_cli</a> and open a terminal to run the statements below. Replace <code class="docutils literal notranslate"><span class="pre">APP_NAME</span></code> with the name of the app on balena-cloud you want to update.</p>
+<p>Now connect to the Balena CLI at <a class="reference external" href="https://iot49.local/balena_cli">https://iot49.local/balena_cli</a> and open a terminal to run the statements below. Replace <code class="docutils literal notranslate"><span class="pre">APP_NAME</span></code> with the name of the app (fleet) on balena-cloud you want to update.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>balena login
 balena push APP_NAME
 </pre></div>
 </div>
+<p>Enter your credentials for</p>
 <p>You may want to create a separate application for experimenting to avoid getting locked out of <em>ide49</em> in case of errors.</p>
-<p>Check the online documentation for [docker])<a class="reference external" href="https://docs.docker.com/">https://docs.docker.com/</a>) and <a class="reference external" href="https://www.balena.io/docs">balena</a> for further information.</p>
+<p>Check the online documentation for <a class="reference external" href="https://docs.docker.com/">docker</a> and <a class="reference external" href="https://www.balena.io/docs">balena</a> for further information.</p>
 </div>
 
     <script type="text/x-thebe-config">

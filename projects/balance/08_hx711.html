@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UART &#8212; Electronics for IoT</title>
+    <title>“Precision” Scale &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,12 +49,14 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://iot49.org/projects/wifi-cop/uart.html" />
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="canonical" href="https://iot49.org/projects/balance/08_hx711.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="RPC" href="rpc.html" />
-    <link rel="prev" title="Custom C Modules" href="custom_c.html" />
+    <link rel="next" title="Time Intervals" href="09_ticks.html" />
+    <link rel="prev" title="Standalone App" href="07_app.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -93,6 +95,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../ide/install.html">
    Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install-custom.html">
+   Custom Install
   </a>
  </li>
  <li class="toctree-l1">
@@ -168,13 +175,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ide/micropython/compile.html">
-     Compile
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flashing
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ide/micropython/flash.html">
-     Flash
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compile
     </a>
    </li>
    <li class="toctree-l2">
@@ -221,58 +228,58 @@
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1 has-children">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../balance.html">
    GPIO
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/parts.html">
+    <a class="reference internal" href="01_parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/circuit.html">
+    <a class="reference internal" href="02_circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/code.html">
+    <a class="reference internal" href="03_code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/display.html">
+    <a class="reference internal" href="04_display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/buttons.html">
+    <a class="reference internal" href="05_buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/ble.html">
+    <a class="reference internal" href="06_ble.html">
      Bluetooth
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/app.html">
+    <a class="reference internal" href="07_app.html">
      Standalone App
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../balance/hx711.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/ticks.html">
+    <a class="reference internal" href="09_ticks.html">
      Time Intervals
     </a>
    </li>
@@ -330,34 +337,34 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../wifi-cop.html">
    WiFi Coprocessor
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
   <label for="toctree-checkbox-6">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul class="current">
+  <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="overview.html">
+    <a class="reference internal" href="../wifi-cop/overview.html">
      Approach
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="custom_c.html">
-     Custom C Modules
-    </a>
-   </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     UART
+    <a class="reference internal" href="../wifi-cop/custom_c.html">
+     Custom MicroPython
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="rpc.html">
+    <a class="reference internal" href="../wifi-cop/rpc.html">
      RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/networking.html">
+     Networking
     </a>
    </li>
   </ul>
@@ -403,7 +410,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/projects/wifi-cop/uart.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/projects/balance/08_hx711.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -423,10 +430,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/wifi-cop/uart.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/balance/08_hx711.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/wifi-cop/uart.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/balance/08_hx711.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -446,6 +453,24 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hx711-micropython-driver">
+   HX711 MicroPython Driver
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#updated-scale-class">
+   Updated Scale class
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -454,8 +479,174 @@
         
               <div>
                 
-  <div class="section" id="uart">
-<h1>UART<a class="headerlink" href="#uart" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="precision-scale">
+<h1>“Precision” Scale<a class="headerlink" href="#precision-scale" title="Permalink to this headline">¶</a></h1>
+<p>How could we improve the accuracy of the scale? Besides the obvious - a better ADC - there are a few other steps we should take.</p>
+<p>The most important is to change the ADC to use the bridge voltage as reference, rather than the built-in precision reference or supply voltage.</p>
+<p>The voltage at the output of the bridge is</p>
+<div class="math notranslate nohighlight">
+\[
+    v_{\textrm{bridge}} = S \times V_{\textrm{s}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(S\)</span> is a scale factor that is proportional to the weight and <span class="math notranslate nohighlight">\(V_{\textrm{s}}V_{\textrm{s}}\)</span> is the voltage across the bridge.</p>
+<p>The output code from an ADC is</p>
+<div class="math notranslate nohighlight">
+\[
+    D_\textrm{out} = \frac{v_\textrm{bridge}}{V_\textrm{ref}} = S \times \frac{V_\textrm{s}}{V_\textrm{ref}}
+\]</div>
+<p>Let’s assume that <span class="math notranslate nohighlight">\(V_\textrm{s}\)</span> is the voltage of the battery powering the scale and <span class="math notranslate nohighlight">\(V_\textrm{ref}V_\textrm{ref}\)</span> is a constant precision reference voltage. As the battery voltage decreases over time, the ratio <span class="math notranslate nohighlight">\(V_\textrm{s}/V_\textrm{ref}\)</span> decreases, resulting in a gain error.</p>
+<p>This and a host of other errors are avoided if <span class="math notranslate nohighlight">\(V_\textrm{s}=V_\textrm{ref}\)</span>.</p>
+<p>Integrated circuits for reading bridge outputs such as the <a class="reference external" href="https://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdfhttps://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdf">HX711</a> include all the necessary circuits, including the amplifier and ADC.</p>
+<p>Let’s modify our scale to use an <a class="reference external" href="https://www.sparkfun.com/products/13879https://www.sparkfun.com/products/13879">HX711 breakout board</a>. Connect the <span class="math notranslate nohighlight">\(V_\mathrm{DD}\)</span> and <span class="math notranslate nohighlight">\(V_\mathrm{CC}\)</span> pins to <code class="docutils literal notranslate"><span class="pre">VUSB</span></code> of the ESP32 and <code class="docutils literal notranslate"><span class="pre">GND</span></code> to ground. Note that although the breakout board states a minimum supply of just 2.7V and hence operation from a single cell rechargable Lithium battery, doing so requires changing the feedback resistors, <span class="math notranslate nohighlight">\(R_1\)</span> and/or <span class="math notranslate nohighlight">\(R_2\)</span>. Tie <code class="docutils literal notranslate"><span class="pre">DAT</span></code> and <code class="docutils literal notranslate"><span class="pre">CLK</span></code> to two used pins of the ESP32. The code below assumes 12 and 27, respectively.</p>
+<p>Also wire the load cell to the pins provided on the breakout board. My load cell does not have a shield, hence I left that pin unconnected. However I “twisted” the green and white wires from the load cell in an attempt to minimize electromagnic interference. Making these wires as short as possible also helps with noise.</p>
+<div class="section" id="hx711-micropython-driver">
+<h2>HX711 MicroPython Driver<a class="headerlink" href="#hx711-micropython-driver" title="Permalink to this headline">¶</a></h2>
+<p>The HX711 requires a driver. Several versions for MicroPython are available, I chose <a class="reference external" href="https://github.com/robert-hh/hx711">this one</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+url=https://raw.githubusercontent.com/robert-hh/hx711/master/hx711_gpio.py
+dst=$IOT_PROJECTS/balance/code/lib/hx711.py
+
+curl -o $dst $url
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2345  100  2345    0     0  12342      0 --:--:-- --:--:-- --:--:-- 12342
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="updated-scale-class">
+<h2>Updated Scale class<a class="headerlink" href="#updated-scale-class" title="Permalink to this headline">¶</a></h2>
+<p>Now update the <code class="docutils literal notranslate"><span class="pre">Scale</span></code> class to use the HX711 rather than the ADC in the ESP32. I call the new class <code class="docutils literal notranslate"><span class="pre">ScaleHX711</span></code> to easily switch between the two versions.</p>
+<p>Simply change</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scale</span> <span class="kn">import</span> <span class="n">Scale</span>
+</pre></div>
+</div>
+<p>in <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scale_hx711</span> <span class="kn">import</span> <span class="n">ScaleHX711</span> <span class="k">as</span> <span class="n">Scale</span>
+</pre></div>
+</div>
+<p>to use the new class, the code for which is below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/balance/code/lib/scale_hx711.py
+from hx711 import HX711
+from machine import Pin
+        
+class ScaleHX711:
+    
+    def __init__(self, data_pin=12, clock_pin=27, scale=500/1059800):
+        self._scale = scale
+        pin_OUT = Pin(data_pin, Pin.IN, pull=Pin.PULL_DOWN)
+        pin_SCK = Pin(clock_pin, Pin.OUT)
+        self._hx711 = hx = HX711(pin_SCK, pin_OUT)
+        hx.tare(20)
+        hx.set_time_constant(0.25)
+        
+    @property
+    def hx711(self):
+        return self._hx711
+    
+    def measure(self, N=10):
+        hx = self._hx711
+        v = 0
+        for _ in range(N):
+            v += hx.get_value()
+        v /= N
+        return v * self._scale
+    
+    def tare(self, button):
+        self.hx711.tare(20)
+
+scale = ScaleHX711()
+
+while True:
+    print(&quot;read {:15.1f} grams&quot;.format(scale.measure()))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing /home/iot/iot49.org/docs/projects/balance/code/lib/scale_hx711.py
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">balance</span> <span class="o">-</span><span class="n">q</span>
+<span class="o">%</span><span class="n">rsync</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<p>Reset the microcontroller. Use either the display or the code below to test the new setup. The resolution of my scale is now better than 0.1 gram (the first digit after the comma does not flicker). Not bad!</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scale_hx711</span> <span class="kn">import</span> <span class="n">ScaleHX711</span> <span class="k">as</span> <span class="n">Scale</span>
+
+<span class="n">scale</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;read </span><span class="si">{:15.1f}</span><span class="s2"> grams&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scale</span><span class="o">.</span><span class="n">measure</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>read             0.0 grams
+read             0.0 grams
+read             0.0 grams
+read             0.0 grams
+read             0.0 grams
+read             0.0 grams
+read           113.1 grams
+read           194.8 grams
+read           199.9 grams
+read           200.1 grams
+read           200.2 grams
+read           200.2 grams
+read           200.1 grams
+read           200.1 grams
+read           200.1 grams
+read           200.1 grams
+read           200.1 grams
+read           272.4 grams
+read           666.0 grams
+read           705.4 grams
+read           701.0 grams
+read           700.8 grams
+read           700.8 grams
+read           700.8 grams
+read           700.8 grams
+read           700.7 grams
+read           701.7 grams
+read           560.6 grams
+read           503.7 grams
+read           500.5 grams
+read           500.3 grams
+read           500.3 grams
+read           500.3 grams
+
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Interrupted
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -471,7 +662,7 @@
         },
         kernelOptions: {
             kernelName: "iot_kernel",
-            path: "./projects/wifi-cop"
+            path: "./projects/balance"
         },
         predefinedOutput: true
     }
@@ -483,8 +674,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="custom_c.html" title="previous page">Custom C Modules</a>
-    <a class='right-next' id="next-link" href="rpc.html" title="next page">RPC</a>
+    <a class='left-prev' id="prev-link" href="07_app.html" title="previous page">Standalone App</a>
+    <a class='right-next' id="next-link" href="09_ticks.html" title="next page">Time Intervals</a>
 
         </div>
         

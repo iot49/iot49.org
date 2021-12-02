@@ -95,6 +95,11 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="ide/install-custom.html">
+   Custom Install
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="ide/getting-started.html">
    Getting Started
   </a>
@@ -167,13 +172,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="ide/micropython/compile.html">
-     Compile
+    <a class="reference internal" href="ide/micropython/flash.html">
+     Flashing
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="ide/micropython/flash.html">
-     Flash
+    <a class="reference internal" href="ide/micropython/compile.html">
+     Compile
     </a>
    </li>
    <li class="toctree-l2">
@@ -231,47 +236,47 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/balance/parts.html">
+    <a class="reference internal" href="projects/balance/01_parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/balance/circuit.html">
+    <a class="reference internal" href="projects/balance/02_circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/balance/code.html">
+    <a class="reference internal" href="projects/balance/03_code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/balance/display.html">
+    <a class="reference internal" href="projects/balance/04_display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/balance/buttons.html">
+    <a class="reference internal" href="projects/balance/05_buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/balance/ble.html">
+    <a class="reference internal" href="projects/balance/06_ble.html">
      Bluetooth
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/balance/app.html">
+    <a class="reference internal" href="projects/balance/07_app.html">
      Standalone App
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/balance/hx711.html">
+    <a class="reference internal" href="projects/balance/08_hx711.html">
      “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/balance/ticks.html">
+    <a class="reference internal" href="projects/balance/09_ticks.html">
      Time Intervals
     </a>
    </li>
@@ -350,13 +355,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/wifi-cop/uart.html">
-     UART
+    <a class="reference internal" href="projects/wifi-cop/rpc.html">
+     RPC
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="projects/wifi-cop/rpc.html">
-     RPC
+    <a class="reference internal" href="projects/wifi-cop/networking.html">
+     Networking
     </a>
    </li>
   </ul>
@@ -474,8 +479,8 @@
 <li><p>Update IDE from within (modify or add features, e.g. support for databases)</p></li>
 <li><p>Shell terminal window (with password free sudo)</p></li>
 </ul>
-<p>Wouldn’t the same software run on a laptop? Absolutely! Without Docker, compatibility could be an issue. For example, jupyter and the balena ide require different version of node. Docker solves this. However, in <em>ide49</em> most containers must be run in “privileged” mode, giving them essentially root access. This is an acceptable security risk on a dedicated device that does not store personal information, but a major concern on a computer used e.g. to do banking or store personal data like.</p>
-<p>But isn’t this slow? Not in my experience. I moved all my MicroPython development from an Intel I7 CPU to a Raspberry Pi 4 with 2 GB memory without noticing a performance degradation relevant for my workflow.</p>
+<p>Wouldn’t the same software run on a laptop? Absolutely! Without Docker, compatibility could be an issue. For example, jupyter and the balena ide require different versions of node. Docker solves this. However, in <em>ide49</em> most containers must be run in “privileged” mode, giving them essentially root access. This is an acceptable security risk on a dedicated device that does not store personal information, but a major concern on a computer used e.g. to do banking or store personal data.</p>
+<p>But isn’t this slow? Not in my experience. I moved all my MicroPython development from an Intel i7 CPU to a Raspberry Pi 4 with 2 GB memory without noticing a performance degradation relevant for my workflow.</p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">

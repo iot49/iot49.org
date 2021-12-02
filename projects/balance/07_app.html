@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MicroPython on a Particle Argon &#8212; Electronics for IoT</title>
+    <title>Standalone App &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -49,10 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://iot49.org/projects/wifi-cop/particle.html" />
+    <link rel="canonical" href="https://iot49.org/projects/balance/07_app.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="“Precision” Scale" href="08_hx711.html" />
+    <link rel="prev" title="Bluetooth" href="06_ble.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -91,6 +93,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../../ide/install.html">
    Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install-custom.html">
+   Custom Install
   </a>
  </li>
  <li class="toctree-l1">
@@ -166,13 +173,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flashing
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../ide/micropython/compile.html">
      Compile
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../ide/micropython/flash.html">
-     Flash
+    <a class="reference internal" href="../../ide/micropython/mp_ext_c.html">
+     External C modules
     </a>
    </li>
   </ul>
@@ -213,59 +225,59 @@
   Tours &amp; Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../balance.html">
    GPIO
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
+  <ul class="current">
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/parts.html">
+    <a class="reference internal" href="01_parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/circuit.html">
+    <a class="reference internal" href="02_circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/code.html">
+    <a class="reference internal" href="03_code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/display.html">
+    <a class="reference internal" href="04_display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/buttons.html">
+    <a class="reference internal" href="05_buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/ble.html">
+    <a class="reference internal" href="06_ble.html">
      Bluetooth
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../balance/app.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      Standalone App
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/hx711.html">
+    <a class="reference internal" href="08_hx711.html">
      “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../balance/ticks.html">
+    <a class="reference internal" href="09_ticks.html">
      Time Intervals
     </a>
    </li>
@@ -323,6 +335,38 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/overview.html">
+     Approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -364,7 +408,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/projects/wifi-cop/particle.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/projects/balance/07_app.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -384,10 +428,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/wifi-cop/particle.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/balance/07_app.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/wifi-cop/particle.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/balance/07_app.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -415,100 +459,101 @@
         
               <div>
                 
-  <div class="section" id="micropython-on-a-particle-argon">
-<h1>MicroPython on a Particle Argon<a class="headerlink" href="#micropython-on-a-particle-argon" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>Upload esp32 ‘firmware.bin’ to / on Argon</p>
-<ul>
-<li><p>e.g. on mac with copy; takes forever</p></li>
-</ul>
-</li>
-</ul>
+  <div class="section" id="standalone-app">
+<h1>Standalone App<a class="headerlink" href="#standalone-app" title="Permalink to this headline">¶</a></h1>
+<p>Our scale works great, except that it is still tethered to our development platform. Let’s convert it into a standalone application.</p>
+<p>On power on, MicroPython looks for a file called <code class="docutils literal notranslate"><span class="pre">main.py</span></code> and executes it if found. Hence all we have to do is save our code to <code class="docutils literal notranslate"><span class="pre">main.py</span></code> and upload this file.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
-<span class="o">%</span><span class="n">connect</span> <span class="n">argon</span>
-<span class="o">%</span><span class="n">rsync</span> <span class="o">-</span><span class="n">u</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT/iot49.org/docs/projects/balance
+%connect balance
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>argon  serial:///dev/ttyACM0  
-<span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to argon @ serial:///dev/ttyACM0</span>
-<span class=" -Color -Color-Green">ADD     /boot.py</span>
-
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
-OSError: [Errno 30] Read-only filesystem
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cwd = /home/iot/iot49.org/docs/projects/balance
+<span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to balance @ serial:///dev/ttyUSB0</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">lib</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">py</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">ble_uart_peripheral</span>
+<span class="kn">import</span> <span class="nn">bluetooth</span>
 
-<span class="n">build</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/micropython/ports/esp32/build-GENERIC_OTA&quot;</span><span class="p">)</span>
-<span class="n">firmware</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">build</span><span class="p">,</span> <span class="s1">&#39;firmware.bin&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">I2C</span>
+<span class="kn">from</span> <span class="nn">ssd1306</span> <span class="kn">import</span> <span class="n">SSD1306_I2C</span>
+<span class="kn">from</span> <span class="nn">scale</span> <span class="kn">import</span> <span class="n">Scale</span>
+<span class="kn">from</span> <span class="nn">button</span> <span class="kn">import</span> <span class="n">Button</span>
 
-<span class="kn">import</span> <span class="nn">hashlib</span>
-<span class="n">md5sum</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">firmware</span><span class="p">,</span><span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="c1"># configure the Bluetooth UART</span>
+<span class="n">ble</span> <span class="o">=</span> <span class="n">bluetooth</span><span class="o">.</span><span class="n">BLE</span><span class="p">()</span>
+<span class="n">uart</span> <span class="o">=</span> <span class="n">ble_uart_peripheral</span><span class="o">.</span><span class="n">BLEUART</span><span class="p">(</span><span class="n">ble</span><span class="p">)</span>
 
-<span class="o">%</span><span class="n">store</span> <span class="n">md5sum</span>
+<span class="c1"># Scale &amp; Display</span>
+<span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">scl</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">22</span><span class="p">),</span> <span class="n">sda</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">23</span><span class="p">))</span>
+
+<span class="n">oled_width</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">oled_height</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">oled</span> <span class="o">=</span> <span class="n">SSD1306_I2C</span><span class="p">(</span><span class="n">oled_width</span><span class="p">,</span> <span class="n">oled_height</span><span class="p">,</span> <span class="n">i2c</span><span class="p">)</span>
+
+<span class="n">scale</span> <span class="o">=</span> <span class="n">Scale</span><span class="p">()</span>
+<span class="n">tare_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">scale</span><span class="o">.</span><span class="n">tare</span><span class="p">)</span>
+
+<span class="n">last_weight</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">scale</span><span class="o">.</span><span class="n">measure</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">weight</span><span class="o">-</span><span class="n">last_weight</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="c1"># send via Bluetooth</span>
+        <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:8.0f}</span><span class="s2"> gram</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">weight</span><span class="p">))</span>
+        <span class="c1"># show on display</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:8.0f}</span><span class="s2"> gram&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">weight</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+        <span class="n">oled</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        <span class="n">last_weight</span> <span class="o">=</span> <span class="n">weight</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Stored &#39;md5sum&#39; (str)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing lib/main.py
+</pre></div>
+</div>
+</div>
+</div>
+<p>Modify the device configuration to include <code class="docutils literal notranslate"><span class="pre">main.py</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat devices/balance.yaml
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>balance:
+    uid: 24:0a:c4:12:87:7c
+    resources:
+        - lib
+        - main.py: /
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">softreset</span>
-<span class="o">%</span><span class="n">store</span> <span class="o">-</span><span class="n">r</span> <span class="n">md5sum</span>
-
-<span class="kn">from</span> <span class="nn">repl32.flasher</span> <span class="kn">import</span> <span class="n">Flasher</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enter flasher ...&quot;</span><span class="p">)</span>
-<span class="k">with</span> <span class="n">Flasher</span><span class="p">()</span> <span class="k">as</span> <span class="n">flasher</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;erase ...&quot;</span><span class="p">)</span>
-    <span class="n">flasher</span><span class="o">.</span><span class="n">erase</span><span class="p">(</span><span class="n">dry_run</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;flash ...&quot;</span><span class="p">)</span>
-    <span class="n">flasher</span><span class="o">.</span><span class="n">flash_file</span><span class="p">(</span><span class="s1">&#39;firmware.bin&#39;</span><span class="p">,</span> <span class="n">md5</span><span class="o">=</span><span class="n">md5</span><span class="p">,</span> <span class="n">dry_run</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rsync</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
-
-Enter flasher ...
-Resetting
-
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 4, in &lt;module&gt;
-  File &quot;/lib/repl32/flasher.py&quot;, line 33, in __enter__
-  File &quot;/lib/repl32/adafruit_miniesptool.py&quot;, line 225, in chip_name
-  File &quot;/lib/repl32/adafruit_miniesptool.py&quot;, line 212, in chip_type
-  File &quot;/lib/repl32/adafruit_miniesptool.py&quot;, line 413, in read_register
-  File &quot;/lib/repl32/adafruit_miniesptool.py&quot;, line 325, in check_command
-NameError: local variable referenced before assignment
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
 
 </pre></div>
 </div>
 </div>
 </div>
+<p>That’s it! Plug the device into a USB power source or just power cycle and continue using the Raspberry Pi as power source. The app will start running-check the display and Bluetooth.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -524,7 +569,7 @@ NameError: local variable referenced before assignment
         },
         kernelOptions: {
             kernelName: "iot_kernel",
-            path: "./projects/wifi-cop"
+            path: "./projects/balance"
         },
         predefinedOutput: true
     }
@@ -536,6 +581,8 @@ NameError: local variable referenced before assignment
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="06_ble.html" title="previous page">Bluetooth</a>
+    <a class='right-next' id="next-link" href="08_hx711.html" title="next page">“Precision” Scale</a>
 
         </div>
         

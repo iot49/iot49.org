@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Configuration" href="configuration.html" />
-    <link rel="prev" title="Install" href="install.html" />
+    <link rel="prev" title="Custom Install" href="install-custom.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -93,6 +93,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="install.html">
    Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="install-custom.html">
+   Custom Install
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -168,13 +173,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="micropython/flash.html">
+     Flashing
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="micropython/compile.html">
      Compile
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="micropython/flash.html">
-     Flash
+    <a class="reference internal" href="micropython/mp_ext_c.html">
+     External C modules
     </a>
    </li>
   </ul>
@@ -325,6 +335,38 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../projects/wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/wifi-cop/overview.html">
+     Approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../projects/wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -429,6 +471,11 @@
    Naming devices
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stopping-resetting">
+   Stopping &amp; Resetting
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -443,7 +490,7 @@
   <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <p><em>ide49</em> offers a range of features including a code editor, compilers (e.g. to compile MicroPython), an MQTT broker, etc.</p>
-<p>All interaction with microcontrollers takes place in the <a class="reference external" href="https://jupyter.org/"><em>Jupyter Lab</em></a> service. <em>Jupyter</em> is a popular interactive Python programming environment. You can find many online tutorials and videos. Below we quickly go over the main features with special focus on the customizations for programming microcontrollers.</p>
+<p>All interaction with microcontrollers takes place in <a class="reference external" href="https://jupyter.org/"><em>Jupyter Lab</em></a>. <em>Jupyter</em> is a popular interactive Python programming environment. You can find many online tutorials and videos. Below we quickly go over the main features with special focus on the customizations for programming microcontrollers.</p>
 <div class="section" id="jupyter-lab">
 <h2>Jupyter Lab<a class="headerlink" href="#jupyter-lab" title="Permalink to this headline">¶</a></h2>
 <p>To access <em>Jupyter Lab</em> in <em>ide49</em>, go to <a class="reference external" href="https://iot49.local/jupyter">https://iot49.local/jupyter</a> (change the name if you modified the DNS name) or from the <em>Jupyter</em> link of <em>ide49</em> dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
@@ -572,7 +619,7 @@ Cell Magic:    -h shows help (e.g. %%connect -h)
 <p><code class="docutils literal notranslate"><span class="pre">%%connect</span></code> with two percent signs runs a code sequence on multiple processors:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">connect</span> <span class="o">--</span><span class="n">host</span> <span class="mi">50</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="n">a7</span><span class="p">:</span><span class="mi">2</span><span class="n">c</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">connect</span> <span class="o">-</span><span class="n">q</span> <span class="o">--</span><span class="n">host</span> <span class="mi">50</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span><span class="n">a1</span><span class="p">:</span><span class="n">a7</span><span class="p">:</span><span class="mi">2</span><span class="n">c</span>
                     
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;platform: </span><span class="si">{:7}</span><span class="s2"> implementation: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">implementation</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
@@ -646,6 +693,25 @@ pico:
 </div>
 </div>
 </div>
+<div class="section" id="stopping-resetting">
+<h2>Stopping &amp; Resetting<a class="headerlink" href="#stopping-resetting" title="Permalink to this headline">¶</a></h2>
+<p>To stop a running program, choose Kernel-&gt;Interrupt Kernel from the menu bar or click the little square in the toolbar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;This is going to take a loooong time. Better to stop execution now!&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">1e9</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>It is also possible to “reset” the microcontroller from within a notebook.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">%softreset</span></code> magic resets interpreter, releasing all variables and devices.</p>
+<p><code class="docutils literal notranslate"><span class="pre">%hardreset</span></code> is equivalent to pressing the reset button. The magic prints output from <code class="docutils literal notranslate"><span class="pre">boot.py</span></code> and <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to the console, but does not wait for <code class="docutils literal notranslate"><span class="pre">main.py</span></code> to finish.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -673,7 +739,7 @@ pico:
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="install.html" title="previous page">Install</a>
+    <a class='left-prev' id="prev-link" href="install-custom.html" title="previous page">Custom Install</a>
     <a class='right-next' id="next-link" href="configuration.html" title="next page">Configuration</a>
 
         </div>

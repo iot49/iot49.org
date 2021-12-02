@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Compile" href="compile.html" />
+    <link rel="next" title="Flashing" href="flash.html" />
     <link rel="prev" title="REPL prompt" href="REPL.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -93,6 +93,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../install.html">
    Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install-custom.html">
+   Custom Install
   </a>
  </li>
  <li class="toctree-l1">
@@ -168,13 +173,18 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="flash.html">
+     Flashing
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="compile.html">
      Compile
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="flash.html">
-     Flash
+    <a class="reference internal" href="mp_ext_c.html">
+     External C modules
     </a>
    </li>
   </ul>
@@ -321,6 +331,38 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../../projects/internet/encryption.html">
      Encryption
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/overview.html">
+     Approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/networking.html">
+     Networking
     </a>
    </li>
   </ul>
@@ -487,7 +529,15 @@
 </div>
 </div>
 </div>
-<p>Names are assigned in configuration files in <code class="docutils literal notranslate"><span class="pre">$IOT_DEVICES</span></code>:</p>
+<p>Names are assigned in yaml configuration files stored in folder <code class="docutils literal notranslate"><span class="pre">$IOT_DEVICES/devices</span></code>. Create this directory (in case it does not exist already).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!mkdir -p $IOT_PROJECTS/devices
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now create the configuration file. Don’t forget to update the UID in the cell below to match your microcontroller. You can also change the name (<code class="docutils literal notranslate"><span class="pre">esp32</span></code>) to something more descriptive or change it later. The name of the file is irrelevant, but it must have the extension <code class="docutils literal notranslate"><span class="pre">yaml</span></code>. You can create as many configurations files as you wish if you have several devices.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/example.yaml
@@ -502,7 +552,7 @@ esp32:
 </div>
 </div>
 </div>
-<p>Now the device is reported by it’s name.</p>
+<p>Now the device is known by its name.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
@@ -805,7 +855,7 @@ resources:
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="REPL.html" title="previous page">REPL prompt</a>
-    <a class='right-next' id="next-link" href="compile.html" title="next page">Compile</a>
+    <a class='right-next' id="next-link" href="flash.html" title="next page">Flashing</a>
 
         </div>
         

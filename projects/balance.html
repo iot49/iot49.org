@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Parts" href="balance/parts.html" />
+    <link rel="next" title="Parts" href="balance/01_parts.html" />
     <link rel="prev" title="Issues" href="../ide/issues.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -93,6 +93,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../ide/install.html">
    Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ide/install-custom.html">
+   Custom Install
   </a>
  </li>
  <li class="toctree-l1">
@@ -168,13 +173,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/micropython/compile.html">
-     Compile
+    <a class="reference internal" href="../ide/micropython/flash.html">
+     Flashing
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../ide/micropython/flash.html">
-     Flash
+    <a class="reference internal" href="../ide/micropython/compile.html">
+     Compile
     </a>
    </li>
    <li class="toctree-l2">
@@ -232,47 +237,47 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="balance/parts.html">
+    <a class="reference internal" href="balance/01_parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="balance/circuit.html">
+    <a class="reference internal" href="balance/02_circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="balance/code.html">
+    <a class="reference internal" href="balance/03_code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="balance/display.html">
+    <a class="reference internal" href="balance/04_display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="balance/buttons.html">
+    <a class="reference internal" href="balance/05_buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="balance/ble.html">
+    <a class="reference internal" href="balance/06_ble.html">
      Bluetooth
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="balance/app.html">
+    <a class="reference internal" href="balance/07_app.html">
      Standalone App
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="balance/hx711.html">
+    <a class="reference internal" href="balance/08_hx711.html">
      “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="balance/ticks.html">
+    <a class="reference internal" href="balance/09_ticks.html">
      Time Intervals
     </a>
    </li>
@@ -351,13 +356,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="wifi-cop/uart.html">
-     UART
+    <a class="reference internal" href="wifi-cop/rpc.html">
+     RPC
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="wifi-cop/rpc.html">
-     RPC
+    <a class="reference internal" href="wifi-cop/networking.html">
+     Networking
     </a>
    </li>
   </ul>
@@ -403,9 +408,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/projects/balance.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/projects/balance.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -426,7 +431,7 @@
             href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/balance.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/balance.md"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/balance.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -456,8 +461,63 @@
                 
   <div class="section" id="gpio">
 <h1>GPIO<a class="headerlink" href="#gpio" title="Permalink to this headline">¶</a></h1>
-<p>Explore microcontroller analog and digital input and output by building a “kitchen scale” - with Bluetooth LE.</p>
-<p><img alt="" src="../_images/scale_weights.jpg" /></p>
+<p>This project explores microcontroller analog and digital input and output by building a “kitchen scale” - with Bluetooth LE. Check also the <a class="reference external" href="http://docs.micropython.org/en/latest/index.html">MicroPython documentation</a> for all available I/O functions.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/scale_weights.jpg"><img alt="../_images/scale_weights.jpg" src="../_images/scale_weights.jpg" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">The completed “kitchen scale”</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Run the code in the next cell to download the code and instructions.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+cd $IOT_PROJECTS
+svn checkout https://github.com/iot49/iot49.org/trunk/docs/projects/balance
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>   C balance/app.ipynb
+   C balance/ble.ipynb
+   C balance/buttons.ipynb
+   C balance/circuit.ipynb
+   C balance/code.ipynb
+   C balance/code
+   A balance/code/lib
+   A balance/code/lib/ble_advertising.py
+   A balance/code/lib/ble_uart_peripheral.py
+   A balance/code/lib/button.py
+   A balance/code/lib/hx711.py
+   A balance/code/lib/scale.py
+   A balance/code/lib/scale_hx711.py
+   A balance/code/lib/ssd1306.py
+   A balance/code/main.py
+   C balance/display.ipynb
+   C balance/figures
+   A balance/figures/acrylic.svg
+   A balance/figures/bluefruit1.jpeg
+   A balance/figures/bluefruit2.jpeg
+   A balance/figures/bluefruit3.jpeg
+   A balance/figures/circuit_diagram.svg
+   A balance/figures/esp32_adc_vin.png
+   A balance/figures/full_diagram.svg
+   A balance/figures/huzzah32-pinout.png
+   A balance/figures/ina126.png
+   A balance/figures/load_cell.jpg
+   A balance/figures/scale.jpg
+   A balance/figures/scale_fat_strokes.svg
+   A balance/figures/scale_side.jpg
+   A balance/figures/scale_weights.jpg
+   A balance/figures/sparkfun_loadcell.png
+   C balance/hx711.ipynb
+   C balance/parts.ipynb
+   C balance/ticks.ipynb
+Checked out revision 110.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now the <code class="docutils literal notranslate"><span class="pre">projects/balance</span></code> folder contains the instructions. Open <code class="docutils literal notranslate"><span class="pre">01_parts.ipynb</span></code>. Unlike the online instructions, this file is “life”, i.e. you can run the cells and make modifications.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -471,16 +531,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "iot_kernel"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "iot_kernel",
             path: "./projects"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'iot_kernel'</script>
 
               </div>
               
@@ -488,7 +548,7 @@
         <div class='prev-next-bottom'>
             
     <a class='left-prev' id="prev-link" href="../ide/issues.html" title="previous page">Issues</a>
-    <a class='right-next' id="next-link" href="balance/parts.html" title="next page">Parts</a>
+    <a class='right-next' id="next-link" href="balance/01_parts.html" title="next page">Parts</a>
 
         </div>
         

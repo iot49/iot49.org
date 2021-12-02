@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flash &#8212; Electronics for IoT</title>
+    <title>Flashing &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -53,8 +53,8 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Docker App" href="../app.html" />
-    <link rel="prev" title="Compile" href="compile.html" />
+    <link rel="next" title="Compile" href="compile.html" />
+    <link rel="prev" title="Device Configuration" href="dev_config.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -96,8 +96,18 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../install-custom.html">
+   Custom Install
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../getting-started.html">
    Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../docs.html">
+   Documention
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -167,14 +177,19 @@
      Device Configuration
     </a>
    </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Flashing
+    </a>
+   </li>
    <li class="toctree-l2">
     <a class="reference internal" href="compile.html">
      Compile
     </a>
    </li>
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Flash
+   <li class="toctree-l2">
+    <a class="reference internal" href="mp_ext_c.html">
+     External C modules
     </a>
    </li>
   </ul>
@@ -325,6 +340,38 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/overview.html">
+     Approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -430,9 +477,10 @@
         
               <div>
                 
-  <div class="section" id="flash">
-<h1>Flash<a class="headerlink" href="#flash" title="Permalink to this headline">¶</a></h1>
-<p>The first step in flashing MicroPython to a microcontroller is to find its port. This is most easily accomplished with the <code class="docutils literal notranslate"><span class="pre">%discover</span> <span class="pre">--all</span></code> magic:</p>
+  <div class="section" id="flashing">
+<h1>Flashing<a class="headerlink" href="#flashing" title="Permalink to this headline">¶</a></h1>
+<p>Flashing is the process of installing MicroPython on a microcontroller. The exact instructions vary. Below are the steps for installing MicroPython on an ESP32.</p>
+<p>The first step in flashing MicroPython to a microcontroller is to find its port. The <code class="docutils literal notranslate"><span class="pre">%discover</span> <span class="pre">--all</span></code> magic reports this information:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span> <span class="o">--</span><span class="nb">all</span>
@@ -441,18 +489,15 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/dev/ttyUSB0
-  hwid         USB VID:PID=10C4:EA60 SER=015589DF LOCATION=1-1.1
+  hwid         USB VID:PID=10C4:EA60 SER=0160D2BE LOCATION=1-4
   manufacturer Silicon Labs
   product      CP2104 USB to UART Bridge Controller
   interface    CP2104 USB to UART Bridge Controller
-
-/dev/ttyAMA0
-  hwid         fe201000.serial
-
 </pre></div>
 </div>
 </div>
 </div>
+<p>A controller is installed at port <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code>. The exact port name varies, and may even change if you unplug and replug the device.</p>
 <div class="section" id="esp32">
 <h2>ESP32<a class="headerlink" href="#esp32" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://micropython.org/download/">Micropython.org</a> has compiled interpreter binaries for select architectures. For ESP32, choose “Generic ESP32 module”, unless a more specific version is available. Update the <code class="docutils literal notranslate"><span class="pre">firmware</span></code> and <code class="docutils literal notranslate"><span class="pre">port</span></code> variables in the script below, then execute.</p>
@@ -461,13 +506,20 @@
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash 
 
+# set the correct port (%discover -all)
 port=/dev/ttyUSB0
+
+# find the latest firmware at https://micropython.org/download/esp32/
 firmware=esp32-20210623-v1.16.bin
+
+# download
 curl -O https://micropython.org/resources/firmware/$firmware
     
+# install (flash)
 esptool.py -p $port erase_flash
 esptool.py -p $port -b 460800 write_flash -z 0x1000 $firmware
 
+# optionally delete the downloaded firmware
 rm $firmware
 </pre></div>
 </div>
@@ -575,6 +627,7 @@ Hard resetting via RTS pin...
 </div>
 </div>
 </div>
+<p>The device is now available:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
@@ -599,6 +652,124 @@ Hard resetting via RTS pin...
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to 24:0a:c4:12:87:7c @ serial:///dev/ttyUSB0</span>
 (name=&#39;micropython&#39;, version=(1, 16, 0), mpy=10757)
 
+</pre></div>
+</div>
+</div>
+</div>
+<p>To flash firmware from a local file, update the <code class="docutils literal notranslate"><span class="pre">port</span></code> and <code class="docutils literal notranslate"><span class="pre">firmware</span></code> variables below, then run the cell.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash 
+
+# local firmware
+port=/dev/ttyUSB0
+firmware=~/micropython.bin
+    
+esptool.py -p $port erase_flash
+esptool.py -p $port -b 460800 write_flash -z 0x1000 $firmware
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>esptool.py v3.2
+Serial port /dev/ttyUSB0
+Connecting.....
+Detecting chip type... Unsupported detection protocol, switching and trying again...
+Connecting.....
+Detecting chip type... ESP32
+Chip is ESP32-D0WDQ6 (revision 1)
+Features: WiFi, BT, Dual Core, Coding Scheme None
+Crystal is 40MHz
+MAC: 30:ae:a4:30:80:14
+Uploading stub...
+Running stub...
+Stub running...
+Erasing flash (this may take a while)...
+Chip erase completed successfully in 4.6s
+Hard resetting via RTS pin...
+esptool.py v3.2
+Serial port /dev/ttyUSB0
+Connecting.....
+Detecting chip type... Unsupported detection protocol, switching and trying again...
+Connecting....
+Detecting chip type... ESP32
+Chip is ESP32-D0WDQ6 (revision 1)
+Features: WiFi, BT, Dual Core, Coding Scheme None
+Crystal is 40MHz
+MAC: 30:ae:a4:30:80:14
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00164fff...
+Compressed 1457072 bytes to 966988...
+Writing at 0x00001000... (1 %)
+Writing at 0x000099b2... (3 %)
+Writing at 0x00012347... (5 %)
+Writing at 0x0001939e... (6 %)
+Writing at 0x00022327... (8 %)
+Writing at 0x0002da89... (10 %)
+Writing at 0x0003815e... (11 %)
+Writing at 0x0004271e... (13 %)
+Writing at 0x00047db8... (15 %)
+Writing at 0x0004ce55... (16 %)
+Writing at 0x00051f55... (18 %)
+Writing at 0x00056f23... (20 %)
+Writing at 0x0005be0e... (21 %)
+Writing at 0x00060a45... (23 %)
+Writing at 0x000673cd... (25 %)
+Writing at 0x0006c8a7... (26 %)
+Writing at 0x00071cf6... (28 %)
+Writing at 0x00076c98... (30 %)
+Writing at 0x0007c2f9... (31 %)
+Writing at 0x000822b1... (33 %)
+Writing at 0x00087444... (35 %)
+Writing at 0x0008ccb1... (36 %)
+Writing at 0x00092a2b... (38 %)
+Writing at 0x00098ddc... (40 %)
+Writing at 0x0009e679... (41 %)
+Writing at 0x000a3a37... (43 %)
+Writing at 0x000a9ba1... (45 %)
+Writing at 0x000af0cc... (46 %)
+Writing at 0x000b405a... (48 %)
+Writing at 0x000b9033... (50 %)
+Writing at 0x000bdfe8... (51 %)
+Writing at 0x000c33e3... (53 %)
+Writing at 0x000c87cc... (55 %)
+Writing at 0x000ce11f... (56 %)
+Writing at 0x000d3ca0... (58 %)
+Writing at 0x000d92b0... (60 %)
+Writing at 0x000de084... (61 %)
+Writing at 0x000e3a7d... (63 %)
+Writing at 0x000e91b7... (65 %)
+Writing at 0x000ee520... (66 %)
+Writing at 0x000f3b83... (68 %)
+Writing at 0x000f8e05... (70 %)
+Writing at 0x000fe144... (71 %)
+Writing at 0x00103497... (73 %)
+Writing at 0x00108b87... (75 %)
+Writing at 0x0010e1c0... (76 %)
+Writing at 0x001136a8... (78 %)
+Writing at 0x00119109... (80 %)
+Writing at 0x0011f1d6... (81 %)
+Writing at 0x00124bc7... (83 %)
+Writing at 0x00129bcb... (85 %)
+Writing at 0x0012fc99... (86 %)
+Writing at 0x00137e18... (88 %)
+Writing at 0x00140500... (90 %)
+Writing at 0x00147929... (91 %)
+Writing at 0x0014dcad... (93 %)
+Writing at 0x0015323a... (95 %)
+Writing at 0x00158bcc... (96 %)
+Writing at 0x0015e1e9... (98 %)
+Writing at 0x001641fc... (100 %)
+Wrote 1457072 bytes (966988 compressed) at 0x00001000 in 23.5 seconds (effective 495.7 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
 </pre></div>
 </div>
 </div>
@@ -631,8 +802,8 @@ Hard resetting via RTS pin...
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="compile.html" title="previous page">Compile</a>
-    <a class='right-next' id="next-link" href="../app.html" title="next page">Docker App</a>
+    <a class='left-prev' id="prev-link" href="dev_config.html" title="previous page">Device Configuration</a>
+    <a class='right-next' id="next-link" href="compile.html" title="next page">Compile</a>
 
         </div>
         

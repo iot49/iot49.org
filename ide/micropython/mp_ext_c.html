@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Docker App" href="../app.html" />
-    <link rel="prev" title="Flash" href="flash.html" />
+    <link rel="prev" title="Compile" href="compile.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -93,6 +93,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="../install.html">
    Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../install-custom.html">
+   Custom Install
   </a>
  </li>
  <li class="toctree-l1">
@@ -168,13 +173,13 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="compile.html">
-     Compile
+    <a class="reference internal" href="flash.html">
+     Flashing
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="flash.html">
-     Flash
+    <a class="reference internal" href="compile.html">
+     Compile
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -330,6 +335,38 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../projects/wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/overview.html">
+     Approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../projects/wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -425,11 +462,6 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#stm32-port">
-   stm32 port
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#esp32-port">
    esp32 port
   </a>
@@ -447,27 +479,49 @@
                 
   <div class="section" id="external-c-modules">
 <h1>External C modules<a class="headerlink" href="#external-c-modules" title="Permalink to this headline">¶</a></h1>
-<p>MicroPython can be extended with <a class="reference external" href="https://docs.micropython.org/en/latest/develop/cmodules.html">external C modules</a>.</p>
+<p>The MicroPython interpreter can be extended with <a class="reference external" href="https://docs.micropython.org/en/latest/develop/cmodules.html">custom C modules</a>.</p>
 <div class="section" id="unix-port">
 <h2>Unix port<a class="headerlink" href="#unix-port" title="Permalink to this headline">¶</a></h2>
+<p>Quick demonstration extending the stock MicroPython Unix port with a custom c module (<code class="docutils literal notranslate"><span class="pre">cexample</span></code>). Check the <a class="reference external" href="https://docs.micropython.org/en/latest/develop/cmodules.html#basic-example">MicroPython documentation</a> for details.</p>
+<p>First update the local MicroPython clone (assuming you have already cloned the github repo):</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
 
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="n">make</span> <span class="n">clean</span> 
-<span class="n">make</span> <span class="n">submodules</span>
-<span class="n">make</span> <span class="n">USER_C_MODULES</span><span class="o">=../../</span><span class="n">examples</span><span class="o">/</span><span class="n">usercmodule</span>
+cd $IOT/mp
+if [ ! -d micropython ]
+then
+    git clone git@github.com:micropython/micropython.git
+else
+    cd micropython
+    git checkout master
+    git pull
+    git merge master
+fi
 </pre></div>
 </div>
 </div>
 </div>
+<p>Now compile the custom MicroPython interpreter:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service arm32
+
+cd $IOT/mp/micropython/ports/unix
+make clean 
+make submodules
+make USER_C_MODULES=../../examples/usercmodule
+</pre></div>
+</div>
+</div>
+</div>
+<p>Check it out:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
 
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">unix</span>
-<span class="o">./</span><span class="n">micropython</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import cexample; print(cexample.add_ints(4, -7))&quot;</span>
+cd $IOT/mp/micropython/ports/unix
+./micropython -c &quot;import cexample; print(cexample.add_ints(4, -7))&quot;
 </pre></div>
 </div>
 </div>
@@ -478,442 +532,18 @@
 </div>
 </div>
 </div>
-<div class="section" id="stm32-port">
-<h2>stm32 port<a class="headerlink" href="#stm32-port" title="Permalink to this headline">¶</a></h2>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">arm32</span>
-
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">stm32</span>
-<span class="c1"># make clean </span>
-<span class="c1"># make submodules</span>
-<span class="n">make</span> <span class="n">USER_C_MODULES</span><span class="o">=../../</span><span class="n">examples</span><span class="o">/</span><span class="n">usercmodule</span><span class="o">/</span><span class="n">micropython</span><span class="o">.</span><span class="n">cmake</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Use make V=1 or set BUILD_VERBOSE in your environment to increase build verbosity.
-Updating submodules: lib/libhydrogen lib/lwip lib/mbedtls lib/stm32lib
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>error: could not lock config file /home/iot/micropython/.git/modules/lib/libhydrogen/config: Permission denied
-fatal: could not set &#39;core.worktree&#39; to &#39;../../../../lib/libhydrogen&#39;
-error: could not lock config file /home/iot/micropython/.git/modules/lib/lwip/config: Permission denied
-fatal: could not set &#39;core.worktree&#39; to &#39;../../../../lib/lwip&#39;
-error: could not lock config file /home/iot/micropython/.git/modules/lib/mbedtls/config: Permission denied
-fatal: could not set &#39;core.worktree&#39; to &#39;../../../../lib/mbedtls&#39;
-error: could not lock config file /home/iot/micropython/.git/modules/lib/stm32lib/config: Permission denied
-fatal: could not set &#39;core.worktree&#39; to &#39;../../../../lib/stm32lib&#39;
-
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Use make V=1 or set BUILD_VERBOSE in your environment to increase build verbosity.
-mkdir -p build-PYBV10/genhdr
-GEN build-PYBV10/genhdr/pins.h
-GEN stmconst build-PYBV10/modstm_qstr.h
-GEN build-PYBV10/genhdr/pybcdc.inf
-GEN build-PYBV10/genhdr/pybcdc_inf.h
-GEN build-PYBV10/genhdr/pllfreqtable.h
-GEN build-PYBV10/genhdr/mpversion.h
-GEN build-PYBV10/genhdr/moduledefs.h
-GEN build-PYBV10/genhdr/qstr.i.last
-GEN build-PYBV10/genhdr/qstr.split
-GEN build-PYBV10/genhdr/qstrdefs.collected.h
-QSTR updated
-GEN build-PYBV10/genhdr/qstrdefs.generated.h
-GEN build-PYBV10/genhdr/compressed.split
-GEN build-PYBV10/genhdr/compressed.collected
-Compressed data updated
-GEN build-PYBV10/genhdr/compressed.data.h
-mkdir -p build-PYBV10/build-PYBV10/
-mkdir -p build-PYBV10/drivers/bus/
-mkdir -p build-PYBV10/drivers/dht/
-mkdir -p build-PYBV10/drivers/memory/
-mkdir -p build-PYBV10/extmod/
-mkdir -p build-PYBV10/lib/libm/
-mkdir -p build-PYBV10/lib/littlefs/
-mkdir -p build-PYBV10/lib/oofatfs/
-mkdir -p build-PYBV10/lib/stm32lib/CMSIS/STM32F4xx/Source/Templates/
-mkdir -p build-PYBV10/lib/stm32lib/CMSIS/STM32F4xx/Source/Templates/gcc/
-mkdir -p build-PYBV10/lib/stm32lib/STM32F4xx_HAL_Driver/Src/
-mkdir -p build-PYBV10/py/
-mkdir -p build-PYBV10/shared/libc/
-mkdir -p build-PYBV10/shared/netutils/
-mkdir -p build-PYBV10/shared/readline/
-mkdir -p build-PYBV10/shared/runtime/
-mkdir -p build-PYBV10/shared/timeutils/
-mkdir -p build-PYBV10/usbdev/class/src/
-mkdir -p build-PYBV10/usbdev/core/src/
-CC ../../py/mpstate.c
-CC ../../py/nlr.c
-CC ../../py/nlrx86.c
-CC ../../py/nlrx64.c
-CC ../../py/nlrthumb.c
-CC ../../py/nlraarch64.c
-CC ../../py/nlrpowerpc.c
-CC ../../py/nlrxtensa.c
-CC ../../py/nlrsetjmp.c
-CC ../../py/malloc.c
-CC ../../py/gc.c
-CC ../../py/pystack.c
-CC ../../py/qstr.c
-CC ../../py/vstr.c
-CC ../../py/mpprint.c
-CC ../../py/unicode.c
-CC ../../py/mpz.c
-CC ../../py/reader.c
-CC ../../py/lexer.c
-CC ../../py/parse.c
-CC ../../py/scope.c
-CC ../../py/compile.c
-CC ../../py/emitcommon.c
-CC ../../py/emitbc.c
-CC ../../py/asmbase.c
-CC ../../py/asmx64.c
-CC ../../py/emitnx64.c
-CC ../../py/asmx86.c
-CC ../../py/emitnx86.c
-CC ../../py/asmthumb.c
-CC ../../py/emitnthumb.c
-CC ../../py/emitinlinethumb.c
-CC ../../py/asmarm.c
-CC ../../py/emitnarm.c
-CC ../../py/asmxtensa.c
-CC ../../py/emitnxtensa.c
-CC ../../py/emitinlinextensa.c
-CC ../../py/emitnxtensawin.c
-CC ../../py/formatfloat.c
-CC ../../py/parsenumbase.c
-CC ../../py/parsenum.c
-CC ../../py/emitglue.c
-CC ../../py/persistentcode.c
-CC ../../py/runtime.c
-CC ../../py/runtime_utils.c
-CC ../../py/scheduler.c
-CC ../../py/nativeglue.c
-CC ../../py/pairheap.c
-CC ../../py/ringbuf.c
-CC ../../py/stackctrl.c
-CC ../../py/argcheck.c
-CC ../../py/warning.c
-CC ../../py/profile.c
-CC ../../py/map.c
-CC ../../py/obj.c
-CC ../../py/objarray.c
-CC ../../py/objattrtuple.c
-CC ../../py/objbool.c
-CC ../../py/objboundmeth.c
-CC ../../py/objcell.c
-CC ../../py/objclosure.c
-CC ../../py/objcomplex.c
-CC ../../py/objdeque.c
-CC ../../py/objdict.c
-CC ../../py/objenumerate.c
-CC ../../py/objexcept.c
-CC ../../py/objfilter.c
-CC ../../py/objfloat.c
-CC ../../py/objfun.c
-CC ../../py/objgenerator.c
-CC ../../py/objgetitemiter.c
-CC ../../py/objint.c
-CC ../../py/objint_longlong.c
-CC ../../py/objint_mpz.c
-CC ../../py/objlist.c
-CC ../../py/objmap.c
-CC ../../py/objmodule.c
-CC ../../py/objobject.c
-CC ../../py/objpolyiter.c
-CC ../../py/objproperty.c
-CC ../../py/objnone.c
-CC ../../py/objnamedtuple.c
-CC ../../py/objrange.c
-CC ../../py/objreversed.c
-CC ../../py/objset.c
-CC ../../py/objsingleton.c
-CC ../../py/objslice.c
-CC ../../py/objstr.c
-CC ../../py/objstrunicode.c
-CC ../../py/objstringio.c
-CC ../../py/objtuple.c
-CC ../../py/objtype.c
-CC ../../py/objzip.c
-CC ../../py/opmethods.c
-CC ../../py/sequence.c
-CC ../../py/stream.c
-CC ../../py/binary.c
-CC ../../py/builtinimport.c
-CC ../../py/builtinevex.c
-CC ../../py/builtinhelp.c
-CC ../../py/modarray.c
-CC ../../py/modbuiltins.c
-CC ../../py/modcollections.c
-CC ../../py/modgc.c
-CC ../../py/modio.c
-CC ../../py/modmath.c
-CC ../../py/modcmath.c
-CC ../../py/modmicropython.c
-CC ../../py/modstruct.c
-CC ../../py/modsys.c
-CC ../../py/moduerrno.c
-CC ../../py/modthread.c
-CC ../../py/vm.c
-CC ../../py/bc.c
-CC ../../py/showbc.c
-CC ../../py/repl.c
-CC ../../py/smallint.c
-CC ../../py/frozenmod.c
-CC ../../extmod/moduasyncio.c
-CC ../../extmod/moductypes.c
-CC ../../extmod/modujson.c
-CC ../../extmod/modure.c
-CC ../../extmod/moduzlib.c
-CC ../../extmod/moduheapq.c
-CC ../../extmod/modutimeq.c
-CC ../../extmod/moduhashlib.c
-CC ../../extmod/moducryptolib.c
-CC ../../extmod/modubinascii.c
-CC ../../extmod/virtpin.c
-CC ../../extmod/machine_mem.c
-CC ../../extmod/machine_pinbase.c
-CC ../../extmod/machine_signal.c
-CC ../../extmod/machine_pulse.c
-CC ../../extmod/machine_i2c.c
-CC ../../extmod/machine_spi.c
-CC ../../extmod/modbluetooth.c
-CC ../../extmod/modussl_axtls.c
-CC ../../extmod/modussl_mbedtls.c
-CC ../../extmod/modurandom.c
-CC ../../extmod/moduselect.c
-CC ../../extmod/moduwebsocket.c
-CC ../../extmod/modwebrepl.c
-CC ../../extmod/modframebuf.c
-CC ../../extmod/vfs.c
-CC ../../extmod/vfs_blockdev.c
-CC ../../extmod/vfs_reader.c
-CC ../../extmod/vfs_posix.c
-CC ../../extmod/vfs_posix_file.c
-CC ../../extmod/vfs_fat.c
-CC ../../extmod/vfs_fat_diskio.c
-CC ../../extmod/vfs_fat_file.c
-CC ../../extmod/vfs_lfs.c
-CC ../../extmod/utime_mphal.c
-CC ../../extmod/uos_dupterm.c
-CC ../../shared/libc/abort_.c
-CC ../../shared/libc/printf.c
-MPY uasyncio/__init__.py
-MPY uasyncio/core.py
-MPY uasyncio/event.py
-MPY uasyncio/funcs.py
-MPY uasyncio/lock.py
-MPY uasyncio/stream.py
-MPY dht.py
-MPY lcd160cr.py
-MPY lcd160cr_test.py
-MPY onewire.py
-GEN build-PYBV10/frozen_content.c
-CC build-PYBV10/frozen_content.c
-CC ../../lib/libm/math.c
-CC ../../lib/libm/acoshf.c
-CC ../../lib/libm/asinfacosf.c
-CC ../../lib/libm/asinhf.c
-CC ../../lib/libm/atan2f.c
-CC ../../lib/libm/atanf.c
-CC ../../lib/libm/atanhf.c
-CC ../../lib/libm/ef_rem_pio2.c
-CC ../../lib/libm/erf_lgamma.c
-CC ../../lib/libm/fmodf.c
-CC ../../lib/libm/kf_cos.c
-CC ../../lib/libm/kf_rem_pio2.c
-CC ../../lib/libm/kf_sin.c
-CC ../../lib/libm/kf_tan.c
-CC ../../lib/libm/log1pf.c
-CC ../../lib/libm/nearbyintf.c
-CC ../../lib/libm/roundf.c
-CC ../../lib/libm/sf_cos.c
-CC ../../lib/libm/sf_erf.c
-CC ../../lib/libm/sf_frexp.c
-CC ../../lib/libm/sf_ldexp.c
-CC ../../lib/libm/sf_modf.c
-CC ../../lib/libm/sf_sin.c
-CC ../../lib/libm/sf_tan.c
-CC ../../lib/libm/wf_lgamma.c
-CC ../../lib/libm/wf_tgamma.c
-CC ../../lib/libm/thumb_vfp_sqrtf.c
-CC ../../shared/libc/string0.c
-CC ../../shared/netutils/dhcpserver.c
-CC ../../shared/netutils/netutils.c
-CC ../../shared/netutils/trace.c
-CC ../../shared/readline/readline.c
-CC ../../shared/runtime/gchelper_native.c
-CC ../../shared/runtime/interrupt_char.c
-CC ../../shared/runtime/mpirq.c
-CC ../../shared/runtime/pyexec.c
-CC ../../shared/runtime/stdout_helpers.c
-CC ../../shared/runtime/sys_stdio_mphal.c
-CC ../../shared/timeutils/timeutils.c
-CC ../../extmod/modonewire.c
-CC ../../drivers/bus/softspi.c
-CC ../../drivers/bus/softqspi.c
-CC ../../drivers/memory/spiflash.c
-CC ../../drivers/dht/dht.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_adc_ex.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pcd_ex.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_pwr_ex.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc_ex.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rtc_ex.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sd.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_sdmmc.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_mmc.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma_ex.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dcmi.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_can.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s.c
-CC ../../lib/stm32lib/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2s_ex.c
-CC usbdev/core/src/usbd_core.c
-CC usbdev/core/src/usbd_ctlreq.c
-CC usbdev/core/src/usbd_ioreq.c
-CC usbdev/class/src/usbd_cdc_msc_hid.c
-CC usbdev/class/src/usbd_msc_bot.c
-CC usbdev/class/src/usbd_msc_scsi.c
-CC boardctrl.c
-CC main.c
-CC stm32_it.c
-CC usbd_conf.c
-CC usbd_desc.c
-CC usbd_cdc_interface.c
-CC usbd_hid_interface.c
-CC usbd_msc_interface.c
-CC mphalport.c
-CC mpthreadport.c
-CC irq.c
-CC pendsv.c
-CC systick.c
-CC softtimer.c
-CC powerctrl.c
-CC powerctrlboot.c
-CC rfcore.c
-CC pybthread.c
-CC factoryreset.c
-CC timer.c
-CC led.c
-CC pin.c
-CC pin_defs_stm32.c
-CC pin_named_pins.c
-CC bufhelper.c
-CC dma.c
-CC i2c.c
-CC pyb_i2c.c
-CC spi.c
-CC pyb_spi.c
-CC qspi.c
-CC uart.c
-CC can.c
-CC fdcan.c
-CC pyb_can.c
-CC usb.c
-CC wdt.c
-CC eth.c
-CC gccollect.c
-CC help.c
-CC machine_adc.c
-CC machine_i2c.c
-CC machine_i2s.c
-CC machine_spi.c
-CC machine_timer.c
-CC machine_uart.c
-CC modmachine.c
-CC modpyb.c
-CC modstm.c
-CC moduos.c
-CC modutime.c
-CC modusocket.c
-CC network_lan.c
-CC modnetwork.c
-CC extint.c
-CC usrsw.c
-CC rng.c
-CC rtc.c
-CC flash.c
-CC flashbdev.c
-CC spibdev.c
-CC storage.c
-CC sdcard.c
-CC sdram.c
-CC fatfs_port.c
-CC lcd.c
-CC accel.c
-CC servo.c
-CC dac.c
-CC adc.c
-AS ../../lib/stm32lib/CMSIS/STM32F4xx/Source/Templates/gcc/startup_stm32f405xx.s
-CC ../../lib/stm32lib/CMSIS/STM32F4xx/Source/Templates/system_stm32f4xx.c
-CC system_stm32.c
-AS resethandler.s
-AS ../../shared/runtime/gchelper_m3.s
-CC ../../lib/oofatfs/ff.c
-CC ../../lib/oofatfs/ffunicode.c
-CC ../../lib/littlefs/lfs2.c
-CC ../../lib/littlefs/lfs2_util.c
-CC build-PYBV10/pins_PYBV10.c
-LINK build-PYBV10/firmware.elf
-   text	   data	    bss	    dec	    hex	filename
- 367480	     16	  27296	 394792	  60628	build-PYBV10/firmware.elf
-GEN build-PYBV10/firmware0.bin
-GEN build-PYBV10/firmware1.bin
-GEN build-PYBV10/firmware.dfu
-GEN build-PYBV10/firmware.hex
-</pre></div>
-</div>
-</div>
-</div>
-</div>
 <div class="section" id="esp32-port">
 <h2>esp32 port<a class="headerlink" href="#esp32-port" title="Permalink to this headline">¶</a></h2>
-<p>Place custom modules in <code class="docutils literal notranslate"><span class="pre">~/micropython_modules</span></code>.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">esp</span><span class="o">-</span><span class="n">idf</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service esp-idf
 
-<span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">esp32</span>
-<span class="c1"># make submodules</span>
-<span class="c1"># make clean </span>
-<span class="n">make</span> <span class="n">BOARD</span><span class="o">=</span><span class="n">GENERIC_OTA</span> \
-     <span class="n">USER_C_MODULES</span><span class="o">=../../../../</span><span class="n">micropython_modules</span><span class="o">/</span><span class="n">micropython</span><span class="o">.</span><span class="n">cmake</span> \
-     <span class="n">deploy</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span>
-<span class="kn">import</span> <span class="nn">cexample</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">cexample</span><span class="o">.</span><span class="n">add_ints</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
-12
+cd $IOT/mp/micropython/ports/esp32
+make submodules
+make clean 
+make BOARD=GENERIC_OTA \
+     USER_C_MODULES=../../../examples/usercmodule/micropython.cmake \
+     deploy
 </pre></div>
 </div>
 </div>
@@ -946,7 +576,7 @@ GEN build-PYBV10/firmware.hex
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="flash.html" title="previous page">Flash</a>
+    <a class='left-prev' id="prev-link" href="compile.html" title="previous page">Compile</a>
     <a class='right-next' id="next-link" href="../app.html" title="next page">Docker App</a>
 
         </div>

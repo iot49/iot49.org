@@ -17,7 +17,7 @@ picocom -b115200 /dev/ttyUSB0
 
 ## rshell
 
-Alternatively you can use David Hyland's [rshell]() in *ide49*:
+You can also use David Hyland's [rshell]() in *ide49*:
 
 ```bash
 iot@server:~$ rshell -p /dev/ttyUSB0
