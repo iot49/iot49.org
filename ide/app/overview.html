@@ -128,6 +128,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../config/timezone.html">
+     Timezone
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../config/dns.html">
      Domain Name
     </a>
@@ -489,16 +494,6 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#python-packages-pip">
-     Python packages (pip)
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#host-acccess">
-     Host acccess
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#mounts">
      Mounts
     </a>
@@ -519,12 +514,14 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="overview">
 <h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <p><em>ide49</em> is based on <a class="reference external" href="https://www.balena.io/what-is-balena">Balena</a>, a version of <a class="reference external" href="https://www.docker.com/">Docker</a> optimized for IoT devices, rather than datacenters.</p>
-<a class="reference internal image-reference" href="../../_images/app.png"><img alt="balena_app" class="align-center" src="../../_images/app.png" style="width: 400px;" /></a>
-<p>The balenaOS takes the function of the host operating system. Unlike other operating systems (Windows, MacOS, …), it is highly specialized to run individual services in so-called containers. In <em>ide49</em> containers include jupyter, code-server, duplicati, etc.</p>
-<p>A set of <a class="reference external" href="https://github.com/iot49/ide49">configuration files</a> describes the application. The <a class="reference external" href="https://github.com/iot49/ide49/blob/main/docker-compose.yml">docker-compose.yml</a> file lists all user containers along with configuration parameters and information about how they interact.</p>
-<p>Each container presents a separate instance of Linux, and unsually implement just one function. This arrangement minizes undesired interaction e.g. between incompatible libraries used in various application programs. It’s like having a separate computer for each task (code editor, backup, etc).</p>
-<p>The software installed in each container is described with a Dockerfile. For example, the first line in the Dockerfile for the <a class="reference external" href="https://github.com/iot49/ide49/blob/main/core/jupyter/Dockerfile.template"><code class="docutils literal notranslate"><span class="pre">jupyter</span></code></a> container specifies that this service runs the Debian flavor of Linux with Python preinstalled. Adding additional libraries is as easy as including them in the Dockerfile and <a class="reference internal" href="customize.html"><span class="doc std std-doc">pushing the updated app</span></a> to your device.</p>
-<p>This is followed installing individual software and Python packages required by the Jupyter server. Finally the user <code class="docutils literal notranslate"><span class="pre">iot</span></code> is created and control passed to <a class="reference external" href="https://github.com/iot49/ide49/blob/main/core/jupyter/start.sh"><code class="docutils literal notranslate"><span class="pre">start.sh</span></code></a>, which starts jupyterlab.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../../_images/app.png"><img alt="balena_app" src="../../_images/app.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Structure of a Docker application. A single Linux kernel is shared between the host and one or more user containers.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>The balenaOS takes the function of the host operating system. Unlike other operating systems (Windows, MacOS, …), it is highly specialized to run individual services in so-called containers. In <em>ide49</em> containers include micropython, code-server, duplicati, etc.</p>
+<p>A set of <a class="reference external" href="https://github.com/iot49/ide49">configuration files</a> describes the application. The <a class="reference external" href="https://github.com/iot49/ide49/blob/main/docker-compose.yml">docker-compose.yml</a> file lists all user containers along with configuration parameters and information about how they interact. E.g. containers may be permitted to share files (<code class="docutils literal notranslate"><span class="pre">volumes</span></code>) or communicate over dedicated networks that are inaccessible from outside.</p>
+<p>Each container presents a separate instance of Linux, and usually implement just one function. This arrangement minimizes undesired interaction e.g. between incompatible libraries used in various application programs. It’s like having a separate computer for each task (code editor, backup, etc).</p>
+<p>The software installed in each container is described with a Dockerfile. For example, the first line in the Dockerfile for the <a class="reference external" href="https://github.com/iot49/ide49/blob/main/core/micropython/Dockerfile">micropython</a> specifies that this service is derived from a slightly customized version of an “official” <a class="reference external" href="https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-scipy-notebook">Jupyter docker image</a>. This image is based on Ubuntu Linux and includes, notably, the Jupyter Notebook server as well as a host of libraries for scientific computation and plotting. Following the FROM statement are instructions for installing additional software and configuration files including the IoT Kernel used for interacting with the MicroPython REPL.</p>
 <div class="section" id="balenaengine">
 <h2>BalenaEngine<a class="headerlink" href="#balenaengine" title="Permalink to this headline">¶</a></h2>
 <p>In Balena, the balenaEngine takes the function of the docker deamon in standard docker apps. It is accessed from the host with the <code class="docutils literal notranslate"><span class="pre">balena-engine</span></code> command.</p>
@@ -870,14 +867,6 @@ resin_supervisor
 </div>
 </div>
 </div>
-<p>Accordingly, the following ports are exposed on the internet (in addition to ports used by the BalenaOS):</p>
-<ul class="simple">
-<li><p>80 and 443 by <code class="docutils literal notranslate"><span class="pre">nginx</span></code></p></li>
-<li><p>1883 by <code class="docutils literal notranslate"><span class="pre">mosquitto</span></code></p></li>
-<li><p>139 and 445 by <code class="docutils literal notranslate"><span class="pre">samba</span></code></p></li>
-</ul>
-<p>In addition, <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> is in the host network: any server run in this container is visible outside, as if it was running on the host. In particular port 8888, used by the jupyterlab server, is exposed. Jupyter is configured to accept connections only from addresses on the internal network to avoid a security hole (encryption and password free access).</p>
-<p>All the other ports (8889, 8200, 8443, 8080) are used on the internal network only.</p>
 </div>
 <div class="section" id="storage">
 <h2>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h2>
@@ -890,63 +879,17 @@ resin_supervisor
 </div>
 <div class="section" id="mounted-into-the-container-volumes">
 <h3>Mounted into the container (volumes)<a class="headerlink" href="#mounted-into-the-container-volumes" title="Permalink to this headline">¶</a></h3>
-<p>Storage can also be “mounted” from the “host”, the underlying operating system that runs the Docker app, <em>ide49</em>. For example, <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code> and <code class="docutils literal notranslate"><span class="pre">/service-config</span></code> are mounted. The <code class="docutils literal notranslate"><span class="pre">volumes</span></code> section of the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file lists all mounts.</p>
-<p>The same volumes can be mounted into several containers (at the same or different locations). This allows sharing data. For example, all volumes are mounted in the <code class="docutils literal notranslate"><span class="pre">duplicati</span></code> (backup) container.</p>
-<p>Likewise, configuration files, e.g. for <code class="docutils literal notranslate"><span class="pre">nginx</span></code> (webserver), are mounted in <code class="docutils literal notranslate"><span class="pre">/service-config</span></code> in the <code class="docutils literal notranslate"><span class="pre">code-server</span></code> and <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> containers for editing, and at the proper path in the various containers that need configuration (e.g. <code class="docutils literal notranslate"><span class="pre">/etc/nginx</span></code>).</p>
+<p>Storage can also be “mounted” from the “host”, the underlying operating system that runs the Docker app, <em>ide49</em>. For example, <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code> and the subfolders of <code class="docutils literal notranslate"><span class="pre">/service-config</span></code> are mounted. The <code class="docutils literal notranslate"><span class="pre">volumes</span></code> section of the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file lists all mounts.</p>
+<p>The same volumes can be mounted into several containers (at the same or different locations). This enables data sharing. For example, all volumes are mounted in the <code class="docutils literal notranslate"><span class="pre">duplicati</span></code> container for backup and <code class="docutils literal notranslate"><span class="pre">micropython</span></code> and <code class="docutils literal notranslate"><span class="pre">code-server</span></code> containers for editing.</p>
+<p>For example the configuration for <code class="docutils literal notranslate"><span class="pre">nginx</span></code> (webserver), is mounted in <code class="docutils literal notranslate"><span class="pre">/service-config</span></code> in the <code class="docutils literal notranslate"><span class="pre">code-server</span></code> and <code class="docutils literal notranslate"><span class="pre">micropython</span></code> containers for editing, and at <code class="docutils literal notranslate"><span class="pre">/etc/nginx</span></code> in the <code class="docutils literal notranslate"><span class="pre">nginx</span></code> service.</p>
 <p>Changes to volumes persist between container updates.</p>
 </div>
 <div class="section" id="samba-fileshare">
 <h3>Samba fileshare<a class="headerlink" href="#samba-fileshare" title="Permalink to this headline">¶</a></h3>
 <p>In addition to the types of storage discussed above, <em>ide49</em> can also be configured to mount <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code> from a Samba file server.</p>
 <p>Uses include sharing the same data between several <em>ide49</em> instances or in situations where a shared file server, perhaps with centralized backup, is preferred.</p>
-<p>For convenience, the entire home directory is mounted. This can cause some undesired behavior. For example, databases frequently use status files (e.g. locks) used by the running instance. Sharing those with another device (running perhaps a different instance of the same database) results in conflicts.</p>
+<p>For convenience, the entire home directory (<code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>) is mounted. This can cause some undesired behavior. For example, databases frequently use status files (e.g. locks) used by the running instance. Sharing those with another device (running perhaps a different instance of the same database) results in conflicts.</p>
 <p>To prevent this, the local iot volume is always available at <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home</span></code>. Unlike <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>, this copy is never “hidden” by a Samba mount. <em>ide49</em> is configured to store status information (e.g. for <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>) in <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home</span></code> rather than <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>.</p>
-</div>
-<div class="section" id="python-packages-pip">
-<h3>Python packages (pip)<a class="headerlink" href="#python-packages-pip" title="Permalink to this headline">¶</a></h3>
-<p>In general, customizing <em>ide49</em> is accomplished by modifying the application (Dockerfiles etc). Fortunately that’s straightforward and can be accomplished right <a class="reference internal" href="customize.html"><span class="doc std std-doc">from within <em>ide49</em></span></a>. Installing additional linux packages (<code class="docutils literal notranslate"><span class="pre">apt-get</span></code>) should use this route.</p>
-<p>Python packages are a special case. App development invariably runs into situations where a needed package is not preinstalled in <em>ide49</em> and customization of the app each time can become distracting.</p>
-<p>To get around this, the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> container in <em>ide49</em> is configured for  installing Python packages by the user. Effectively using <code class="docutils literal notranslate"><span class="pre">pip</span></code> from the command line “just works”.</p>
-<p>This is how:</p>
-<ol class="simple">
-<li><p>The Python interpreter itself and core packages are owned by root and installed at a location owned by the container. Modify <em>ide49</em> to make changes to these (e.g. upgrade the interpreter).</p></li>
-<li><p>The Dockerfile installs packages (e.g. <code class="docutils literal notranslate"><span class="pre">jupyterlab</span></code>) as root. They are available on the Python path.</p></li>
-<li><p>Packages installed by the user are saved to <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home/.local</span></code> (configured by the environment variable <code class="docutils literal notranslate"><span class="pre">PYTHONUSERBASE</span></code>). This location persists between app updates. It is never shared/mounted by Samba, avoiding the possibility of package incompatibilities (e.g. different processor architectures, <code class="docutils literal notranslate"><span class="pre">aarch64</span></code> and <code class="docutils literal notranslate"><span class="pre">amd64</span></code>).</p></li>
-</ol>
-<p>Python is configured to look for packages in all these locations.</p>
-</div>
-<div class="section" id="host-acccess">
-<h3>Host acccess<a class="headerlink" href="#host-acccess" title="Permalink to this headline">¶</a></h3>
-<p>All mounted volumes can be accessed from the host. This is useful primarily for debugging.</p>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span>
-<span class="n">ls</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">volumes</span><span class="o">/</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12702fc0072b0216c807317425f917d447edad4124b9197f7020ea607b034497
-1845020_code-server-config
-1845020_duplicati-config
-1845020_iot-home
-1845020_media
-1845020_mosquitto-config
-1845020_nginx-config
-2d8504e384df6fc92c0e65a4f77f72fbb99b6808a0186e861365c5ccebd6aca1
-3d7e2e043edc6bce9f0bc3cc1890f5f1d90c399ba5e033bdaedc9793bf4e6698
-536eb06434707e23e029ecb71f532966457ecf6f485e000ecc3f7ee4159fe560
-572928e84da3f435efb2086eaefc2c7273e1e60412d64b4dd342e00423f60835
-5887429a3d5a7384204f894d9f23d071e4983818260a5c66686b2ebe7af50107
-7db8cb8a4821d9c226d8f86ca940c950a75215e509bd951dbddb2a9b56824937
-94b32761bbc64a420462990b75a1cee0fb9201fdd47b77addc82026c1973ca8e
-da9243b68ec059a76a0216fb34b0b053c8068058ac85a2e20af22a46d39d7a8a
-metadata.db
-
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="mounts">
 <h3>Mounts<a class="headerlink" href="#mounts" title="Permalink to this headline">¶</a></h3>

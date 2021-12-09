@@ -128,6 +128,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../config/timezone.html">
+     Timezone
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../config/dns.html">
      Domain Name
     </a>
@@ -502,39 +507,38 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Line Magic:    -h shows help (e.g. %discover -h)
-  %cat         Print contents of named file on microcontroller
-  %cd          Change current working directory on host.
-  %connect     Connect to device
-  %cp          Copy files between host and microcontroller.
+  %cat         Output contents of file stored on microcontroller
+  %cd          Change current working directory on host
+  %connect     Connect to device by name, uid, or url
+  %cp          Copy files between host and microcontroller
   %discover    Discover available devices
   %gettime     Query microcontroller time
+  %hardreset   Reset microcontroller by calling &#39;machine.reset()&#39;. 
+  %info        Summary about connected device
   %loglevel    Set logging level.
-  %lsmagic     List all magic functions.
-  %mkdirs      Create all directories specified by the path, as needed.
-  %name        Name of currently connected microcontroller.
+  %lsmagic     List all magic functions
+  %mkdirs      Create all directories on the microcontroller, as needed (similar to Linux mkdir -p)
+  %name        Print the name of the currently connected device
   %pip         Install packages from PyPi
-  %platform    sys.platform of currently connected device.
   %rdiff       Show differences between microcontroller and host directories
   %register    Register device
   %rlist       List files on microcontroller
-  %rm          Delete files relative to path.
+  %rm          Remove files on microcontroller
   %rsync       Synchronize microcontroller to host directories
-  %softreset   Reset microcontroller. Similar to pressing the reset button.
-  %store       Copy variables between microcontroller and storage.
+  %softreset   Reset microcontroller.
+  %store       Copy variables between microcontroller and storage
   %synctime    Synchronize microcontroller time to host
-  %uid         UID of currently connected microcontroller.
+  %uid         Print the uid of the currently connected device
   %unregister  Unregister device
-  %upip        Install MicroPython packages.
-  %url         URL of currently connected microcontroller.
-  !            Pass line to bash shell for evaluation.
+  %upip        Install MicroPython packages
+  !            Pass line to bash shell for evaluation
 
 Cell Magic:    -h shows help (e.g. %%connect -h)
-  %%bash       Pass cell to bash shell for evaluation.
-  %%connect    Evaluate code sequentially on named devices.
-  %%host       Pass cell to host (cPython) for evaluation.
-  %%service    Evaluate in named container using ssh.
+  %%bash       Pass cell to bash shell for evaluation
+  %%connect    Generalization of %connect to run code on several devices sequentially
+  %%service    Send code to bash in named container for execution
   %%ssh        Pass cell body to ssh.
-  %%writefile  Write cell contents to file.
+  %%writefile  Write cell contents to file
 </pre></div>
 </div>
 </div>
@@ -671,7 +675,7 @@ esp32                (micropython)
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">%softreset</span></code> resets the MicroPython interpreter and has a similar effect to pressing the reset button of the device:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">%softreset</span></code> magic resets the MicroPython interpreter, freeing assigned variables and deallocating most peripherals:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">name</span>
@@ -703,7 +707,6 @@ NameError: name &#39;a&#39; isn&#39;t defined
 </div>
 </div>
 <p>Consult the documentation for <a class="reference internal" href="dev_config.html"><span class="doc std std-doc">device configuration</span></a> for automated file upload.</p>
-<p>The kernel has many more features. <code class="docutils literal notranslate"><span class="pre">%lsmagic</span></code> prints a complete list; use help (<code class="docutils literal notranslate"><span class="pre">-h</span></code> flag) on individual magics for documentation and examples.</p>
 </div>
 </div>
 

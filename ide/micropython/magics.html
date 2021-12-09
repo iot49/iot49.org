@@ -128,6 +128,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../config/timezone.html">
+     Timezone
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../config/dns.html">
      Domain Name
     </a>
@@ -580,7 +585,7 @@ Automagic is ON, % prefix IS NOT needed for line magics.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13.3 µs ± 187 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.4 µs ± 44.4 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre></div>
 </div>
 </div>
@@ -932,127 +937,6 @@ exist; without it, an exception is raised in that case.
 </div>
 </div>
 </div>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
-
-%%script?
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Red">Docstring:</span>
-::
-
-  %shebang
-       [--no-raise-error]
-       [--proc PROC]
-       [--bg]
-       [--err ERR]
-       [--out OUT]
-
-Run a cell via a shell command
-
-The `%%script` line is like the #! line of script,
-specifying a program (bash, perl, ruby, etc.) with which to run.
-
-The rest of the cell is run by that program.
-
-Examples
---------
-::
-
-    In [1]: %%script bash
-       ...: for i in 1 2 3; do
-       ...:   echo $i
-       ...: done
-    1
-    2
-    3
-
-optional arguments:
-  --no-raise-error
-    Whether you
-    should
-    raise an
-    error
-    message in
-    addition to
-    a stream on
-    stderr if
-    you get a
-    nonzero
-    exit code.
-  --proc PROC
-    The
-    variable in
-    which to
-    store Popen
-    instance.
-    This is
-    used only
-    when --bg
-    option is
-    given.
-  --bg
-    Whether to
-    run the
-    script in
-    the
-    background.
-    If given,
-    the only
-    way to see
-    the output
-    of the
-    command is
-    with
-    --out/err.
-  --err ERR
-    The
-    variable in
-    which to
-    store
-    stderr from
-    the script.
-    If the
-    script is b
-    ackgrounded
-    , this will
-    be the
-    stderr
-    *pipe*,
-    instead of
-    the stderr
-    text itself
-    and will
-    not be
-    autoclosed.
-  --out OUT
-    The
-    variable in
-    which to
-    store
-    stdout from
-    the script.
-    If the
-    script is b
-    ackgrounded
-    , this will
-    be the
-    stdout
-    *pipe*,
-    instead of
-    the stderr
-    text itself
-    and will
-    not be auto
-    closed.
-<span class=" -Color -Color-Red">File:</span>      /usr/local/lib/python3.8/site-packages/IPython/core/magics/script.py
-</pre></div>
-</div>
-</div>
-</div>
 <p>Consult the <a class="reference external" href="https://ipython.readthedocs.io/en/stable/">IPython documentation</a> for additional information.</p>
 </div>
 </div>
@@ -1086,12 +970,10 @@ optional arguments:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>argon  serial:///dev/ttyACM0  
-esp32  serial:///dev/ttyUSB0  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pico  serial:///dev/ttyUSB0  
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>***** name &#39;magic&#39; is not defined
-
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Line magic timeit not defined
 </pre></div>
 </div>
 </div>
