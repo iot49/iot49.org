@@ -626,19 +626,21 @@ Run &#39;balena-engine COMMAND --help&#39; for more information on a command.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAMES                         SIZE                      IMAGE
-jupyter_3834077_1864199       27.9kB (virtual 1.7GB)    17ed674e39be
-esp-idf_3834084_1864199       27.9kB (virtual 2.25GB)   5ccaf3068e5a
-balena-cli_3834085_1864199    0B (virtual 1.62GB)       74a76eccf611
-arm32_3834083_1864199         0B (virtual 1.69GB)       5a7c64cb8d95
-nginx_3834076_1864199         3B (virtual 28.9MB)       0fc36cfd415e
-duplicati_3834079_1864199     333kB (virtual 659MB)     70aa02f766b5
-code-server_3834078_1864199   334kB (virtual 543MB)     eab6f75bba26
-plotserver_3834082_1864199    0B (virtual 590MB)        f3ee00d5c1c6
-mosquitto_3834081_1864199     0B (virtual 9.95MB)       05117273e504
-smb_3834080_1864199           355kB (virtual 225MB)     edaa3074ac12
-resin_supervisor              45B (virtual 66.3MB)      registry2.balena-cloud.com/v2/d889d3981987f55bc74a78989588bf14:latest
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAMES                                                          SIZE                      IMAGE
+micropython_4326350_2006136_52d3260cfa7974104feb37cd5f7b10e2   108MB (virtual 3.31GB)    92e31d0562f3
+esp-idf_4326361_2006136_52d3260cfa7974104feb37cd5f7b10e2       211MB (virtual 4.08GB)    3a3cec03f2f0
+bluetooth_4326363_2006136_52d3260cfa7974104feb37cd5f7b10e2     140MB (virtual 917MB)     b8f19d396651
+rust_4326364_2006136_52d3260cfa7974104feb37cd5f7b10e2          106MB (virtual 1.09GB)    d731539ad951
+arm32_4326358_2006136_52d3260cfa7974104feb37cd5f7b10e2         211MB (virtual 2.14GB)    8d13346713a1
+nginx_4326349_2006136_52d3260cfa7974104feb37cd5f7b10e2         3B (virtual 29.7MB)       9aaac23e700e
+balena-cli_4326362_2006136_52d3260cfa7974104feb37cd5f7b10e2    0B (virtual 1.64GB)       bb952f8265bd
+wireshark_4326355_2006136_52d3260cfa7974104feb37cd5f7b10e2     1.03MB (virtual 1.21GB)   be89f6dc2961
+mosquitto_4326354_2006136_52d3260cfa7974104feb37cd5f7b10e2     0B (virtual 11.8MB)       36a40df3c01e
+plotserver_4326356_2006136_52d3260cfa7974104feb37cd5f7b10e2    0B (virtual 617MB)        5e7daca5ada6
+smb_4326353_2006136_52d3260cfa7974104feb37cd5f7b10e2           353kB (virtual 265MB)     0d9849478188
+duplicati_4326352_2006136_52d3260cfa7974104feb37cd5f7b10e2     331kB (virtual 659MB)     0910e1cc6298
+code-server_4326351_2006136_52d3260cfa7974104feb37cd5f7b10e2   336kB (virtual 640MB)     abaf7dc162b3
+balena_supervisor                                              45B (virtual 67.1MB)      registry2.balena-cloud.com/v2/83f98d1c7daeec48d6f34806ab7a6fc0:latest
 </pre></div>
 </div>
 </div>
@@ -647,60 +649,84 @@ resin_supervisor              45B (virtual 66.3MB)      registry2.balena-cloud.c
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span>
-<span class="n">balena</span><span class="o">-</span><span class="n">engine</span> <span class="n">history</span> <span class="mi">5</span><span class="n">a7c64cb8d95</span> <span class="o">--</span><span class="nb">format</span> <span class="s2">&quot;table {{.Size}}</span><span class="se">\t</span><span class="s2">{{.CreatedBy}}&quot;</span> <span class="c1"># --no-trunc</span>
+<span class="n">balena</span><span class="o">-</span><span class="n">engine</span> <span class="n">history</span> <span class="mf">92e31</span><span class="n">d0562f3</span> <span class="o">--</span><span class="nb">format</span> <span class="s2">&quot;table {{.Size}}</span><span class="se">\t</span><span class="s2">{{.CreatedBy}}&quot;</span> <span class="c1"># --no-trunc</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SIZE                CREATED BY
-0B                  /bin/sh -c #(nop)  CMD [&quot;/bin/bash&quot; &quot;/usr/lo…
-0B                  /bin/sh -c #(nop) WORKDIR /home/iot
-0B                  /bin/sh -c #(nop)  USER iot
-336kB               /bin/sh -c chmod a+rx /usr/local/bin/start.s…
-699B                /bin/sh -c #(nop) COPY file:c2e922284a361f02…
-826MB               /bin/sh -c install_packages     git     cifs…
-0B                  /bin/sh -c #(nop)  ENV UDEV=1
-122kB               /bin/sh -c echo &#39;#!/bin/sh.real\nbalena-info…
-616B                /bin/sh -c [ ! -d /.balena/messages ] &amp;&amp; mkd…
-1.32MB              /bin/sh -c curl -SLO &quot;https://raw.githubuser…
-0B                  /bin/sh -c #(nop)  CMD [&quot;echo&quot; &quot;&#39;No CMD comm…
-0B                  /bin/sh -c #(nop)  ENV PYTHONPATH=/usr/lib/p…
-50B                 /bin/sh -c cd /usr/local/bin  &amp;&amp; ln -sf pip3…
-1.78MB              /bin/sh -c set -x  &amp;&amp; mkdir -p /usr/src/dbus…
-43MB                /bin/sh -c apt-get update &amp;&amp; apt-get install…
-0B                  /bin/sh -c #(nop)  ENV PYTHON_DBUS_VERSION=1…
-14.7MB              /bin/sh -c pip3 install --no-cache-dir virtu…
-110MB               /bin/sh -c set -x  &amp;&amp; curl -SLO &quot;http://resi…
-0B                  /bin/sh -c #(nop)  ENV SETUPTOOLS_VERSION=56…
-0B                  /bin/sh -c #(nop)  ENV PYTHON_PIP_VERSION=21…
-0B                  /bin/sh -c #(nop)  ENV PYTHON_VERSION=3.8.10
-71.4kB              /bin/sh -c gpg --batch --keyserver keyring.d…
-0B                  /bin/sh -c #(nop)  ENV LANG=C.UTF-8
-2.07MB              /bin/sh -c apt-get purge -y python.*
-122kB               /bin/sh -c echo &#39;#!/bin/sh.real\nbalena-info…
-520B                /bin/sh -c [ ! -d /.balena/messages ] &amp;&amp; mkd…
-4.94MB              /bin/sh -c apt-get update &amp;&amp; apt-get install…
-0B                  /bin/sh -c #(nop)  LABEL io.balena.device-ty…
-122kB               /bin/sh -c echo &#39;#!/bin/sh.real\nbalena-info…
-463B                /bin/sh -c [ ! -d /.balena/messages ] &amp;&amp; mkd…
-0B                  /bin/sh -c curl -SLO &quot;https://raw.githubuser…
-0B                  /bin/sh -c #(nop)  ENTRYPOINT [&quot;/usr/bin/ent…
-1.03kB              /bin/sh -c #(nop) COPY file:ddba37be3f874f81…
-202B                /bin/sh -c #(nop) COPY file:2d972097f28a121b…
-1.71kB              /bin/sh -c #(nop) COPY file:cc0a16214fb66527…
-0B                  /bin/sh -c mkdir -p /usr/share/man/man1
-99B                 /bin/sh -c echo &#39;APT::Get::Assume-Yes &quot;true&quot;…
-297B                /bin/sh -c echo &#39;path-exclude /usr/share/doc…
-0B                  /bin/sh -c #(nop)  ENV UDEV=off
-0B                  /bin/sh -c #(nop)  ENV DEBIAN_FRONTEND=nonin…
-0B                  /bin/sh -c #(nop)  ENV LC_ALL=C.UTF-8
-1.62MB              /bin/sh -c curl -SLO &quot;http://resin-packages.…
-572MB               /bin/sh -c apt-get update &amp;&amp; apt-get install…
-42.1MB              /bin/sh -c apt-get update &amp;&amp; apt-get install…
-0B                  /bin/sh -c #(nop)  LABEL io.balena.architect…
+22.7MB              /bin/bash -o pipefail -c echo &quot;force rebuild…
+9.49MB              /bin/bash -o pipefail -c pip install --defau…
+355MB               /bin/bash -o pipefail -c mamba install --qui…
+0B                  /bin/bash -o pipefail -c #(nop)  USER 1000
+3.52kB              /bin/bash -o pipefail -c groupadd gpio  &amp;&amp; u…
+527B                /bin/bash -o pipefail -c #(nop) COPY file:bb…
+501B                /bin/bash -o pipefail -c #(nop) COPY file:f3…
+119B                /bin/bash -o pipefail -c #(nop) COPY file:54…
+182MB               /bin/bash -o pipefail -c apt-get update --ye…
+0B                  /bin/bash -o pipefail -c #(nop)  ENV DEBIAN_…
+0B                  /bin/bash -o pipefail -c #(nop)  USER root
+0B                  CMD [&quot;/bin/bash&quot; &quot;/usr/local/bin/start.sh&quot;]
+0B                  WORKDIR /home/iot
+0B                  USER 1000
+11.5kB              RUN |1 IOT_USER=iot /bin/bash -o pipefail -c…
+9.85kB              COPY conf /usr/local/bin/ # buildkit
+0B                  ENV HOME=/home/iot
+0B                  ENV NB_USER=iot
+0B                  ARG IOT_USER=iot
+0B                  ENV UDEV=on
+35.2MB              RUN /bin/bash -o pipefail -c chmod u+xs /usr…
+18.3kB              COPY /tmp/add_hostname /usr/local/bin # buil…
+0B                  USER root
+0B                  LABEL description=Run container - jupyter st…
+0B                  WORKDIR /home/jovyan
+0B                  USER 1000
+86.2kB              RUN /bin/bash -o pipefail -c MPLBACKEND=Agg …
+0B                  ENV XDG_CACHE_HOME=/home/jovyan/.cache/
+2.31MB              RUN /bin/bash -o pipefail -c git clone https…
+0B                  WORKDIR /tmp
+861MB               RUN /bin/bash -o pipefail -c mamba install -…
+0B                  USER 1000
+359MB               RUN /bin/bash -o pipefail -c apt-get update …
+0B                  USER root
+0B                  LABEL maintainer=Jupyter Project &lt;jupyter@go…
+0B                  USER 1000
+9.99kB              RUN /bin/bash -o pipefail -c update-alternat…
+697MB               RUN /bin/bash -o pipefail -c apt-get update …
+0B                  USER root
+0B                  LABEL maintainer=Jupyter Project &lt;jupyter@go…
+0B                  WORKDIR /home/jovyan
+0B                  USER 1000
+3.66kB              RUN |5 NB_USER=jovyan NB_UID=1000 NB_GID=100…
+0B                  USER root
+1.84kB              COPY jupyter_notebook_config.py /etc/jupyter…
+11kB                COPY start.sh start-notebook.sh start-single…
+0B                  CMD [&quot;start-notebook.sh&quot;]
+0B                  ENTRYPOINT [&quot;tini&quot; &quot;-g&quot; &quot;--&quot;]
+0B                  EXPOSE map[8888/tcp:{}]
+326MB               RUN |5 NB_USER=jovyan NB_UID=1000 NB_GID=100…
+251MB               RUN |5 NB_USER=jovyan NB_UID=1000 NB_GID=100…
+0B                  ARG CONDA_MIRROR=https://github.com/conda-fo…
+0B                  WORKDIR /tmp
+0B                  RUN |4 NB_USER=jovyan NB_UID=1000 NB_GID=100…
+0B                  ARG PYTHON_VERSION=default
+0B                  USER 1000
+11.6kB              RUN |3 NB_USER=jovyan NB_UID=1000 NB_GID=100…
+3.82kB              RUN |3 NB_USER=jovyan NB_UID=1000 NB_GID=100…
+0B                  RUN |3 NB_USER=jovyan NB_UID=1000 NB_GID=100…
+1.03kB              COPY fix-permissions /usr/local/bin/fix-perm…
+0B                  ENV PATH=/opt/conda/bin:/usr/local/sbin:/usr…
+0B                  ENV CONDA_DIR=/opt/conda SHELL=/bin/bash NB_…
+30.8MB              RUN |3 NB_USER=jovyan NB_UID=1000 NB_GID=100…
+0B                  ENV DEBIAN_FRONTEND=noninteractive
+0B                  USER root
+0B                  SHELL [/bin/bash -o pipefail -c]
+0B                  ARG NB_GID=100
+0B                  ARG NB_UID=1000
+0B                  ARG NB_USER=jovyan
+0B                  LABEL maintainer=Jupyter Project &lt;jupyter@go…
 0B                  /bin/sh -c #(nop)  CMD [&quot;bash&quot;]
-69.3MB              /bin/sh -c #(nop) ADD file:7362e0e50f30ff454…
-
+72.8MB              /bin/sh -c #(nop) ADD file:5d68d27cc15a80653…
 </pre></div>
 </div>
 </div>
@@ -769,12 +795,13 @@ http {
         auth_basic_user_file        htpasswd;
 
         # Docker DNS
-        resolver                    127.0.0.11;       
+        resolver                    127.0.0.11;
 
-        # Jupyter
-        location /jupyter/ {
+        # MicroPython Development (Jupyter)
+        location /micropython/ {
             # proxy for network_mode: host
-            proxy_pass              http://172.17.0.1:8888;
+            # proxy_pass              http://172.17.0.1:8888;
+            proxy_pass              http://micropython:8888;
             proxy_redirect          off;
             proxy_set_header        Host $host;
 
@@ -804,7 +831,14 @@ http {
             proxy_pass              http://duplicati:8200;
         }
 
-        # Plotserver 
+        # Wireshark
+        # Don&#39;t know how to proxy, so using redirect to http instead ...
+        # https://serverfault.com/questions/932628/how-to-handle-relative-urls-correctly-with-a-nginx-reverse-proxy
+        location /wireshark {
+            return                  301 http://$http_host:3000/;
+        }
+
+        # Plotserver
         location /plotserver/ {
             proxy_redirect          off;
             proxy_set_header        Host $http_host;
@@ -813,10 +847,62 @@ http {
 
         include plotserver.conf;
 
+        # ARM32 Cross Compiler (Jupyter)
+        location /arm32/ {
+            proxy_pass              http://arm32:8889;
+            proxy_redirect          off;
+            proxy_set_header        Host $host;
+
+            # websocket support
+            proxy_http_version      1.1;
+            proxy_set_header        Upgrade &quot;websocket&quot;;
+            proxy_set_header        Connection &quot;Upgrade&quot;;
+            proxy_read_timeout      86400;
+        }
+
+        # ESP32 Cross Compiler (Jupyter)
+        location /esp-idf/ {
+            proxy_pass              http://esp-idf:8890;
+            proxy_redirect          off;
+            proxy_set_header        Host $host;
+
+            # websocket support
+            proxy_http_version      1.1;
+            proxy_set_header        Upgrade &quot;websocket&quot;;
+            proxy_set_header        Connection &quot;Upgrade&quot;;
+            proxy_read_timeout      86400;
+        }
+
+        # Rust (Jupyter)
+        location /rust/ {
+            proxy_pass              http://rust:8893;
+            proxy_redirect          off;
+            proxy_set_header        Host $host;
+
+            # websocket support
+            proxy_http_version      1.1;
+            proxy_set_header        Upgrade &quot;websocket&quot;;
+            proxy_set_header        Connection &quot;Upgrade&quot;;
+            proxy_read_timeout      86400;
+        }
+
         # Balena-CLI
         location /balena-cli/ {
+            proxy_pass              http://balena-cli:8891;
+            proxy_redirect          off;
+            proxy_set_header        Host $host;
+
+            # websocket support
+            proxy_http_version      1.1;
+            proxy_set_header        Upgrade &quot;websocket&quot;;
+            proxy_set_header        Connection &quot;Upgrade&quot;;
+            proxy_read_timeout      86400;
+        }
+
+        # Bluetooth
+        location /bluetooth/ {
             # proxy for network_mode: host
-            proxy_pass              http://balena-cli:8889;
+            proxy_pass              http://172.17.0.1:8892;
             proxy_redirect          off;
             proxy_set_header        Host $host;
 
@@ -830,7 +916,7 @@ http {
         # static content
         location / {
             auth_basic              off;
-            root                    /home/iot/.html;
+            root                    /etc/nginx/html;
             index                   index.html index.htm;
         }
 
@@ -842,7 +928,7 @@ http {
 </div>
 </div>
 <p>The network confiuration is available from the balena-engine:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span>
 <span class="n">balena</span><span class="o">-</span><span class="n">engine</span> <span class="n">ps</span> <span class="o">--</span><span class="nb">format</span> <span class="s2">&quot;table {{.Names}}</span><span class="se">\t</span><span class="s2">{{.Ports}}&quot;</span>
@@ -850,19 +936,21 @@ http {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAMES                         PORTS
-jupyter_3834077_1864199       
-esp-idf_3834084_1864199       
-balena-cli_3834085_1864199    8889/tcp
-arm32_3834083_1864199         
-nginx_3834076_1864199         0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp
-duplicati_3834079_1864199     8200/tcp
-code-server_3834078_1864199   8443/tcp
-plotserver_3834082_1864199    8080/tcp
-mosquitto_3834081_1864199     0.0.0.0:1883-&gt;1883/tcp
-smb_3834080_1864199           0.0.0.0:139-&gt;139/tcp, 0.0.0.0:445-&gt;445/tcp
-resin_supervisor              
-
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NAMES                                                          PORTS
+micropython_4326350_2006136_52d3260cfa7974104feb37cd5f7b10e2   8888/tcp
+esp-idf_4326361_2006136_52d3260cfa7974104feb37cd5f7b10e2       8888/tcp, 8890/tcp
+bluetooth_4326363_2006136_52d3260cfa7974104feb37cd5f7b10e2     
+rust_4326364_2006136_52d3260cfa7974104feb37cd5f7b10e2          8888/tcp, 8893/tcp
+arm32_4326358_2006136_52d3260cfa7974104feb37cd5f7b10e2         8888-8889/tcp
+nginx_4326349_2006136_52d3260cfa7974104feb37cd5f7b10e2         0.0.0.0:80-&gt;80/tcp, 0.0.0.0:443-&gt;443/tcp
+balena-cli_4326362_2006136_52d3260cfa7974104feb37cd5f7b10e2    8891/tcp
+wireshark_4326355_2006136_52d3260cfa7974104feb37cd5f7b10e2     
+mosquitto_4326354_2006136_52d3260cfa7974104feb37cd5f7b10e2     0.0.0.0:1883-&gt;1883/tcp, 0.0.0.0:8883-&gt;8883/tcp, 0.0.0.0:9001-9002-&gt;9001-9002/tcp
+plotserver_4326356_2006136_52d3260cfa7974104feb37cd5f7b10e2    8080/tcp
+smb_4326353_2006136_52d3260cfa7974104feb37cd5f7b10e2           0.0.0.0:139-&gt;139/tcp, 0.0.0.0:445-&gt;445/tcp
+duplicati_4326352_2006136_52d3260cfa7974104feb37cd5f7b10e2     8200/tcp
+code-server_4326351_2006136_52d3260cfa7974104feb37cd5f7b10e2   8443/tcp
+balena_supervisor                                              
 </pre></div>
 </div>
 </div>
