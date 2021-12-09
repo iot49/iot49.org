@@ -53,7 +53,6 @@ parts:
     - file: projects/internet/requests
     - file: projects/internet/mqtt
     - file: projects/internet/wireshark
-    - file: projects/internet/plotserver
     - file: projects/internet/ota
     - file: projects/internet/encryption
   - file: projects/wifi-cop
@@ -62,5 +61,3 @@ parts:
     - file: projects/wifi-cop/custom_c
     - file: projects/wifi-cop/rpc
     - file: projects/wifi-cop/networking
-# - file: projects/power
-# - file: projects/robot
