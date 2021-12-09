@@ -1,0 +1,5 @@
+balance:
+    uid: 24:0a:c4:12:87:7c
+    path: balance
+    resources:
+        - code

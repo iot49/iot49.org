@@ -1,0 +1,17 @@
+wifi-server:  # esp32
+    # uid: 24:0a:c4:13:ad:14
+    uid: 30:ae:a4:30:80:14
+    path: wifi-cop/code
+    resources:
+        - secrets.py:
+            path: libs
+        - server
+
+wifi-client:  # stm32, ...
+    uid: 2d:00:49:00:09:50:52:42:4e:30:39:20
+    install-dir: /flash
+    path: wifi-cop/code
+    resources:
+        - secrets.py:
+            path: libs
+        - client

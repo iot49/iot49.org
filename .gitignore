@@ -1,0 +1,5 @@
+docs/_build
+mp/micropython
+mp/micropython-lib
+.ipynb_checkpoints
+.svn

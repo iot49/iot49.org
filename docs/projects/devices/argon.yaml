@@ -1,0 +1,5 @@
+argon:
+    uid: 3e:1c:dc:b6:a4:01:0a:fc
+    path: wifi-cop/code
+    resources:
+        - client

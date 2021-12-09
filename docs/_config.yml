@@ -1,0 +1,45 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+
+title: Electronics for IoT
+author: Bernhard Boser
+logo: logo.png
+
+# Never execute notebooks 
+# (many won't work without attached MCU or alter its state including flash contents)
+execute:
+  execute_notebooks: 'off'
+
+# Define the name of the latex output file for PDF builds
+latex:
+  latex_documents:
+    targetname: book.tex
+
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
+# Information about where the book exists on the web
+repository:
+  url: https://github.com/iot49/iot49.org
+  path_to_book: docs  # Optional path to your book, relative to the repository root
+  branch: master      # Which branch of the repository should be used when creating links (optional)
+
+# Add GitHub buttons to your book
+# See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
+html:
+  # google_analytics_id: UA-52617120-7
+  favicon: favicon.ico
+  home_page_in_navbar: false
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  extra_navbar: Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+  extra_footer: ""  # Will be displayed underneath the footer.
+  baseurl: https://iot49.org/
+
+launch_buttons:
+  binderhub_url: ""
+
+parse:
+  myst_url_schemes: [mailto, http, https, serial, ws, wss, mp]

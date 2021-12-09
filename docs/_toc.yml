@@ -1,0 +1,66 @@
+# Table of content
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+
+parts:
+
+- caption: ide49
+  chapters:
+  - file: ide/install
+  - file: ide/getting-started
+  - file: ide/configuration
+    sections:
+    - file: ide/config/password
+    - file: ide/config/backup
+    - file: ide/config/timezone
+    - file: ide/config/dns
+    - file: ide/config/https
+    - file: ide/config/samba
+  - file: ide/micropython
+    sections:
+    - file: ide/micropython/iot-kernel
+    - file: ide/micropython/magics
+    - file: ide/micropython/REPL
+    - file: ide/micropython/dev_config
+    - file: ide/micropython/flash
+    - file: ide/micropython/compile
+    - file: ide/micropython/mp_ext_c
+  - file: ide/app
+    sections:
+    - file: ide/app/overview
+    - file: ide/app/customize
+  - file: ide/issues
+  
+- caption: Tours & Projects
+  chapters:
+  - file: projects/balance
+    sections:
+    - file: projects/balance/01_parts
+    - file: projects/balance/02_circuit
+    - file: projects/balance/03_code
+    - file: projects/balance/04_display
+    - file: projects/balance/05_buttons
+    - file: projects/balance/06_ble
+    - file: projects/balance/07_app
+    - file: projects/balance/08_hx711
+    - file: projects/balance/09_ticks
+  - file: projects/internet
+    sections:
+    - file: projects/internet/wifi
+    - file: projects/internet/sockets
+    - file: projects/internet/requests
+    - file: projects/internet/mqtt
+    - file: projects/internet/wireshark
+    - file: projects/internet/plotserver
+    - file: projects/internet/ota
+    - file: projects/internet/encryption
+  - file: projects/wifi-cop
+    sections:
+    - file: projects/wifi-cop/overview
+    - file: projects/wifi-cop/custom_c
+    - file: projects/wifi-cop/rpc
+    - file: projects/wifi-cop/networking
+# - file: projects/power
+# - file: projects/robot
