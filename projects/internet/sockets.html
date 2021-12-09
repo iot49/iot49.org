@@ -128,6 +128,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/timezone.html">
+     Timezone
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../../ide/config/dns.html">
      Domain Name
     </a>
@@ -727,7 +732,7 @@ Vary: Accept-Encoding
 <div class="section" id="secure-server">
 <h2>Secure Server<a class="headerlink" href="#secure-server" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>MicroPython ssl broken?</p>
+<li><p>MicroPython ssl broken? Apparently a memory issue:</p>
 <ul>
 <li><p><a class="reference external" href="https://github.com/micropython/micropython/issues/5543">Github issue</a></p></li>
 <li><p><a class="reference external" href="https://forum.micropython.org/viewtopic.php?f=18&amp;t=10375&amp;hilit=cert">Forum Post</a></p></li>
@@ -825,140 +830,6 @@ total 12
 -rw-r--r-- 1 iot iot  366 Jul 22 09:58 cert.conf
 -rw-r--r-- 1 iot iot 1350 Jul 22 10:00 cert.crt
 -rw------- 1 iot iot 1704 Jul 22 10:00 cert.key
-</pre></div>
-</div>
-</div>
-</div>
-<p>Now copy the contents (without the lines beginning with <code class="docutils literal notranslate"><span class="pre">-----</span></code>) to the webserver code below. The contents from <code class="docutils literal notranslate"><span class="pre">cert.key</span></code> go into the <code class="docutils literal notranslate"><span class="pre">key</span></code> variable; <code class="docutils literal notranslate"><span class="pre">cert.crt</span></code> goes into <code class="docutils literal notranslate"><span class="pre">cert</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
-
-<span class="c1"># broken - certs not hex</span>
-<span class="c1"># should not be needed anyway?</span>
-
-<span class="k">def</span> <span class="nf">mangle</span><span class="p">(</span><span class="n">src_file</span><span class="p">,</span> <span class="n">dst_file</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">src_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">dst_file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
-        <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dst_file</span><span class="si">}</span><span class="s2"> = binascii.unhexlify(</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">while</span> <span class="n">l</span><span class="o">:=</span><span class="n">src</span><span class="o">.</span><span class="n">readline</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">l</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;-----&#39;</span><span class="p">):</span> <span class="k">continue</span>
-            <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;    b&#39;</span><span class="si">{</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-            
-<span class="n">mangle</span><span class="p">(</span><span class="s1">&#39;cert.key&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">)</span>
-<span class="n">mangle</span><span class="p">(</span><span class="s1">&#39;cert.crt&#39;</span><span class="p">,</span> <span class="s1">&#39;cert&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>TODO:</strong> install certs on microcontroller …</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span> <span class="o">-</span><span class="n">q</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-output docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span> <span class="nn">network</span>
-
-
-<span class="n">CONTENT</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
-<span class="s2">HTTP/1.0 200 OK</span>
-
-<span class="s2">Hello #</span><span class="si">{}</span><span class="s2"> from MicroPython!</span>
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="n">PORT</span> <span class="o">=</span> <span class="mi">443</span>
-
-<span class="c1"># Chrome refuses to connect, presumably because certificate &amp; url do not match</span>
-
-<span class="c1"># This self-signed key/cert pair is randomly generated and to be used for</span>
-<span class="c1"># testing/demonstration only.  You should always generate your own key/cert.</span>
-<span class="c1"># How produce hex certificate?</span>
-<span class="n">key</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span>
-    <span class="sa">b</span><span class="s2">&quot;3082013b020100024100cc20643fd3d9c21a0acba4f48f61aadd675f52175a9dcf07fbef&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;610a6a6ba14abb891745cd18a1d4c056580d8ff1a639460f867013c8391cdc9f2e573b0f&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;872d0203010001024100bb17a54aeb3dd7ae4edec05e775ca9632cf02d29c2a089b563b0&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;d05cdf95aeca507de674553f28b4eadaca82d5549a86058f9996b07768686a5b02cb240d&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;d9f1022100f4a63f5549e817547dca97b5c658038e8593cb78c5aba3c4642cc4cd031d86&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;8f022100d598d870ffe4a34df8de57047a50b97b71f4d23e323f527837c9edae88c79483&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;02210098560c89a70385c36eb07fd7083235c4c1184e525d838aedf7128958bedfdbb102&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;2051c0dab7057a8176ca966f3feb81123d4974a733df0f958525f547dfd1c271f9022044&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;6c2cafad455a671a8cf398e642e1be3b18a3d3aec2e67a9478f83c964c4f1f&quot;</span>
-<span class="p">)</span>
-<span class="n">cert</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span>
-    <span class="sa">b</span><span class="s2">&quot;308201d53082017f020203e8300d06092a864886f70d01010505003075310b3009060355&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;0406130258583114301206035504080c0b54686550726f76696e63653110300e06035504&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;070c075468654369747931133011060355040a0c0a436f6d70616e7958595a3113301106&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;0355040b0c0a436f6d70616e7958595a3114301206035504030c0b546865486f73744e61&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;6d65301e170d3139313231383033333935355a170d3239313231353033333935355a3075&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;310b30090603550406130258583114301206035504080c0b54686550726f76696e636531&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;10300e06035504070c075468654369747931133011060355040a0c0a436f6d70616e7958&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;595a31133011060355040b0c0a436f6d70616e7958595a3114301206035504030c0b5468&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;65486f73744e616d65305c300d06092a864886f70d0101010500034b003048024100cc20&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;643fd3d9c21a0acba4f48f61aadd675f52175a9dcf07fbef610a6a6ba14abb891745cd18&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;a1d4c056580d8ff1a639460f867013c8391cdc9f2e573b0f872d0203010001300d06092a&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;864886f70d0101050500034100b0513fe2829e9ecbe55b6dd14c0ede7502bde5d46153c8&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;e960ae3ebc247371b525caeb41bbcf34686015a44c50d226e66aef0a97a63874ca5944ef&quot;</span>
-    <span class="sa">b</span><span class="s2">&quot;979b57f0b3&quot;</span>
-<span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">webserver</span><span class="p">():</span>
-    <span class="n">my_ip</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">)</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
-
-    <span class="c1"># Binding to all interfaces - server will be accessible to other hosts!</span>
-    <span class="n">ai</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)</span>
-    <span class="n">addr</span> <span class="o">=</span> <span class="n">ai</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Listening, connect your browser to https://</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2">/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">my_ip</span><span class="p">,</span> <span class="n">PORT</span><span class="p">))</span>
-
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">client_sock</span><span class="p">,</span> <span class="n">client_addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span> 
-            <span class="c1"># OSError: [Errno 104] ECONNRESET</span>
-            <span class="n">client_sock</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">client_sock</span><span class="p">,</span> <span class="n">server_side</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="n">cert</span><span class="p">)</span>
-            
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Request from&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">client_addr</span><span class="p">))</span>
-            <span class="n">req</span> <span class="o">=</span> <span class="n">client_sock</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Request:&quot;</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
-            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="n">h</span> <span class="o">=</span> <span class="n">client_sock</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-                <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">h</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">:</span>
-                    <span class="k">break</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
-            <span class="n">client_sock</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">CONTENT</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
-
-            <span class="n">client_sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="nb">print</span><span class="p">()</span>
-    <span class="k">finally</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;close server socket&quot;</span><span class="p">)</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="n">webserver</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Listening, connect your browser to https://10.39.40.135:443/
-close server socket
-
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last):
-  File &quot;&lt;stdin&gt;&quot;, line 82, in &lt;module&gt;
-  File &quot;&lt;stdin&gt;&quot;, line 62, in webserver
-OSError: [Errno 104] ECONNRESET
-
 </pre></div>
 </div>
 </div>
