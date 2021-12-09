@@ -2,14 +2,13 @@
 
 *ide49* offers a comprehensive set of tools & growing list of examples for developing applications for microcontrollers with special support for [MicroPython](https://micropython.org/). The IDE runs on a dedicated computer (Raspberry PI or generic Intel/AMD processor). Each feature runs in a separate [Docker](https://www.docker.com/) container. All features - including installation - are available through a standard web browser - no need to install and maintain complex software on your laptop!
 
-* Jupyter environment
+* Interactive MicroPython coding (Jupyter notebook or rshell)
     * auto-discover and program MicroPython devices
     * powerful file synchronization between the host and microcontrollers
-    * install packages (upip)
     * wireless access (webrepl)
+    * Compile the MicroPython virtual machine
 * VisualStudio Code editor
-* Backup (remote and local)
-* MicroPython cross-compilation (ARM & ESP32)
+* Backup facility (to remote server or local)
 * Mosquitto MQTT broker 
 * Wireshark (analyze network traffic)
 * Samba/CIFS server and client

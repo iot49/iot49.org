@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLE Beacon Scanner - PI &#8212; Electronics for IoT</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/projects/beacon/host.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flashing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/mp_ext_c.html">
+     External C modules
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/app.html">
+   Docker App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tours &amp; Projects
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../balance.html">
+   GPIO
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/01_parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/02_circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/03_code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/04_display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/05_buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/06_ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/07_app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/08_hx711.html">
+     “Precision” Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/09_ticks.html">
+     Time Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../internet.html">
+   Internet
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/mqtt.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wireshark.html">
+     Wireshark
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/plotserver.html">
+     Plotserver
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/ota.html">
+     ESP32 OTA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/encryption.html">
+     Encryption
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/overview.html">
+     Approach
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/projects/beacon/host.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/beacon/host.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/beacon/host.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="ble-beacon-scanner-pi">
+<h1>BLE Beacon Scanner - PI<a class="headerlink" href="#ble-beacon-scanner-pi" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">bleak</span> <span class="kn">import</span> <span class="n">BleakScanner</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">devices</span> <span class="o">=</span> <span class="k">await</span> <span class="n">BleakScanner</span><span class="o">.</span><span class="n">discover</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+<span class="k">await</span> <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_180</span><span class="o">/</span><span class="mf">2676059869.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="k">await</span> <span class="n">main</span><span class="p">()</span>
+
+<span class="nn">/tmp/ipykernel_180/2676059869.py</span> in <span class="ni">main</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="ne">----&gt; </span><span class="mi">2</span>     <span class="n">devices</span> <span class="o">=</span> <span class="k">await</span> <span class="n">BleakScanner</span><span class="o">.</span><span class="n">discover</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span>     <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span>         <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/bleak/backends/scanner.py</span> in <span class="ni">discover</span><span class="nt">(cls, timeout, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">97</span> 
+<span class="g g-Whitespace">     </span><span class="mi">98</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">---&gt; </span><span class="mi">99</span><span class="s2">         async with cls(**kwargs) as scanner:</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span><span class="s2">             await asyncio.sleep(timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span><span class="s2">             devices = scanner.discovered_devices</span>
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/bleak/backends/scanner.py</span> in <span class="ni">__aenter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span><span class="s2">     async def __aenter__(self):</span>
+<span class="ne">---&gt; </span><span class="mi">79</span><span class="s2">         await self.start()</span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span><span class="s2">         return self</span>
+<span class="g g-Whitespace">     </span><span class="mi">81</span><span class="s2"> </span>
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/bleak/backends/bluezdbus/scanner.py</span> in <span class="ni">start</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">76</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span><span class="s2">     async def start(self):</span>
+<span class="ne">---&gt; </span><span class="mi">78</span><span class="s2">         self._bus = await MessageBus(bus_type=BusType.SYSTEM).connect()</span>
+<span class="g g-Whitespace">     </span><span class="mi">79</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">80</span><span class="s2">         self._devices.clear()</span>
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/dbus_next/aio/message_bus.py</span> in <span class="ni">__init__</span><span class="nt">(self, bus_address, bus_type, auth, negotiate_unix_fd)</span>
+<span class="g g-Whitespace">    </span><span class="mi">120</span><span class="s2">                  auth: Authenticator = None,</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span><span class="s2">                  negotiate_unix_fd=False):</span>
+<span class="ne">--&gt; </span><span class="mi">122</span><span class="s2">         super().__init__(bus_address, bus_type, ProxyObject)</span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span><span class="s2">         self._negotiate_unix_fd = negotiate_unix_fd</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span><span class="s2">         self._loop = asyncio.get_event_loop()</span>
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/dbus_next/message_bus.py</span> in <span class="ni">__init__</span><span class="nt">(self, bus_address, bus_type, ProxyObject)</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span><span class="s2">         self._machine_id = None</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span><span class="s2"> </span>
+<span class="ne">---&gt; </span><span class="mi">85</span><span class="s2">         self._setup_socket()</span>
+<span class="g g-Whitespace">     </span><span class="mi">86</span><span class="s2"> </span>
+<span class="g g-Whitespace">     </span><span class="mi">87</span><span class="s2">     @property</span>
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/dbus_next/message_bus.py</span> in <span class="ni">_setup_socket</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">573</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">574</span><span class="s2">         if err:</span>
+<span class="ne">--&gt; </span><span class="mi">575</span><span class="s2">             raise err</span>
+<span class="g g-Whitespace">    </span><span class="mi">576</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">577</span><span class="s2">     def _call(self, msg, callback):</span>
+
+<span class="nn">/usr/local/lib/python3.8/site-packages/dbus_next/message_bus.py</span> in <span class="ni">_setup_socket</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">546</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">547</span><span class="s2">                 try:</span>
+<span class="ne">--&gt; </span><span class="mi">548</span><span class="s2">                     self._sock.connect(filename)</span>
+<span class="g g-Whitespace">    </span><span class="mi">549</span><span class="s2">                     self._sock.setblocking(False)</span>
+<span class="g g-Whitespace">    </span><span class="mi">550</span><span class="s2">                     break</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">absolute_import</span><span class="p">,</span> <span class="n">print_function</span><span class="p">,</span> <span class="n">unicode_literals</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">dbus</span>
+<span class="kn">import</span> <span class="nn">dbus.service</span>
+<span class="kn">import</span> <span class="nn">dbus.mainloop.glib</span>
+
+<span class="c1"># Bluez DBus constants</span>
+<span class="n">DBUS_NAME</span> <span class="o">=</span> <span class="s2">&quot;org.bluez&quot;</span>
+<span class="n">DBUS_OBJECT</span> <span class="o">=</span> <span class="s2">&quot;/org/bluez&quot;</span>
+<span class="n">DBUS_INTERFACE_PROPERTIES</span> <span class="o">=</span> <span class="s2">&quot;org.freedesktop.DBus.Properties&quot;</span>
+<span class="n">DBUS_INTERFACE_AGENT</span> <span class="o">=</span> <span class="s2">&quot;org.bluez.Agent1&quot;</span>
+<span class="n">DBUS_INTERFACE_MANAGER</span> <span class="o">=</span> <span class="s2">&quot;org.bluez.AgentManager1&quot;</span>
+<span class="n">DBUS_INTERFACE_DEVICE</span> <span class="o">=</span> <span class="s2">&quot;org.bluez.Device1&quot;</span>
+<span class="n">DBUS_INTERFACE_ADAPTER</span> <span class="o">=</span> <span class="s2">&quot;org.bluez.Adapter1&quot;</span>
+
+<span class="c1"># Agent default settings</span>
+<span class="n">capabilities</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;KeyboardDisplay&quot;</span><span class="p">,</span> <span class="s2">&quot;NoInputNoOutput&quot;</span> <span class="p">]</span>
+<span class="n">DEFAULT_CAPABILITY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;AGENT_CAPABILITY&quot;</span><span class="p">,</span> <span class="s2">&quot;NoInputNoOutput&quot;</span><span class="p">)</span>
+<span class="n">DEFAULT_INTERFACE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;HCI_INTERFACE&quot;</span><span class="p">,</span> <span class="s2">&quot;hci0&quot;</span><span class="p">)</span>
+<span class="n">DEFAULT_PIN_CODE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;PIN_CODE&quot;</span><span class="p">,</span> <span class="s2">&quot;0000&quot;</span><span class="p">)</span>
+
+<span class="c1"># Other settings</span>
+<span class="n">RECONNECT_MAX_RETRIES</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;RECONNECT_MAX_RETRIES&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># DBus helper functions</span>
+<span class="k">def</span> <span class="nf">dbus_get_interface</span><span class="p">(</span><span class="n">bus_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">interface_name</span><span class="p">):</span>
+    <span class="n">dbus_obj</span> <span class="o">=</span> <span class="n">bus</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">bus_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dbus</span><span class="o">.</span><span class="n">Interface</span><span class="p">(</span><span class="n">dbus_obj</span><span class="p">,</span> <span class="n">interface_name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dbus_set_property</span><span class="p">(</span><span class="n">bus_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">interface_name</span><span class="p">,</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="n">props</span> <span class="o">=</span> <span class="n">dbus_get_interface</span><span class="p">(</span><span class="n">bus_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">DBUS_INTERFACE_PROPERTIES</span><span class="p">)</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">Set</span><span class="p">(</span><span class="n">interface_name</span><span class="p">,</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dbus_get_property</span><span class="p">(</span><span class="n">bus_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">interface_name</span><span class="p">,</span> <span class="n">prop_name</span><span class="p">):</span>
+    <span class="n">props</span> <span class="o">=</span> <span class="n">dbus_get_interface</span><span class="p">(</span><span class="n">bus_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">DBUS_INTERFACE_PROPERTIES</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">props</span><span class="o">.</span><span class="n">Get</span><span class="p">(</span><span class="n">interface_name</span><span class="p">,</span> <span class="n">prop_name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dbus_get_all_properties</span><span class="p">(</span><span class="n">bus_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">interface_name</span><span class="p">):</span>
+  <span class="n">props</span> <span class="o">=</span> <span class="n">dbus_get_interface</span><span class="p">(</span><span class="n">bus_name</span><span class="p">,</span> <span class="n">object_name</span><span class="p">,</span> <span class="n">DBUS_INTERFACE_PROPERTIES</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">props</span><span class="o">.</span><span class="n">GetAll</span><span class="p">(</span><span class="n">interface_name</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">dbus_filter_objects_by_interface</span><span class="p">(</span><span class="n">objects</span><span class="p">,</span> <span class="n">interface_name</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">objects</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">interfaces</span> <span class="o">=</span> <span class="n">objects</span><span class="p">[</span><span class="n">path</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">interface</span> <span class="ow">in</span> <span class="n">interfaces</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">interface</span> <span class="o">==</span> <span class="n">interface_name</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">valid_pin_code</span><span class="p">(</span><span class="n">pin_code</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">int_pin_code</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pin_code</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">pin_code</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">pin_code</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">6</span> <span class="ow">and</span> <span class="n">int_pin_code</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">int_pin_code</span> <span class="o">&lt;=</span> <span class="mi">999999</span>
+
+<span class="k">class</span> <span class="nc">Agent</span><span class="p">(</span><span class="n">dbus</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">Object</span><span class="p">):</span>
+    <span class="n">exit_on_release</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bus</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">pin_code</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pin_code</span> <span class="o">=</span> <span class="n">pin_code</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">Agent</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">bus</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">set_exit_on_release</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exit_on_release</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exit_on_release</span> <span class="o">=</span> <span class="n">exit_on_release</span>
+
+    <span class="nd">@dbus</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">DBUS_INTERFACE_AGENT</span><span class="p">,</span> <span class="n">in_signature</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">out_signature</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">Release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Release&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exit_on_release</span><span class="p">:</span>
+            <span class="n">mainloop</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
+
+    <span class="nd">@dbus</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">DBUS_INTERFACE_AGENT</span><span class="p">,</span> <span class="n">in_signature</span><span class="o">=</span><span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="n">out_signature</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">AuthorizeService</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">uuid</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;AuthorizeService (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">uuid</span><span class="p">))</span>
+        <span class="n">dbus_set_property</span><span class="p">(</span><span class="n">DBUS_NAME</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">DBUS_INTERFACE_DEVICE</span><span class="p">,</span> <span class="s2">&quot;Trusted&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@dbus</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">DBUS_INTERFACE_AGENT</span><span class="p">,</span> <span class="n">in_signature</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">out_signature</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">RequestPinCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RequestPinCode (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">device</span><span class="p">))</span>
+        <span class="n">dbus_set_property</span><span class="p">(</span><span class="n">DBUS_NAME</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">DBUS_INTERFACE_DEVICE</span><span class="p">,</span> <span class="s2">&quot;Trusted&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pin_code</span>
+
+    <span class="nd">@dbus</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">DBUS_INTERFACE_AGENT</span><span class="p">,</span> <span class="n">in_signature</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">out_signature</span><span class="o">=</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">RequestPasskey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RequestPasskey (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">device</span><span class="p">))</span>
+        <span class="n">dbus_set_property</span><span class="p">(</span><span class="n">DBUS_NAME</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">DBUS_INTERFACE_DEVICE</span><span class="p">,</span> <span class="s2">&quot;Trusted&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dbus</span><span class="o">.</span><span class="n">UInt32</span><span class="p">(</span><span class="n">PIN_CODE</span><span class="p">)</span>
+
+    <span class="nd">@dbus</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">DBUS_INTERFACE_AGENT</span><span class="p">,</span> <span class="n">in_signature</span><span class="o">=</span><span class="s2">&quot;ouq&quot;</span><span class="p">,</span> <span class="n">out_signature</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">DisplayPasskey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">passkey</span><span class="p">,</span> <span class="n">entered</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DisplayPasskey (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%06u</span><span class="s2"> entered </span><span class="si">%u</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">passkey</span><span class="p">,</span> <span class="n">entered</span><span class="p">))</span>
+
+    <span class="nd">@dbus</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">DBUS_INTERFACE_AGENT</span><span class="p">,</span> <span class="n">in_signature</span><span class="o">=</span><span class="s2">&quot;os&quot;</span><span class="p">,</span> <span class="n">out_signature</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">DisplayPinCode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">pincode</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;DisplayPinCode (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">pincode</span><span class="p">))</span>
+
+    <span class="nd">@dbus</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">DBUS_INTERFACE_AGENT</span><span class="p">,</span> <span class="n">in_signature</span><span class="o">=</span><span class="s2">&quot;ou&quot;</span><span class="p">,</span> <span class="n">out_signature</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">RequestConfirmation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">passkey</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RequestConfirmation (</span><span class="si">%s</span><span class="s2">, </span><span class="si">%06d</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">passkey</span><span class="p">))</span>
+        <span class="n">dbus_set_property</span><span class="p">(</span><span class="n">DBUS_NAME</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">DBUS_INTERFACE_DEVICE</span><span class="p">,</span> <span class="s2">&quot;Trusted&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@dbus</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">DBUS_INTERFACE_AGENT</span><span class="p">,</span> <span class="n">in_signature</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">out_signature</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">RequestAuthorization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RequestAuthorization (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">device</span><span class="p">))</span>
+        <span class="n">dbus_set_property</span><span class="p">(</span><span class="n">DBUS_NAME</span><span class="p">,</span> <span class="n">device</span><span class="p">,</span> <span class="n">DBUS_INTERFACE_DEVICE</span><span class="p">,</span> <span class="s2">&quot;Trusted&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nd">@dbus</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">DBUS_INTERFACE_AGENT</span><span class="p">,</span> <span class="n">in_signature</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">out_signature</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">Cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Cancel&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Initialize DBus library</span>
+    <span class="n">dbus</span><span class="o">.</span><span class="n">mainloop</span><span class="o">.</span><span class="n">glib</span><span class="o">.</span><span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">SystemBus</span><span class="p">()</span>
+
+    <span class="c1"># Parse command line options</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s1">&#39;Balena bluez authentication agent&#39;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-c&quot;</span><span class="p">,</span> <span class="s2">&quot;--capability&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;capability&quot;</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="n">capabilities</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_CAPABILITY</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Define the bluez agent capability. Defaults to &#39;NoInputNoOutput&#39;.&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-i&quot;</span><span class="p">,</span> <span class="s2">&quot;--interface&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;interface&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_INTERFACE</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Define the bluetooth interface to be used. Defaults to &#39;hci0&#39;.&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;-p&quot;</span><span class="p">,</span> <span class="s2">&quot;--pincode&quot;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;pin_code&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">DEFAULT_PIN_CODE</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Set PIN Code to be used for authentication. Only used if running in legacy mode (SSP off). Defaults to &#39;0000&#39;&quot;</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="c1"># Set agent settings</span>
+    <span class="n">capability</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">capability</span> <span class="ow">or</span> <span class="n">DEFAULT_CAPABILITY</span>
+    <span class="n">interface</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">interface</span> <span class="ow">or</span> <span class="n">DEFAULT_INTERFACE</span>
+    <span class="n">pin_code</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">pin_code</span> <span class="k">if</span> <span class="n">valid_pin_code</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">pin_code</span><span class="p">)</span> <span class="k">else</span> <span class="n">DEFAULT_PIN_CODE</span>
+
+    <span class="c1"># Set bluez discoverable timeout to infinite. Most smartphones won&#39;t connect with shorter timeouts</span>
+    <span class="n">dbus_set_property</span><span class="p">(</span><span class="n">DBUS_NAME</span><span class="p">,</span> <span class="n">DBUS_OBJECT</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">interface</span><span class="p">,</span> <span class="n">DBUS_INTERFACE_ADAPTER</span><span class="p">,</span> <span class="s2">&quot;DiscoverableTimeout&quot;</span><span class="p">,</span> <span class="n">dbus</span><span class="o">.</span><span class="n">UInt32</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="c1"># Create and register bluetooth agent</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/test/agent&quot;</span>
+    <span class="n">agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">bus</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">pin_code</span><span class="p">)</span>
+    <span class="n">manager</span> <span class="o">=</span> <span class="n">dbus_get_interface</span><span class="p">(</span><span class="n">DBUS_NAME</span><span class="p">,</span> <span class="n">DBUS_OBJECT</span><span class="p">,</span> <span class="n">DBUS_INTERFACE_MANAGER</span><span class="p">)</span>
+    <span class="n">manager</span><span class="o">.</span><span class="n">RegisterAgent</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">capability</span><span class="p">)</span>
+    <span class="n">manager</span><span class="o">.</span><span class="n">RequestDefaultAgent</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="c1"># Log agent info</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bluetooth agent started!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Reestablish connection with previously connected devices</span>
+    <span class="n">bluez_manager</span> <span class="o">=</span> <span class="n">dbus_get_interface</span><span class="p">(</span><span class="s2">&quot;org.bluez&quot;</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="s2">&quot;org.freedesktop.DBus.ObjectManager&quot;</span><span class="p">)</span>
+    <span class="n">bluez_objects</span> <span class="o">=</span> <span class="n">bluez_manager</span><span class="o">.</span><span class="n">GetManagedObjects</span><span class="p">()</span>
+    <span class="n">device_paths</span> <span class="o">=</span> <span class="n">dbus_filter_objects_by_interface</span><span class="p">(</span><span class="n">bluez_objects</span><span class="p">,</span> <span class="s2">&quot;org.bluez.Device1&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Checking for known bluetooth devices...&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">device_path</span> <span class="ow">in</span> <span class="n">device_paths</span><span class="p">:</span>
+        <span class="n">props</span> <span class="o">=</span> <span class="n">dbus_get_all_properties</span><span class="p">(</span><span class="s2">&quot;org.bluez&quot;</span><span class="p">,</span> <span class="n">device_path</span><span class="p">,</span> <span class="s2">&quot;org.bluez.Device1&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">bool</span><span class="p">(</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;Paired&quot;</span><span class="p">])</span> <span class="ow">and</span> <span class="nb">bool</span><span class="p">(</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;Trusted&quot;</span><span class="p">]):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Attempting to reconnect to </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">)...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">],</span> <span class="n">props</span><span class="p">[</span><span class="s2">&quot;Address&quot;</span><span class="p">]))</span>
+
+            <span class="c1"># Try to reconnect...</span>
+            <span class="c1"># Bluez throws &quot;Protocol not available&quot; if the host device is not ready to accept the target device profile reconnection request</span>
+            <span class="c1"># Since the bluetooth block is not responsible for bluetooth profile&#39;s acceptance (for instance audio block is for A2DP profiles)</span>
+            <span class="c1"># we introduce a delay and retry a few times before assuming it&#39;s not possible to reconnect.</span>
+            <span class="n">device</span> <span class="o">=</span> <span class="n">dbus_get_interface</span><span class="p">(</span><span class="s2">&quot;org.bluez&quot;</span><span class="p">,</span> <span class="n">device_path</span><span class="p">,</span> <span class="s2">&quot;org.bluez.Device1&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">RECONNECT_MAX_RETRIES</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">device</span><span class="o">.</span><span class="n">Connect</span><span class="p">()</span>
+                    <span class="k">break</span>
+                <span class="k">except</span> <span class="n">dbus</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">DBusException</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="s2">&quot;Protocol not available&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">):</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Bluetooth profile not available or not initialized. Retrying (attempt </span><span class="si">%s</span><span class="s2">/</span><span class="si">%s</span><span class="s2">)...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">RECONNECT_MAX_RETRIES</span><span class="p">))</span>
+                        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+                        <span class="k">continue</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+                        <span class="k">break</span>
+
+            <span class="c1"># Check if we managed to get a connection. If we did, stop trying to reconnect to other known devices.</span>
+            <span class="n">connected</span> <span class="o">=</span> <span class="n">dbus_get_property</span><span class="p">(</span><span class="s2">&quot;org.bluez&quot;</span><span class="p">,</span> <span class="n">device_path</span><span class="p">,</span> <span class="s2">&quot;org.bluez.Device1&quot;</span><span class="p">,</span> <span class="s2">&quot;Connected&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">connected</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Successfully connected to </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">)...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">],</span> <span class="n">props</span><span class="p">[</span><span class="s2">&quot;Address&quot;</span><span class="p">]))</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Could not connect to </span><span class="si">%s</span><span class="s2"> (</span><span class="si">%s</span><span class="s2">)...&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">props</span><span class="p">[</span><span class="s2">&quot;Name&quot;</span><span class="p">],</span> <span class="n">props</span><span class="p">[</span><span class="s2">&quot;Address&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">DBusException</span><span class="g g-Whitespace">                             </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_180</span><span class="o">/</span><span class="mf">4230625139.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">    </span><span class="mi">121</span>     <span class="c1"># Initialize DBus library</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span>     <span class="n">dbus</span><span class="o">.</span><span class="n">mainloop</span><span class="o">.</span><span class="n">glib</span><span class="o">.</span><span class="n">DBusGMainLoop</span><span class="p">(</span><span class="n">set_as_default</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">123</span>     <span class="n">bus</span> <span class="o">=</span> <span class="n">dbus</span><span class="o">.</span><span class="n">SystemBus</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">124</span> 
+<span class="g g-Whitespace">    </span><span class="mi">125</span>     <span class="c1"># Parse command line options</span>
+
+<span class="nn">/service-config/iot-home/.local/lib/python3.8/site-packages/dbus/_dbus.py</span> in <span class="ni">__new__</span><span class="nt">(cls, private, mainloop)</span>
+<span class="g g-Whitespace">    </span><span class="mi">193</span>                 <span class="k">if</span> <span class="n">none</span> <span class="n">has</span> <span class="n">been</span><span class="o">.</span>
+<span class="g g-Whitespace">    </span><span class="mi">194</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">195</span><span class="s2">         return Bus.__new__(cls, Bus.TYPE_SYSTEM, mainloop=mainloop,</span>
+<span class="g g-Whitespace">    </span><span class="mi">196</span><span class="s2">                            private=private)</span>
+<span class="g g-Whitespace">    </span><span class="mi">197</span><span class="s2"> </span>
+
+<span class="nn">/service-config/iot-home/.local/lib/python3.8/site-packages/dbus/_dbus.py</span> in <span class="ni">__new__</span><span class="nt">(cls, bus_type, private, mainloop)</span>
+<span class="g g-Whitespace">    </span><span class="mi">100</span><span class="s2">             raise ValueError(&#39;invalid bus_type </span><span class="si">%s</span><span class="s2">&#39; % bus_type)</span>
+<span class="g g-Whitespace">    </span><span class="mi">101</span><span class="s2"> </span>
+<span class="ne">--&gt; </span><span class="mi">102</span><span class="s2">         bus = BusConnection.__new__(subclass, bus_type, mainloop=mainloop)</span>
+<span class="g g-Whitespace">    </span><span class="mi">103</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">104</span><span class="s2">         bus._bus_type = bus_type</span>
+
+<span class="nn">/service-config/iot-home/.local/lib/python3.8/site-packages/dbus/bus.py</span> in <span class="ni">__new__</span><span class="nt">(cls, address_or_type, mainloop)</span>
+<span class="g g-Whitespace">    </span><span class="mi">122</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">123</span><span class="s2">     def __new__(cls, address_or_type=TYPE_SESSION, mainloop=None):</span>
+<span class="ne">--&gt; </span><span class="mi">124</span><span class="s2">         bus = cls._new_for_bus(address_or_type, mainloop=mainloop)</span>
+<span class="g g-Whitespace">    </span><span class="mi">125</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">126</span><span class="s2">         # _bus_names is used by dbus.service.BusName!</span>
+
+<span class="ne">DBusException</span>: org.freedesktop.DBus.Error.FileNotFound: Failed to connect to socket /var/run/dbus/system_bus_socket: No such file or directory
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./projects/beacon"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

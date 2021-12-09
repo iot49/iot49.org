@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Install &#8212; Electronics for IoT</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -53,10 +53,13 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Custom Install" href="install-custom.html" />
+    <link rel="next" title="Getting Started" href="getting-started.html" />
     <link rel="prev" title="MicroPython IDE" href="../intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -73,6 +76,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
@@ -82,9 +89,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   ide49
  </span>
@@ -93,11 +100,6 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Install
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="install-custom.html">
-   Custom Install
   </a>
  </li>
  <li class="toctree-l1">
@@ -220,7 +222,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Tours &amp; Projects
  </span>
@@ -237,47 +239,47 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/parts.html">
+    <a class="reference internal" href="../projects/balance/01_parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/circuit.html">
+    <a class="reference internal" href="../projects/balance/02_circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/code.html">
+    <a class="reference internal" href="../projects/balance/03_code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/display.html">
+    <a class="reference internal" href="../projects/balance/04_display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/buttons.html">
+    <a class="reference internal" href="../projects/balance/05_buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/ble.html">
+    <a class="reference internal" href="../projects/balance/06_ble.html">
      Bluetooth
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/app.html">
+    <a class="reference internal" href="../projects/balance/07_app.html">
      Standalone App
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/hx711.html">
+    <a class="reference internal" href="../projects/balance/08_hx711.html">
      “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/ticks.html">
+    <a class="reference internal" href="../projects/balance/09_ticks.html">
      Time Intervals
     </a>
    </li>
@@ -454,11 +456,16 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#overview">
    Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installation-options">
+   Installation Options
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -467,8 +474,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shutdown">
-   Shutdown
+  <a class="reference internal nav-link" href="#custom-install">
+   Custom Install
   </a>
  </li>
 </ul>
@@ -482,7 +489,7 @@
         
               <div>
                 
-  <div class="section" id="install">
+  <div class="tex2jax_ignore mathjax_ignore section" id="install">
 <h1>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
@@ -498,7 +505,7 @@
 </ul>
 <p>Other 64-Bit ARM or Intel CPUs (<code class="docutils literal notranslate"><span class="pre">aarch64</span></code> or <code class="docutils literal notranslate"><span class="pre">amd64</span></code>) may work as well.</p>
 </li>
-<li><p>SD Card with at least 16GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).</p>
+<li><p>SD Card with at least 32GBytes. A good quality card is highly recommended (Sandisk, Samsung, etc).</p>
 <ul class="simple">
 <li><p>Not needed for installation on Intel NUC or compatible</p></li>
 </ul>
@@ -518,29 +525,59 @@
 </ul>
 </li>
 </ul>
-<p>You can either a “quick install” of the precompiled application or a “custom installation” from source code. The first approach, described below, is faster and recommended especially for new users. Alternatively, do a <a class="reference internal" href="install-custom.html"><span class="doc std std-doc">custom installation</span></a> if you plan to modify <em>ide49</em>.</p>
-<p>You can also do a custom installation at a later stage. The Raspberry PI makes this particularly simple - just install to a different SD Card to quickly switch between the two versions.</p>
+</div>
+<div class="section" id="installation-options">
+<h2>Installation Options<a class="headerlink" href="#installation-options" title="Permalink to this headline">¶</a></h2>
+<p>Two options for installing <em>ide49</em>:</p>
+<ol class="simple">
+<li><p><strong>Quick install:</strong> Download the operating system to the SD card, wait for the app to download and start using it. It’s really that simple. Even updates are automated.</p></li>
+<li><p><strong>Custom installation:</strong> Install from gitbub sources. Gives complete control - you can modify everything you like, e.g. add additional Docker services - right from within <em>ide49</em>. For this option you need a free account on <a class="reference external" href="https://www.balena.io/">balena.io</a> (no credit card needed).</p></li>
+</ol>
+<p><em>Disclosure:</em> I have no affiliation with Balena except using their software and infrastructure, for free.</p>
+<p>Jump to the appropriate section in the documentation to start the installation.</p>
 </div>
 <div class="section" id="quick-install">
 <h2>Quick Install<a class="headerlink" href="#quick-install" title="Permalink to this headline">¶</a></h2>
-<p>Go to <a class="reference external" href="https://hub.balena.io/balenalabs/ide49">https://hub.balena.io/balenalabs/ide49</a> and click “Get started”. Select your device type and network connection. Then hit the download button.</p>
-<p>If you have a <strong>Raspberry PI</strong>, flash the downloaded OS image to the SD Card using <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a>. Insert the Card into the PI.</p>
+<p>Go to <a class="reference external" href="https://hub.balena.io/balenalabs/ide49">https://hub.balena.io/balenalabs/ide49</a> and click “Get started”. Select your device type and network connection (wifi+ethernet unless you use a wired connection). Then hit the download button.</p>
+<p>If you have a <strong>Raspberry PI</strong>, flash the downloaded OS image to the SD Card using <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a>. Insert the card into the PI and apply power.</p>
 <p><strong>Intel NUC</strong> or compatibles typically install the OS from a thumb drive or other external medium to the internal disk. Follow the <a class="reference external" href="https://www.balena.io/os/docs/intel-nuc/getting-started">instructions</a> at the Balena website.</p>
-<p>Once the OS is installed <em>ide49</em> will download and install automatically. Depending on the networks speed, this may take upwards of ten minutes (or an hour with my glacially slow Internet). After the download completes <em>ide49</em> starts automatically. Connect with a browser at <a class="reference external" href="http://iot49.local">http://iot49.local</a>.</p>
-<p>If this does not work, try http://LOCAL_IP_ADDRESS instead. Substitute the value <em>LOCAL_IP_ADDRESS</em> with the address shown on the device dashboard.</p>
-<p><img alt="ide49 Landing Page" src="../_images/ide49_landing.png" /></p>
-<p>Click on <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code>. You will get a warning similar to:</p>
-<a class="reference internal image-reference" href="../_images/browser_warning.png"><img alt="../_images/browser_warning.png" src="../_images/browser_warning.png" style="width: 500px;" /></a>
-<p>Click “Advanced” and then “proceed anyway”. The page <a class="reference internal" href="config/https.html"><span class="doc std std-doc">https &amp; certificates</span></a> has information about this warning and explains how to get rid of it.</p>
-<p>At the login window, enter the default username and password (both <em>iot49</em>; <a class="reference internal" href="config/password.html"><span class="doc std std-doc">instructions for changing</span></a>).</p>
-<div style="font-size:15pt;font-weight:bold;text-align:center;color:green">Congratulations, you have completed the installation!</div>
-</p>
-<p><img alt="Jupyter" src="../_images/jupyter.png" /></p>
+<p>Once the OS is installed <em>ide49</em> will download and install automatically. Depending on the networks speed, this may take upwards of ten minutes (or an hour with my glacially slow Internet). After the download completes <em>ide49</em> starts automatically. Connect your computer to the same network and point the browser to <a class="reference external" href="http://iot49.local">http://iot49.local</a>.</p>
+<p>If this does not work the download and setup may not be complete. Try to “ping” the device (at <code class="docutils literal notranslate"><span class="pre">iot49.local</span></code>) or determine the local address of your device (e.g. from the router or access point) and try http://LOCAL_IP_ADDRESS.</p>
 <p>Proceed to the next section, <a class="reference internal" href="getting-started.html"><span class="doc std std-doc">Getting Started</span></a>.</p>
 </div>
-<div class="section" id="shutdown">
-<h2>Shutdown<a class="headerlink" href="#shutdown" title="Permalink to this headline">¶</a></h2>
-<p>To turn off your computer don’t just pull the power cord. Instead head to the dashboard on <a class="reference external" href="https://balena.io">https://balena.io</a>. At the top right is a button. Click it to get several options, including <em>shutdown</em>.</p>
+<div class="section" id="custom-install">
+<h2>Custom Install<a class="headerlink" href="#custom-install" title="Permalink to this headline">¶</a></h2>
+<p>These instructions are for installing <em>ide49</em> from source. The installation is fully configurable, including modifying and adding/removing Docker containers - all from within <em>ide49</em>.</p>
+<p>Create an account on <a class="reference external" href="https://www.balena.io/">balena.io</a> or login to your existing account.</p>
+<p>Open the <a class="reference external" href="https://github.com/iot49/ide49"><em>ide49</em> repository on github</a> and click the
+<img alt="Deploy with Balena" src="../_images/deploy.svg" /> button.</p>
+<p>In the popup window, choose a name for your application (e.g. <em>ide49</em>). Click <em>advanced</em> and set the timezone (TZ) to the desired value. Click <a class="reference external" href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">here</a> for a list of valid TZ names.</p>
+<p>Leave the other variables at their defaults (they can be changed later) and click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">and</span> <span class="pre">Deploy</span></code>. The browser is redirected to the Balena dashboard for the ide49 application. Click <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Add</span> <span class="pre">device</span></code>. You get another popup:</p>
+<ul class="simple">
+<li><p>under edition, select <code class="docutils literal notranslate"><span class="pre">Development</span></code></p></li>
+<li><p>click the <code class="docutils literal notranslate"><span class="pre">Wifi</span> <span class="pre">+</span> <span class="pre">Ethernet</span></code> button and enter your WiFi credentials</p></li>
+</ul>
+<p>Accept the defaults for everything else and hit the <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">balenaOS</span></code> button. Keep the browser window open to check the progress of the installation.</p>
+<p>If you have a <strong>Raspberry PI</strong>, flash the downloaded OS image to the SD Card using <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a>. Transfer the card to the PI and apply power.</p>
+<p><strong>Intel NUC</strong> or compatibles typically install the OS from a thumb drive or other external medium to the internal disk. Follow the <a class="reference external" href="https://www.balena.io/os/docs/intel-nuc/getting-started">instructions</a> at the Balena website.</p>
+<p>The computer will boot and configure the OS and download the <em>ide49</em> application. Head back to the browser window with the <em>Balena dashboard</em> and wait a few minutes for the new device to appear.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/device_dashboard.png"><img alt="../_images/device_dashboard.png" src="../_images/device_dashboard.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Balena dashboard</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>The new device has some creative name (like <em>hidden-sun</em>). Click on the device name. The top of the page show poetic device name. Click the pencil to change it. Also listed are some statistics (memory usage, device temperature, local ip address, etc).</p>
+<div class="figure align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/device_stats.png"><img alt="../_images/device_stats.png" src="../_images/device_stats.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Device status information</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Click the application name in the Balena dashboard and wait for the release to complete (about twenty minutes). Once it’s complete, the Balena will automatically download <em>ide49</em>. You can see the progress in the device window with populates itself with a list of services.</p>
+<div class="figure align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/balena_downloading.png"><img alt="../_images/balena_downloading.png" src="../_images/balena_downloading.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Download progress</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>After the download completes the application will automatically start and status of the services will switch to <code class="docutils literal notranslate"><span class="pre">Running</span></code>.</p>
+<p>Connect at <a class="reference external" href="http://iot49.local">http://iot49.local</a>.</p>
+<p>If this does not work, try http://LOCAL_IP_ADDRESS instead. Substitute the value <em>LOCAL_IP_ADDRESS</em> with the address shown in the <em>Balena dashboard</em>.</p>
 </div>
 </div>
 
@@ -567,16 +604,27 @@
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">MicroPython IDE</a>
-    <a class='right-next' id="next-link" href="install-custom.html" title="next page">Custom Install</a>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">MicroPython IDE</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="getting-started.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Getting Started</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -592,8 +640,7 @@
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

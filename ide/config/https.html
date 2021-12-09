@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Https &amp; Certificates &#8212; Electronics for IoT</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -56,7 +56,10 @@
     <link rel="next" title="Samba File Server/Client" href="samba.html" />
     <link rel="prev" title="Domain Name" href="dns.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -73,6 +76,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../../_static/logo.png" class="logo" alt="logo">
       
       
@@ -82,9 +89,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   ide49
  </span>
@@ -96,18 +103,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../install-custom.html">
-   Custom Install
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../getting-started.html">
    Getting Started
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../docs.html">
-   Documention
   </a>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -128,6 +125,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="backup.html">
      Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="timezone.html">
+     Timezone
     </a>
    </li>
    <li class="toctree-l2">
@@ -225,7 +227,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Tours &amp; Projects
  </span>
@@ -242,47 +244,47 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/parts.html">
+    <a class="reference internal" href="../../projects/balance/01_parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/circuit.html">
+    <a class="reference internal" href="../../projects/balance/02_circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/code.html">
+    <a class="reference internal" href="../../projects/balance/03_code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/display.html">
+    <a class="reference internal" href="../../projects/balance/04_display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/buttons.html">
+    <a class="reference internal" href="../../projects/balance/05_buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/ble.html">
+    <a class="reference internal" href="../../projects/balance/06_ble.html">
      Bluetooth
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/app.html">
+    <a class="reference internal" href="../../projects/balance/07_app.html">
      Standalone App
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/hx711.html">
+    <a class="reference internal" href="../../projects/balance/08_hx711.html">
      “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/ticks.html">
+    <a class="reference internal" href="../../projects/balance/09_ticks.html">
      Time Intervals
     </a>
    </li>
@@ -464,13 +466,19 @@
         
               <div>
                 
-  <div class="section" id="https-certificates">
+  <div class="tex2jax_ignore mathjax_ignore section" id="https-certificates">
 <h1>Https &amp; Certificates<a class="headerlink" href="#https-certificates" title="Permalink to this headline">¶</a></h1>
 <p><em>ide49</em> uses the https protocol to encrypt the traffic between the Raspberry PI and the browser.</p>
 <p>Despite, and, actually, because of this “secure” choice, browsers give a warning to the contrary:</p>
-<a class="reference internal image-reference" href="../../_images/browser_warning.png"><img alt="../../_images/browser_warning.png" src="../../_images/browser_warning.png" style="width: 500px;" /></a>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/browser_warning.png"><img alt="../../_images/browser_warning.png" src="../../_images/browser_warning.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Browser warning</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <p>If you ignore the warnings and load the site anyway, the url in the search bar shows a warning:</p>
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../_images/not_secure.png"><img alt="../../_images/not_secure.png" src="../../_images/not_secure.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">Not secure?</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 <p>The reason for this is the way https works. To guarantee safe communication, https</p>
 <ol class="simple">
 <li><p>Encrypts all traffic, and</p></li>
@@ -512,19 +520,22 @@ XaTG2RPUp/BG
 </div>
 </div>
 </div>
-<p>When the browser connects to the server, the server sends the certificate. The browser decodes it and verifies that the URLs match (which is why the certificate changes when you alter the <a class="reference internal" href="dns.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code></span></a>). It also sends a challenge to the server which requires the private key to solve.</p>
-<p><em>ide49</em> stores the private key at <code class="docutils literal notranslate"><span class="pre">/service-config/nginx/ssl/cert.key</span></code>. It looks similar to the certificate but I won’t reproduce it here since it is private, aka secret. The private key on your instance differs, even if you use the same <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code>.</p>
-<p>Finally the browser checks if the certificate is valid. This is a bit like a customs agent checking your passport-s/he verifies your name, picture, eye color and what do I know, and then also makes sure your passport is a real passport issued by a real country.</p>
-<p>Here lies the problem with <em>ide49</em>’s certificates: they meet all requirements and the encryption is just as strong as with a real certificate, but the browser has never seen one alike. Just like the customs agent rejects the beautiful passport you created yourself on your 3D printer, the browser won’t trust certificates issued by <em>ide49</em>.</p>
+<p>When the browser connects to the server, the server sends the certificate. The browser decodes it and verifies that the URLs match (which is why the certificate changes when you alter the <a class="reference internal" href="dns.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code></span></a>). It also sends a challenge to the server which requires the private key (known only to the server) to solve.</p>
+<p><em>ide49</em> stores the private key at <code class="docutils literal notranslate"><span class="pre">/service-config/nginx/ssl/cert.key</span></code>. It looks similar to the certificate but I won’t reproduce it here since it is private, aka <strong>top secret</strong>. The private key on your instance differs, even if you use the same <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code>.</p>
+<p>Finally the browser checks if the certificate is valid. This is a bit like a customs agent checking your passport - she verifies your name, picture, eye color and what do I know, and then also makes sure your passport is a real passport issued by a real country.</p>
+<p>Here lies the problem with <em>ide49</em>’s certificates: they meet all requirements and the encryption is just as strong as with a real certificate, but the browser has never seen one alike. Just like the customs agent rejects the beautiful passport you created yourself with your 3D printer, the browser won’t trust certificates issued by <em>ide49</em>.</p>
 <p>This begs the question how browsers verify certificates from other websites such as <a class="reference external" href="https://iot49.org">https://iot49.org</a>. The answer is that browsers come with preinstalled certificates (an elaborate chaining scheme permits one certficate to vouch for many derived certificates), but unfortunately the certificates created by <em>ide49</em> are not among them.</p>
 <p>There are two solutions to this problem:</p>
 <ol class="simple">
-<li><p>Buy a real domain name like <code class="docutils literal notranslate"><span class="pre">iot49.org</span></code> or <code class="docutils literal notranslate"><span class="pre">google.com</span></code> and get a real certificate for it from a real <a class="reference external" href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authority</a>. You’ll also need to expose your device to the internet (not just locally).</p></li>
-<li><p>Alternatively you can add the certificate of your device to the list of trusted certificates.</p></li>
+<li><p>Buy a real domain name like <code class="docutils literal notranslate"><span class="pre">iot49.org</span></code> or <code class="docutils literal notranslate"><span class="pre">google.com</span></code> and get a real certificate for it from a real <a class="reference external" href="https://en.wikipedia.org/wiki/Certificate_authority">certificate authority</a>. You’ll also need to expose your device to the internet (not just locally). Obviously this is neither private nor particularly secure.</p></li>
+<li><p>Alternatively, add the certificate of your device to the list of trusted certificates.</p></li>
 </ol>
 <p>Adding certificates depends on the operating system. “Google” <em>add certificate to chrome</em> or something similar for instructions for your setup.</p>
 <p>Your efforts will be rewarded with a nice lock displayed in the search bar and there will no longer be warnings when you connect to <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
+<div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../_images/secure.png"><img alt="../../_images/secure.png" src="../../_images/secure.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">Even the browser agrees that iot49 is secure!</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -550,16 +561,27 @@ XaTG2RPUp/BG
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="dns.html" title="previous page">Domain Name</a>
-    <a class='right-next' id="next-link" href="samba.html" title="next page">Samba File Server/Client</a>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="dns.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Domain Name</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="samba.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Samba File Server/Client</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -575,8 +597,7 @@ XaTG2RPUp/BG
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

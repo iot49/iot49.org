@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Documention &#8212; Electronics for IoT</title>
+    <title>BLE Beacon Scanner &#8212; Electronics for IoT</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,32 +31,33 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://iot49.org/ide/docs.html" />
+    <link rel="canonical" href="https://iot49.org/projects/BLE beacon.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Configuration" href="configuration.html" />
-    <link rel="prev" title="Getting Started" href="getting-started.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -73,6 +74,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
@@ -82,36 +87,26 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   ide49
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="install.html">
+  <a class="reference internal" href="../ide/install.html">
    Install
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="install-custom.html">
-   Custom Install
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="getting-started.html">
+  <a class="reference internal" href="../ide/getting-started.html">
    Getting Started
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Documention
-  </a>
- </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="configuration.html">
+  <a class="reference internal" href="../ide/configuration.html">
    Configuration
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -121,34 +116,34 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="config/password.html">
+    <a class="reference internal" href="../ide/config/password.html">
      Change Password
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="config/backup.html">
+    <a class="reference internal" href="../ide/config/backup.html">
      Backup
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="config/dns.html">
+    <a class="reference internal" href="../ide/config/dns.html">
      Domain Name
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="config/https.html">
+    <a class="reference internal" href="../ide/config/https.html">
      Https &amp; Certificates
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="config/samba.html">
+    <a class="reference internal" href="../ide/config/samba.html">
      Samba File Server/Client
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="micropython.html">
+  <a class="reference internal" href="../ide/micropython.html">
    MicroPython
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
@@ -158,44 +153,44 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="micropython/iot-kernel.html">
+    <a class="reference internal" href="../ide/micropython/iot-kernel.html">
      IoT Kernel
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="micropython/magics.html">
+    <a class="reference internal" href="../ide/micropython/magics.html">
      Magics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="micropython/REPL.html">
+    <a class="reference internal" href="../ide/micropython/REPL.html">
      REPL prompt
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="micropython/dev_config.html">
+    <a class="reference internal" href="../ide/micropython/dev_config.html">
      Device Configuration
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="micropython/flash.html">
+    <a class="reference internal" href="../ide/micropython/flash.html">
      Flashing
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="micropython/compile.html">
+    <a class="reference internal" href="../ide/micropython/compile.html">
      Compile
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="micropython/mp_ext_c.html">
+    <a class="reference internal" href="../ide/micropython/mp_ext_c.html">
      External C modules
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="app.html">
+  <a class="reference internal" href="../ide/app.html">
    Docker App
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -205,12 +200,12 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="app/overview.html">
+    <a class="reference internal" href="../ide/app/overview.html">
      Overview
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="app/customize.html">
+    <a class="reference internal" href="../ide/app/customize.html">
      Customize
      <em>
       ide49
@@ -220,19 +215,19 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="issues.html">
+  <a class="reference internal" href="../ide/issues.html">
    Issues
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Tours &amp; Projects
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../projects/balance.html">
+  <a class="reference internal" href="balance.html">
    GPIO
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -242,54 +237,54 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/parts.html">
+    <a class="reference internal" href="balance/01_parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/circuit.html">
+    <a class="reference internal" href="balance/02_circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/code.html">
+    <a class="reference internal" href="balance/03_code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/display.html">
+    <a class="reference internal" href="balance/04_display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/buttons.html">
+    <a class="reference internal" href="balance/05_buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/ble.html">
+    <a class="reference internal" href="balance/06_ble.html">
      Bluetooth
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/app.html">
+    <a class="reference internal" href="balance/07_app.html">
      Standalone App
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/hx711.html">
+    <a class="reference internal" href="balance/08_hx711.html">
      “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/ticks.html">
+    <a class="reference internal" href="balance/09_ticks.html">
      Time Intervals
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../projects/internet.html">
+  <a class="reference internal" href="internet.html">
    Internet
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
@@ -299,49 +294,49 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/internet/wifi.html">
+    <a class="reference internal" href="internet/wifi.html">
      WiFi
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/internet/sockets.html">
+    <a class="reference internal" href="internet/sockets.html">
      Sockets
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/internet/requests.html">
+    <a class="reference internal" href="internet/requests.html">
      Requests
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/internet/mqtt.html">
+    <a class="reference internal" href="internet/mqtt.html">
      MQTT
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/internet/wireshark.html">
+    <a class="reference internal" href="internet/wireshark.html">
      Wireshark
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/internet/plotserver.html">
+    <a class="reference internal" href="internet/plotserver.html">
      Plotserver
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/internet/ota.html">
+    <a class="reference internal" href="internet/ota.html">
      ESP32 OTA
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/internet/encryption.html">
+    <a class="reference internal" href="internet/encryption.html">
      Encryption
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../projects/wifi-cop.html">
+  <a class="reference internal" href="wifi-cop.html">
    WiFi Coprocessor
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
@@ -351,22 +346,22 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/wifi-cop/overview.html">
+    <a class="reference internal" href="wifi-cop/overview.html">
      Approach
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/wifi-cop/custom_c.html">
+    <a class="reference internal" href="wifi-cop/custom_c.html">
      Custom MicroPython
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/wifi-cop/rpc.html">
+    <a class="reference internal" href="wifi-cop/rpc.html">
      RPC
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/wifi-cop/networking.html">
+    <a class="reference internal" href="wifi-cop/networking.html">
      Networking
     </a>
    </li>
@@ -413,7 +408,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/ide/docs.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/projects/BLE beacon.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -433,10 +428,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fide/docs.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/BLE beacon.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/ide/docs.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/BLE beacon.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -464,24 +459,9 @@
         
               <div>
                 
-  <div class="section" id="documention">
-<h1>Documention<a class="headerlink" href="#documention" title="Permalink to this headline">¶</a></h1>
-<p>The documentation at <a class="reference external" href="https://iot49.org/">https://iot49.org/</a> is also available locally in the folder <code class="docutils literal notranslate"><span class="pre">iot49.org/docs</span></code>. Access it from the file browser on the left. For example, this document is at</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!echo `pwd`/docs.ipynb
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/iot/iot49.org/docs/ide/docs.ipynb
-</pre></div>
-</div>
-</div>
-</div>
-<p>Generally, the file location corresponds to the URL of the online documentation, minus the server address.</p>
-<p>Onlike notebooks on the web, these local copies are “live”, i.e. you can run cells, make changes, add new ones, etc. Do not hesitate to make changes, the original code is always available at <a class="reference external" href="https://github.com/iot49/iot49.org">https://github.com/iot49/iot49.org</a>. In addition to the notebooks, the local copy of <code class="docutils literal notranslate"><span class="pre">iot49.org</span></code> also contains the source code for all projects.</p>
-<p>If you have suggestions for improvements or fixes, load the file from <a class="reference external" href="https://iot49.org/">https://iot49.org/</a> and click the cat in the upper right corner of the page to suggest an edit.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="ble-beacon-scanner">
+<h1>BLE Beacon Scanner<a class="headerlink" href="#ble-beacon-scanner" title="Permalink to this headline">¶</a></h1>
+<p>esp32 and host (Pi)</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -497,7 +477,7 @@
         },
         kernelOptions: {
             kernelName: "iot_kernel",
-            path: "./ide"
+            path: "./projects"
         },
         predefinedOutput: true
     }
@@ -507,16 +487,13 @@
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="getting-started.html" title="previous page">Getting Started</a>
-    <a class='right-next' id="next-link" href="configuration.html" title="next page">Configuration</a>
-
-        </div>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -532,8 +509,7 @@
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

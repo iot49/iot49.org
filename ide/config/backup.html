@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Backup &#8212; Electronics for IoT</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -53,10 +53,13 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Domain Name" href="dns.html" />
+    <link rel="next" title="Timezone" href="timezone.html" />
     <link rel="prev" title="Change Password" href="password.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -73,6 +76,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../../_static/logo.png" class="logo" alt="logo">
       
       
@@ -82,9 +89,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   ide49
  </span>
@@ -96,18 +103,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../install-custom.html">
-   Custom Install
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../getting-started.html">
    Getting Started
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../docs.html">
-   Documention
   </a>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -128,6 +125,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="timezone.html">
+     Timezone
     </a>
    </li>
    <li class="toctree-l2">
@@ -225,7 +227,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Tours &amp; Projects
  </span>
@@ -242,47 +244,47 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/parts.html">
+    <a class="reference internal" href="../../projects/balance/01_parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/circuit.html">
+    <a class="reference internal" href="../../projects/balance/02_circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/code.html">
+    <a class="reference internal" href="../../projects/balance/03_code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/display.html">
+    <a class="reference internal" href="../../projects/balance/04_display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/buttons.html">
+    <a class="reference internal" href="../../projects/balance/05_buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/ble.html">
+    <a class="reference internal" href="../../projects/balance/06_ble.html">
      Bluetooth
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/app.html">
+    <a class="reference internal" href="../../projects/balance/07_app.html">
      Standalone App
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/hx711.html">
+    <a class="reference internal" href="../../projects/balance/08_hx711.html">
      “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/ticks.html">
+    <a class="reference internal" href="../../projects/balance/09_ticks.html">
      Time Intervals
     </a>
    </li>
@@ -464,23 +466,38 @@
         
               <div>
                 
-  <div class="section" id="backup">
+  <div class="tex2jax_ignore mathjax_ignore section" id="backup">
 <h1>Backup<a class="headerlink" href="#backup" title="Permalink to this headline">¶</a></h1>
 <p>All your files on the Raspberry Pi are stored on the SD Card. These cards sometimes fail, or you may inadvertently delete a file. It’s important to keep backups.</p>
-<p><em>ide49</em> makes this easy. It comes with <a class="reference external" href="https://www.duplicati.com/">Duplicati</a>, a versatile backup solution. Access it at <a class="reference external" href="https://iot49.local/duplicati">https://iot49.local/duplicati</a> or from the dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
+<p><em>ide49</em> makes this easy. It comes with <a class="reference external" href="https://www.duplicati.com/">Duplicati</a>, a versatile backup solution. Access it at this <span class="xref myst">link</span> or from the dashboard at <a class="reference external" href="https://iot49.local">https://iot49.local</a>.</p>
 <p>The first time you access Duplicati, you are asked</p>
+<div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../../_images/duplicati_start.png"><img alt="../../_images/duplicati_start.png" src="../../_images/duplicati_start.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Setup</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 <p>Choose “No, my machine …” to get to the home screen:</p>
+<div class="figure align-default" id="id2">
 <a class="reference internal image-reference" href="../../_images/duplicati.png"><img alt="../../_images/duplicati.png" src="../../_images/duplicati.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">User interface</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 <p>Click <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Add</span> <span class="pre">backup</span></code> and configure a new backup. Choose encryption and a passphrase if you like (I do not bother as I don’t keep personal information on the Raspberry Pi).</p>
 <p>Duplicati offers many backup destinations. Under <code class="docutils literal notranslate"><span class="pre">Storage</span> <span class="pre">Type</span></code> you find all the popular online services (Dropbox, Google Cloud, etc).</p>
 <p>Alternatively you can backup to local storage. Insert a USB thumb drive into the Raspberry PI. It will show up in section <code class="docutils literal notranslate"><span class="pre">Folder</span> <span class="pre">path</span></code> in the <code class="docutils literal notranslate"><span class="pre">mnt</span></code> folder, identified by its label.</p>
+<div class="figure align-default" id="id3">
 <a class="reference internal image-reference" href="../../_images/duplicati_dest.png"><img alt="../../_images/duplicati_dest.png" src="../../_images/duplicati_dest.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">Backup destination</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
 <p>If the drive does not show up, hit <em>Previous</em> and then again <em>Next</em>.</p>
 <p>On the next screen, under <code class="docutils literal notranslate"><span class="pre">Computer</span></code>, choose the folder <code class="docutils literal notranslate"><span class="pre">service-config</span></code> as backup source. This will backup all user data on the Raspberry Pi, but not the operating system and <em>ide49</em> application which can easily be reinstalled if lost or damaged.</p>
+<div class="figure align-default" id="id4">
 <a class="reference internal image-reference" href="../../_images/duplicati_src.png"><img alt="../../_images/duplicati_src.png" src="../../_images/duplicati_src.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Files to backup</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
 <p>You can either run backups manually, or, preferably, automatically at a set schedule. This is my choice:</p>
+<div class="figure align-default" id="id5">
 <a class="reference internal image-reference" href="../../_images/duplicati_schedule.png"><img alt="../../_images/duplicati_schedule.png" src="../../_images/duplicati_schedule.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">Scheduled backup</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
 <p>That’s it! If you ever loose data, come back to <a class="reference external" href="https://iot49.local/duplicati">https://iot49.local/duplicati</a> and run <code class="docutils literal notranslate"><span class="pre">Restore</span></code>.</p>
 </div>
 
@@ -507,16 +524,27 @@
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="password.html" title="previous page">Change Password</a>
-    <a class='right-next' id="next-link" href="dns.html" title="next page">Domain Name</a>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="password.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Change Password</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="timezone.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Timezone</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -532,8 +560,7 @@
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

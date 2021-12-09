@@ -4,6 +4,7 @@ Many aspects of *ide49* are configurable, including:
 
 * [Changing the password](config/password.ipynb),
 * Setting up automatic [backups](config/backup.ipynb),
+* [Setting the timezone](config/timezone.ipynb),
 * [Changing the domain name](config/dns.ipynb) from the default http://iot49.local,
 * [Configuring the browser/OS](config/https.ipynb) to stop complaining that http://iot49.local is not secure,
 * Setting up a [Samba](config/samba.ipynb) file server or client to export or mount the *ide49* home directory, (`/home/iot`).

@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Domain Name &#8212; Electronics for IoT</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -54,9 +54,12 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Https &amp; Certificates" href="https.html" />
-    <link rel="prev" title="Backup" href="backup.html" />
+    <link rel="prev" title="Timezone" href="timezone.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -73,6 +76,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../../_static/logo.png" class="logo" alt="logo">
       
       
@@ -82,9 +89,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   ide49
  </span>
@@ -96,18 +103,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../install-custom.html">
-   Custom Install
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../getting-started.html">
    Getting Started
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../docs.html">
-   Documention
   </a>
  </li>
  <li class="toctree-l1 current active has-children">
@@ -128,6 +125,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="backup.html">
      Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="timezone.html">
+     Timezone
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -225,7 +227,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Tours &amp; Projects
  </span>
@@ -242,47 +244,47 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/parts.html">
+    <a class="reference internal" href="../../projects/balance/01_parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/circuit.html">
+    <a class="reference internal" href="../../projects/balance/02_circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/code.html">
+    <a class="reference internal" href="../../projects/balance/03_code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/display.html">
+    <a class="reference internal" href="../../projects/balance/04_display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/buttons.html">
+    <a class="reference internal" href="../../projects/balance/05_buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/ble.html">
+    <a class="reference internal" href="../../projects/balance/06_ble.html">
      Bluetooth
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/app.html">
+    <a class="reference internal" href="../../projects/balance/07_app.html">
      Standalone App
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/hx711.html">
+    <a class="reference internal" href="../../projects/balance/08_hx711.html">
      “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../../projects/balance/ticks.html">
+    <a class="reference internal" href="../../projects/balance/09_ticks.html">
      Time Intervals
     </a>
    </li>
@@ -464,12 +466,17 @@
         
               <div>
                 
-  <div class="section" id="domain-name">
+  <div class="tex2jax_ignore mathjax_ignore section" id="domain-name">
 <h1>Domain Name<a class="headerlink" href="#domain-name" title="Permalink to this headline">¶</a></h1>
-<p>By default, <em>ide49</em> advertises the Raspberry PI on the local network as <code class="docutils literal notranslate"><span class="pre">iot49.local</span></code>. This can be changed by overriding the value of <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code> in the dashboard:</p>
-<p><img alt="Device Variables" src="../../_images/device_variables.png" /></p>
-<p>For example, if you set <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code> to <code class="docutils literal notranslate"><span class="pre">my_awesome_pi</span></code>, after a restart the Raspberry Pi is available at https://my_awesome_pi.local.</p>
+<p>By default, <em>ide49</em> advertises the Raspberry PI on the local network as <code class="docutils literal notranslate"><span class="pre">iot49.local</span></code>. This can be changed by changing the value of <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code> in the dashboard:</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home/.env49rc</span></code>, uncomment the line starting with <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">export</span> <span class="pre">DNS_NAME=</span> <span class="pre">...</span></code> and set the correct value. For example, if you set <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code> to <code class="docutils literal notranslate"><span class="pre">my_awesome_pi</span></code>, after restart the Raspberry Pi is available at https://my_awesome_pi.local.</p>
 <p><em>ide49</em> automatically issues a new certificate for the new domain name. If you have <a class="reference internal" href="https.html"><span class="doc std std-doc">exported the certificate</span></a> to the host from which you connect to the Raspberry Pi you need to export the new certificate.</p>
+<p><strong>Note:</strong> The Jupyter editor refuses to open that file. Use <span class="xref myst">Visual Studio Code</span> or <code class="docutils literal notranslate"><span class="pre">nano</span></code> from instead.</p>
+<p>If you did a custom install, you can alternatively change the value of fleet variable <code class="docutils literal notranslate"><span class="pre">TZ</span></code> in the <em>Balena dashboard</em>.</p>
+<div class="figure align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/device_variables.png"><img alt="../../_images/device_variables.png" src="../../_images/device_variables.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Editing device variables in the <em>Balena dashboard</em></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -495,16 +502,27 @@
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="backup.html" title="previous page">Backup</a>
-    <a class='right-next' id="next-link" href="https.html" title="next page">Https &amp; Certificates</a>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="timezone.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Timezone</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="https.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Https &amp; Certificates</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -520,8 +538,7 @@
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

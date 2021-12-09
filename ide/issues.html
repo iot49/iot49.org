@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Issues &#8212; Electronics for IoT</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,19 +31,19 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
         const thebe_selector_output = ".output"
@@ -56,7 +56,10 @@
     <link rel="next" title="GPIO" href="../projects/balance.html" />
     <link rel="prev" title="Customize ide49" href="app/customize.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -73,6 +76,10 @@
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
       <img src="../_static/logo.png" class="logo" alt="logo">
       
       
@@ -82,9 +89,9 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   ide49
  </span>
@@ -96,18 +103,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="install-custom.html">
-   Custom Install
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="getting-started.html">
    Getting Started
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="docs.html">
-   Documention
   </a>
  </li>
  <li class="toctree-l1 has-children">
@@ -225,7 +222,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Tours &amp; Projects
  </span>
@@ -242,47 +239,47 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/parts.html">
+    <a class="reference internal" href="../projects/balance/01_parts.html">
      Parts
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/circuit.html">
+    <a class="reference internal" href="../projects/balance/02_circuit.html">
      Circuit
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/code.html">
+    <a class="reference internal" href="../projects/balance/03_code.html">
      MicroPython Code
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/display.html">
+    <a class="reference internal" href="../projects/balance/04_display.html">
      Display
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/buttons.html">
+    <a class="reference internal" href="../projects/balance/05_buttons.html">
      Buttons
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/ble.html">
+    <a class="reference internal" href="../projects/balance/06_ble.html">
      Bluetooth
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/app.html">
+    <a class="reference internal" href="../projects/balance/07_app.html">
      Standalone App
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/hx711.html">
+    <a class="reference internal" href="../projects/balance/08_hx711.html">
      “Precision” Scale
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../projects/balance/ticks.html">
+    <a class="reference internal" href="../projects/balance/09_ticks.html">
      Time Intervals
     </a>
    </li>
@@ -459,44 +456,51 @@
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#no-esp-idf-idf-py-on-aarch64">
-   No
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     esp-idf/idf.py
-    </span>
-   </code>
-   on aarch64
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flashing-dfu-files-not-working">
-   Flashing DFU files not working
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mdns-for-local-domains-not-working">
-   mDNS for
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     .local
-    </span>
-   </code>
-   domains not working
+  <a class="reference internal nav-link" href="#known-problems">
+   Known Problems
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#workaround">
-     Workaround
+    <a class="reference internal nav-link" href="#no-esp-idf-idf-py-on-aarch64">
+     No
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       esp-idf/idf.py
+      </span>
+     </code>
+     on aarch64
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#solution">
-     Solution?
+    <a class="reference internal nav-link" href="#flashing-dfu-files-not-working">
+     Flashing DFU files not working
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mdns-for-local-domains-not-working">
+     mDNS for
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       .local
+      </span>
+     </code>
+     domains not working
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#workaround">
+       Workaround
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#solution">
+       Solution?
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -511,32 +515,41 @@
         
               <div>
                 
-  <div class="section" id="issues">
+  <div class="tex2jax_ignore mathjax_ignore section" id="issues">
 <h1>Issues<a class="headerlink" href="#issues" title="Permalink to this headline">¶</a></h1>
+<p>If you run into a problem or have a question, try an Internet search first and check the list of known issues below. If neither yields a solution, here are some options.</p>
+<ol class="simple">
+<li><p>Problems concerning online documentation of <em>ide49</em> or examples: In the documentation, click the cat icon near to top right and choose <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">issue</span></code> or <code class="docutils literal notranslate"><span class="pre">suggest</span> <span class="pre">edit</span></code>, as appropriate.</p></li>
+<li><p>Problems with <em>ide49</em>: Raise an issue at <a class="reference external" href="https://github.com/iot49/ide49">https://github.com/iot49/ide49</a>.</p></li>
+</ol>
+<p>Clearly describe what your problem is including your setup (e.g. what microcontroller you are using), steps to reproduce the issue, error messages, and what behavior you would expect. The clearer you are the more likely it is that someone can help you.</p>
+<p>If you have fixes or improvements consider submitting a pull request.</p>
+<div class="section" id="known-problems">
+<h2>Known Problems<a class="headerlink" href="#known-problems" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="no-esp-idf-idf-py-on-aarch64">
-<h2>No <code class="docutils literal notranslate"><span class="pre">esp-idf/idf.py</span></code> on aarch64<a class="headerlink" href="#no-esp-idf-idf-py-on-aarch64" title="Permalink to this headline">¶</a></h2>
+<h3>No <code class="docutils literal notranslate"><span class="pre">esp-idf/idf.py</span></code> on aarch64<a class="headerlink" href="#no-esp-idf-idf-py-on-aarch64" title="Permalink to this headline">¶</a></h3>
 <p>IDF not released for 64-Bit Linux. See <a class="reference external" href="https://github.com/espressif/esp-idf/issues/6432">https://github.com/espressif/esp-idf/issues/6432</a>.</p>
 </div>
 <div class="section" id="flashing-dfu-files-not-working">
-<h2>Flashing DFU files not working<a class="headerlink" href="#flashing-dfu-files-not-working" title="Permalink to this headline">¶</a></h2>
+<h3>Flashing DFU files not working<a class="headerlink" href="#flashing-dfu-files-not-working" title="Permalink to this headline">¶</a></h3>
 <p>Flashing DFU files (stm32) from the IDE is not working.</p>
 </div>
 <div class="section" id="mdns-for-local-domains-not-working">
-<h2>mDNS for <code class="docutils literal notranslate"><span class="pre">.local</span></code> domains not working<a class="headerlink" href="#mdns-for-local-domains-not-working" title="Permalink to this headline">¶</a></h2>
+<h3>mDNS for <code class="docutils literal notranslate"><span class="pre">.local</span></code> domains not working<a class="headerlink" href="#mdns-for-local-domains-not-working" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="workaround">
-<h3>Workaround<a class="headerlink" href="#workaround" title="Permalink to this headline">¶</a></h3>
+<h4>Workaround<a class="headerlink" href="#workaround" title="Permalink to this headline">¶</a></h4>
 <p>This sample code uses the <code class="docutils literal notranslate"><span class="pre">host</span></code> service (which supports mdns) to lookup the IP address and assigns it to the shell environment variable <code class="docutils literal notranslate"><span class="pre">OUT</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">service</span> host --out OUT
-ping -c 2 pi4server.local | awk -F&quot;[()]&quot; &#39;{print $2}&#39;
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span> <span class="o">--</span><span class="n">out</span> <span class="n">OUT</span>
+<span class="n">ping</span> <span class="o">-</span><span class="n">c</span> <span class="mi">2</span> <span class="n">pi4server</span><span class="o">.</span><span class="n">local</span> <span class="o">|</span> <span class="n">awk</span> <span class="o">-</span><span class="sa">F</span><span class="s2">&quot;[()]&quot;</span> <span class="s1">&#39;{print $2}&#39;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span><span class="nb">echo</span> <span class="nv">$OUT</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!echo $OUT
 </pre></div>
 </div>
 </div>
@@ -546,32 +559,58 @@ ping -c 2 pi4server.local | awk -F&quot;[()]&quot; &#39;{print $2}&#39;
 </div>
 </div>
 </div>
-<p>Optionally assign to CPython variable:</p>
+<p>Assign the recovered address to a CPython variable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">host</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%host
 out = !echo $OUT
 print(out)
+%store out
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;10.39.40.151&#39;]
+Stored &#39;out&#39; (SList)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">pico</span>
+
+<span class="o">%</span><span class="n">store</span> <span class="o">-</span><span class="n">r</span> <span class="n">out</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;out = </span><span class="si">{}</span><span class="s2">,  platform = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to pico @ serial:///dev/ttyUSB0</span>
+out = [&#39;10.39.40.151&#39;],  platform = esp32
 </pre></div>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="solution">
-<h3>Solution?<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h3>
+<h4>Solution?<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Discussion: <a class="reference external" href="https://forums.balena.io/t/dns-resolver-in-container/341650/3">https://forums.balena.io/t/dns-resolver-in-container/341650/3</a></p></li>
-<li><p>Proposed solution: <a class="reference external" href="https://github.com/balena-io-examples/balena-avahi">https://github.com/balena-io-examples/balena-avahi</a></p>
-<ul>
-<li><p>tried in the jupyter container, then it would not start</p></li>
 </ul>
-</li>
-</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">service</span> <span class="n">host</span>
+
+<span class="n">whoami</span>
+
+<span class="n">ls</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">dbus</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">system</span><span class="o">.</span><span class="n">d</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -585,30 +624,41 @@ print(out)
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "iot_kernel"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "iot_kernel",
             path: "./ide"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'iot_kernel'</script>
 
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="app/customize.html" title="previous page">Customize <em>ide49</em></a>
-    <a class='right-next' id="next-link" href="../projects/balance.html" title="next page">GPIO</a>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="app/customize.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Customize <em>ide49</em></p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="../projects/balance.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">GPIO</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -624,8 +674,7 @@ print(out)
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
