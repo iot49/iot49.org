@@ -1,7 +1,0 @@
-esp32:
-    uid: 30:ae:a4:30:84:34
-    path: internet
-    resources:
-        - secrets.py:
-            path: libs
-        - code
