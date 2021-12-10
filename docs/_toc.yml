@@ -55,6 +55,7 @@ parts:
     - file: projects/internet/wireshark
     - file: projects/internet/ota
     - file: projects/internet/encryption
+    - file: projects/internet/plotserver
   - file: projects/wifi-cop
     sections:
     - file: projects/wifi-cop/overview

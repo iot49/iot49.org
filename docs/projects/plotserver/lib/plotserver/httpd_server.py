@@ -90,7 +90,7 @@ class Redirect(BaseHTTPRequestHandler):
         with self.app_dict as apps:
             app = apps.get(app_name)
             if not app:
-                send_error(404, f"no such app, '{app_name}'")
+                self.send_error(404, f"no such app, '{app_name}'")
                 return
             self.send_response(302)
             target = self.app_url(app)

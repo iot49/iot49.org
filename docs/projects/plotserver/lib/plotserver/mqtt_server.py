@@ -33,7 +33,10 @@ class MqttServer:
         client.on_disconnect = self._on_disconnect
         client.message_callback_add(f"{TOPIC_ROOT}/start", self._on_start)
         client.message_callback_add(f"{TOPIC_ROOT}/shutdown", self._on_shutdown)
-        client.connect("mosquitto", port=1883, keepalive=60)
+        try:
+            client.connect("mosquitto", port=1883, keepalive=60)
+        except: # socket.gaierror:
+            client.connect("10.39.40.200", port=1883, keepalive=60)
         
     def loop_forever(self):
         self._mqttc.loop_forever()
