@@ -2,5 +2,6 @@ docs/_build
 mp/micropython
 mp/micropython-lib
 docs/projects/devices
+docs/projects
 .ipynb_checkpoints
 .svn
