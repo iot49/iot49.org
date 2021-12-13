@@ -7,8 +7,9 @@ micropython.alloc_emergency_exception_buf(100)
 def connect():
     """connect to wifi, get ntp time, advertise hostname (if not None)"""
     wlan = network.WLAN(network.STA_IF)
-    if wlan.isconnected(): return
+    if wlan.isconnected(): return True
     wlan.active(True)
+    # wlan.scan()   # improves connection reliability???
     print("Connecting to WLAN ... ", end="")
     wlan.connect(getattr(secrets, 'wifi_ssid', 'SSID'),
                  getattr(secrets, 'wifi_pwd', ''))
@@ -19,17 +20,17 @@ def connect():
     if not wlan.isconnected():
         print("Unable to connect to WiFi!")
         wlan.disconnect()
-        return
+        return False
     # set clock to local time
     tm = time.localtime(ntptime.time() + getattr(secrets, 'tz_offset', 0))
     print("time", tm)
     machine.RTC().datetime((tm[0], tm[1], tm[2], tm[6] + 1, tm[3], tm[4], tm[5], 0))
-    return 
+    return True
 
 # connect to WiFi
-connect()
+conneced = connect()
 
-if hasattr(secrets, 'webrepl_pwd'):
+if connected and hasattr(secrets, 'webrepl_pwd'):
     # start webrepl
     import webrepl
     webrepl.start()
