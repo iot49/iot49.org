@@ -483,6 +483,11 @@
    Secure Server
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wireshark">
+   Wireshark
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -984,36 +989,32 @@ sed &#39;1d; $d&#39; ssl/cert.crt &gt; code/ssl/cert.crt
 
     <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="n">res</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
-        <span class="n">client_s</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">client_addr</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">client_s</span><span class="p">,</span> <span class="n">client_addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
         <span class="c1"># CPython uses key keyfile/certfile arguments, but MicroPython uses key/cert</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">client_s</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">client_s</span><span class="p">,</span> <span class="n">server_side</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="n">cert</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error in wrap_socket:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="s2">&quot;(ignored)&quot;</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">----- Request&quot;</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
-        <span class="c1"># Both CPython and MicroPython SSLSocket objects support read() and</span>
-        <span class="c1"># write() methods.</span>
-        <span class="c1"># Browsers are prone to terminate SSL connection abruptly if they</span>
-        <span class="c1"># see unknown certificate, etc. We must continue in such case -</span>
-        <span class="c1"># next request they issue will likely be more well-behaving and</span>
-        <span class="c1"># will succeed.</span>
-        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">----- Request&quot;</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
+            <span class="c1"># Both CPython and MicroPython SSLSocket objects support read() and</span>
+            <span class="c1"># write() methods.</span>
+            <span class="c1"># Browsers are prone to terminate SSL connection abruptly if they</span>
+            <span class="c1"># see unknown certificate, etc. We must continue in such case -</span>
+            <span class="c1"># next request they issue will likely be more well-behaving and</span>
+            <span class="c1"># will succeed.</span>
             <span class="n">req</span> <span class="o">=</span> <span class="n">client_s</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
                 <span class="n">h</span> <span class="o">=</span> <span class="n">client_s</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">h</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">:</span>
                     <span class="k">break</span>
-                <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">req</span><span class="p">:</span>
                 <span class="n">client_s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">CONTENT</span> <span class="o">%</span> <span class="n">counter</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception serving request:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-        <span class="n">client_s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="nb">print</span><span class="p">()</span>
+            <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="nb">print</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;OSError&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">client_s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>            
 
 <span class="n">main</span><span class="p">()</span>
 </pre></div>
@@ -1026,66 +1027,54 @@ sed &#39;1d; $d&#39; ssl/cert.crt &gt; code/ssl/cert.crt
 <span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
 <span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
 Listening at https://10.39.40.168:8443/
-Error in wrap_socket: (-30592, &#39;MBEDTLS_ERR_SSL_FATAL_ALERT_MESSAGE&#39;) (ignored)
+OSError (-30592, &#39;MBEDTLS_ERR_SSL_FATAL_ALERT_MESSAGE&#39;)
+OSError (-30592, &#39;MBEDTLS_ERR_SSL_FATAL_ALERT_MESSAGE&#39;)
 
 ----- Request 1
-Exception serving request: [Errno 104] ECONNRESET
+GET / HTTP/1.1
+Host: 10.39.40.168:8443
+Connection: keep-alive
+Cache-Control: max-age=0
+sec-ch-ua: &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;96&quot;, &quot;Google Chrome&quot;;v=&quot;96&quot;
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: &quot;macOS&quot;
+DNT: 1
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Sec-Fetch-Site: cross-site
+Sec-Fetch-Mode: navigate
+Sec-Fetch-User: ?1
+Sec-Fetch-Dest: document
+Referer: https://server.local/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1
 
-Error in wrap_socket: (-30592, &#39;MBEDTLS_ERR_SSL_FATAL_ALERT_MESSAGE&#39;) (ignored)
+OSError (-30592, &#39;MBEDTLS_ERR_SSL_FATAL_ALERT_MESSAGE&#39;)
 
 ----- Request 2
-b&#39;&#39;
+GET /favicon.ico HTTP/1.1
+Host: 10.39.40.168:8443
+Connection: keep-alive
+sec-ch-ua: &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;96&quot;, &quot;Google Chrome&quot;;v=&quot;96&quot;
+DNT: 1
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36
+sec-ch-ua-platform: &quot;macOS&quot;
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: https://10.39.40.168:8443/
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1
 
 
 ----- Request 3
-b&#39;GET / HTTP/1.1\r\n&#39;
-b&#39;Host: 10.39.40.168:8443\r\n&#39;
-b&#39;Connection: keep-alive\r\n&#39;
-b&#39;Cache-Control: max-age=0\r\n&#39;
-b&#39;sec-ch-ua: &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;96&quot;, &quot;Google Chrome&quot;;v=&quot;96&quot;\r\n&#39;
-b&#39;sec-ch-ua-mobile: ?0\r\n&#39;
-b&#39;sec-ch-ua-platform: &quot;macOS&quot;\r\n&#39;
-b&#39;DNT: 1\r\n&#39;
-b&#39;Upgrade-Insecure-Requests: 1\r\n&#39;
-b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\r\n&#39;
-b&#39;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\n&#39;
-b&#39;Sec-Fetch-Site: cross-site\r\n&#39;
-b&#39;Sec-Fetch-Mode: navigate\r\n&#39;
-b&#39;Sec-Fetch-User: ?1\r\n&#39;
-b&#39;Sec-Fetch-Dest: document\r\n&#39;
-b&#39;Referer: https://server.local/\r\n&#39;
-b&#39;Accept-Encoding: gzip, deflate, br\r\n&#39;
-b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
-
-Error in wrap_socket: (-30592, &#39;MBEDTLS_ERR_SSL_FATAL_ALERT_MESSAGE&#39;) (ignored)
-
------ Request 4
-Exception serving request: [Errno 104] ECONNRESET
-
-
------ Request 5
-b&#39;GET /favicon.ico HTTP/1.1\r\n&#39;
-b&#39;Host: 10.39.40.168:8443\r\n&#39;
-b&#39;Connection: keep-alive\r\n&#39;
-b&#39;sec-ch-ua: &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;96&quot;, &quot;Google Chrome&quot;;v=&quot;96&quot;\r\n&#39;
-b&#39;DNT: 1\r\n&#39;
-b&#39;sec-ch-ua-mobile: ?0\r\n&#39;
-b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\r\n&#39;
-b&#39;sec-ch-ua-platform: &quot;macOS&quot;\r\n&#39;
-b&#39;Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8\r\n&#39;
-b&#39;Sec-Fetch-Site: same-origin\r\n&#39;
-b&#39;Sec-Fetch-Mode: no-cors\r\n&#39;
-b&#39;Sec-Fetch-Dest: image\r\n&#39;
-b&#39;Referer: https://10.39.40.168:8443/\r\n&#39;
-b&#39;Accept-Encoding: gzip, deflate, br\r\n&#39;
-b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
-
-
------ Request 6
-b&#39;GET / HTTP/1.1\r\n&#39;
-b&#39;Host: 10.39.40.168:8443\r\n&#39;
-b&#39;User-Agent: curl/7.68.0\r\n&#39;
-b&#39;Accept: */*\r\n&#39;
+GET / HTTP/1.1
+Host: 10.39.40.168:8443
+User-Agent: curl/7.68.0
+Accept: */*
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Interrupted
@@ -1094,11 +1083,20 @@ b&#39;Accept: */*\r\n&#39;
 </div>
 </div>
 <p>You’ll get a warning that the connection is not save. That’s simply because of the self-signed certificate - the browser does not know us and hence can ascertain that the certificate is legitimate. If you add it to the browser, the error disappears.</p>
-<p>Running</p>
+<p>Running (substitute the correct IP address)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --insecure -v https://10.39.40.168:8443/
 </pre></div>
 </div>
-<p>from the command line prints out a bit more information (and avoids the OSError). The <code class="docutils literal notranslate"><span class="pre">--insecure</span></code> flag is needed since <code class="docutils literal notranslate"><span class="pre">curl</span></code> doesn’t trust us in our capacity as “Certificate Authority”.</p>
+<p>from the command line prints information about the certificate (and avoids the OSError). The <code class="docutils literal notranslate"><span class="pre">--insecure</span></code> flag is needed since <code class="docutils literal notranslate"><span class="pre">curl</span></code> doesn’t trust us in our capacity as “Certificate Authority”.</p>
+</div>
+<div class="section" id="wireshark">
+<h2>Wireshark<a class="headerlink" href="#wireshark" title="Permalink to this headline">¶</a></h2>
+<p>But how do we know that the transmitted data is indeed encrypted and secure? We need a spy on the internet that intercepts and views packets.</p>
+<p><a class="reference external" href="https://www.wireshark.org/">Wireshark</a> is a program that does just that and it’s preinstalled in <em>ide49</em>. Go to the home screen and click on the blue shark fin.</p>
+<p>Highlight the wlan (<code class="docutils literal notranslate"><span class="pre">wlp3s0</span></code>) and enter <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">8080</span></code> as the capture filter. Then press the shark fin in the toolbar to start the capture. For a first test, start the unencrypted http server and run <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">http://10.39.40.168:8080/</span></code> (update the ip address). Wireshark will list all the captured packets and you can read <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">from</span> <span class="pre">MicroPython</span></code> in the clear. Anyone with access to the network can read your message.</p>
+<p><img alt="https" src="../../_images/http_capture.png" /></p>
+<p>Now stop Wireshark (press first the red square and then the tool with the cross) and change the capture filter <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">8443</span></code> and start the capture. Start the https server and run <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">--insecure</span> <span class="pre">-v</span> <span class="pre">https://10.39.40.168:8443/</span></code>. Now all packets are encrypted:</p>
+<p><img alt="https" src="../../_images/https_capture.png" /></p>
 </div>
 </div>
 
