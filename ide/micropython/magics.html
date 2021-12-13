@@ -354,7 +354,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../projects/wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -585,12 +585,12 @@ Automagic is ON, % prefix IS NOT needed for line magics.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.4 µs ± 44.4 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.5 µs ± 11.9 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 </pre></div>
 </div>
 </div>
 </div>
-<p>IPython magics have a number of features for exchanging data with Python (not supported in the IoT Kernel).</p>
+<p>IPython magics have a number of features for exchanging data with Python. These are available only in <code class="docutils literal notranslate"><span class="pre">%%host</span></code> cell magic sections.</p>
 <div class="section" id="shell-to-python">
 <h3>Shell to Python<a class="headerlink" href="#shell-to-python" title="Permalink to this headline">¶</a></h3>
 <p>To pass shell outputs to Python use</p>
@@ -1038,25 +1038,26 @@ Cell Magic:    -h shows help (e.g. %%connect -h)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>usage: %%service [-h] [--err ERR] [--out OUT] container
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>usage: %%service [-h] [--err ERR] [--out OUT] [-s SHELL] [-u USER] container
 
 Send code to bash in named container for execution
 
 positional arguments:
-  container   name of container to ssh into
+  container           name of container to ssh into
 
 optional arguments:
-  -h, --help  show this help message and exit
-  --err ERR   store stderr in shell environment variable
-  --out OUT   store stdout in shell environment variable
+  -h, --help          show this help message and exit
+  --err ERR           store stderr in shell environment variable
+  --out OUT           store stdout in shell environment variable
+  -s SHELL, --shell SHELL
+                      Shell to use in target container. Default: /bin/bash
+  -u USER, --user USER
+                      Username or UID (format: &lt;name|uid&gt;[:&lt;group|gid&gt;])
 
 This specifically supports docker/balena apps.
 
 Before running the instructions, the file .init_${container}.sh
 is sourced, if it exists. ${container} is the name of the service given.
-
-Note: Code submitted to bash for evaluation. Execution fails if 
-      container does not have bash installed.
 
 Example:
     %%service esp-idf

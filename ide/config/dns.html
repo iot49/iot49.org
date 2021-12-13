@@ -354,7 +354,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../projects/wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -471,8 +471,8 @@
 <p>By default, <em>ide49</em> advertises the Raspberry PI on the local network as <code class="docutils literal notranslate"><span class="pre">iot49.local</span></code>. This can be changed by changing the value of <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code> in the dashboard:</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home/.env49rc</span></code>, uncomment the line starting with <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">export</span> <span class="pre">DNS_NAME=</span> <span class="pre">...</span></code> and set the correct value. For example, if you set <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code> to <code class="docutils literal notranslate"><span class="pre">my_awesome_pi</span></code>, after restart the Raspberry Pi is available at https://my_awesome_pi.local.</p>
 <p><em>ide49</em> automatically issues a new certificate for the new domain name. If you have <a class="reference internal" href="https.html"><span class="doc std std-doc">exported the certificate</span></a> to the host from which you connect to the Raspberry Pi you need to export the new certificate.</p>
-<p><strong>Note:</strong> The Jupyter editor refuses to open that file. Use <span class="xref myst">Visual Studio Code</span> or <code class="docutils literal notranslate"><span class="pre">nano</span></code> from instead.</p>
-<p>If you did a custom install, you can alternatively change the value of fleet variable <code class="docutils literal notranslate"><span class="pre">TZ</span></code> in the <em>Balena dashboard</em>.</p>
+<p><strong>Note:</strong> The Jupyter editor refuses to open that file. Use <span class="xref myst">Visual Studio Code</span> instead.</p>
+<p>If you did a custom install, you can alternatively change the value of fleet variable <code class="docutils literal notranslate"><span class="pre">DNS_NAME</span></code> in the <em>Balena dashboard</em>.</p>
 <div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../../_images/device_variables.png"><img alt="../../_images/device_variables.png" src="../../_images/device_variables.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">Editing device variables in the <em>Balena dashboard</em></span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>

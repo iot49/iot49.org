@@ -354,7 +354,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../projects/wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -518,7 +518,7 @@
 <a class="reference internal image-reference" href="../../_images/app.png"><img alt="balena_app" src="../../_images/app.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 17 </span><span class="caption-text">Structure of a Docker application. A single Linux kernel is shared between the host and one or more user containers.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-<p>The balenaOS takes the function of the host operating system. Unlike other operating systems (Windows, MacOS, …), it is highly specialized to run individual services in so-called containers. In <em>ide49</em> containers include micropython, code-server, duplicati, etc.</p>
+<p>The balenaOS takes the function of the host operating system. Unlike other operating systems (Windows, MacOS, …), it is highly specialized to run individual services in so-called containers. In <em>ide49</em> available containers include micropython, code-server, duplicati, etc and more can be added over time to provide additional functionality.</p>
 <p>A set of <a class="reference external" href="https://github.com/iot49/ide49">configuration files</a> describes the application. The <a class="reference external" href="https://github.com/iot49/ide49/blob/main/docker-compose.yml">docker-compose.yml</a> file lists all user containers along with configuration parameters and information about how they interact. E.g. containers may be permitted to share files (<code class="docutils literal notranslate"><span class="pre">volumes</span></code>) or communicate over dedicated networks that are inaccessible from outside.</p>
 <p>Each container presents a separate instance of Linux, and usually implement just one function. This arrangement minimizes undesired interaction e.g. between incompatible libraries used in various application programs. It’s like having a separate computer for each task (code editor, backup, etc).</p>
 <p>The software installed in each container is described with a Dockerfile. For example, the first line in the Dockerfile for the <a class="reference external" href="https://github.com/iot49/ide49/blob/main/core/micropython/Dockerfile">micropython</a> specifies that this service is derived from a slightly customized version of an “official” <a class="reference external" href="https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html#jupyter-scipy-notebook">Jupyter docker image</a>. This image is based on Ubuntu Linux and includes, notably, the Jupyter Notebook server as well as a host of libraries for scientific computation and plotting. Following the FROM statement are instructions for installing additional software and configuration files including the IoT Kernel used for interacting with the MicroPython REPL.</p>
@@ -955,6 +955,7 @@ balena_supervisor
 </div>
 </div>
 </div>
+<p>Unlike other containers, the <code class="docutils literal notranslate"><span class="pre">micropython</span></code> service is member of the host network to enable access to bluetooth (if available). It also means servers (e.g. webservers) running in the <code class="docutils literal notranslate"><span class="pre">micropython</span></code> container can be accessed from from the internet without password protection and encryption from <code class="docutils literal notranslate"><span class="pre">nginx</span></code>. This is convenient for development but also poses a security risk especially if the device is not behind a firewall (as e.g. provided by a home router).</p>
 </div>
 <div class="section" id="storage">
 <h2>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h2>
@@ -962,8 +963,8 @@ balena_supervisor
 <div class="section" id="owned-by-the-container">
 <h3>Owned by the container<a class="headerlink" href="#owned-by-the-container" title="Permalink to this headline">¶</a></h3>
 <p>That’s the default and includes all operating system related files, installed software (compilers, etc).</p>
-<p>Although it’s possible to make changes (e.g. with <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> run inside the container), those changes do not persist between updates and hence should be avoided. Best practice is not to modify files “owned” by the container.</p>
-<p>This part of storage is “private” to the container and invisible from other containers in the same app.</p>
+<p>Although it’s possible to make changes (e.g. with <code class="docutils literal notranslate"><span class="pre">apt-get</span></code> run inside the container), those changes do not persist between updates and hence should be limited to testing new features. A better solution is to instead modify the <em>ide49</em> app, per instruction in the next section.</p>
+<p>This part of storage is “private” to the container and invisible from other containers in the same app (e.g. <em>ide49</em>).</p>
 </div>
 <div class="section" id="mounted-into-the-container-volumes">
 <h3>Mounted into the container (volumes)<a class="headerlink" href="#mounted-into-the-container-volumes" title="Permalink to this headline">¶</a></h3>
@@ -976,13 +977,13 @@ balena_supervisor
 <h3>Samba fileshare<a class="headerlink" href="#samba-fileshare" title="Permalink to this headline">¶</a></h3>
 <p>In addition to the types of storage discussed above, <em>ide49</em> can also be configured to mount <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code> from a Samba file server.</p>
 <p>Uses include sharing the same data between several <em>ide49</em> instances or in situations where a shared file server, perhaps with centralized backup, is preferred.</p>
-<p>For convenience, the entire home directory (<code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>) is mounted. This can cause some undesired behavior. For example, databases frequently use status files (e.g. locks) used by the running instance. Sharing those with another device (running perhaps a different instance of the same database) results in conflicts.</p>
+<p>For convenience, the entire home directory (<code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>) is mounted. This can cause some undesired behavior. For example, databases frequently use status files (e.g. locks) used by the running instance. Sharing those with another device (running perhaps a different instance of the same database) can result in conflicts.</p>
 <p>To prevent this, the local iot volume is always available at <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home</span></code>. Unlike <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>, this copy is never “hidden” by a Samba mount. <em>ide49</em> is configured to store status information (e.g. for <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>) in <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home</span></code> rather than <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>.</p>
 </div>
 <div class="section" id="mounts">
 <h3>Mounts<a class="headerlink" href="#mounts" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">duplicati</span></code> service automtically mounts USB storage devices at <code class="docutils literal notranslate"><span class="pre">/mnt</span></code>. These devices can also be manually mounted in the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> container following standard Linux practice. Avoid simultaneous access of the same storage device from multiple containers to avoid data corruption.</p>
-<p>Adapt the sample script to your situation.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">duplicati</span></code> service automtically mounts USB storage devices at <code class="docutils literal notranslate"><span class="pre">/mnt</span></code>. These devices can also be manually mounted in other containers (e.g. <code class="docutils literal notranslate"><span class="pre">micropython</span></code>). Avoid simultaneous access of the same storage device from multiple containers to avoid data corruption.</p>
+<p>Below is an example of mounting an attached device (e.g. USB thumb drive).</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>

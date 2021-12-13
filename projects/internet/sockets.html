@@ -354,7 +354,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -589,7 +589,7 @@ Vary: Accept-Encoding
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">client_sock</span><span class="p">,</span> <span class="n">client_addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
 
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Request from&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">client_addr</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Request from&quot;</span><span class="p">,</span> <span class="n">client_addr</span><span class="p">)</span>
             <span class="n">req</span> <span class="o">=</span> <span class="n">client_sock</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Request:&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
@@ -612,7 +612,7 @@ Vary: Accept-Encoding
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Listening, connect your browser to http://10.39.40.168:8080/
-Request from
+Request from (&#39;10.39.40.114&#39;, 50287)
 
 Request:
 b&#39;GET / HTTP/1.1\r\n&#39;
@@ -625,7 +625,7 @@ b&#39;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,i
 b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
 b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
 
-Request from
+Request from (&#39;10.39.40.114&#39;, 50288)
 
 Request:
 b&#39;GET /favicon.ico HTTP/1.1\r\n&#39;
@@ -638,7 +638,7 @@ b&#39;Referer: http://10.39.40.168:8080/\r\n&#39;
 b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
 b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
 
-Request from
+Request from (&#39;10.39.40.114&#39;, 50289)
 
 Request:
 b&#39;GET / HTTP/1.1\r\n&#39;
@@ -652,7 +652,7 @@ b&#39;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,i
 b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
 b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
 
-Request from
+Request from (&#39;10.39.40.114&#39;, 50290)
 
 Request:
 b&#39;GET /favicon.ico HTTP/1.1\r\n&#39;
@@ -664,6 +664,14 @@ b&#39;Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8\r
 b&#39;Referer: http://10.39.40.168:8080/\r\n&#39;
 b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
 b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
+
+Request from (&#39;10.39.40.200&#39;, 57106)
+
+Request:
+b&#39;GET / HTTP/1.1\r\n&#39;
+b&#39;Host: 10.39.40.168:8080\r\n&#39;
+b&#39;User-Agent: curl/7.68.0\r\n&#39;
+b&#39;Accept: */*\r\n&#39;
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Interrupted
@@ -1082,7 +1090,7 @@ Accept: */*
 </div>
 </div>
 </div>
-<p>You’ll get a warning that the connection is not save. That’s simply because of the self-signed certificate - the browser does not know us and hence can ascertain that the certificate is legitimate. If you add it to the browser, the error disappears.</p>
+<p>You’ll get a warning that the connection is not private. That’s because of the self-signed certificate - the browser does not know us and hence can ascertain that the certificate is legitimate. If you add it to the browser, the error disappears.</p>
 <p>Running (substitute the correct IP address)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --insecure -v https://10.39.40.168:8443/
 </pre></div>

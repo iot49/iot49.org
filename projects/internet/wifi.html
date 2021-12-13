@@ -354,7 +354,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -522,7 +522,7 @@
 <span class="n">openweathermap_apiid</span> <span class="o">=</span> <span class="s2">&quot;1c336ac61add531d32b73af8f2b&quot;</span>
 </pre></div>
 </div>
-<p>Now create or update a device description (don’t forget to update the uid to match your microcontroller):</p>
+<p>Now create or update a device description (don’t forget to update the uid to match your microcontroller). In addition to <code class="docutils literal notranslate"><span class="pre">secrets.py</span></code> it also includes code used elsewhere in this guide.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/esp32.yaml
@@ -704,14 +704,8 @@ round-trip min/avg/max/stddev = 49.519/132.087/217.643/68.669 ms
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(2021, 8, 1, 20, 27, 17, 6, 213)
-</pre></div>
 </div>
-</div>
-</div>
-<p>Well, that was a while ago …</p>
-<p>Let’s fix this.</p>
+<p>Let’s fetch the current time from the internet.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">ntptime</span><span class="o">,</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">machine</span><span class="o">,</span> <span class="nn">secrets</span>
@@ -891,7 +885,7 @@ connected to webrepl
 </div>
 <div class="section" id="boot-py">
 <h2><a class="reference external" href="http://boot.py">boot.py</a><a class="headerlink" href="#boot-py" title="Permalink to this headline">¶</a></h2>
-<p>To automatically connect the ESP32 whenever it boots, place the instructions in a file <code class="docutils literal notranslate"><span class="pre">boot.py</span></code>. MicroPython executes this file whenever it starts.</p>
+<p>To automatically connect the ESP32 whenever it boots, place the instructions in a file <code class="docutils literal notranslate"><span class="pre">boot.py</span></code> stored in the root directory of the microcontroller. MicroPython executes this file whenever it starts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/internet/code/boot.py

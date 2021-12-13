@@ -354,7 +354,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../projects/wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -468,7 +468,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="docker-app">
 <h1>Docker App<a class="headerlink" href="#docker-app" title="Permalink to this headline">¶</a></h1>
-<p><em>ide49</em> is a docker application, consisting of several containers, loosely coupled via shared data and a dedicated internal network. Each has its own copy of Linux, avoiding incompatibilites, e.g. from different libraries.</p>
+<p><em>ide49</em> is a docker application, consisting of several containers, loosely coupled via shared data and a dedicated internal network. The all share a single Linux kernel, but each container has its own copy of programs, avoiding incompatibilities, e.g. due to different libraries.</p>
 <p>Customization - both modifying existing features and adding new ones - can be done easily, right from within <em>ide49</em>.</p>
 <p>This section gives a brief overview of the <em>ide49</em> docker application and specific <a class="reference internal" href="app/customize.html"><span class="doc std std-doc">instructions</span></a> to customize it. In-depth documentation is available at the <a class="reference external" href="https://docs.docker.com/">Docker</a> and <a class="reference external" href="https://www.balena.io/docs">Balena</a> websites.</p>
 <div class="toctree-wrapper compound">

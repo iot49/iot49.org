@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="RPC" href="rpc.html" />
-    <link rel="prev" title="Approach" href="overview.html" />
+    <link rel="prev" title="Overview" href="overview.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -354,7 +354,7 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -553,6 +553,45 @@ Cloning into &#39;micropython-lib&#39;...
 </div>
 </div>
 </div>
+<p>Download the custom modules:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+cd $IOT
+svn checkout https://github.com/iot49/iot49.org/trunk/mp
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>A    mp/boards
+A    mp/boards/ADAFRUIT_F405_IOT
+A    mp/boards/ADAFRUIT_F405_IOT/bdev.c
+A    mp/boards/ADAFRUIT_F405_IOT/board.json
+A    mp/boards/ADAFRUIT_F405_IOT/board_init.c
+A    mp/boards/ADAFRUIT_F405_IOT/mpconfigboard.h
+A    mp/boards/ADAFRUIT_F405_IOT/mpconfigboard.mk
+A    mp/boards/ADAFRUIT_F405_IOT/pins.csv
+A    mp/boards/ADAFRUIT_F405_IOT/stm32f4xx_hal_conf.h
+A    mp/modules
+A    mp/modules/finaliserproxy
+A    mp/modules/finaliserproxy/finaliserproxy.c
+A    mp/modules/finaliserproxy/micropython.cmake
+A    mp/modules/finaliserproxy/micropython.mk
+A    mp/modules/ioctl
+A    mp/modules/ioctl/ioctl.c
+A    mp/modules/ioctl/micropython.cmake
+A    mp/modules/ioctl/micropython.mk
+A    mp/modules/micropython.cmake
+A    mp/modules/msgpack
+A    mp/modules/msgpack/micropython.cmake
+A    mp/modules/msgpack/micropython.mk
+A    mp/modules/msgpack/msgpack.c
+Checked out revision 150.
+</pre></div>
+</div>
+</div>
+</div>
 <p>Find the port of the connected microcontroller (for flashing):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -719,7 +758,7 @@ Done
 <h2>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h2>
 <p>Now let’s add msgpack to the client. In this example I am using an <a class="reference external" href="https://www.adafruit.com/product/4382">STM32F405 from Adafruit</a>.</p>
 <p>The default board description that comes with MicroPython, ADAFRUIT_F405_EXPRESS, stores the file system in the internal flash of the processor with limited space available. The custom version, ADAFRUIT_F405_IOT, instead uses the external QSPI flash with 2MBytes capacity. It also disables including the <code class="docutils literal notranslate"><span class="pre">usocket</span></code> and <code class="docutils literal notranslate"><span class="pre">network</span></code> modules which the wifi coprocessor software replaces.</p>
-<p>If you use a different processor update the BOARD variable.</p>
+<p>Change the BOARD variable if you use a different processor.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service arm32
@@ -1367,7 +1406,7 @@ DONE
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Approach</p>
+            <p class="prev-next-title">Overview</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="rpc.html" title="next page">

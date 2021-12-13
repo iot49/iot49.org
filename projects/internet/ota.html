@@ -354,7 +354,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -538,9 +538,10 @@ active partition: ota_1
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
 
 <span class="n">cd</span> <span class="o">~/</span><span class="n">micropython</span><span class="o">/</span><span class="n">ports</span><span class="o">/</span><span class="n">esp32</span><span class="o">/</span><span class="n">build</span><span class="o">-</span><span class="n">GENERIC_OTA</span><span class="o">/</span>
-<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/.</span><span class="n">html</span><span class="o">/</span><span class="n">ota</span>
-<span class="n">cp</span> <span class="n">micropython</span><span class="o">.</span><span class="n">bin</span> <span class="o">~/.</span><span class="n">html</span><span class="o">/</span><span class="n">ota</span>
-<span class="n">cp</span> <span class="n">micropython</span><span class="o">.</span><span class="n">sha</span> <span class="o">~/.</span><span class="n">html</span><span class="o">/</span><span class="n">ota</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">service</span><span class="o">-</span><span class="n">config</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">ota</span>
+<span class="n">cd</span> <span class="o">/</span><span class="n">service</span><span class="o">-</span><span class="n">config</span><span class="o">/</span><span class="n">nginx</span><span class="o">/</span><span class="n">html</span><span class="o">/</span><span class="n">ota</span>
+<span class="n">cp</span> <span class="n">micropython</span><span class="o">.</span><span class="n">bin</span> <span class="o">.</span>
+<span class="n">cp</span> <span class="n">micropython</span><span class="o">.</span><span class="n">sha</span> <span class="o">.</span>
 </pre></div>
 </div>
 </div>
@@ -562,7 +563,7 @@ active partition: ota_1
 </div>
 </div>
 </div>
-<p>Download the “new” firmware:</p>
+<p>Download the “new” firmware (edit the server url):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ota32</span> <span class="kn">import</span> <span class="n">OTA</span><span class="p">,</span> <span class="n">open_url</span>

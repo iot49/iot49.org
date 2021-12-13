@@ -354,7 +354,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../projects/wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -471,7 +471,7 @@
 <p><em>ide49</em> can optionally act as a <a class="reference external" href="https://en.wikipedia.org/wiki/Samba_(software)">Samba/CIFS</a> file server or client. When configured as a server, it exports the <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code> folder. Conversely, when set as client it mounts <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>.</p>
 <p>Applications include exporting to another machine (e.g. a laptop) to easily exchange files. If you have several computers running <em>ide49</em> you can dedicate one as server and the other as clients.</p>
 <p>To enable the Samba server, edit the appropriate variables in <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home/.env49rc</span></code>. Set <code class="docutils literal notranslate"><span class="pre">SAMBA=server</span></code> or <code class="docutils literal notranslate"><span class="pre">client</span></code>, specify the correct IP address of the server, and choose a strong password.</p>
-<p><strong>Note:</strong> The Jupyter editor refuses to open that file. Use <span class="xref myst">Visual Studio Code</span> or <code class="docutils literal notranslate"><span class="pre">nano</span></code> from instead.</p>
+<p><strong>Note:</strong> The Jupyter editor refuses to open that file. Use <span class="xref myst">Visual Studio Code</span> instead.</p>
 <p>If you did a custom install, you can alternatively change the value of fleet variable <code class="docutils literal notranslate"><span class="pre">TZ</span></code> in the <em>Balena dashboard</em>.</p>
 <div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../../_images/device_variables.png"><img alt="../../_images/device_variables.png" src="../../_images/device_variables.png" style="width: 500px;" /></a>

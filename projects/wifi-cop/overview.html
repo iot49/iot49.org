@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Approach &#8212; Electronics for IoT</title>
+    <title>Overview &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -354,7 +354,7 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -466,8 +466,8 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="approach">
-<h1>Approach<a class="headerlink" href="#approach" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <p>These are the key components of the WiFi co-processor:</p>
 <ul class="simple">
 <li><p><strong>Software on ESP32:</strong> MicroPython. No need to reinvent the wheel. And it’s guaranteed MicroPython compatible.</p></li>
@@ -475,7 +475,7 @@
 <li><p><strong>Data Encoding:</strong> <a class="reference external" href="https://msgpack.org/">MessagePack</a> is used to encode Python objects sent between the ESP32 and the target.</p></li>
 <li><p><strong>Bus:</strong> We use a <a class="reference external" href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter">UART</a> to send data between the processors. It’s widely available on virtually all microcontrollers, requires only two wires, and is symmetrical: both endpoints can communicate at any time without complex handshaking. Most microcontrollers support baud rates up to and in excess of 1Mbps, sufficient for communication not to be the bottleneck in this application.</p></li>
 </ul>
-<p>The examples use an STM32 with an ESP32, specifically an <a class="reference external" href="https://www.adafruit.com/product/4382">Adafruit STM32F40F Feather</a> and an <a class="reference external" href="https://www.adafruit.com/product/3405">Adafruit HUZZAH32 – ESP32 Feather Board</a> stacked on top. I keep all connections except the 3V and LED outputs. Other combinations work, just make sure to correctly cross wire the UART RX and TX of the processors (i.e. RX to TX).</p>
+<p>The examples use an STM32 with an ESP32, specifically an <a class="reference external" href="https://www.adafruit.com/product/4382">Adafruit STM32F40F Feather</a> and an <a class="reference external" href="https://www.adafruit.com/product/3405">Adafruit HUZZAH32 – ESP32 Feather Board</a> stacked on top. I keep all connections except the 3V and LED outputs. Other board combinations work also, of course.</p>
 <p>Device configuration:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

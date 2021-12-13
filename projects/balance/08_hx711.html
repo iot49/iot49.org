@@ -356,7 +356,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -501,7 +501,7 @@
 \[
     D_\textrm{out} = \frac{v_\textrm{bridge}}{V_\textrm{ref}} = S \times \frac{V_\textrm{s}}{V_\textrm{ref}}
 \]</div>
-<p>Let’s assume that <span class="math notranslate nohighlight">\(V_\textrm{s}\)</span> is the voltage of the battery powering the scale and <span class="math notranslate nohighlight">\(V_\textrm{ref}V_\textrm{ref}\)</span> is a constant precision reference voltage. As the battery voltage decreases over time, the ratio <span class="math notranslate nohighlight">\(V_\textrm{s}/V_\textrm{ref}\)</span> decreases, resulting in a gain error.</p>
+<p>Let’s assume that <span class="math notranslate nohighlight">\(V_\textrm{s}\)</span> is the voltage of the battery powering the scale and <span class="math notranslate nohighlight">\(V_\textrm{ref}V_\textrm{ref}\)</span> is a constant precision reference voltage. As the battery voltage decreases over time, the ratio <span class="math notranslate nohighlight">\(V_\textrm{s}/V_\textrm{ref}\)</span> decreases, resulting in a gain error and consequent incorrect measured weight.</p>
 <p>This and a host of other errors are avoided if <span class="math notranslate nohighlight">\(V_\textrm{s}=V_\textrm{ref}\)</span>.</p>
 <p>Integrated circuits for reading bridge outputs such as the <a class="reference external" href="https://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdfhttps://cdn.sparkfun.com/datasheets/Sensors/ForceFlex/hx711_english.pdf">HX711</a> include all the necessary circuits, including the amplifier and ADC.</p>
 <p>Let’s modify our scale to use an <a class="reference external" href="https://www.sparkfun.com/products/13879https://www.sparkfun.com/products/13879">HX711 breakout board</a>. Connect the <span class="math notranslate nohighlight">\(V_\mathrm{DD}\)</span> and <span class="math notranslate nohighlight">\(V_\mathrm{CC}\)</span> pins to <code class="docutils literal notranslate"><span class="pre">VUSB</span></code> of the ESP32 and <code class="docutils literal notranslate"><span class="pre">GND</span></code> to ground. Note that although the breakout board states a minimum supply of just 2.7V and hence operation from a single cell rechargable Lithium battery, doing so requires changing the feedback resistors, <span class="math notranslate nohighlight">\(R_1\)</span> and/or <span class="math notranslate nohighlight">\(R_2\)</span>. Tie <code class="docutils literal notranslate"><span class="pre">DAT</span></code> and <code class="docutils literal notranslate"><span class="pre">CLK</span></code> to two used pins of the ESP32. The code below assumes 12 and 27, respectively.</p>

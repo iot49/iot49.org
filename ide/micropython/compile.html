@@ -354,7 +354,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../projects/wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -503,7 +503,7 @@
 <h1>Compile<a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h1>
 <p>The need to compile the MicroPython interpreter arises frequently, for example to <a class="reference external" href="https://docs.micropython.org/en/latest/reference/packages.html?highlight=freeze">“freeze” pre-compiled Python code</a> into the interpreter or <a class="reference external" href="https://docs.micropython.org/en/latest/develop/extendingmicropython.html">add new features</a>.</p>
 <p>Below we briefly outline the steps for compiling MicroPython in <em>ide49</em>.</p>
-<p><strong>Note:</strong> Compiling for the ESP32 is is <a class="reference external" href="https://github.com/espressif/esp-idf/issues/6432">not yet available</a> for 64-Bit ARM cpus (Raspberry PI).</p>
+<p><strong>Note:</strong> At the time of writing, compiling for the ESP32 is is <a class="reference external" href="https://github.com/espressif/esp-idf/issues/6432">not yet available</a> for 64-Bit ARM CPUs (Raspberry PI).</p>
 <div class="section" id="clone-micropython">
 <h2>Clone MicroPython<a class="headerlink" href="#clone-micropython" title="Permalink to this headline">¶</a></h2>
 <p>Download from github or update an existing copy.</p>
@@ -551,9 +551,8 @@ Already up to date.
 </div>
 <div class="section" id="mpy-cross">
 <h2>mpy-cross<a class="headerlink" href="#mpy-cross" title="Permalink to this headline">¶</a></h2>
-<p>Follow the instructions at <a class="reference external" href="https://github.com/micropython/micropython">MicroPython github repository</a>.</p>
-<p>The first step is to compile the MicroPython cross-compiler.</p>
-<p><strong>Note:</strong> The cross-compiler is installed in a separate container, <code class="docutils literal notranslate"><span class="pre">arm32</span></code>, accessed via the the <code class="docutils literal notranslate"><span class="pre">%%service</span></code> magic. Alternatively you can login to the <span class="xref myst">arm32 service</span> and open a terminal to run commands.</p>
+<p>Follow the instructions at <a class="reference external" href="https://github.com/micropython/micropython">MicroPython github repository</a>. The first step is to compile the MicroPython cross-compiler.</p>
+<p><strong>Note:</strong> The compiler is installed in a separate container, <code class="docutils literal notranslate"><span class="pre">arm32</span></code>, accessed via the the <code class="docutils literal notranslate"><span class="pre">%%service</span></code> magic. Alternatively you can login to the <span class="xref myst">arm32 service</span> at <a class="reference external" href="http://iot49.local/arm32">http://iot49.local/arm32</a> and open a terminal to run commands.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service arm32
@@ -718,7 +717,7 @@ LINK mpy-cross
 <div class="section" id="arm-ports">
 <h2>ARM Ports<a class="headerlink" href="#arm-ports" title="Permalink to this headline">¶</a></h2>
 <p>The example below is for the <em>stm32</em> port. The procedure for other ports is similar, follow the instructions for the particular port on the <a class="reference external" href="https://github.com/micropython/micropython">MicroPython github repository</a>.</p>
-<p>The arm32 cross compiler is installed in container with the same name. Access it from the IoT Kernel using the <code class="docutils literal notranslate"><span class="pre">%%service</span></code> magic. You can also get a <span class="xref myst">console</span> at <a class="reference external" href="http://iot49.local/arm32">http://iot49.local/arm32</a>.</p>
+<p>The arm32 cross compiler is installed in container with the same name. Access it from the IoT Kernel using the <code class="docutils literal notranslate"><span class="pre">%%service</span></code> magic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service arm32

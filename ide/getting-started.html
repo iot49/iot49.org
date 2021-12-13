@@ -354,7 +354,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../projects/wifi-cop/overview.html">
-     Approach
+     Overview
     </a>
    </li>
    <li class="toctree-l2">
@@ -504,7 +504,7 @@
 <p>Point your browser to <a class="reference external" href="http://iot49.org">http://iot49.org</a> to load a list of available tools and a short description. Click on the icon to activate a particular tool.</p>
 <div class="figure align-default" id="id1">
 <a class="reference internal image-reference" href="../_images/ide49_landing.png"><img alt="../_images/ide49_landing.png" src="../_images/ide49_landing.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text"><em>iot49</em> landing page</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text"><em>iot49</em> homepage</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>We’ll start with a demonstration of MicroPython programming with <em>ide49</em>. Click the MicroPython icon (the black “M”). You will get a warning similar to:</p>
 <div class="figure align-default" id="id2">
@@ -515,7 +515,7 @@
 <p>Click “Advanced” and then “proceed anyway”.</p>
 <p>At the login window, enter the default username and password (both <em>iot49</em>; <a class="reference internal" href="config/password.html"><span class="doc std std-doc">instructions for changing</span></a>).</p>
 <div class="figure align-default" id="id3">
-<a class="reference internal image-reference" href="../_images/jupyter.png"><img alt="../_images/jupyter.png" src="../_images/jupyter.png" style="width: 350px;" /></a>
+<a class="reference internal image-reference" href="../_images/jupyter.png"><img alt="../_images/jupyter.png" src="../_images/jupyter.png" style="width: 450px;" /></a>
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Jupyterlab with IoT Kernel for MicroPython programming</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p>What you see is a “standard” <a class="reference external" href="https://jupyter.org/"><em>Jupyter Lab</em></a> environment. <em>Jupyter</em> is a versatile environment for programming with Python (and other languages). The left pane is a file browser. The main window shows available tool. Under the <code class="docutils literal notranslate"><span class="pre">Notebook</span></code> heading, <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3</span> <span class="pre">(ipykernel)</span></code> is for programming on the host while <code class="docutils literal notranslate"><span class="pre">IoT</span></code> is used for MicroPython. Under <code class="docutils literal notranslate"><span class="pre">Other</span></code>, <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> is a bash console, and can be used for example to access the MicroPython REPL. The other icons are for creating new files of various types. Peruse online documentation and tutorials for more information about <em>Jupyter Lab</em>.</p>
@@ -660,7 +660,7 @@ pico:
 </div>
 <div class="section" id="shutdown-and-restart">
 <h2>Shutdown and Restart<a class="headerlink" href="#shutdown-and-restart" title="Permalink to this headline">¶</a></h2>
-<p>If you want to power off your device, don’t just pull the power cord. Although BalenaOS takes many precautions designed to avoid corrupting the flash (SD Card), bad things can still happen.</p>
+<p>If you want to power off your device, don’t just pull the power cord. Although BalenaOS takes many precautions to avoid corruption of the flash memory (e.g. SD Card), bad things can happen.</p>
 <p>To safely shut down, execute this code:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -670,7 +670,7 @@ pico:
 </div>
 </div>
 </div>
-<p>Now you can pull the plug. Depending on the device, you reapplying power may be sufficient to boot back up, but you may also need to press some button.</p>
+<p>Now you can remove power. Depending on the device, reapplying power may be sufficient to boot back up, but you may also need to press a button.</p>
 <p>This instruction restarts the device:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -684,7 +684,7 @@ pico:
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
-<p>The <span class="xref myst">documentation</span> has many examples of programming with <code class="docutils literal notranslate"><span class="pre">ide49</span></code>, as well as instructions for configuring the IDE (e.g. changing the password). You will also find examples for flashing new MicroPython binaries to your microcontrollers and compiling (custom) versions if MicroPython - all right from within <em>ide49</em>. For the adventurous there is even a section on the <em>ide49</em> docker app, and how to modify it.</p>
+<p>The documentation has many examples of programming with <code class="docutils literal notranslate"><span class="pre">ide49</span></code>, as well as instructions for configuring the IDE (e.g. changing the password). You will also find examples for flashing new MicroPython binaries to your microcontrollers and compiling (custom) versions if MicroPython - all right from within <em>ide49</em>. For the adventurous there is even a section on the <em>ide49</em> docker app, and how to modify it.</p>
 <p>If you run into problems or find a bug (never), head over to the section <code class="docutils literal notranslate"><span class="pre">Issues</span></code> in the documentation.</p>
 <p>Happy coding!</p>
 </div>
