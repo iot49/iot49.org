@@ -726,8 +726,7 @@ Vary: Accept-Encoding
 <h2>Secure Server<a class="headerlink" href="#secure-server" title="Permalink to this headline">¶</a></h2>
 <p>Secure webservers use a certificate and a private key to encrypt data and “prove” their identity to the web client (e.g. browser).</p>
 <p>The certificate contains the domain name of the server. Since our ESP32 does not have a domain name we’ll use the IP address instead.</p>
-<p>The step below are a somewhat contorted way to get the IP address from the ESP32 to the host without copy and paste (which would work also and be much simpler).</p>
-<p>First we find the IP address of the microcontroller and save it in the jupyter store to access it later from bash. Let’s get it it on the microcontroller and store it to a variable:</p>
+<p>The step below are a somewhat contorted way to get the IP address from the ESP32 to the host without copy and paste (which would work also and be much simpler but not as “clever”).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">network</span>
@@ -771,7 +770,7 @@ echo &quot;microcontroller IP:&quot; $my_ip
 </div>
 </div>
 <p>Now we are ready to create a certificate.</p>
-<p>Let’s collect all relevant information in a configuration file from which the certificate and key will be generated. Change the values in the <code class="docutils literal notranslate"><span class="pre">[req_distinguished_name]</span></code> section if you wish (the defaults are ok). Note that we embed the IP address from the microcontroller in the certificate specification. This is necessary for the client can verify the server.</p>
+<p>Let’s collect all relevant information in a configuration file from which the certificate and key will be generated. Change the values in the <code class="docutils literal notranslate"><span class="pre">[req_distinguished_name]</span></code> section if you wish. They are just for information. Note that we embed the IP address from the microcontroller in the certificate specification. This is necessary so the client can verify the server.</p>
 <p>I found this <a class="reference external" href="https://www.baeldung.com/openssl-self-signed-cert">guide</a> helpful.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1094,11 +1093,12 @@ b&#39;Accept: */*\r\n&#39;
 </div>
 </div>
 </div>
+<p>You’ll get a warning that the connection is not save. That’s simply because of the self-signed certificate - the browser does not know us and hence can ascertain that the certificate is legitimate. If you add it to the browser, the error disappears.</p>
 <p>Running</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --insecure -v https://10.39.40.168:8443/
 </pre></div>
 </div>
-<p>from the command line prints out a bit more information (and avoids the OSError).</p>
+<p>from the command line prints out a bit more information (and avoids the OSError). The <code class="docutils literal notranslate"><span class="pre">--insecure</span></code> flag is again needed since <code class="docutils literal notranslate"><span class="pre">curl</span></code> doesn’t trust us in our capacity as “Certificate Authority”.</p>
 </div>
 </div>
 
