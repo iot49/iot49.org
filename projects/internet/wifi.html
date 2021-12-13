@@ -147,6 +147,11 @@
      Samba File Server/Client
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/mosquitto.html">
+     Mosquitto MQTT Broker
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -459,6 +464,11 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ssid-and-passwords">
+   SSID and Passwords
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#connecting">
    Connecting
   </a>
@@ -492,20 +502,79 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="wifi">
 <h1>WiFi<a class="headerlink" href="#wifi" title="Permalink to this headline">¶</a></h1>
 <p>Some microcontrollers come with built-in WiFi radios. Others use coprocessors for this purpose.</p>
-<div class="section" id="connecting">
-<h2>Connecting<a class="headerlink" href="#connecting" title="Permalink to this headline">¶</a></h2>
-<p>The built-in help for the ESP32 shows the code for connecting:</p>
+<div class="section" id="ssid-and-passwords">
+<h2>SSID and Passwords<a class="headerlink" href="#ssid-and-passwords" title="Permalink to this headline">¶</a></h2>
+<p>Create a file <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/libs/secrets.py</span></code> to store your <code class="docutils literal notranslate"><span class="pre">SSID</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code>.</p>
+<p>Sample <code class="docutils literal notranslate"><span class="pre">secrets.py</span></code> with wifi credentials and other “secrets”:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># secrets.py</span>
+
+<span class="c1"># wifi</span>
+<span class="n">wifi_ssid</span> <span class="o">=</span> <span class="s1">&#39;MY_SSID&#39;</span>
+<span class="n">wifi_pwd</span>  <span class="o">=</span> <span class="s1">&#39;MY_PASSWORD&#39;</span>
+
+<span class="c1"># timezone</span>
+<span class="n">tz_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="mi">3600</span>    <span class="c1"># PST</span>
+
+<span class="c1"># webrepl password, 4 .. 9 characters</span>
+<span class="n">webrepl_pwd</span> <span class="o">=</span> <span class="s1">&#39;er93xa&#39;</span>
+
+<span class="c1"># https://openweathermap.org/</span>
+<span class="n">openweathermap_apiid</span> <span class="o">=</span> <span class="s2">&quot;1c336ac61add531d32b73af8f2b&quot;</span>
+</pre></div>
+</div>
+<p>Now create or update a device description (don’t forget to update the uid to match your microcontroller):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/esp32.yaml
+esp32:
+    uid: 24:0a:c4:13:ad:14
+    path: internet
+    include-patterns:
+        - &quot;./**/*.py&quot;     
+        - &quot;./**/*.mpy&quot;
+        - &quot;./**/&quot;
+        - &quot;./**/*.key&quot;     
+        - &quot;./**/*.crt&quot;
+    resources:
+        - secrets.py:
+            path: libs
+        - code
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing /home/iot/iot49.org/docs/projects/devices/esp32.yaml
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span>
-
-<span class="n">help</span><span class="p">()</span>
+<span class="o">%</span><span class="n">rsync</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
-Welcome to MicroPython on the ESP32!
+<span class=" -Color -Color-Green">Directories match</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="connecting">
+<h2>Connecting<a class="headerlink" href="#connecting" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">help</span></code> command on the esp32 shows sample code for configuring the WiFi:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Welcome to MicroPython on the ESP32!
 
 For generic online docs please visit http://docs.micropython.org/
 
@@ -542,54 +611,37 @@ For a list of available modules, type help(&#39;modules&#39;)
 </div>
 </div>
 </div>
-<p>Modify the <code class="docutils literal notranslate"><span class="pre">connect</span></code> statement to use your <code class="docutils literal notranslate"><span class="pre">SSID</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> into the code. Rather than inserting them directly, I place them into a file, <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/libs/secrets.py</span></code> and upload that to the microcontroller.</p>
-<p>Sample <code class="docutils literal notranslate"><span class="pre">secrets.py</span></code> with wifi credentials and other “secrets”:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># secrets.py</span>
-
-<span class="c1"># wifi</span>
-<span class="n">wifi_ssid</span> <span class="o">=</span> <span class="s1">&#39;MY_SSID&#39;</span>
-<span class="n">wifi_pwd</span>  <span class="o">=</span> <span class="s1">&#39;MY_PASSWORD&#39;</span>
-
-<span class="c1"># timezone</span>
-<span class="n">tz_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="mi">3600</span>    <span class="c1"># PST</span>
-
-<span class="c1"># webrepl password, 4 .. 9 characters</span>
-<span class="n">webrepl_pwd</span> <span class="o">=</span> <span class="s1">&#39;er93xa&#39;</span>
-
-<span class="c1"># https://openweathermap.org/</span>
-<span class="n">openweathermap_apiid</span> <span class="o">=</span> <span class="s2">&quot;1c336ac61add531d32b73af8f2b&quot;</span>
-</pre></div>
-</div>
+<p>Search available networks (optional):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/example.yaml
-esp32:
-    uid: 30:ae:a4:30:84:34
-    path: libs
-    resources:
-        - secrets.py
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">network</span><span class="o">,</span> <span class="nn">secrets</span>
+
+<span class="n">wlan</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">);</span> 
+<span class="n">wlan</span><span class="o">.</span><span class="n">active</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">net</span> <span class="ow">in</span> <span class="n">wlan</span><span class="o">.</span><span class="n">scan</span><span class="p">():</span>
+    <span class="n">ssid</span><span class="p">,</span> <span class="n">bssid</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">RSSI</span><span class="p">,</span> <span class="n">authmode</span><span class="p">,</span> <span class="n">hidden</span> <span class="o">=</span> <span class="n">net</span>
+    <span class="n">ssid</span> <span class="o">=</span> <span class="n">ssid</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ssid</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">ssid</span> <span class="o">=</span> <span class="s2">&quot;?&quot;</span>
+    <span class="n">authmode</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;open&quot;</span><span class="p">,</span> <span class="s2">&quot;WEP&quot;</span><span class="p">,</span> <span class="s2">&quot;WPA-PSK&quot;</span><span class="p">,</span> <span class="s2">&quot;WPA2-PSK&quot;</span><span class="p">,</span> <span class="s2">&quot;WPA/WPA2-PSK&quot;</span> <span class="p">][</span><span class="n">authmode</span><span class="p">]</span>
+    <span class="n">bssid</span> <span class="o">=</span> <span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:02x}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">bssid</span><span class="p">)</span>
+    <span class="n">hidden</span> <span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;visible&quot;</span><span class="p">,</span> <span class="s2">&quot;hidden&quot;</span> <span class="p">][</span><span class="n">hidden</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ssid</span><span class="si">:</span><span class="s2">12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">bssid</span><span class="si">}</span><span class="s2"> ch:</span><span class="si">{</span><span class="n">channel</span><span class="si">:</span><span class="s2">2</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">RSSI</span><span class="si">:</span><span class="s2">4</span><span class="si">}</span><span class="s2">dB </span><span class="si">{</span><span class="n">authmode</span><span class="si">:</span><span class="s2">12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">hidden</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing /home/iot/iot49.org/docs/projects/devices/example.yaml
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>TPA-Secure   d6:fb:e4:77:a3:f4 ch:11  -58dB WPA2-PSK     visible
+TPA-IoT      c6:fb:e4:77:a3:f4 ch:11  -58dB WPA2-PSK     visible
+TPA-Server   b4:fb:e4:77:a3:f4 ch:11  -58dB WPA2-PSK     visible
+TPA          b6:fb:e4:77:a3:f4 ch:11  -58dB WPA2-PSK     visible
+?            e6:fb:e4:77:a3:f4 ch:11  -58dB WPA2-PSK     visible
+?            f6:fb:e4:77:a3:f4 ch:11  -58dB WPA2-PSK     visible
+ATT-Router   dc:7f:a4:c2:f2:d9 ch:11  -83dB WPA2-PSK     visible
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rsync</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
-
-</pre></div>
-</div>
-</div>
-</div>
+<p>Connect to wlan <code class="docutils literal notranslate"><span class="pre">secrets.wifi_ssidsecrets.wifi_ssid</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">network</span><span class="o">,</span> <span class="nn">secrets</span>
@@ -616,7 +668,7 @@ esp32:
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.39.40.135
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.39.40.168
 </pre></div>
 </div>
 </div>
@@ -624,19 +676,18 @@ esp32:
 <p>We can now ping the device:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!ping -c 3 10.39.40.135
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!ping -c 3 10.39.40.168
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PING 10.39.40.135 (10.39.40.135) 56(84) bytes of data.
-64 bytes from 10.39.40.135: icmp_seq=1 ttl=255 time=1385 ms
-64 bytes from 10.39.40.135: icmp_seq=2 ttl=255 time=328 ms
-64 bytes from 10.39.40.135: icmp_seq=3 ttl=255 time=248 ms
-
---- 10.39.40.135 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 59ms
-rtt min/avg/max/mdev = 247.953/653.696/1384.908/518.082 ms, pipe 2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PING 10.39.40.168 (10.39.40.168): 56 data bytes
+64 bytes from 10.39.40.168: icmp_seq=0 ttl=255 time=217.643 ms
+64 bytes from 10.39.40.168: icmp_seq=1 ttl=255 time=129.098 ms
+64 bytes from 10.39.40.168: icmp_seq=2 ttl=255 time=49.519 ms
+--- 10.39.40.168 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max/stddev = 49.519/132.087/217.643/68.669 ms
 </pre></div>
 </div>
 </div>
@@ -723,7 +774,7 @@ PASS = webrepl_pwd
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/example.yaml
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/esp32.yaml
 esp32:
     uid: 30:ae:a4:30:84:34
     path: internet
@@ -853,8 +904,9 @@ micropython.alloc_emergency_exception_buf(100)
 def connect():
     &quot;&quot;&quot;connect to wifi, get ntp time, advertise hostname (if not None)&quot;&quot;&quot;
     wlan = network.WLAN(network.STA_IF)
-    if wlan.isconnected(): return
+    if wlan.isconnected(): return True
     wlan.active(True)
+    # wlan.scan()
     print(&quot;Connecting to WLAN ... &quot;, end=&quot;&quot;)
     wlan.connect(getattr(secrets, &#39;wifi_ssid&#39;, &#39;SSID&#39;),
                  getattr(secrets, &#39;wifi_pwd&#39;, &#39;&#39;))
@@ -865,17 +917,17 @@ def connect():
     if not wlan.isconnected():
         print(&quot;Unable to connect to WiFi!&quot;)
         wlan.disconnect()
-        return
+        return False
     # set clock to local time
     tm = time.localtime(ntptime.time() + getattr(secrets, &#39;tz_offset&#39;, 0))
     print(&quot;time&quot;, tm)
     machine.RTC().datetime((tm[0], tm[1], tm[2], tm[6] + 1, tm[3], tm[4], tm[5], 0))
-    return 
+    return True
 
 # connect to WiFi
-connect()
+conneced = connect()
 
-if hasattr(secrets, &#39;webrepl_pwd&#39;):
+if connected and hasattr(secrets, &#39;webrepl_pwd&#39;):
     # start webrepl
     import webrepl
     webrepl.start()

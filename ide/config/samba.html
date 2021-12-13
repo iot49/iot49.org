@@ -53,7 +53,7 @@
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="MicroPython" href="../micropython.html" />
+    <link rel="next" title="Mosquitto MQTT Broker" href="mosquitto.html" />
     <link rel="prev" title="Https &amp; Certificates" href="https.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -145,6 +145,11 @@
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
      Samba File Server/Client
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="mosquitto.html">
+     Mosquitto MQTT Broker
     </a>
    </li>
   </ul>
@@ -463,7 +468,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="samba-file-server-client">
 <h1>Samba File Server/Client<a class="headerlink" href="#samba-file-server-client" title="Permalink to this headline">¶</a></h1>
-<p><em>ide49</em> can optionally act as a <a class="reference external" href="https://en.wikipedia.org/wiki/Samba_(software)">Samba/CIFS</a> file server or client. When configured as a server, it exports the <code class="docutils literal notranslate"><span class="pre">home/iot</span></code> folder. Conversely, when set as client it mounts <code class="docutils literal notranslate"><span class="pre">home/iot</span></code>.</p>
+<p><em>ide49</em> can optionally act as a <a class="reference external" href="https://en.wikipedia.org/wiki/Samba_(software)">Samba/CIFS</a> file server or client. When configured as a server, it exports the <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code> folder. Conversely, when set as client it mounts <code class="docutils literal notranslate"><span class="pre">/home/iot</span></code>.</p>
 <p>Applications include exporting to another machine (e.g. a laptop) to easily exchange files. If you have several computers running <em>ide49</em> you can dedicate one as server and the other as clients.</p>
 <p>To enable the Samba server, edit the appropriate variables in <code class="docutils literal notranslate"><span class="pre">/service-config/iot-home/.env49rc</span></code>. Set <code class="docutils literal notranslate"><span class="pre">SAMBA=server</span></code> or <code class="docutils literal notranslate"><span class="pre">client</span></code>, specify the correct IP address of the server, and choose a strong password.</p>
 <p><strong>Note:</strong> The Jupyter editor refuses to open that file. Use <span class="xref myst">Visual Studio Code</span> or <code class="docutils literal notranslate"><span class="pre">nano</span></code> from instead.</p>
@@ -507,10 +512,10 @@
             <p class="prev-next-title">Https &amp; Certificates</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../micropython.html" title="next page">
+    <a class='right-next' id="next-link" href="mosquitto.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">MicroPython</p>
+        <p class="prev-next-title">Mosquitto MQTT Broker</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

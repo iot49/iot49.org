@@ -147,6 +147,11 @@
      Samba File Server/Client
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../ide/config/mosquitto.html">
+     Mosquitto MQTT Broker
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -410,9 +415,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/projects/wifi-cop.md"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/projects/wifi-cop.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -433,7 +438,7 @@
             href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/wifi-cop.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/wifi-cop.md"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/wifi-cop.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -465,7 +470,17 @@
 <h1>WiFi Coprocessor<a class="headerlink" href="#wifi-coprocessor" title="Permalink to this headline">¶</a></h1>
 <p>Some CPUs or breakout boards come with built-in WiFi. But what if the chosen target processor, e.g. an STM32 or nrf52, does not and it’s needed for your IoT project?</p>
 <p>The solution is to add a WiFi radio. This project uses an economical ESP32 to add WiFi to the target processor. To minimize software development and hardware complexity, we’ll run MicroPython on the ESP32 and communicate with the target over a serial port with just two wires.</p>
-<p>This project and code are located at <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/wifi-cop</span></code>.</p>
+<p>To download this project, run:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+cd $IOT_PROJECTS
+svn checkout https://github.com/iot49/iot49.org/trunk/docs/projects/wifi-cop
+</pre></div>
+</div>
+</div>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -479,16 +494,16 @@
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "iot_kernel"
         },
         kernelOptions: {
-            kernelName: "python3",
+            kernelName: "iot_kernel",
             path: "./projects"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'iot_kernel'</script>
 
               </div>
               

@@ -147,6 +147,11 @@
      Samba File Server/Client
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/mosquitto.html">
+     Mosquitto MQTT Broker
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -470,6 +475,32 @@
 <li><p><strong>Data Encoding:</strong> <a class="reference external" href="https://msgpack.org/">MessagePack</a> is used to encode Python objects sent between the ESP32 and the target.</p></li>
 <li><p><strong>Bus:</strong> We use a <a class="reference external" href="https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter">UART</a> to send data between the processors. It’s widely available on virtually all microcontrollers, requires only two wires, and is symmetrical: both endpoints can communicate at any time without complex handshaking. Most microcontrollers support baud rates up to and in excess of 1Mbps, sufficient for communication not to be the bottleneck in this application.</p></li>
 </ul>
+<p>The examples use an STM32 with an ESP32, specifically an <a class="reference external" href="https://www.adafruit.com/product/4382">Adafruit STM32F40F Feather</a> and an <a class="reference external" href="https://www.adafruit.com/product/3405">Adafruit HUZZAH32 – ESP32 Feather Board</a> stacked on top. I keep all connections except the 3V and LED outputs. Other combinations work, just make sure to correctly cross wire the UART RX and TX of the processors (i.e. RX to TX).</p>
+<p>Device configuration:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/wifi-cop.yaml
+
+wifi-server:  # esp32
+    uid: 30:ae:a4:30:80:14
+    path: wifi-cop/code
+    resources:
+        - secrets.py:
+            path: libs
+        - server
+
+wifi-client:  # stm32, ...
+    uid: 2d:00:49:00:09:50:52:42:4e:30:39:20
+    install-dir: /flash
+    path: wifi-cop/code
+    resources:
+        - secrets.py:
+            path: libs
+        - client
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">

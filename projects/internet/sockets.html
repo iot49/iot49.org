@@ -147,6 +147,11 @@
      Samba File Server/Client
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/mosquitto.html">
+     Mosquitto MQTT Broker
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -499,8 +504,7 @@
 <p>The code below first looks up the ip address of the server (<code class="docutils literal notranslate"><span class="pre">google.com</span></code>). It then creates a <code class="docutils literal notranslate"><span class="pre">socket</span></code>, connects to it at port 80 and downloads 2000 bytes.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span> <span class="o">-</span><span class="n">q</span>
-<span class="kn">import</span> <span class="nn">socket</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span>
 
 <span class="n">ai</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s1">&#39;google.com&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Address information:&quot;</span><span class="p">,</span> <span class="n">ai</span><span class="p">)</span>
@@ -518,11 +522,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Address information: [(2, 1, 0, &#39;google.com&#39;, (&#39;216.58.194.174&#39;, 80))]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
+Address information: [(2, 1, 0, &#39;google.com&#39;, (&#39;142.250.191.46&#39;, 80))]
 
 Response:
 HTTP/1.0 200 OK
-Date: Thu, 22 Jul 2021 03:08:27 GMT
+Date: Thu, 09 Dec 2021 20:56:17 GMT
 Expires: -1
 Cache-Control: private, max-age=0
 Content-Type: text/html; charset=ISO-8859-1
@@ -530,13 +535,12 @@ P3P: CP=&quot;This is not a P3P policy! See g.co/p3phelp for more info.&quot;
 Server: gws
 X-XSS-Protection: 0
 X-Frame-Options: SAMEORIGIN
-Set-Cookie: 1P_JAR=2021-07-22-03; expires=Sat, 21-Aug-2021 03:08:27 GMT; path=/; domain=.google.com; Secure
-Set-Cookie: NID=219=R1eiu3eJy1QMHo1SQIl73n5yc_rtUafRdRoyA9J3l3t5e_NhZyyIkut1XIGY7qd35-IKc-wW3WNeYC1swiM9dfwDKJoJIyY9NiociLLKP7UIPzdGpfirkxf2_8bNfTsRh4PCKRb3Nk_2FOUyAZYyTuOrFMXkgDq8HwcUWH8zgQE; expires=Fri, 21-Jan-2022 03:08:27 GMT; path=/; domain=.google.com; HttpOnly
+Set-Cookie: 1P_JAR=2021-12-09-20; expires=Sat, 08-Jan-2022 20:56:17 GMT; path=/; domain=.google.com; Secure
+Set-Cookie: NID=511=EtAZ6YCY123hQF0O5EzPwAwG_dy5oAVQD0ph_rSNLdxsxROCEABHQiSqm4eQexkyIejMn_-9NJ6LgOr5Y-Zv_bwnqXZ47UojX7-TWcK2gcqBTf9tyiD7nsN8BoH6vA2VJPCBOfZPF3uJXN-dnd4Do35y8F6L9jri2ASzEYLoWPE; expires=Fri, 10-Jun-2022 20:56:17 GMT; path=/; domain=.google.com; HttpOnly
 Accept-Ranges: none
 Vary: Accept-Encoding
 
-&lt;!doctype html&gt;&lt;html itemscope=&quot;&quot; itemtype=&quot;http://schema.org/WebPage&quot; lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta content=&quot;Search the world&#39;s information, including webpages, images, videos and more. Google has many special features to help you find exactly what you&#39;re looking for.&quot; name=&quot;description&quot;&gt;&lt;meta content=&quot;noodp&quot; name=&quot;robots&quot;&gt;&lt;meta content=&quot;text/html; charset=UTF-8&quot; http-equiv=&quot;Content-Type&quot;&gt;&lt;meta content=&quot;/images/branding/googleg/1x/googleg_standard_color_128dp.png&quot; itemprop=&quot;image&quot;&gt;&lt;title&gt;Google&lt;/title&gt;&lt;script nonce=&quot;nACootAAy4uBXGeQN4xAog==&quot;&gt;(function(){window.google={kEI:&#39;K-H4YL6WIdP89APtmK_gDg&#39;,kEXPI:&#39;0,18167,754048,1,530320,56873,954,5105,206,4804,926,1390,383,246,5,1354,4936,314,1122516,1197729,554,302679,26305,51223,16115,17444,1954,9286,17572,4859,1361,284,9007,3029,2815,1929,12835,4020,978,13228,2677,1170,4192,6430,1142,13385,4520,2776,918,5081,1593,1279,2212,530,149,1103,842,1981,4314,3514,606,2023,1777,520,14670,3227,2845,7,5599,6755,5096,7877,5036,1483,1372,552,908,2,941,2614,3783,8927,432,3,346,1244,1,5445,148,11323,2652,4,3821,11,1242,5797,74,1983,1523,1103,2015,4067,7434,3824,3050,2658,4242,3113,32,5663,7965,2305,639,37,1456,5586,3772,4048,1945,770,665,5797,2560,4094,3138,6,614,294,3,3541,1,5349,9361,1,1813,283,38,874,5992,12346,180,2,1394,756,769,8,1,1272,1715,2,3057,2 ...
-
+&lt;!doctype html&gt;&lt;html itemscope=&quot;&quot; itemtype=&quot;http://schema.org/WebPage&quot; lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta content=&quot;Search the world&#39;s information, including webpages, images, videos and more. Google has many special features to help you find exactly what you&#39;re looking for.&quot; name=&quot;description&quot;&gt;&lt;meta content=&quot;noodp&quot; name=&quot;robots&quot;&gt;&lt;meta content=&quot;text/html; charset=UTF-8&quot; http-equiv=&quot;Content-Type&quot;&gt;&lt;meta content=&quot;/logos/doodles/2021/seasonal-holidays-2021-6753651837109324-6752733080595605-cst.gif&quot; itemprop=&quot;image&quot;&gt;&lt;meta content=&quot;Seasonal Holidays 2021&quot; property=&quot;twitter:title&quot;&gt;&lt;meta content=&quot;Seasonal Holidays 2021 #GoogleDoodle&quot; property=&quot;twitter:description&quot;&gt;&lt;meta content=&quot;Seasonal Holidays 2021 #GoogleDoodle&quot; property=&quot;og:description&quot;&gt;&lt;meta content=&quot;summary_large_image&quot; property=&quot;twitter:card&quot;&gt;&lt;meta content=&quot;@GoogleDoodles&quot; property=&quot;twitter:site&quot;&gt;&lt;meta content=&quot;https://www.google.com/logos/doodles/2021/seasonal-holidays-2021-6753651837109324-2xa.gif&quot; property=&quot;twitter:image&quot;&gt;&lt;meta content=&quot;https://www.google.com/logos/doodles/2021/seasonal-holidays-2021-6753651837109324-2xa.gif&quot; property=&quot;og:image&quot;&gt;&lt;meta content=&quot;1000&quot; property=&quot;og:image:width&quot;&gt;&lt;meta content=&quot;400&quot; property=&quot;og:image:height&quot;&gt;&lt;meta content=&quot;https://www.google.com/logos/doodles/2021/seasonal-holidays-2021-6753651837109324-2xa ...
 </pre></div>
 </div>
 </div>
@@ -602,55 +606,59 @@ Vary: Accept-Encoding
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Listening, connect your browser to http://10.39.40.135:8080/
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Listening, connect your browser to http://10.39.40.168:8080/
 Request from
+
+Request:
 b&#39;GET / HTTP/1.1\r\n&#39;
-b&#39;Host: 10.39.40.135:8080\r\n&#39;
+b&#39;Host: 10.39.40.168:8080\r\n&#39;
 b&#39;Connection: keep-alive\r\n&#39;
 b&#39;DNT: 1\r\n&#39;
 b&#39;Upgrade-Insecure-Requests: 1\r\n&#39;
-b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36\r\n&#39;
+b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\r\n&#39;
 b&#39;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\n&#39;
 b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
 b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
 
 Request from
+
+Request:
 b&#39;GET /favicon.ico HTTP/1.1\r\n&#39;
-b&#39;Host: 10.39.40.135:8080\r\n&#39;
+b&#39;Host: 10.39.40.168:8080\r\n&#39;
 b&#39;Connection: keep-alive\r\n&#39;
-b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36\r\n&#39;
+b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\r\n&#39;
 b&#39;DNT: 1\r\n&#39;
 b&#39;Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8\r\n&#39;
-b&#39;Referer: http://10.39.40.135:8080/\r\n&#39;
+b&#39;Referer: http://10.39.40.168:8080/\r\n&#39;
 b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
 b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
 
 Request from
+
+Request:
 b&#39;GET / HTTP/1.1\r\n&#39;
-b&#39;Host: 10.39.40.135:8080\r\n&#39;
+b&#39;Host: 10.39.40.168:8080\r\n&#39;
 b&#39;Connection: keep-alive\r\n&#39;
 b&#39;Cache-Control: max-age=0\r\n&#39;
 b&#39;DNT: 1\r\n&#39;
 b&#39;Upgrade-Insecure-Requests: 1\r\n&#39;
-b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36\r\n&#39;
+b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\r\n&#39;
 b&#39;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\n&#39;
 b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
 b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
 
 Request from
+
+Request:
 b&#39;GET /favicon.ico HTTP/1.1\r\n&#39;
-b&#39;Host: 10.39.40.135:8080\r\n&#39;
+b&#39;Host: 10.39.40.168:8080\r\n&#39;
 b&#39;Connection: keep-alive\r\n&#39;
-b&#39;Pragma: no-cache\r\n&#39;
-b&#39;Cache-Control: no-cache\r\n&#39;
-b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36\r\n&#39;
+b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\r\n&#39;
 b&#39;DNT: 1\r\n&#39;
 b&#39;Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8\r\n&#39;
-b&#39;Referer: http://10.39.40.135:8080/\r\n&#39;
+b&#39;Referer: http://10.39.40.168:8080/\r\n&#39;
 b&#39;Accept-Encoding: gzip, deflate\r\n&#39;
 b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
-
-
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Interrupted
@@ -670,10 +678,7 @@ b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,
 <p>The secure, https, client is almost the same except that the port has been changed from 80 to 443 and the line <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">ssl.wrap_socket(s)</span></code> been added.</p>
 <div class="cell tag_hide-output docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">esp32</span>
-<span class="o">%</span><span class="n">softreset</span>
-
-<span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span> <span class="nn">ssl</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span> <span class="nn">ssl</span>
 
 <span class="n">ai</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s2">&quot;google.com&quot;</span><span class="p">,</span> <span class="mi">443</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Address information:&quot;</span><span class="p">,</span> <span class="n">ai</span><span class="p">)</span>
@@ -693,17 +698,11 @@ b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
-
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
-<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
-
-Address information: [(2, 1, 0, &#39;google.com&#39;, (&#39;216.58.194.174&#39;, 443))]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Address information: [(2, 1, 0, &#39;google.com&#39;, (&#39;142.250.191.46&#39;, 443))]
 
 Response:
 HTTP/1.0 200 OK
-Date: Thu, 22 Jul 2021 03:05:33 GMT
+Date: Thu, 09 Dec 2021 20:58:14 GMT
 Expires: -1
 Cache-Control: private, max-age=0
 Content-Type: text/html; charset=ISO-8859-1
@@ -711,14 +710,13 @@ P3P: CP=&quot;This is not a P3P policy! See g.co/p3phelp for more info.&quot;
 Server: gws
 X-XSS-Protection: 0
 X-Frame-Options: SAMEORIGIN
-Set-Cookie: 1P_JAR=2021-07-22-03; expires=Sat, 21-Aug-2021 03:05:33 GMT; path=/; domain=.google.com; Secure
-Set-Cookie: NID=219=rjuTN3Kqr-3ZPMHKtq8jQjursFOga8OXMutFBj2WQzFgu6RWcH3siOduyS4k8FdDltMeoieIF612FtjMk1FeHPxhHzonnAw1J8LFjOcg7N4J45x9oBw2i5d4xrlcaN55HX_4JJXOI8hqNt5GRTSf8AXtMKpm_OGirlei0Fca3IU; expires=Fri, 21-Jan-2022 03:05:33 GMT; path=/; domain=.google.com; HttpOnly
-Alt-Svc: h3=&quot;:443&quot;; ma=2592000,h3-29=&quot;:443&quot;; ma=2592000,h3-T051=&quot;:443&quot;; ma=2592000,h3-Q050=&quot;:443&quot;; ma=2592000,h3-Q046=&quot;:443&quot;; ma=2592000,h3-Q043=&quot;:443&quot;; ma=2592000,quic=&quot;:443&quot;; ma=2592000; v=&quot;46,43&quot;
+Set-Cookie: 1P_JAR=2021-12-09-20; expires=Sat, 08-Jan-2022 20:58:14 GMT; path=/; domain=.google.com; Secure
+Set-Cookie: NID=511=M45oCsiHFWSgRWfrX2VB--jEwDhmAKvh7tQl-sR3fbhVrwK3321ryOGfg2NVQaw2ONcmhsrMwPBYcvxIsHFJcTnixzciFARp6xCxofjeWzS8QJ0ll1URT0VM3_iTpasCOyLFvtCfwieSRmaLicLdnVQIiUXRlsAknUMpL5ScCbY; expires=Fri, 10-Jun-2022 20:58:14 GMT; path=/; domain=.google.com; HttpOnly
+Alt-Svc: h3=&quot;:443&quot;; ma=2592000,h3-29=&quot;:443&quot;; ma=2592000,h3-Q050=&quot;:443&quot;; ma=2592000,h3-Q046=&quot;:443&quot;; ma=2592000,h3-Q043=&quot;:443&quot;; ma=2592000,quic=&quot;:443&quot;; ma=2592000; v=&quot;46,43&quot;
 Accept-Ranges: none
 Vary: Accept-Encoding
 
-&lt;!doctype html&gt;&lt;html itemscope=&quot;&quot; itemtype=&quot;http://schema.org/WebPage&quot; lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta content=&quot;Search the world&#39;s information, including webpages, images, videos and more. Google has many special features to help you find exactly what you&#39;re looking for.&quot; name=&quot;description&quot;&gt;&lt;meta content=&quot;noodp&quot; name=&quot;robots&quot;&gt;&lt;meta content=&quot;text/html; charset=UTF-8&quot; http-equiv=&quot;Content-Type&quot;&gt;&lt;meta content=&quot;/images/branding/googleg/1x/googleg_standard_color_128dp.png&quot; itemprop=&quot;image&quot;&gt;&lt;title&gt;Google&lt;/title&gt;&lt;script nonce=&quot;c6vjeNqb6uKpWxzJI0fCQQ==&quot;&gt;(function(){window.google={kEI:&#39;feD4YMPwDb_M0PEP9c6SiAs&#39;,kEXPI:&#39;0,772215,1,530320,56873,954,755,4349,207,4804,2316,383,246,5,1354,4936,314,1122516,1197739,544,104,328880,51223,16115,17444,11240,17572,4858,1362,283,9008,3022,2822,14764,4020,978,13228,1838,2009,10622,1142,13386,4518,2776,919,2372,4302,1279,2212,530,149,1103,840,1983,4314,4120,2025,1775,520,14670,3227,1990,855,7,12354,5096,7877,3747,1289,1483,1371,553,908,2,3555,12710,432,3,346,1244,1,5445,148,11323,2652,4,1253,274,2305,1236,5803,74,1983,2627,2014,4067,7434,2110,1714,3050,2658,4164,79,
-
+&lt;!doctype html&gt;&lt;html itemscope=&quot;&quot; itemtype=&quot;http://schema.org/WebPage&quot; lang=&quot;en&quot;&gt;&lt;head&gt;&lt;meta content=&quot;Search the world&#39;s information, including webpages, images, videos and more. Google has many special features to help you find exactly what you&#39;re looking for.&quot; name=&quot;description&quot;&gt;&lt;meta content=&quot;noodp&quot; name=&quot;robots&quot;&gt;&lt;meta content=&quot;text/html; charset=UTF-8&quot; http-equiv=&quot;Content-Type&quot;&gt;&lt;meta content=&quot;/logos/doodles/2021/seasonal-holidays-2021-6753651837109324-6752733080595605-cst.gif&quot; itemprop=&quot;image&quot;&gt;&lt;meta content=&quot;Seasonal Holidays 2021&quot; property=&quot;twitter:title&quot;&gt;&lt;meta content=&quot;Seasonal Holidays 2021 #GoogleDoodle&quot; property=&quot;twitter:description&quot;&gt;&lt;meta content=&quot;Seasonal Holidays 2021 #GoogleDoodle&quot; property=&quot;og:description&quot;&gt;&lt;meta content=&quot;summary_large_image&quot; property=&quot;twitter:card&quot;&gt;&lt;meta content=&quot;@GoogleDoodles&quot; property=&quot;twitter:site&quot;&gt;&lt;meta content=&quot;https://www.google.com/logos/doodles/2021/seasonal-holidays-2021-6753651837109324-2xa.gif&quot; property=&quot;twitter:image&quot;&gt;&lt;meta content=&quot;https://www.google.com/logos/doodles/2021/seasonal-holidays-2021-6753651837109324-2xa.gif&quot; property=&quot;og:image&quot;&gt;&lt;meta content=&quot;1000&quot; 
 </pre></div>
 </div>
 </div>
@@ -726,54 +724,64 @@ Vary: Accept-Encoding
 </div>
 <div class="section" id="secure-server">
 <h2>Secure Server<a class="headerlink" href="#secure-server" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>MicroPython ssl broken? Apparently a memory issue:</p>
-<ul>
-<li><p><a class="reference external" href="https://github.com/micropython/micropython/issues/5543">Github issue</a></p></li>
-<li><p><a class="reference external" href="https://forum.micropython.org/viewtopic.php?f=18&amp;t=10375&amp;hilit=cert">Forum Post</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference external" href="https://realpython.com/python-https/">CPython Tutorial</a></p></li>
-</ul>
 <p>Secure webservers use a certificate and a private key to encrypt data and “prove” their identity to the web client (e.g. browser).</p>
-<p>First we find the IP address of the microcontroller and save it in the jupyter store to access it later from bash.</p>
+<p>The certificate contains the domain name of the server. Since our ESP32 does not have a domain name we’ll use the IP address instead.</p>
+<p>The step below are a somewhat contorted way to get the IP address from the ESP32 to the host without copy and paste (which would work also and be much simpler).</p>
+<p>First we find the IP address of the microcontroller and save it in the jupyter store to access it later from bash. Let’s get it it on the microcontroller and store it to a variable:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span># get IP and save in the Jupyter store
-import network
-my_ip = network.WLAN(network.STA_IF).ifconfig()[0]
-%store my_ip
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">network</span>
+<span class="n">my_ip</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">)</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_ip</span><span class="p">)</span>
+<span class="o">%</span><span class="n">store</span> <span class="n">my_ip</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to esp32 @ serial:///dev/ttyUSB0</span>
+10.39.40.168
+</pre></div>
+</div>
+</div>
+</div>
+<p>Retrieve the IP on the host and assign it to shell environment variable <code class="docutils literal notranslate"><span class="pre">my_ip</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
 
-# retrieve it on the host (CPython) and assign it to a shell environment variable
-%%host
-%store -r my_ip
-os.environ[&quot;my_ip&quot;] = my_ip
-
-# verify that bash has the correct IP
-%%bash
+<span class="o">%</span><span class="n">store</span> <span class="o">-</span><span class="n">r</span> <span class="n">my_ip</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;my_ip&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">my_ip</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verify it’s correct:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
 echo &quot;microcontroller IP:&quot; $my_ip
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>microcontroller IP: 10.39.40.135
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>microcontroller IP: 10.39.40.168
 </pre></div>
 </div>
 </div>
 </div>
-<p>Now we create the “configuration” from which the certificate and key will be generated. Change the values in the <code class="docutils literal notranslate"><span class="pre">[req_distinguished_name]</span></code> section if you wish (the defaults are ok).</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%cd $IOT_PROJECTS/internet
-!mkdir -p ssl
-%cd ssl
-</pre></div>
-</div>
-</div>
-</div>
+<p>Now we are ready to create a certificate.</p>
+<p>Let’s collect all relevant information in a configuration file from which the certificate and key will be generated. Change the values in the <code class="docutils literal notranslate"><span class="pre">[req_distinguished_name]</span></code> section if you wish (the defaults are ok). Note that we embed the IP address from the microcontroller in the certificate specification. This is necessary for the client can verify the server.</p>
+<p>I found this <a class="reference external" href="https://www.baeldung.com/openssl-self-signed-cert">guide</a> helpful.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+# create a folder for the certificate
+mkdir -p $IOT_PROJECTS/internet/ssl
+cd ssl
+
+# write the certificate spec
 cat &lt;&lt; EOF &gt;cert.conf
 [req]
 distinguished_name = req_distinguished_name
@@ -794,41 +802,303 @@ subjectAltName = @alt_names
 DNS.1 = $my_ip
 IP.1  = $my_ip
 EOF
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>cwd = /home/iot/iot49.org/docs/projects/internet
-cwd = /home/iot/iot49.org/docs/projects/internet/ssl
-cert.conf
-</pre></div>
-</div>
-</div>
-</div>
-<p>The next step is to generate the key and cert files from the configuration.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
 
-<span class="n">openssl</span> <span class="n">req</span> <span class="o">-</span><span class="n">x509</span> <span class="o">-</span><span class="n">nodes</span> <span class="o">-</span><span class="n">days</span> <span class="mi">3650</span> <span class="o">-</span><span class="n">newkey</span> <span class="n">rsa</span><span class="p">:</span><span class="mi">2048</span> \
-    <span class="o">-</span><span class="n">keyout</span> <span class="n">cert</span><span class="o">.</span><span class="n">key</span> <span class="o">-</span><span class="n">out</span> <span class="n">cert</span><span class="o">.</span><span class="n">crt</span> <span class="o">-</span><span class="n">config</span> <span class="n">cert</span><span class="o">.</span><span class="n">conf</span>       
+# create the certificate and private key
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
+    -keyout cert.key -outform PEM -out cert.crt -config cert.conf
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating a RSA private key
-.........+++++
-.....................+++++
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/bin/bash: line 3: cd: ssl: No such file or directory
+Generating a RSA private key
+...........................+++++
+............................................................................+++++
 writing new private key to &#39;cert.key&#39;
 -----
-total 12
--rw-r--r-- 1 iot iot  366 Jul 22 09:58 cert.conf
--rw-r--r-- 1 iot iot 1350 Jul 22 10:00 cert.crt
--rw------- 1 iot iot 1704 Jul 22 10:00 cert.key
 </pre></div>
 </div>
 </div>
 </div>
+<p>The certificate and private key are now in folder <code class="docutils literal notranslate"><span class="pre">ssl</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat $IOT_PROJECTS/internet/ssl/cert.key
+!cat $IOT_PROJECTS/internet/ssl/cert.crt
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCyN3mOpUs6cPjJ
+lK1OjpCTBQKjcHlnykxzg/xy8L34y1l0RQ3RKaOv0+ZvSylENCARvz3NhxyX0tJv
+UbgjPEFAeWlOME9nzOW3P/mu0xWRKnq+XvbEa7E5Dc+xNgW7XmCyDNmgrjIh8C8W
+1zr5Shw1hL/S4NyMWn7ZiT1Ms/jIyLkQcT+Jq9he45R+7tvQGv064psmUqWwHZUB
+773N3tzpZQQcb9jukwU4bcfQy01heoJjwENwOgiw2dEiASSQ0CwkOvOXc4NLdLgI
+VSf1SPF0pnw6215vygXEkcvtcOfqYdDh9G7CA36xnIYiB0usvX5WFpJKh8rMXh9W
+g5ZB69OlAgMBAAECggEADV+oWZIB4TLVGJt1ne2I39+CYS1xjt5ZelmvOhjiyKbJ
+4bXE4atUQz+NjVCAmkOnHG3Tf3biKGqDrCLfxJUi+GmkA2AQtWNk4amFXR8uASTE
+7UBHGFpUhEmLCmtZZsQgUXwxYKNx06YognhITqjHESUTGAoTwtyPpFduKDFhO//k
+BIAn7/pGdgIBKLRut3PamAkLrx1ByAmA9q5im8UBWmpWiHpVmVXlZvxnhs5Ed3au
+WyRrVl8LC31s3BxZ3VPVV8gIOpc28s81pGucm0cIX0NJCCIdZsdzxpT7ypYm+DVg
+T2LN8EAhwU40So3b1zz7bjQJPOTfNk0hWMCZWx+5wQKBgQDWlTPRvvsMJMjavFer
+i+2l+DF56B94rtCMotAfaofE6xnxRzXrS3setKftkCSaMNm5uEMmNhYlEYTXT9Od
+2KF3GMlRKbghPsJcMwnUeGlyp2QdCmd+12ZUDNFfEODzK5ZFYJotkWtllfPwu96e
+jiNik3jfHY8TUQpdzw7VVinOOQKBgQDUnWDNdZ+zie42BwKoTt7XbCU5YzaQkYbd
+QvG+jJY6e6eTXO/naGcxHSIQo0BmehFv+sc2sTgdymhs/OcmpSWCx+kmMjYmSmyV
+UdhxN1kcZ6sWqB3NBIM1uWC7LDUX6jCbL5H8vILBeptHYhdFDya5ATZZsvO2y8jK
+fQxUCf8wzQKBgQCrKqcEN5hgDnOdb8FrGJo/2uP0f0Gjbabzl+f2N28HmBXAjfIn
+t7UFQEv3xxQ7Xp4+dAo0T86IURoq+gUukx/xNXdY47N56Wr2SswbjNVoXLgSJjt6
+RW3du7/DWl5l+q3Kt40kriwCA4Rr0iB5T55QQpyXNSfs26cuPz1w1WNRmQKBgFdS
+8CBS0C3oV7s+89t20VW/KCbC1fVYoACebzWo/ka05OXEhRARNFjas1QMCPZN6n2I
+jWusK/UoXe1tje60Y4ysWNkERHNDnAdUH0aYyfO9rGpY0CyVTuKw6cbWaFQTLrV+
+O0KHlliq573QzufhSjEwC0eaFTkdx7FK3NZjaLl9AoGBAMGoJuMOGgycHuueeZ5V
+0KucO3lIevLG/9vEM2fG46zC3IYzny21N8b8H90Z4p+gnxN1hx1yhHZyvyKtH7A4
+1zRzBd+X/gU1PJSwv0f5CMXuwDkaWaAwYzs8bzh6sOQKEDdU5c4IWOJsoI3s9WOV
+QQQwn30oLuq504yT+M2AGDw3
+-----END PRIVATE KEY-----
+-----BEGIN CERTIFICATE-----
+MIIDuDCCAqCgAwIBAgIUIf8Yr/YcTumB6OPUJ8TAY/qL3BwwDQYJKoZIhvcNAQEL
+BQAwcjELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAkNBMRYwFAYDVQQHDA1TYW4gRnJh
+bmNpc2NvMR4wHAYDVQQKDBVNaWNyb1B5dGhvbiBXZWJzZXJ2ZXIxDjAMBgNVBAsM
+BWlvdDQ5MQ4wDAYDVQQDDAVpb3Q0OTAeFw0yMTEyMTMwMjE3NTVaFw0zMTEyMTEw
+MjE3NTVaMHIxCzAJBgNVBAYTAlVTMQswCQYDVQQIDAJDQTEWMBQGA1UEBwwNU2Fu
+IEZyYW5jaXNjbzEeMBwGA1UECgwVTWljcm9QeXRob24gV2Vic2VydmVyMQ4wDAYD
+VQQLDAVpb3Q0OTEOMAwGA1UEAwwFaW90NDkwggEiMA0GCSqGSIb3DQEBAQUAA4IB
+DwAwggEKAoIBAQCyN3mOpUs6cPjJlK1OjpCTBQKjcHlnykxzg/xy8L34y1l0RQ3R
+KaOv0+ZvSylENCARvz3NhxyX0tJvUbgjPEFAeWlOME9nzOW3P/mu0xWRKnq+XvbE
+a7E5Dc+xNgW7XmCyDNmgrjIh8C8W1zr5Shw1hL/S4NyMWn7ZiT1Ms/jIyLkQcT+J
+q9he45R+7tvQGv064psmUqWwHZUB773N3tzpZQQcb9jukwU4bcfQy01heoJjwENw
+Ogiw2dEiASSQ0CwkOvOXc4NLdLgIVSf1SPF0pnw6215vygXEkcvtcOfqYdDh9G7C
+A36xnIYiB0usvX5WFpJKh8rMXh9Wg5ZB69OlAgMBAAGjRjBEMA4GA1UdDwEB/wQE
+AwIDiDATBgNVHSUEDDAKBggrBgEFBQcDATAdBgNVHREEFjAUggwxMC4zOS40MC4x
+NjiHBAonKKgwDQYJKoZIhvcNAQELBQADggEBAIep2yjLYlLOUannmn43ogN66w6J
+Pi1qDyrElK7SwHf5tHZ/rLrfIU5bVIgs98VylqtVmiG4bqDrB9kXZupoQkseiPk0
+CWjWQ+Kz3FYvhnA8ylmNU0OL15TK2igc5IMBsT8b/zr4FCJ2qNQXOEsz3vH1bLBe
+E9nw47/usz6JeGJroNR14WMqupLeJpga9Zf7tmpsqtx72uAJv4HUWbO1Mo0EcgcB
+SSlSci/SaK6eCiLoMBKXpnVN2bR4GulJ+Anh3uiFK+bhGYsf+XrnQ58E7P3wpVcm
+AQRWcEIRLfJkqnskyXLjZ0wGMULb/cZgbeNnRr3iVNGyGEw4ezqAvbd9g8U=
+-----END CERTIFICATE-----
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s copy them to the ESP32, without the first and last lines:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+cd $IOT_PROJECTS/internet
+
+mkdir -p code/ssl
+
+sed &#39;1d; $d&#39; ssl/cert.key &gt; code/ssl/cert.key
+sed &#39;1d; $d&#39; ssl/cert.crt &gt; code/ssl/cert.crt
+</pre></div>
+</div>
+</div>
+</div>
+<p>Verify that the certificate works with CPython https server:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+
+<span class="kn">import</span> <span class="nn">http.server</span><span class="o">,</span> <span class="nn">ssl</span><span class="o">,</span> <span class="nn">socket</span>
+
+<span class="n">PORT</span> <span class="o">=</span> <span class="mi">4443</span>
+
+<span class="k">with</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">HTTPServer</span><span class="p">((</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">PORT</span><span class="p">),</span> <span class="n">http</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">SimpleHTTPRequestHandler</span><span class="p">)</span> <span class="k">as</span> <span class="n">httpd</span><span class="p">:</span>
+    <span class="n">httpd</span><span class="o">.</span><span class="n">socket</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">httpd</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span>
+                                   <span class="n">server_side</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                   <span class="n">keyfile</span><span class="o">=</span><span class="s1">&#39;ssl/cert.key&#39;</span><span class="p">,</span>
+                                   <span class="n">certfile</span><span class="o">=</span><span class="s1">&#39;ssl/cert.crt&#39;</span><span class="p">,</span>
+                                   <span class="n">ssl_version</span><span class="o">=</span><span class="n">ssl</span><span class="o">.</span><span class="n">PROTOCOL_TLS</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s1">&#39;0.0.0.1&#39;</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+        <span class="n">my_ip</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;serving at https://</span><span class="si">{</span><span class="n">my_ip</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">PORT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">httpd</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;so long ...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>serving at https://10.39.40.200:4443
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.39.40.114 - - [12/Dec/2021 18:13:11] &quot;GET / HTTP/1.1&quot; 200 -
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>so long ...
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally run the server with code adapted from a <a class="reference external" href="https://github.com/micropython/micropython/blob/master/examples/network/http_server_ssl.py">micropython example</a>.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">rsync</span>
+<span class="o">%</span><span class="n">softreset</span>
+
+<span class="kn">import</span> <span class="nn">ubinascii</span> <span class="k">as</span> <span class="nn">binascii</span>
+<span class="kn">import</span> <span class="nn">network</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">usocket</span> <span class="k">as</span> <span class="nn">socket</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">ussl</span> <span class="k">as</span> <span class="nn">ssl</span>
+
+<span class="c1"># Read the certificate and key, convert to binary</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/ssl/cert.key&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">key</span>  <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">a2b_base64</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/ssl/cert.crt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">cert</span> <span class="o">=</span> <span class="n">binascii</span><span class="o">.</span><span class="n">a2b_base64</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+
+<span class="n">CONTENT</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">HTTP/1.0 200 OK</span>
+
+<span class="s2">Hello #</span><span class="si">%d</span><span class="s2"> from MicroPython!</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">()</span>
+
+    <span class="c1"># Binding to all interfaces - server will be accessible to other hosts!</span>
+    <span class="n">ai</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">getaddrinfo</span><span class="p">(</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="mi">8443</span><span class="p">)</span>
+    <span class="n">addr</span> <span class="o">=</span> <span class="n">ai</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">ip</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">WLAN</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">STA_IF</span><span class="p">)</span><span class="o">.</span><span class="n">ifconfig</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Listening at https://</span><span class="si">{}</span><span class="s2">:8443/&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ip</span><span class="p">))</span>
+
+    <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+        <span class="n">client_s</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">client_addr</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="c1"># CPython uses key keyfile/certfile arguments, but MicroPython uses key/cert</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">client_s</span> <span class="o">=</span> <span class="n">ssl</span><span class="o">.</span><span class="n">wrap_socket</span><span class="p">(</span><span class="n">client_s</span><span class="p">,</span> <span class="n">server_side</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">cert</span><span class="o">=</span><span class="n">cert</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error in wrap_socket:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="s2">&quot;(ignored)&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">----- Request&quot;</span><span class="p">,</span> <span class="n">counter</span><span class="p">)</span>
+        <span class="c1"># Both CPython and MicroPython SSLSocket objects support read() and</span>
+        <span class="c1"># write() methods.</span>
+        <span class="c1"># Browsers are prone to terminate SSL connection abruptly if they</span>
+        <span class="c1"># see unknown certificate, etc. We must continue in such case -</span>
+        <span class="c1"># next request they issue will likely be more well-behaving and</span>
+        <span class="c1"># will succeed.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">req</span> <span class="o">=</span> <span class="n">client_s</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">h</span> <span class="o">=</span> <span class="n">client_s</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">h</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">h</span> <span class="o">==</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">req</span><span class="p">:</span>
+                <span class="n">client_s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">CONTENT</span> <span class="o">%</span> <span class="n">counter</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception serving request:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        <span class="n">client_s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Green">Directories match</span>
+
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!   softreset ...     !!!!!</span>
+<span class=" -Color -Color-Red -Color-Red-BGCyan">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</span>
+Listening at https://10.39.40.168:8443/
+Error in wrap_socket: (-30592, &#39;MBEDTLS_ERR_SSL_FATAL_ALERT_MESSAGE&#39;) (ignored)
+
+----- Request 1
+Exception serving request: [Errno 104] ECONNRESET
+
+Error in wrap_socket: (-30592, &#39;MBEDTLS_ERR_SSL_FATAL_ALERT_MESSAGE&#39;) (ignored)
+
+----- Request 2
+b&#39;&#39;
+
+
+----- Request 3
+b&#39;GET / HTTP/1.1\r\n&#39;
+b&#39;Host: 10.39.40.168:8443\r\n&#39;
+b&#39;Connection: keep-alive\r\n&#39;
+b&#39;Cache-Control: max-age=0\r\n&#39;
+b&#39;sec-ch-ua: &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;96&quot;, &quot;Google Chrome&quot;;v=&quot;96&quot;\r\n&#39;
+b&#39;sec-ch-ua-mobile: ?0\r\n&#39;
+b&#39;sec-ch-ua-platform: &quot;macOS&quot;\r\n&#39;
+b&#39;DNT: 1\r\n&#39;
+b&#39;Upgrade-Insecure-Requests: 1\r\n&#39;
+b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\r\n&#39;
+b&#39;Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9\r\n&#39;
+b&#39;Sec-Fetch-Site: cross-site\r\n&#39;
+b&#39;Sec-Fetch-Mode: navigate\r\n&#39;
+b&#39;Sec-Fetch-User: ?1\r\n&#39;
+b&#39;Sec-Fetch-Dest: document\r\n&#39;
+b&#39;Referer: https://server.local/\r\n&#39;
+b&#39;Accept-Encoding: gzip, deflate, br\r\n&#39;
+b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
+
+Error in wrap_socket: (-30592, &#39;MBEDTLS_ERR_SSL_FATAL_ALERT_MESSAGE&#39;) (ignored)
+
+----- Request 4
+Exception serving request: [Errno 104] ECONNRESET
+
+
+----- Request 5
+b&#39;GET /favicon.ico HTTP/1.1\r\n&#39;
+b&#39;Host: 10.39.40.168:8443\r\n&#39;
+b&#39;Connection: keep-alive\r\n&#39;
+b&#39;sec-ch-ua: &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;96&quot;, &quot;Google Chrome&quot;;v=&quot;96&quot;\r\n&#39;
+b&#39;DNT: 1\r\n&#39;
+b&#39;sec-ch-ua-mobile: ?0\r\n&#39;
+b&#39;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.55 Safari/537.36\r\n&#39;
+b&#39;sec-ch-ua-platform: &quot;macOS&quot;\r\n&#39;
+b&#39;Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8\r\n&#39;
+b&#39;Sec-Fetch-Site: same-origin\r\n&#39;
+b&#39;Sec-Fetch-Mode: no-cors\r\n&#39;
+b&#39;Sec-Fetch-Dest: image\r\n&#39;
+b&#39;Referer: https://10.39.40.168:8443/\r\n&#39;
+b&#39;Accept-Encoding: gzip, deflate, br\r\n&#39;
+b&#39;Accept-Language: en-US,en;q=0.9,de-CH;q=0.8,de;q=0.7,fr-FR;q=0.6,fr;q=0.5,zh-HK;q=0.4,zh-CN;q=0.3,zh-TW;q=0.2,zh;q=0.1\r\n&#39;
+
+
+----- Request 6
+b&#39;GET / HTTP/1.1\r\n&#39;
+b&#39;Host: 10.39.40.168:8443\r\n&#39;
+b&#39;User-Agent: curl/7.68.0\r\n&#39;
+b&#39;Accept: */*\r\n&#39;
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Interrupted
+</pre></div>
+</div>
+</div>
+</div>
+<p>Running</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl --insecure -v https://10.39.40.168:8443/
+</pre></div>
+</div>
+<p>from the command line prints out a bit more information (and avoids the OSError).</p>
 </div>
 </div>
 

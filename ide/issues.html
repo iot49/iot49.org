@@ -147,6 +147,11 @@
      Samba File Server/Client
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="config/mosquitto.html">
+     Mosquitto MQTT Broker
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
@@ -502,6 +507,18 @@
      </li>
     </ul>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bluetooth">
+     Bluetooth
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#workaround-experimental">
+       Workaround (experimental)
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
  </li>
 </ul>
@@ -610,6 +627,20 @@ out = [&#39;10.39.40.151&#39;],  platform = esp32
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="section" id="bluetooth">
+<h3>Bluetooth<a class="headerlink" href="#bluetooth" title="Permalink to this headline">¶</a></h3>
+<p>Requires operating (and even starting!) the container as root.</p>
+<p>Quick test: run <code class="docutils literal notranslate"><span class="pre">bluetoothctl</span></code> from the command line.</p>
+<p><a class="reference external" href="https://forums.balena.io/t/bluetooth-without-root/350427/3">https://forums.balena.io/t/bluetooth-without-root/350427/3</a></p>
+<p>Appears to be a permissions issue, likely on the host OS file <code class="docutils literal notranslate"><span class="pre">/etc/dbus-1/system.d/bluetooth.conf</span></code>. That partition is mounted read only, although this can be changed for testing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>If you just want to play around with some files on the HostOS for testing (won’t persist Host updates, not easily carried over to other devices), you could run mount -o remount,rw / in the HostOS to make the root writable.
+</pre></div>
+</div>
+<div class="section" id="workaround-experimental">
+<h4>Workaround (experimental)<a class="headerlink" href="#workaround-experimental" title="Permalink to this headline">¶</a></h4>
+<p>Service bluetooth, available at <a class="reference external" href="http://iot49.local/bluetooth">http://iot49.local/bluetooth</a> has bluez and bleak installed and <strong>runs as root!</strong> I.d. all code is run as root, including notebook, except explicit <code class="docutils literal notranslate"><span class="pre">su</span> <span class="pre">iot</span></code>.</p>
 </div>
 </div>
 </div>
