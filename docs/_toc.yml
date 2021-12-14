@@ -67,3 +67,8 @@ parts:
     - file: projects/wifi-cop/custom_c
     - file: projects/wifi-cop/rpc
     - file: projects/wifi-cop/networking
+  - file: projects/rust
+    sections:
+    - file: projects/rust/install
+    - file: projects/rust/tour
+    
