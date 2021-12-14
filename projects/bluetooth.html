@@ -53,6 +53,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BLE UART - esp32" href="bluetooth/ble_uart_esp32.html" />
+    <link rel="prev" title="Encryption" href="internet/encryption.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -235,7 +237,7 @@
   Tours &amp; Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="balance.html">
    GPIO
@@ -340,12 +342,39 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Bluetooth
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bluetooth/ble_uart_esp32.html">
+     BLE UART - esp32
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bluetooth/ble_uart_host.html">
+     BLE UART Service - Host
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bluetooth/eddystone.html">
+     BLE Beacon Scanner
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="wifi-cop.html">
    WiFi Coprocessor
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
-  <label for="toctree-checkbox-6">
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -468,6 +497,55 @@
 <h1>Bluetooth<a class="headerlink" href="#bluetooth" title="Permalink to this headline">¶</a></h1>
 <p>Bluetooth is available on the host (provided it’s supported by the hardware, e.g. the Raspberry PI) and select microcontrollers (e.g. the ESP32).</p>
 <p>This section contains a collection of sample code.</p>
+<p>To follow along, download the code and configure a microcontroller.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+cd $IOT_PROJECTS
+svn checkout https://github.com/iot49/iot49.org/trunk/docs/projects/bluetooth
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Checked out revision 152.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">writefile</span> <span class="n">bluetooth</span><span class="o">.</span><span class="n">yaml</span>
+<span class="n">ble</span><span class="p">:</span>  
+    <span class="n">uid</span><span class="p">:</span> <span class="mi">24</span><span class="p">:</span><span class="mi">0</span><span class="n">a</span><span class="p">:</span><span class="n">c4</span><span class="p">:</span><span class="mi">13</span><span class="p">:</span><span class="n">ad</span><span class="p">:</span><span class="mi">14</span>
+    <span class="n">path</span><span class="p">:</span> <span class="n">bluetooth</span>
+    <span class="n">resources</span><span class="p">:</span>
+        <span class="o">-</span> <span class="n">secrets</span><span class="o">.</span><span class="n">py</span><span class="p">:</span>
+            <span class="n">path</span><span class="p">:</span> <span class="n">libs</span>
+        <span class="o">-</span> <span class="n">code</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing bluetooth.yaml
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">discover</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ble  serial:///dev/ttyUSB0  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -494,7 +572,21 @@
               
         
             <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="internet/encryption.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Encryption</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="bluetooth/ble_uart_esp32.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">BLE UART - esp32</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>

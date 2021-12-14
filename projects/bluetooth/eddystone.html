@@ -1,0 +1,701 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLE Beacon Scanner &#8212; Electronics for IoT</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/projects/bluetooth/eddystone.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="WiFi Coprocessor" href="../wifi-cop.html" />
+    <link rel="prev" title="BLE UART Service - Host" href="ble_uart_host.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/timezone.html">
+     Timezone
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/mosquitto.html">
+     Mosquitto MQTT Broker
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flashing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/mp_ext_c.html">
+     External C modules
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/app.html">
+   Docker App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/issues.html">
+   Issues
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tours &amp; Projects
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../balance.html">
+   GPIO
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/01_parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/02_circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/03_code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/04_display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/05_buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/06_ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/07_app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/08_hx711.html">
+     “Precision” Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/09_ticks.html">
+     Time Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../internet.html">
+   Internet
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/mqtt.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wireshark.html">
+     Wireshark
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/ota.html">
+     ESP32 OTA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/encryption.html">
+     Encryption
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../bluetooth.html">
+   Bluetooth
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="ble_uart_esp32.html">
+     BLE UART - esp32
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="ble_uart_host.html">
+     BLE UART Service - Host
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     BLE Beacon Scanner
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/projects/bluetooth/eddystone.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/iot49/iot49.org"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/bluetooth/eddystone.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/bluetooth/eddystone.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="ble-beacon-scanner">
+<h1>BLE Beacon Scanner<a class="headerlink" href="#ble-beacon-scanner" title="Permalink to this headline">¶</a></h1>
+<p>BLE beacons send small packets of information such as a URL. The sample code listens for <a class="reference external" href="https://en.wikipedia.org/wiki/Eddystone_(Google)">Eddystone TLM</a> messages and reports the temperature send by the device.</p>
+<p>For testing I am using a <a class="reference external" href="https://bluecharmbeacons.com/product/bluetooth-ble-multi-beacon-bc011/">BC011 from Bluecharm Beacons</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">ble</span>
+<span class="o">%</span><span class="n">rsync</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to ble @ serial:///dev/ttyUSB0</span>
+<span class=" -Color -Color-Green">Directories match</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">struct</span> <span class="kn">import</span> <span class="n">unpack</span>
+
+<span class="kn">import</span> <span class="nn">bluetooth</span>
+<span class="kn">import</span> <span class="nn">binascii</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+
+<span class="k">class</span> <span class="nc">EddystoneTLM</span><span class="p">:</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ble</span><span class="p">,</span> <span class="n">addresses</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scanning</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_addresses</span> <span class="o">=</span> <span class="p">[</span> <span class="n">binascii</span><span class="o">.</span><span class="n">unhexlify</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">addresses</span> <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span> <span class="o">=</span> <span class="n">ble</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span><span class="o">.</span><span class="n">active</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span><span class="o">.</span><span class="n">irq</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_irq</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_irq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">event</span> <span class="o">==</span> <span class="mi">5</span><span class="p">:</span>
+            <span class="c1"># scan result</span>
+            <span class="n">addr_type</span><span class="p">,</span> <span class="n">addr</span><span class="p">,</span> <span class="n">adv_type</span><span class="p">,</span> <span class="n">rssi</span><span class="p">,</span> <span class="n">adv_data</span> <span class="o">=</span> <span class="n">data</span>
+            <span class="k">if</span> <span class="n">addr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_addresses</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_scan_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_decode</span><span class="p">(</span><span class="n">adv_data</span><span class="p">,</span> <span class="n">rssi</span><span class="p">))</span>
+                <span class="c1"># stop scanning</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span><span class="o">.</span><span class="n">gap_scan</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_scanning</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="n">event</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="c1"># scan done</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_scanning</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">adv_data</span><span class="p">,</span> <span class="n">rssi</span><span class="p">):</span>
+        <span class="n">adv_data</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">adv_data</span><span class="p">)</span>   <span class="c1"># memoryview -&gt; bytes</span>
+        <span class="n">eddytlm</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x02\x01\x06\x03\x03\xaa\xfe\x11\x16\xaa\xfe</span><span class="s1"> </span><span class="se">\x00</span><span class="s1">&#39;</span>
+        <span class="n">ibeacon</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x02\x01\x06\x1a\xff</span><span class="s1">L</span><span class="se">\x00\x02\x15</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">eddytlm</span> <span class="ow">in</span> <span class="n">adv_data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;packet&#39;</span> <span class="p">:</span> <span class="s1">&#39;tlm&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;bat&#39;</span>    <span class="p">:</span> <span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&gt;H&#39;</span><span class="p">,</span> <span class="n">adv_data</span><span class="p">[</span><span class="mi">13</span><span class="p">:</span><span class="mi">15</span><span class="p">])[</span><span class="mi">0</span><span class="p">],</span>         <span class="c1"># battery voltage [mV]</span>
+                <span class="s1">&#39;temp&#39;</span>   <span class="p">:</span> <span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&gt;h&#39;</span><span class="p">,</span> <span class="n">adv_data</span><span class="p">[</span><span class="mi">15</span><span class="p">:</span><span class="mi">17</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">256</span><span class="p">,</span>  <span class="c1"># temperature [C]</span>
+                <span class="s1">&#39;adv&#39;</span>    <span class="p">:</span> <span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&gt;I&#39;</span><span class="p">,</span> <span class="n">adv_data</span><span class="p">[</span><span class="mi">17</span><span class="p">:</span><span class="mi">21</span><span class="p">])[</span><span class="mi">0</span><span class="p">],</span>         <span class="c1"># number of packets</span>
+                <span class="s1">&#39;sec&#39;</span>    <span class="p">:</span> <span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&gt;I&#39;</span><span class="p">,</span> <span class="n">adv_data</span><span class="p">[</span><span class="mi">21</span><span class="p">:</span><span class="mi">25</span><span class="p">])[</span><span class="mi">0</span><span class="p">],</span>         <span class="c1"># time since turn on, [0.1s]</span>
+                <span class="s1">&#39;rssi&#39;</span>   <span class="p">:</span> <span class="n">rssi</span>
+            <span class="p">}</span>
+        <span class="k">if</span> <span class="n">ibeacon</span> <span class="ow">in</span> <span class="n">adv_data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s1">&#39;packet&#39;</span> <span class="p">:</span> <span class="s1">&#39;iBeacon&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;name&#39;</span>   <span class="p">:</span> <span class="n">adv_data</span><span class="p">[</span><span class="mi">9</span><span class="p">:</span><span class="mi">25</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span>
+                <span class="s1">&#39;major&#39;</span>  <span class="p">:</span> <span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&gt;H&#39;</span><span class="p">,</span> <span class="n">adv_data</span><span class="p">[</span><span class="mi">25</span><span class="p">:</span><span class="mi">27</span><span class="p">])[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s1">&#39;minor&#39;</span>  <span class="p">:</span> <span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&gt;H&#39;</span><span class="p">,</span> <span class="n">adv_data</span><span class="p">[</span><span class="mi">27</span><span class="p">:</span><span class="mi">29</span><span class="p">])[</span><span class="mi">0</span><span class="p">],</span>
+                <span class="s1">&#39;rssi&#39;</span>   <span class="p">:</span> <span class="n">adv_data</span><span class="p">[</span><span class="mi">29</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;unrecognized packet&quot;</span><span class="p">,</span> <span class="n">binascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">adv_data</span><span class="p">))</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scanning</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scan_callback</span> <span class="o">=</span> <span class="n">callback</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ble</span><span class="o">.</span><span class="n">gap_scan</span><span class="p">(</span><span class="mi">20000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">)</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">scanning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scanning</span>
+
+
+<span class="k">def</span> <span class="nf">demo</span><span class="p">():</span>
+    <span class="n">ble</span> <span class="o">=</span> <span class="n">bluetooth</span><span class="o">.</span><span class="n">BLE</span><span class="p">()</span>
+    <span class="n">central</span> <span class="o">=</span> <span class="n">EddystoneTLM</span><span class="p">(</span><span class="n">ble</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;dd34020676d4&#39;</span><span class="p">])</span>
+    
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">def</span> <span class="nf">on_scan</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+        <span class="k">nonlocal</span> <span class="n">n</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">{:4d}</span><span class="s2">] </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="c1"># Wait for connection...</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">central</span><span class="o">.</span><span class="n">scanning</span><span class="p">:</span>
+            <span class="n">central</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">on_scan</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">demo</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[   0] {&#39;temp&#39;: 21, &#39;adv&#39;: 158327, &#39;sec&#39;: 10222614, &#39;rssi&#39;: -71, &#39;bat&#39;: 2968, &#39;packet&#39;: &#39;tlm&#39;}
+[   1] {&#39;temp&#39;: 21, &#39;adv&#39;: 158329, &#39;sec&#39;: 10222814, &#39;rssi&#39;: -67, &#39;bat&#39;: 2968, &#39;packet&#39;: &#39;tlm&#39;}
+[   2] {&#39;temp&#39;: 20, &#39;adv&#39;: 158330, &#39;sec&#39;: 10222914, &#39;rssi&#39;: -77, &#39;bat&#39;: 2968, &#39;packet&#39;: &#39;tlm&#39;}
+[   3] {&#39;temp&#39;: 20, &#39;adv&#39;: 158331, &#39;sec&#39;: 10223014, &#39;rssi&#39;: -67, &#39;bat&#39;: 2969, &#39;packet&#39;: &#39;tlm&#39;}
+[   4] {&#39;temp&#39;: 21, &#39;adv&#39;: 158332, &#39;sec&#39;: 10223114, &#39;rssi&#39;: -69, &#39;bat&#39;: 2969, &#39;packet&#39;: &#39;tlm&#39;}
+[   5] {&#39;temp&#39;: 20, &#39;adv&#39;: 158333, &#39;sec&#39;: 10223214, &#39;rssi&#39;: -66, &#39;bat&#39;: 2970, &#39;packet&#39;: &#39;tlm&#39;}
+[   6] {&#39;temp&#39;: 20, &#39;adv&#39;: 158334, &#39;sec&#39;: 10223314, &#39;rssi&#39;: -66, &#39;bat&#39;: 2970, &#39;packet&#39;: &#39;tlm&#39;}
+[   7] {&#39;temp&#39;: 20, &#39;adv&#39;: 158335, &#39;sec&#39;: 10223414, &#39;rssi&#39;: -76, &#39;bat&#39;: 2977, &#39;packet&#39;: &#39;tlm&#39;}
+[   8] {&#39;temp&#39;: 21, &#39;adv&#39;: 158336, &#39;sec&#39;: 10223514, &#39;rssi&#39;: -71, &#39;bat&#39;: 2974, &#39;packet&#39;: &#39;tlm&#39;}
+[   9] {&#39;temp&#39;: 20, &#39;adv&#39;: 158337, &#39;sec&#39;: 10223614, &#39;rssi&#39;: -75, &#39;bat&#39;: 2974, &#39;packet&#39;: &#39;tlm&#39;}
+[  10] {&#39;temp&#39;: 21, &#39;adv&#39;: 158338, &#39;sec&#39;: 10223714, &#39;rssi&#39;: -76, &#39;bat&#39;: 2970, &#39;packet&#39;: &#39;tlm&#39;}
+[  11] {&#39;temp&#39;: 20, &#39;adv&#39;: 158339, &#39;sec&#39;: 10223814, &#39;rssi&#39;: -75, &#39;bat&#39;: 2970, &#39;packet&#39;: &#39;tlm&#39;}
+[  12] {&#39;temp&#39;: 20, &#39;adv&#39;: 158340, &#39;sec&#39;: 10223914, &#39;rssi&#39;: -78, &#39;bat&#39;: 2971, &#39;packet&#39;: &#39;tlm&#39;}
+[  13] {&#39;temp&#39;: 20, &#39;adv&#39;: 158341, &#39;sec&#39;: 10224015, &#39;rssi&#39;: -70, &#39;bat&#39;: 2971, &#39;packet&#39;: &#39;tlm&#39;}
+[  14] {&#39;temp&#39;: 20, &#39;adv&#39;: 158343, &#39;sec&#39;: 10224215, &#39;rssi&#39;: -71, &#39;bat&#39;: 2971, &#39;packet&#39;: &#39;tlm&#39;}
+[  15] {&#39;temp&#39;: 21, &#39;adv&#39;: 158345, &#39;sec&#39;: 10224415, &#39;rssi&#39;: -69, &#39;bat&#39;: 2968, &#39;packet&#39;: &#39;tlm&#39;}
+[  16] {&#39;temp&#39;: 20, &#39;adv&#39;: 158346, &#39;sec&#39;: 10224515, &#39;rssi&#39;: -72, &#39;bat&#39;: 2968, &#39;packet&#39;: &#39;tlm&#39;}
+[  17] {&#39;temp&#39;: 21, &#39;adv&#39;: 158347, &#39;sec&#39;: 10224615, &#39;rssi&#39;: -78, &#39;bat&#39;: 2968, &#39;packet&#39;: &#39;tlm&#39;}
+[  18] {&#39;temp&#39;: 20, &#39;adv&#39;: 158348, &#39;sec&#39;: 10224715, &#39;rssi&#39;: -78, &#39;bat&#39;: 2968, &#39;packet&#39;: &#39;tlm&#39;}
+[  19] {&#39;temp&#39;: 20, &#39;adv&#39;: 158349, &#39;sec&#39;: 10224815, &#39;rssi&#39;: -79, &#39;bat&#39;: 2969, &#39;packet&#39;: &#39;tlm&#39;}
+[  20] {&#39;temp&#39;: 20, &#39;adv&#39;: 158350, &#39;sec&#39;: 10224915, &#39;rssi&#39;: -67, &#39;bat&#39;: 2969, &#39;packet&#39;: &#39;tlm&#39;}
+[  21] {&#39;temp&#39;: 20, &#39;adv&#39;: 158352, &#39;sec&#39;: 10225115, &#39;rssi&#39;: -69, &#39;bat&#39;: 2969, &#39;packet&#39;: &#39;tlm&#39;}
+[  22] {&#39;temp&#39;: 21, &#39;adv&#39;: 158353, &#39;sec&#39;: 10225215, &#39;rssi&#39;: -69, &#39;bat&#39;: 2972, &#39;packet&#39;: &#39;tlm&#39;}
+[  23] {&#39;temp&#39;: 21, &#39;adv&#39;: 158354, &#39;sec&#39;: 10225315, &#39;rssi&#39;: -82, &#39;bat&#39;: 2976, &#39;packet&#39;: &#39;tlm&#39;}
+[  24] {&#39;temp&#39;: 21, &#39;adv&#39;: 158356, &#39;sec&#39;: 10225515, &#39;rssi&#39;: -67, &#39;bat&#39;: 2972, &#39;packet&#39;: &#39;tlm&#39;}
+[  25] {&#39;temp&#39;: 20, &#39;adv&#39;: 158358, &#39;sec&#39;: 10225715, &#39;rssi&#39;: -70, &#39;bat&#39;: 2971, &#39;packet&#39;: &#39;tlm&#39;}
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Interrupted
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./projects/bluetooth"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="ble_uart_host.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">BLE UART Service - Host</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../wifi-cop.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">WiFi Coprocessor</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Bernhard Boser<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
