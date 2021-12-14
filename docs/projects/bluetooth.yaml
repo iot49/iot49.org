@@ -1,0 +1,7 @@
+ble:  
+    uid: 24:0a:c4:13:ad:14
+    path: bluetooth
+    resources:
+        - secrets.py:
+            path: libs
+        - code

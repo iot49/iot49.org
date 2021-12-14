@@ -56,6 +56,11 @@ parts:
     - file: projects/internet/wireshark
     - file: projects/internet/ota
     - file: projects/internet/encryption
+  - file: projects/bluetooth
+    sections:
+    - file: projects/bluetooth/ble_uart_esp32
+    - file: projects/bluetooth/ble_uart_host
+    - file: projects/bluetooth/eddystone
   - file: projects/wifi-cop
     sections:
     - file: projects/wifi-cop/overview
