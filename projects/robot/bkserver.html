@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BLE Beacon Scanner - PI &#8212; Electronics for IoT</title>
+    <title>Embedded Bokeh Server &#8212; Electronics for IoT</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -49,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://iot49.org/projects/bluetooth.bak/host.html" />
+    <link rel="canonical" href="https://iot49.org/projects/robot/bkserver.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -399,6 +399,28 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rust.html">
+   Rust
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/install.html">
+     Install Rust
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/tour.html">
+     Try Rust
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -440,7 +462,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/projects/bluetooth.bak/host.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/projects/robot/bkserver.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -460,10 +482,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/bluetooth.bak/host.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/robot/bkserver.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/bluetooth.bak/host.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/robot/bkserver.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -491,147 +513,73 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="ble-beacon-scanner-pi">
-<h1>BLE Beacon Scanner - PI<a class="headerlink" href="#ble-beacon-scanner-pi" title="Permalink to this headline">¶</a></h1>
-<p>Verify bluetooth is available and working:</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="embedded-bokeh-server">
+<h1>Embedded Bokeh Server<a class="headerlink" href="#embedded-bokeh-server" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Docs: <a class="reference external" href="https://docs.bokeh.org/en/latest/docs/user_guide/server.html#embedding-bokeh-server-as-a-library">https://docs.bokeh.org/en/latest/docs/user_guide/server.html#embedding-bokeh-server-as-a-library</a></p></li>
+<li><p>Stackoverflow: <a class="reference external" href="https://stackoverflow.com/questions/54069272/how-to-run-a-bokeh-server-without-bokeh-server-show-command">https://stackoverflow.com/questions/54069272/how-to-run-a-bokeh-server-without-bokeh-server-show-command</a></p></li>
+<li><p>args:
+<a class="reference external" href="https://github.com/bokeh/bokeh/blob/branch-3.0/bokeh/command/subcommands/serve.py">https://github.com/bokeh/bokeh/blob/branch-3.0/bokeh/command/subcommands/serve.py</a></p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>bluetoothctl scan on
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># bokeh serve --show app --allow-websocket-origin server.local:5006</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%writefile</span> bkapp.py
+
+<span class="kn">from</span> <span class="nn">bokeh.layouts</span> <span class="kn">import</span> <span class="n">column</span>
+<span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">ColumnDataSource</span><span class="p">,</span> <span class="n">Slider</span>
+<span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span>
+<span class="kn">from</span> <span class="nn">bokeh.sampledata.sea_surface_temperature</span> <span class="kn">import</span> <span class="n">sea_surface_temperature</span>
+<span class="kn">from</span> <span class="nn">bokeh.server.server</span> <span class="kn">import</span> <span class="n">Server</span>
+<span class="kn">from</span> <span class="nn">bokeh.themes</span> <span class="kn">import</span> <span class="n">Theme</span>
+
+
+<span class="k">def</span> <span class="nf">bkapp</span><span class="p">(</span><span class="n">doc</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">sea_surface_temperature</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">figure</span><span class="p">(</span><span class="n">x_axis_type</span><span class="o">=</span><span class="s1">&#39;datetime&#39;</span><span class="p">,</span> <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="n">y_axis_label</span><span class="o">=</span><span class="s1">&#39;Temperature (Celsius)&#39;</span><span class="p">,</span>
+                  <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Sea Surface Temperature at 43.18, -70.43&quot;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">source</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">old</span><span class="p">,</span> <span class="n">new</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">new</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">df</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1">D&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">ColumnDataSource</span><span class="o">.</span><span class="n">from_df</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="n">slider</span> <span class="o">=</span> <span class="n">Slider</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Smoothing by N Days&quot;</span><span class="p">)</span>
+    <span class="n">slider</span><span class="o">.</span><span class="n">on_change</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="n">callback</span><span class="p">)</span>
+
+    <span class="n">doc</span><span class="o">.</span><span class="n">add_root</span><span class="p">(</span><span class="n">column</span><span class="p">(</span><span class="n">slider</span><span class="p">,</span> <span class="n">plot</span><span class="p">))</span>
+
+    <span class="c1"># doc.theme = Theme(filename=&quot;theme.yaml&quot;)</span>
+
+<span class="c1"># Setting num_procs here means we can&#39;t touch the IOLoop before now, we must</span>
+<span class="c1"># let Server handle that. If you need to explicitly handle IOLoops then you</span>
+<span class="c1"># will need to use the lower level BaseServer class.</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;start DNS_NAME = </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;DNS_NAME&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">Server</span><span class="p">({</span><span class="s1">&#39;/&#39;</span><span class="p">:</span> <span class="n">bkapp</span><span class="p">},</span> <span class="n">num_procs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5007</span><span class="p">,</span> <span class="n">allow_websocket_origin</span><span class="o">=</span> <span class="p">[</span> <span class="s2">&quot;server.local:5007&quot;</span> <span class="p">])</span>
+<span class="n">server</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Opening Bokeh application on http://server.local:5007/&#39;</span><span class="p">)</span>
+
+    <span class="n">server</span><span class="o">.</span><span class="n">io_loop</span><span class="o">.</span><span class="n">add_callback</span><span class="p">(</span><span class="n">server</span><span class="o">.</span><span class="n">show</span><span class="p">,</span> <span class="s2">&quot;/&quot;</span><span class="p">)</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">io_loop</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No default controller available
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">from</span> <span class="nn">bleak</span> <span class="kn">import</span> <span class="n">BleakScanner</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">devices</span> <span class="o">=</span> <span class="k">await</span> <span class="n">BleakScanner</span><span class="o">.</span><span class="n">discover</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">devices</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
-
-<span class="k">await</span> <span class="n">main</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>79:16:33:43:60:2E: 79-16-33-43-60-2E
-A4:C1:38:A7:84:1C: xiaoxiang BMS
-44:3E:63:8A:27:84: 44-3E-63-8A-27-84
-49:7D:1B:36:E4:9B: 49-7D-1B-36-E4-9B
-43:E5:CE:2B:D6:CA: 43-E5-CE-2B-D6-CA
-04:5F:1E:9B:07:20: 04-5F-1E-9B-07-20
-79:7B:9B:E5:AF:3B: 79-7B-9B-E5-AF-3B
-5E:96:CD:3E:DC:1A: 5E-96-CD-3E-DC-1A
-61:C6:36:FD:97:31: 61-C6-36-FD-97-31
-6D:2F:62:5B:5D:20: 6D-2F-62-5B-5D-20
-42:0D:60:A9:16:63: 42-0D-60-A9-16-63
-F2:35:F5:60:A0:F8: F2-35-F5-60-A0-F8
-CF:0C:19:82:5E:00: BLEsmart_000001100F0C19825E00
-DD:34:02:06:76:D4: BlueCharm_173539
-F7:D2:78:EA:D2:99: F7-D2-78-EA-D2-99
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">import</span> <span class="nn">platform</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-
-<span class="kn">from</span> <span class="nn">bleak</span> <span class="kn">import</span> <span class="n">BleakScanner</span><span class="p">,</span> <span class="n">BleakClient</span>
-
-
-<span class="n">ADDRESS</span> <span class="o">=</span> <span class="s2">&quot;DD:34:02:06:76:D4&quot;</span>
-
-
-<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">address</span><span class="p">):</span>
-    <span class="n">device</span> <span class="o">=</span> <span class="k">await</span> <span class="n">BleakScanner</span><span class="o">.</span><span class="n">find_device_by_address</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Device:&quot;</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">with</span> <span class="n">BleakClient</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Client:&quot;</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
-        <span class="n">svcs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_services</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Services:&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">service</span> <span class="ow">in</span> <span class="n">svcs</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
-
-
-<span class="k">await</span> <span class="n">main</span><span class="p">(</span><span class="n">ADDRESS</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Device: DD:34:02:06:76:D4: BlueCharm_173539
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">CancelledError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="nn">/opt/conda/lib/python3.9/site-packages/dbus_next/aio/message_bus.py</span> in <span class="ni">call</span><span class="nt">(self, msg)</span>
-<span class="g g-Whitespace">    </span><span class="mi">304</span> 
-<span class="ne">--&gt; </span><span class="mi">305</span>         <span class="k">await</span> <span class="n">future</span>
-<span class="g g-Whitespace">    </span><span class="mi">306</span> 
-
-<span class="ne">CancelledError</span>: 
-
-<span class="n">During</span> <span class="n">handling</span> <span class="n">of</span> <span class="n">the</span> <span class="n">above</span> <span class="n">exception</span><span class="p">,</span> <span class="n">another</span> <span class="n">exception</span> <span class="n">occurred</span><span class="p">:</span>
-
-<span class="ne">CancelledError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="nn">/opt/conda/lib/python3.9/asyncio/tasks.py</span> in <span class="ni">wait_for</span><span class="nt">(fut, timeout, loop)</span>
-<span class="g g-Whitespace">    </span><span class="mi">491</span>             <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">492</span>                 <span class="n">fut</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">493</span>             <span class="k">except</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">CancelledError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-
-<span class="ne">CancelledError</span>: 
-
-<span class="n">The</span> <span class="n">above</span> <span class="n">exception</span> <span class="n">was</span> <span class="n">the</span> <span class="n">direct</span> <span class="n">cause</span> <span class="n">of</span> <span class="n">the</span> <span class="n">following</span> <span class="n">exception</span><span class="p">:</span>
-
-<span class="ne">TimeoutError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_149</span><span class="o">/</span><span class="mf">261685607.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> 
-<span class="g g-Whitespace">     </span><span class="mi">21</span> 
-<span class="ne">---&gt; </span><span class="mi">22</span> <span class="k">await</span> <span class="n">main</span><span class="p">(</span><span class="n">ADDRESS</span><span class="p">)</span>
-
-<span class="nn">/tmp/ipykernel_149/261685607.py</span> in <span class="ni">main</span><span class="nt">(address)</span>
-<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">device</span> <span class="o">=</span> <span class="k">await</span> <span class="n">BleakScanner</span><span class="o">.</span><span class="n">find_device_by_address</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Device:&quot;</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">14</span>     <span class="k">async</span> <span class="k">with</span> <span class="n">BleakClient</span><span class="p">(</span><span class="n">address</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span>         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Client:&quot;</span><span class="p">,</span> <span class="n">client</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">16</span>         <span class="n">svcs</span> <span class="o">=</span> <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">get_services</span><span class="p">()</span>
-
-<span class="nn">/opt/conda/lib/python3.9/site-packages/bleak/backends/client.py</span> in <span class="ni">__aenter__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span> 
-<span class="g g-Whitespace">     </span><span class="mi">60</span>     <span class="k">async</span> <span class="k">def</span> <span class="fm">__aenter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">---&gt; </span><span class="mi">61</span>         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span>         <span class="k">return</span> <span class="bp">self</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span> 
-
-<span class="nn">/opt/conda/lib/python3.9/site-packages/bleak/backends/bluezdbus/client.py</span> in <span class="ni">connect</span><span class="nt">(self, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">265</span> 
-<span class="g g-Whitespace">    </span><span class="mi">266</span>                 <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">267</span>                     <span class="n">reply</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">268</span>                         <span class="bp">self</span><span class="o">.</span><span class="n">_bus</span><span class="o">.</span><span class="n">call</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">269</span>                             <span class="n">Message</span><span class="p">(</span>
-
-<span class="nn">/opt/conda/lib/python3.9/asyncio/tasks.py</span> in <span class="ni">wait_for</span><span class="nt">(fut, timeout, loop)</span>
-<span class="g g-Whitespace">    </span><span class="mi">492</span>                 <span class="n">fut</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">493</span>             <span class="k">except</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">CancelledError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">494</span>                 <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">()</span> <span class="kn">from</span> <span class="nn">exc</span>
-<span class="g g-Whitespace">    </span><span class="mi">495</span>             <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">496</span>                 <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">()</span>
-
-<span class="ne">TimeoutError</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Overwriting bkapp.py
 </pre></div>
 </div>
 </div>
@@ -651,7 +599,7 @@ F7:D2:78:EA:D2:99: F7-D2-78-EA-D2-99
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./projects/bluetooth.bak"
+            path: "./projects/robot"
         },
         predefinedOutput: true
     }

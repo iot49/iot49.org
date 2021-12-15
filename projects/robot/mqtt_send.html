@@ -49,7 +49,7 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://iot49.org/projects/bluetooth.bak/uart_host.html" />
+    <link rel="canonical" href="https://iot49.org/projects/robot/mqtt_send.html" />
     <link rel="shortcut icon" href="../../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -399,6 +399,28 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rust.html">
+   Rust
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/install.html">
+     Install Rust
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/tour.html">
+     Try Rust
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -440,7 +462,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/projects/bluetooth.bak/uart_host.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/projects/robot/mqtt_send.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -460,10 +482,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/bluetooth.bak/uart_host.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/robot/mqtt_send.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/bluetooth.bak/uart_host.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/robot/mqtt_send.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -501,72 +523,237 @@
                 
   <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">paho.mqtt.client</span> <span class="k">as</span> <span class="nn">mqtt</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">socket</span>
 
-<span class="kn">from</span> <span class="nn">bleak</span> <span class="kn">import</span> <span class="n">BleakScanner</span><span class="p">,</span> <span class="n">BleakClient</span>
-<span class="kn">from</span> <span class="nn">bleak.backends.scanner</span> <span class="kn">import</span> <span class="n">AdvertisementData</span>
-<span class="kn">from</span> <span class="nn">bleak.backends.device</span> <span class="kn">import</span> <span class="n">BLEDevice</span>
+<span class="n">TOPIC_ROOT</span> <span class="o">=</span> <span class="s2">&quot;vis&quot;</span>
 
-<span class="c1"># https://github.com/hbldh/bleak/blob/develop/examples/uart_service.py</span>
+<span class="k">def</span> <span class="nf">my_ip</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s2">&quot;8.8.8.8&quot;</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    
+<span class="n">client</span> <span class="o">=</span> <span class="n">mqtt</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">clean_session</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="n">mqtt</span><span class="o">.</span><span class="n">MQTTv311</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;connect ...&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">my_ip</span><span class="p">(),</span> <span class="n">port</span><span class="o">=</span><span class="mi">1883</span><span class="p">,</span> <span class="n">keepalive</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">BLE_UART</span><span class="p">:</span>
-    
-    <span class="n">UART_SERVICE_UUID</span> <span class="o">=</span> <span class="s2">&quot;6E400001-B5A3-F393-E0A9-E50E24DCCA9E&quot;</span>
-    <span class="n">UART_RX_CHAR_UUID</span> <span class="o">=</span> <span class="s2">&quot;6E400002-B5A3-F393-E0A9-E50E24DCCA9E&quot;</span>
-    <span class="n">UART_TX_CHAR_UUID</span> <span class="o">=</span> <span class="s2">&quot;6E400003-B5A3-F393-E0A9-E50E24DCCA9E&quot;</span>
 
-    <span class="c1"># All BLE devices have MTU of at least 23. Subtracting 3 bytes overhead, we can</span>
-    <span class="c1"># safely send 20 bytes at a time to any device supporting this service.</span>
-    <span class="n">UART_SAFE_SIZE</span> <span class="o">=</span> <span class="mi">20</span>
-    
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">peripheral_name</span><span class="o">=</span><span class="s1">&#39;mpy-uart&#39;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_peripheral_name</span> <span class="o">=</span> <span class="n">peripheral_name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rx_queue</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
-        
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rx_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">msg</span>
-    
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;write disabled (install Bluez 5.51!)&quot;</span><span class="p">)</span>
-        <span class="k">return</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">write_gatt_char</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">UART_RX_CHAR_UUID</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
-        
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_discovery_queue</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
-        <span class="n">device</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;scanning for </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_peripheral_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="k">async</span> <span class="k">with</span> <span class="n">BleakScanner</span><span class="p">(</span><span class="n">detection_callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_find_uart_device</span><span class="p">):</span>
-            <span class="n">device</span><span class="p">:</span> <span class="n">BLEDevice</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_discovery_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;connecting to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_peripheral_name</span><span class="si">}</span><span class="s2"> ...&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-        <span class="n">client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span> <span class="o">=</span> <span class="n">BleakClient</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">disconnected_callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_handle_disconnect</span><span class="p">)</span>
-        <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-        <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">start_notify</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">UART_TX_CHAR_UUID</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rx_handler</span><span class="p">)</span>    
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot; connected&quot;</span><span class="p">)</span>
-        
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
-    
-    <span class="k">async</span> <span class="k">def</span> <span class="fm">__aenter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span>
-    
-    <span class="k">async</span> <span class="k">def</span> <span class="fm">__aexit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
-        
-    <span class="k">def</span> <span class="nf">_rx_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">bytearray</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rx_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    
-    <span class="k">def</span> <span class="nf">_find_uart_device</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">device</span><span class="p">:</span> <span class="n">BLEDevice</span><span class="p">,</span> <span class="n">adv</span><span class="p">:</span> <span class="n">AdvertisementData</span><span class="p">):</span>
-        <span class="c1"># called whenever a device is detected during discovery</span>
-        <span class="c1"># ignore all but target device</span>
-        <span class="k">if</span> <span class="n">device</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_peripheral_name</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_discovery_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">_handle_disconnect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">:</span> <span class="n">BleakClient</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rx_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;publish </span><span class="si">{</span><span class="n">TOPIC_ROOT</span><span class="si">}</span><span class="s2">/ds/lines/new&quot;</span><span class="p">)</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">TOPIC_ROOT</span><span class="si">}</span><span class="s2">/ds/lines/new&quot;</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="s2">&quot;y2&quot;</span> <span class="p">]</span> <span class="p">}))</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;publish </span><span class="si">{</span><span class="n">TOPIC_ROOT</span><span class="si">}</span><span class="s2">/ds/lines/add&quot;</span><span class="p">)</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">TOPIC_ROOT</span><span class="si">}</span><span class="s2">/ds/lines/add&quot;</span><span class="p">,</span> 
+                   <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span> <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span> <span class="s2">&quot;y1&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;y2&quot;</span><span class="p">:</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="p">}))</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>connect ...
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/new
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
+publish vis/ds/lines/add
 </pre></div>
 </div>
 </div>
@@ -585,7 +772,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./projects/bluetooth.bak"
+            path: "./projects/robot"
         },
         predefinedOutput: true
     }

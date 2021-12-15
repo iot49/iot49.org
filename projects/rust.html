@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WiFi Coprocessor &#8212; Electronics for IoT</title>
+    <title>Rust &#8212; Electronics for IoT</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -49,12 +49,12 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <link rel="canonical" href="https://iot49.org/projects/wifi-cop.html" />
+    <link rel="canonical" href="https://iot49.org/projects/rust.html" />
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Overview" href="wifi-cop/overview.html" />
-    <link rel="prev" title="BLE Beacon Scanner" href="bluetooth/eddystone.html" />
+    <link rel="next" title="Install Rust" href="rust/install.html" />
+    <link rel="prev" title="Networking" href="wifi-cop/networking.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -369,11 +369,11 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="wifi-cop.html">
    WiFi Coprocessor
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
   <label for="toctree-checkbox-7">
    <i class="fas fa-chevron-down">
    </i>
@@ -401,11 +401,11 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="rust.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
    Rust
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
   <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
@@ -464,9 +464,9 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/projects/wifi-cop.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/projects/rust.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
+                data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
             onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -484,10 +484,10 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/wifi-cop.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/rust.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/wifi-cop.ipynb"><button
+        <a class="edit-button" href="https://github.com/iot49/iot49.org/edit/master/docs/projects/rust.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -515,21 +515,9 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="wifi-coprocessor">
-<h1>WiFi Coprocessor<a class="headerlink" href="#wifi-coprocessor" title="Permalink to this headline">¶</a></h1>
-<p>Some CPUs or breakout boards come with built-in WiFi. But what if the chosen target processor, e.g. an STM32 or nrf52, does not and it’s needed for your IoT project?</p>
-<p>The solution is to add a WiFi radio. This project uses an economical ESP32 to add WiFi to the target processor. To minimize software development and hardware complexity, we’ll run MicroPython on the ESP32 and communicate with the target over a serial port with just two wires.</p>
-<p>To download this project, run:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
-
-cd $IOT_PROJECTS
-svn checkout https://github.com/iot49/iot49.org/trunk/docs/projects/wifi-cop
-</pre></div>
-</div>
-</div>
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="rust">
+<h1>Rust<a class="headerlink" href="#rust" title="Permalink to this headline">¶</a></h1>
+<p>Install <a class="reference external" href="https://www.rust-lang.org/">Rust</a> tools and <a class="reference external" href="https://github.com/google/evcxr">Jupyter Kernel</a>.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -543,33 +531,33 @@ svn checkout https://github.com/iot49/iot49.org/trunk/docs/projects/wifi-cop
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "iot_kernel"
+            mode: "python"
         },
         kernelOptions: {
-            kernelName: "iot_kernel",
+            kernelName: "python3",
             path: "./projects"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'iot_kernel'</script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="bluetooth/eddystone.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="wifi-cop/networking.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">BLE Beacon Scanner</p>
+            <p class="prev-next-title">Networking</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="wifi-cop/overview.html" title="next page">
+    <a class='right-next' id="next-link" href="rust/install.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Overview</p>
+        <p class="prev-next-title">Install Rust</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

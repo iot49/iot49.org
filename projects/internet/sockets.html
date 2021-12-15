@@ -401,6 +401,28 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rust.html">
+   Rust
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/install.html">
+     Install Rust
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/tour.html">
+     Try Rust
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
     </div>
@@ -817,7 +839,8 @@ echo &quot;microcontroller IP:&quot; $my_ip
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
 
 # create a folder for the certificate
-mkdir -p $IOT_PROJECTS/internet/ssl
+cd $IOT_PROJECTS/internet
+mkdir -p ssl
 cd ssl
 
 # write the certificate spec
@@ -849,10 +872,9 @@ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/bin/bash: line 3: cd: ssl: No such file or directory
-Generating a RSA private key
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating a RSA private key
 ...........................+++++
-............................................................................+++++
+......................................................+++++
 writing new private key to &#39;cert.key&#39;
 -----
 </pre></div>
