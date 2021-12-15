@@ -557,10 +557,10 @@
 </li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> 
-    <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;time [s]&quot;</span><span class="p">,</span> <span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="o">...</span> <span class="p">],</span> 
-    <span class="s2">&quot;rollover&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> 
-    <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;MQTT Plot Demo&quot;</span> <span class="p">},</span> 
-    <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;scatter_plot&quot;</span> 
+        <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;time [s]&quot;</span><span class="p">,</span> <span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="o">...</span> <span class="p">],</span> 
+        <span class="s2">&quot;rollover&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> 
+        <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;MQTT Plot Demo&quot;</span> <span class="p">},</span> 
+        <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;scatter_plot&quot;</span> 
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -569,17 +569,31 @@
 <li><p>Json data:</p>
 <ul>
 <li><p>Topic: <code class="docutils literal notranslate"><span class="pre">MQTT_TOPIC_ROOT/add</span></code></p></li>
-<li><p>Message (json): <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">&quot;time</span> <span class="pre">[s]&quot;:</span> <span class="pre">5.39,</span> <span class="pre">&quot;y1&quot;:</span> <span class="pre">float('nan'),</span> <span class="pre">&quot;y2&quot;:</span> <span class="pre">-0.3</span> <span class="pre">}</span></code></p></li>
-<li><p>Data to plot. Typically and (endless) stream.</p></li>
+<li><p>Message (json):</p></li>
 </ul>
 </li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> 
+        <span class="s2">&quot;time [s]&quot;</span><span class="p">:</span> <span class="mf">5.39</span><span class="p">,</span> 
+        <span class="s2">&quot;y1&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">),</span> 
+        <span class="s2">&quot;y2&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.3</span> 
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Data to plot. Typically and (endless) stream.</p></li>
 <li><p>Binary data (<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">struct</span> <span class="pre">import</span> <span class="pre">pack</span></code>)</p>
 <ul>
 <li><p>Topic: <code class="docutils literal notranslate"><span class="pre">MQTT_TOPIC_ROOT/bin</span></code></p></li>
-<li><p>Message (binary): <code class="docutils literal notranslate"><span class="pre">pack(&quot;!3f&quot;,</span> <span class="pre">3.5,</span> <span class="pre">float('nan'),</span> <span class="pre">-77)</span></code></p></li>
-<li><p>Send binary data (32-bit floats), alternative to send json. The number and order of floats sent must match the columns specified during initialization. <code class="docutils literal notranslate"><span class="pre">bin</span></code>, unlike <code class="docutils literal notranslate"><span class="pre">add</span></code>, avoids data allocation on the heap.</p></li>
+<li><p>Message (binary):</p></li>
 </ul>
 </li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="n">pack</span><span class="p">(</span><span class="s2">&quot;!3f&quot;</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;nan&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">77</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Send binary data (32-bit floats), alternative to send json. The number and order of floats sent must match the columns specified during initialization. <code class="docutils literal notranslate"><span class="pre">bin</span></code>, unlike <code class="docutils literal notranslate"><span class="pre">add</span></code>, avoids data allocation on the heap.</p></li>
 </ul>
 <p>First update the configuration file <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/mqtt_plot/config.py</span></code>. Set <code class="docutils literal notranslate"><span class="pre">MQTT_BROKER</span></code> to match the address of your MQTT broker.</p>
 <p>Then start the server from the command line:</p>
