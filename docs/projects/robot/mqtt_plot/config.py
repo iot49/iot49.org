@@ -1,0 +1,11 @@
+# config.py
+
+# mqtt
+MQTT_BROKER = "10.39.40.200"
+MQTT_PORT = 1883
+MQTT_TOPIC_ROOT = "vis"
+MQTT_QOS = 1
+
+# bokeh server
+SERVER_PORT = 5006
+SERVER_UPDATE_PLOT_MS = 50

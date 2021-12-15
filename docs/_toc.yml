@@ -67,6 +67,9 @@ parts:
     - file: projects/wifi-cop/custom_c
     - file: projects/wifi-cop/rpc
     - file: projects/wifi-cop/networking
+  - file: projects/robot
+    sections:
+    - file: projects/robot/mqtt_plot
   - file: projects/rust
     sections:
     - file: projects/rust/install
