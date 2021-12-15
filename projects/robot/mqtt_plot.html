@@ -559,14 +559,14 @@
 <li><p>Json data:</p>
 <ul>
 <li><p>Topic: <code class="docutils literal notranslate"><span class="pre">MQTT_TOPIC_ROOT/add</span></code></p></li>
-<li><p>Message (json): <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">&quot;time</span> <span class="pre">[s]&quot;:</span> <span class="pre">5.39,</span> <span class="pre">&quot;y1&quot;:</span> <span class="pre">0,</span> <span class="pre">&quot;y2&quot;:</span> <span class="pre">-0.3</span> <span class="pre">}</span></code></p></li>
+<li><p>Message (json): <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">&quot;time</span> <span class="pre">[s]&quot;:</span> <span class="pre">5.39,</span> <span class="pre">&quot;y1&quot;:</span> <span class="pre">float('nan'),</span> <span class="pre">&quot;y2&quot;:</span> <span class="pre">-0.3</span> <span class="pre">}</span></code></p></li>
 <li><p>Data to plot. Typically and (endless) stream.</p></li>
 </ul>
 </li>
 <li><p>Binary data (<code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">struct</span> <span class="pre">import</span> <span class="pre">pack</span></code>)</p>
 <ul>
 <li><p>Topic: <code class="docutils literal notranslate"><span class="pre">MQTT_TOPIC_ROOT/bin</span></code></p></li>
-<li><p>Message (binary): <code class="docutils literal notranslate"><span class="pre">pack(&quot;!3f&quot;,</span> <span class="pre">data)</span></code></p></li>
+<li><p>Message (binary): <code class="docutils literal notranslate"><span class="pre">pack(&quot;!3f&quot;,</span> <span class="pre">3.5,</span> <span class="pre">float('nan'),</span> <span class="pre">-77)</span></code></p></li>
 <li><p>Send binary data (32-bit floats), alternative to send json. The number and order of floats sent must match the columns specified during initialization. <code class="docutils literal notranslate"><span class="pre">bin</span></code>, unlike <code class="docutils literal notranslate"><span class="pre">add</span></code>, avoids data allocation on the heap.</p></li>
 </ul>
 </li>
