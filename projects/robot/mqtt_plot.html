@@ -552,10 +552,20 @@
 <li><p>Initialize plot:</p>
 <ul>
 <li><p>Topic: <code class="docutils literal notranslate"><span class="pre">MQTT_TOPIC_ROOT/new</span></code></p></li>
-<li><p>Message (json): <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">&quot;columns&quot;:</span> <span class="pre">[</span> <span class="pre">&quot;time</span> <span class="pre">[s]&quot;,</span> <span class="pre">&quot;y1&quot;,</span> <span class="pre">&quot;y2&quot;,</span> <span class="pre">...</span> <span class="pre">],</span> <span class="pre">&quot;rollover&quot;:</span> <span class="pre">200</span> <span class="pre">}</span></code></p></li>
-<li><p>Declaration of the data column names. The number and names of columns is arbitrary. <code class="docutils literal notranslate"><span class="pre">rollover</span></code> specifies the number of points shown. Once more than that many points are received, the plot scrolls to the left.</p></li>
+<li><p>Message (json):</p></li>
 </ul>
 </li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> 
+    <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;time [s]&quot;</span><span class="p">,</span> <span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="o">...</span> <span class="p">],</span> 
+    <span class="s2">&quot;rollover&quot;</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> 
+    <span class="s2">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;MQTT Plot Demo&quot;</span> <span class="p">},</span> 
+    <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;scatter_plot&quot;</span> 
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Declaration of the data column names. The number and names of columns is arbitrary. <code class="docutils literal notranslate"><span class="pre">rollover</span></code> specifies the number of points shown. Once more than that many points are received, the plot scrolls to the left.</p></li>
 <li><p>Json data:</p>
 <ul>
 <li><p>Topic: <code class="docutils literal notranslate"><span class="pre">MQTT_TOPIC_ROOT/add</span></code></p></li>
