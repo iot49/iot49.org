@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cloud &#8212; Electronics for IoT</title>
+    <title>Robot &#8212; Electronics for IoT</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,6 +53,8 @@
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MQTT Plot" href="robot/mqtt_plot.html" />
+    <link rel="prev" title="Networking" href="wifi-cop/networking.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -235,7 +237,7 @@
   Tours &amp; Projects
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="balance.html">
    GPIO
@@ -399,12 +401,29 @@
    </li>
   </ul>
  </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Robot
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="robot/mqtt_plot.html">
+     MQTT Plot
+    </a>
+   </li>
+  </ul>
+ </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="rust.html">
    Rust
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
-  <label for="toctree-checkbox-8">
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -513,15 +532,21 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="cloud">
-<h1>Cloud<a class="headerlink" href="#cloud" title="Permalink to this headline">¶</a></h1>
-<p>Most IoT projects communicate with services located in the “cloud”. Typically these run on computers located in data centers, such as those offered by e.g. <a class="reference external" href="https://aws.amazon.com/">Amazon</a>, <a class="reference external" href="https://www.ibm.com/watson">IBM</a>, <a class="reference external" href="https://azure.microsoft.com/">Microsoft</a>, and many others.</p>
-<p>While they provide reliability and scalability (when your project takes off), for development it is sometimes simpler to rely on local services. Why not turn our Raspberry PI or NUC into our very own data center?</p>
-<div class="figure align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/aws.png"><img alt="../_images/aws.png" src="../_images/aws.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Like a Raspberry PI, just scaled up.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="robot">
+<h1>Robot<a class="headerlink" href="#robot" title="Permalink to this headline">¶</a></h1>
+<p>some day …</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+cd $IOT_PROJECTS
+svn checkout https://github.com/iot49/iot49.org/trunk/docs/projects/robot
+</pre></div>
 </div>
-<p><em>ide49</em> already provides an MQTT broker, a service usually located in the cloud. Why not provide others for data storage, visualization, etc?</p>
+</div>
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -548,7 +573,21 @@
               
         
             <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="wifi-cop/networking.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Networking</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="robot/mqtt_plot.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">MQTT Plot</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
