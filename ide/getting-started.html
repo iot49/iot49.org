@@ -601,7 +601,7 @@
 </div>
 </div>
 </div>
-<p>Apparently the microcontroller is connected to <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code>. The hex string <code class="docutils literal notranslate"><span class="pre">50:02:91:a1:a7:2c</span></code> is a identifier of the device. It’s unique, that is it will differ for your microcontroller (MicroPython instruction <code class="docutils literal notranslate"><span class="pre">machine.unique_id()</span></code>). The <code class="docutils literal notranslate"><span class="pre">IoT</span> <span class="pre">Kernel</span></code> uses these id’s to unambiguously distinguish between devices. This avoid confusion if you have several.</p>
+<p>Apparently the microcontroller is connected to <code class="docutils literal notranslate"><span class="pre">/dev/ttyUSB0</span></code>. The hex string <code class="docutils literal notranslate"><span class="pre">50:02:91:a1:a7:2c</span></code> is a identifier (UID) of the device. It’s unique, that is it will differ for your microcontroller (MicroPython instruction <code class="docutils literal notranslate"><span class="pre">machine.unique_id()</span></code>). The <code class="docutils literal notranslate"><span class="pre">IoT</span> <span class="pre">Kernel</span></code> uses these id’s to unambiguously distinguish between devices. This avoid confusion if you have several.</p>
 <p>Now connect to this microcontroller using another magic (update the id in the statement below to match your device):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -653,7 +653,7 @@ platform = esp32
 <div class="section" id="naming-devices">
 <h2>Naming devices<a class="headerlink" href="#naming-devices" title="Permalink to this headline">¶</a></h2>
 <p>The string <code class="docutils literal notranslate"><span class="pre">50:02:91:a1:a7:2c</span></code> is great for computers. But just as we prefer to call friends by their names rather than social security number, it sure would be nice if we could refer to our devices by meaningful names.</p>
-<p>Fortunately it is easy to associate the device with a “name”, by simply recording this information in a file and saving it to folder <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/devices</span></code>. The <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> magic does this for us:</p>
+<p>Fortunately it is easy to associate the device with a “name”, by saving this information to a file in folder <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/devices</span></code>. The <code class="docutils literal notranslate"><span class="pre">%%writefile</span></code> magic does this for us:</p>
 <div class="cell tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/pico.yaml
@@ -663,21 +663,10 @@ pico:
 </div>
 </div>
 </div>
-<p>Again, you’ll need to change the hex string to match your device. <code class="docutils literal notranslate"><span class="pre">pico</span></code> is the name of my microcontroller, chose a different one if you like. The file name, <code class="docutils literal notranslate"><span class="pre">pico.yaml</span></code> is of no importance, except that it must have extension <code class="docutils literal notranslate"><span class="pre">yaml</span></code> and be located in <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/devices/pico.yaml</span></code>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!echo $IOT_PROJECTS/devices/pico.yaml
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/iot/iot49.org/docs/projects/devices/pico.yaml
-</pre></div>
-</div>
-</div>
-</div>
-<p>We also could have used an editor to write the file. In fact, try to find the file in the file browser and click on it. This will open it in the editor.</p>
-<p>After this, we can refer to our microcontroller by it’s name:</p>
+<p>Again, you’ll need to change the hex string to match your device. <code class="docutils literal notranslate"><span class="pre">pico</span></code> is the name of my microcontroller, chose a different one if you like. The file name, <code class="docutils literal notranslate"><span class="pre">pico.yaml</span></code> is of no importance, except that it must have extension <code class="docutils literal notranslate"><span class="pre">yaml</span></code> and be located in <code class="docutils literal notranslate"><span class="pre">$IOT_PROJECTS/devices/</span></code> to be found.</p>
+<p>Avoid creating multiple declarations for the same UID, or giving the same name to different microcontrollers.</p>
+<p>We also could have used an editor to write the file. Find the file in the file browser and click on it. This will open it in the editor.</p>
+<p>Now we can refer to our microcontroller by it’s name:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">pico</span>
