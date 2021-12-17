@@ -871,8 +871,8 @@ C = US
 ST = CA
 L = San Francisco
 O = MicroPython Webserver
-OU = iot49
-CN = iot49
+OU = iot49-$my_ip
+CN = iot49-$my_ip
 [v3_req]
 keyUsage = critical, digitalSignature, keyAgreement
 extendedKeyUsage = serverAuth
@@ -890,8 +890,8 @@ openssl req -x509 -nodes -days 3650 -newkey rsa:2048 \
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Generating a RSA private key
-...........................+++++
-......................................................+++++
+..........................................................................+++++
+................................+++++
 writing new private key to &#39;cert.key&#39;
 -----
 </pre></div>
