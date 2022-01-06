@@ -6,7 +6,7 @@ MQTT_BROKER = "10.39.40.200"
 MQTT_PORT = 1883
 MQTT_QOS = 0
 # all topics related to mqtt_plot start with this prefix
-MQTT_TOPIC_ROOT = "vis"
+MQTT_TOPIC_ROOT = "public/vis"
 
 # bokeh server
 

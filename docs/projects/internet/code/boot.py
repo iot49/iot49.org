@@ -28,7 +28,7 @@ def connect():
     return True
 
 # connect to WiFi
-conneced = connect()
+connected = connect()
 
 if connected and hasattr(secrets, 'webrepl_pwd'):
     # start webrepl
