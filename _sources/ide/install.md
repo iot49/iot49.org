@@ -14,7 +14,7 @@ To install *ide49*, you need the following:
     * Intel NUC or compatible **(Custom install only!)**  
     
   Other 64-Bit ARM or Intel CPUs (`aarch64` or `amd64`) may work as well.
-* SD Card with at least 32GBytes. A good quality card is **highly recommended**, e.g. Sandisk Max Endurance or Samsung Pro Endurance.
+* SD Card with at least 16GBytes. A good quality card is **highly recommended**, e.g. Sandisk Max Endurance or Samsung Pro Endurance.
     * Intel NUC or compatibles usually have internal storage. An SD Card is not needed in this case.
 * A networked computer (e.g. a laptop) with an SD Card slot (only used for installation)
 
