@@ -38,7 +38,7 @@ Jump to the appropriate section in the documentation to start the installation.
     
 ## Quick Install
 
-Go to https://hub.balena.io/balenalabs/ide49 and click "Get started". Select your device type and network connection (wifi+ethernet unless you use a wired connection). Then hit the download button. 
+Go to https://hub.balena.io/boser/ide49 and click "Get started". Select your device type and network connection (wifi+ethernet unless you use a wired connection). Then hit the download button. 
 
 If you have a **Raspberry PI**, flash the downloaded OS image to the SD Card using [Balena Etcher](https://www.balena.io/etcher/). Insert the card into the PI and apply power.
 
