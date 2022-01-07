@@ -33,6 +33,7 @@ parts:
     - file: ide/app/overview
     - file: ide/app/customize
   - file: ide/help
+  - file: ide/changelog
   
 - caption: Tours & Projects
   chapters:
