@@ -29,10 +29,10 @@ To install *ide49*, you need the following:
 
 Two options for installing *ide49*:
 
-1. **Quick install:** Download the operating system to the SD card, wait for the app to download and start using it. It's really that simple. Even updates are automated.
-2. **Custom installation:** Install from gitbub sources. Gives complete control - you can modify everything you like, e.g. add additional Docker services - right from within *ide49*. For this option you need a free account on [balena.io](https://www.balena.io/) (no credit card needed). 
+1. **[Quick install](#quick-install):** Download the operating system to the SD card, wait for the app to download and start using it. It's that simple. Even updates are automated.
+2. **[Custom installation](#custom-install):** Install from gitbub sources. Gives complete control - you can modify everything you like, e.g. add additional Docker services - right from within *ide49*. For this option you need a free account on [balena.io](https://www.balena.io/) (no credit card needed). 
 
-*Disclosure:* I have no affiliation with Balena except using their software and infrastructure, for free.
+*Disclosure:* I have no affiliation with Balena except using their software and infrastructure -  for free.
 
 Jump to the appropriate section in the documentation to start the installation.
     
@@ -44,7 +44,7 @@ If you have a **Raspberry PI**, flash the downloaded OS image to the SD Card usi
 
 **Intel NUC** or compatibles typically install the OS from a thumb drive or other external medium to the internal disk. Follow the [instructions](https://www.balena.io/os/docs/intel-nuc/getting-started) at the Balena website.
 
-Once the OS is installed *ide49* will download and install automatically. Depending on the networks speed, this may take upwards of ten minutes (or an hour with my glacially slow Internet). After the download completes *ide49* starts automatically. Connect your computer to the same network and point the browser to http://iot49.local.
+Once the OS is installed *ide49* will download and install automatically. Depending on the networks speed, this may take upwards of ten minutes (or an hour with my glacially slow Internet). After the download completes, *ide49* starts automatically. Connect your computer to the same network and point the browser to http://iot49.local.
 
 If this does not work the download and setup may not be complete. Try to "ping" the device (at `iot49.local`) or determine the local address of your device (e.g. from the router or access point) and try http://LOCAL_IP_ADDRESS.
 
