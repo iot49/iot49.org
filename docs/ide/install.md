@@ -11,11 +11,11 @@ To install *ide49*, you need the following:
 * Host device: one of
     * Raspberry Pi 4 (2GBytes suffice for *iot49*)
     * Raspberry Pi 3
-    * Intel NUC or compatible
+    * Intel NUC or compatible **(Custom install only!)**  
     
   Other 64-Bit ARM or Intel CPUs (`aarch64` or `amd64`) may work as well.
-* SD Card with at least 16GBytes (32GBytes is a good compromise between size and reliability). A good quality card is highly recommended (Sandisk, Samsung, etc).
-    * Not needed for installation on Intel NUC or compatible
+* SD Card with at least 32GBytes. A good quality card is **highly recommended**, e.g. Sandisk Max Endurance or Samsung Pro Endurance.
+    * Intel NUC or compatibles usually have internal storage. An SD Card is not needed in this case.
 * A networked computer (e.g. a laptop) with an SD Card slot (only used for installation)
 
 **Software:**
@@ -38,11 +38,11 @@ Jump to the appropriate section in the documentation to start the installation.
     
 ## Quick Install
 
-Go to https://hub.balena.io/boser/ide49 and click "Get started". Select your device type and network connection (wifi+ethernet unless you use a wired connection). Then hit the download button. 
+**Note:** Quick install is available only for the Raspberry PI (not Intel NUC or compatible).
 
-If you have a **Raspberry PI**, flash the downloaded OS image to the SD Card using [Balena Etcher](https://www.balena.io/etcher/). Insert the card into the PI and apply power.
+Go to https://hub.balena.io/boser/ide49 and click "Get started". Select your device type and network connection (wifi+ethernet unless you use a wired connection). From the `Flash` button, choose `Download balenaOS` (perhaps direct flashing by clicking the Flash button works also, but not for me).
 
-**Intel NUC** or compatibles typically install the OS from a thumb drive or other external medium to the internal disk. Follow the [instructions](https://www.balena.io/os/docs/intel-nuc/getting-started) at the Balena website.
+Flash the downloaded OS image to the SD Card using [Balena Etcher](https://www.balena.io/etcher/). Insert the card into the PI and apply power.
 
 Once the OS is installed *ide49* will download and install automatically. Depending on the networks speed, this may take upwards of ten minutes (or an hour with my glacially slow Internet). After the download completes, *ide49* starts automatically. Connect your computer to the same network and point the browser to http://iot49.local.
 
