@@ -615,13 +615,13 @@
 <ul class="simple">
 <li><p>Raspberry Pi 4 (2GBytes suffice for <em>iot49</em>)</p></li>
 <li><p>Raspberry Pi 3</p></li>
-<li><p>Intel NUC or compatible</p></li>
+<li><p>Intel NUC or compatible <strong>(Custom install only!)</strong></p></li>
 </ul>
 <p>Other 64-Bit ARM or Intel CPUs (<code class="docutils literal notranslate"><span class="pre">aarch64</span></code> or <code class="docutils literal notranslate"><span class="pre">amd64</span></code>) may work as well.</p>
 </li>
-<li><p>SD Card with at least 16GBytes (32GBytes is a good compromise between size and reliability). A good quality card is highly recommended (Sandisk, Samsung, etc).</p>
+<li><p>SD Card with at least 32GBytes. A good quality card is <strong>highly recommended</strong>, e.g. Sandisk Max Endurance or Samsung Pro Endurance.</p>
 <ul class="simple">
-<li><p>Not needed for installation on Intel NUC or compatible</p></li>
+<li><p>Intel NUC or compatibles usually have internal storage. An SD Card is not needed in this case.</p></li>
 </ul>
 </li>
 <li><p>A networked computer (e.g. a laptop) with an SD Card slot (only used for installation)</p></li>
@@ -652,9 +652,9 @@
 </div>
 <div class="section" id="quick-install">
 <h2>Quick Install<a class="headerlink" href="#quick-install" title="Permalink to this headline">¶</a></h2>
-<p>Go to <a class="reference external" href="https://hub.balena.io/boser/ide49">https://hub.balena.io/boser/ide49</a> and click “Get started”. Select your device type and network connection (wifi+ethernet unless you use a wired connection). Then hit the download button.</p>
-<p>If you have a <strong>Raspberry PI</strong>, flash the downloaded OS image to the SD Card using <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a>. Insert the card into the PI and apply power.</p>
-<p><strong>Intel NUC</strong> or compatibles typically install the OS from a thumb drive or other external medium to the internal disk. Follow the <a class="reference external" href="https://www.balena.io/os/docs/intel-nuc/getting-started">instructions</a> at the Balena website.</p>
+<p><strong>Note:</strong> Quick install is available only for the Raspberry PI (not Intel NUC or compatible).</p>
+<p>Go to <a class="reference external" href="https://hub.balena.io/boser/ide49">https://hub.balena.io/boser/ide49</a> and click “Get started”. Select your device type and network connection (wifi+ethernet unless you use a wired connection). From the <code class="docutils literal notranslate"><span class="pre">Flash</span></code> button, choose <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">balenaOS</span></code> (perhaps direct flashing by clicking the Flash button works also, but not for me).</p>
+<p>Flash the downloaded OS image to the SD Card using <a class="reference external" href="https://www.balena.io/etcher/">Balena Etcher</a>. Insert the card into the PI and apply power.</p>
 <p>Once the OS is installed <em>ide49</em> will download and install automatically. Depending on the networks speed, this may take upwards of ten minutes (or an hour with my glacially slow Internet). After the download completes, <em>ide49</em> starts automatically. Connect your computer to the same network and point the browser to <a class="reference external" href="http://iot49.local">http://iot49.local</a>.</p>
 <p>If this does not work the download and setup may not be complete. Try to “ping” the device (at <code class="docutils literal notranslate"><span class="pre">iot49.local</span></code>) or determine the local address of your device (e.g. from the router or access point) and try http://LOCAL_IP_ADDRESS.</p>
 <p>Proceed to the next section, <a class="reference internal" href="getting-started.html"><span class="doc std std-doc">Getting Started</span></a>.</p>
