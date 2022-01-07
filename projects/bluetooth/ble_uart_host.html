@@ -227,8 +227,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ide/issues.html">
-   Issues
+  <a class="reference internal" href="../../ide/help.html">
+   Help
   </a>
  </li>
 </ul>
@@ -688,10 +688,8 @@ E6:44:73:09:EE:AF: E6-44-73-09-EE-AF
         <span class="k">return</span> <span class="n">msg</span>
     
     <span class="k">async</span> <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;write disabled (install Bluez 5.51!)&quot;</span><span class="p">)</span>
-        <span class="k">return</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
         <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_client</span><span class="o">.</span><span class="n">write_gatt_char</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">UART_RX_CHAR_UUID</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
         
     <span class="k">async</span> <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -738,37 +736,18 @@ E6:44:73:09:EE:AF: E6-44-73-09-EE-AF
 
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uart</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;host received&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;received&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;echo </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scanning for mpy-uart
 connecting to mpy-uart ... connected
-host received hello # 1 from host
-host received hello # 2 from host
-host received hello # 3 from host
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">with</span> <span class="n">BLE_UART</span><span class="p">()</span> <span class="k">as</span> <span class="n">uart</span><span class="p">:</span>
-    <span class="k">await</span> <span class="n">uart</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="k">await</span> <span class="n">uart</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;host received&quot;</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>scanning for mpy-uart
-connecting to mpy-uart ... connected
-host received hello # 7 from host
-host received hello # 8 from host
-host received hello # 9 from host
+received hello # 1 from esp32
+received hello # 2 from esp32
+received hello # 3 from esp32
 </pre></div>
 </div>
 </div>

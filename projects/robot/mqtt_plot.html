@@ -227,8 +227,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../ide/issues.html">
-   Issues
+  <a class="reference internal" href="../../ide/help.html">
+   Help
   </a>
  </li>
 </ul>
@@ -697,6 +697,7 @@ python -m mqtt_plot
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sending data ...
+so long
 </pre></div>
 </div>
 </div>
@@ -708,7 +709,7 @@ python -m mqtt_plot
 </div>
 <div class="section" id="customization">
 <h2>Customization<a class="headerlink" href="#customization" title="Permalink to this headline">¶</a></h2>
-<p>MQTT Plot makes use of the <a class="reference external" href="https://bokeh.org/">Bokeh Visualization Library</a>. This library offers extensive control and customizations (see <a class="reference external" href="https://docs.bokeh.org/en/latest/docs/gallery.html">examples</a>).</p>
+<p>MQTT Plot makes use of the <a class="reference external" href="https://bokeh.org/">Bokeh Visualization Library</a>. This library offers extensive control and <a class="reference external" href="https://docs.bokeh.org/en/latest/docs/gallery.html">customizations</a>.</p>
 <p>To customize the output of MQTT Plot, edit a copy of the file <code class="docutils literal notranslate"><span class="pre">mqtt_plot/layouts/line_plot.py</span></code>). Then in the <code class="docutils literal notranslate"><span class="pre">new</span></code> topic, specify layout to use for plotting, like so (replace <code class="docutils literal notranslate"><span class="pre">scatter_plot</span></code> with the name of your file, without extension):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;time [s]&quot;</span><span class="p">,</span> <span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="o">...</span> <span class="p">],</span> <span class="s2">&quot;layout&quot;</span><span class="p">:</span> <span class="s2">&quot;scatter_plot&quot;</span> <span class="p">}</span>
 </pre></div>
