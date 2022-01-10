@@ -11,7 +11,7 @@ To install *ide49*, you need the following:
 * Host device: one of
     * Raspberry Pi 4 (2GBytes suffice for *iot49*)
     * Raspberry Pi 3
-    * Intel NUC or compatible **(Custom install only!)**  
+    * Intel NUC or compatible 
     
   Other 64-Bit ARM or Intel CPUs (`aarch64` or `amd64`) may work as well.
 * SD Card with at least 16GBytes. A good quality card is **highly recommended**, e.g. Sandisk Max Endurance or Samsung Pro Endurance.
@@ -38,9 +38,12 @@ Jump to the appropriate section in the documentation to start the installation.
     
 ## Quick Install
 
-**Note:** Quick install is available only for the Raspberry PI (not Intel NUC or compatible).
+Choose the appropriate link for your device architecture:
 
-Go to https://hub.balena.io/boser/ide49 and click "Get started". Select your device type and network connection (wifi+ethernet unless you use a wired connection). From the `Flash` button, choose `Download balenaOS` (perhaps direct flashing by clicking the Flash button works also, but not for me).
+* [aarch64](https://hub.balena.io/boser/ide49) for ARM, e.g. Raspberry PI 3 or 4, or
+* [amd64](https://hub.balena.io/boser/ide49-amd64) for Intel NUC and compatibles.
+
+On the page that opens, click "Get started". Select your device type and network connection (wifi+ethernet unless you use a wired connection). From the `Flash` dropdown, choose `Download balenaOS` (clicking the `Flash` button directly may work also, but not for me).
 
 Flash the downloaded OS image to the SD Card using [Balena Etcher](https://www.balena.io/etcher/). Insert the card into the PI and apply power.
 
