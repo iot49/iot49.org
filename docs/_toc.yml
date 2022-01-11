@@ -71,7 +71,7 @@ parts:
   - file: projects/robot
     sections:
     - file: projects/robot/00_overview
-    - file: projects/robot/01_micropython
+    - file: projects/robot/01_stm32
     - file: projects/robot/02_supply
     - file: projects/robot/mqtt_plot
   - file: projects/rust
