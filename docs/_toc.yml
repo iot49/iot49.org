@@ -73,8 +73,8 @@ parts:
     - file: projects/robot/00_overview
     - file: projects/robot/01_stm32
     - file: projects/robot/02_supply
-    - file: projects/robot/03_peripherals
-    - file: projects/robot/xx_mqtt_plot
+    - file: projects/robot/03_mqtt_plot
+    - file: projects/robot/04_peripherals
   - file: projects/rust
     sections:
     - file: projects/rust/install
