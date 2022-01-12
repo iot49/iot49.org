@@ -3,8 +3,10 @@ from . mqtt_listener import MqttListener
 from . layouts import line_plot
 from bokeh.server.server import Server
 from time import sleep
-import os, importlib
+import os, importlib, sys
 
+
+# bokeh app
 def bkapp(doc):
     global mqtt
     layout = importlib.import_module(f'{line_plot.__package__}.{mqtt.layout}')
@@ -16,6 +18,7 @@ mqtt = MqttListener()
 
 # wait for mqtt data  
 print("MQTT Plot: waiting for mqtt data")
+sys.stdout.flush()
 while not mqtt.column_data_source:
     sleep(1)
     
@@ -34,3 +37,5 @@ try:
     server.io_loop.start()
 except KeyboardInterrupt:
     print("so long")
+except Exception as e:
+    print("exit", e)
