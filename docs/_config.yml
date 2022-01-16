@@ -42,4 +42,14 @@ launch_buttons:
   binderhub_url: ""
 
 parse:
-  myst_url_schemes: [mailto, http, https, serial, ws, wss, mp]
+  myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    - colon_fence
+    - deflist
+    - dollarmath
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
+    - tasklist
+  myst_url_schemes: [mailto, http, https, mqtt, mqtts, serial, ws, wss, mp]
+  myst_dmath_double_inline: true

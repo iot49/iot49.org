@@ -2,10 +2,10 @@ from iot_device.pydevice import Pydevice
 from iot_device import DeviceRegistry, RemoteError
 from serial import Serial
 from gpiozero import LED as Pin
-import asyncio, subprocess, os, time
+import subprocess, os, time
 
 
-def hard_reset(boot_mode=False):
+def hard_reset(boot_mode=False, dev='/dev/ttyAMA1'):
     """Hard reset STM32. Same as pressing reset button.
     
     @param boot_mode: bool Start in "dfu" boot-mode (default False).
@@ -19,7 +19,7 @@ def hard_reset(boot_mode=False):
         nrst.off()
         time.sleep(0.1)
         nrst.on()
-        # let boot process finish
+        # let boot finish
         time.sleep(1)
         
 def _flash_bin(address, firmware, dev, info_only):
@@ -77,28 +77,6 @@ def exec_no_follow(cmd, dev='/dev/ttyAMA1'):
                 pass
             print(f"*** MCU: {data}")
             time.sleep(0.1)
-
-async def async_exec(cmd, dev='/dev/ttyAMA1', pause=0.1):
-    """Asynchronous exec.
-
-    @param cmd: string Code.
-    @param pause: float Interval checking for output [seconds].
-    """
-    with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive=False) as serial:
-        pyd = Pydevice(serial)
-        pyd.enter_raw_repl()
-        pyd.exec_raw_no_follow(cmd)
-        while True:
-            if serial.in_waiting:
-                data = serial.read(serial.in_waiting)
-                try:
-                    data = data.decode()
-                except:
-                    pass
-                print(f"MCU: {data}")
-                await asyncio.sleep(0)
-        else:
-                await asyncio.sleep(pause)
 
 def rsync(dry_run=True, dev='serial:///dev/ttyAMA1'):
     registry = DeviceRegistry()

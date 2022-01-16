@@ -1,5 +1,5 @@
 from .state import State
-from stm32 import async_repl
+from stm32 import async_exec
 
 from iot_device.pydevice import Pydevice
           
@@ -73,7 +73,7 @@ class RobotComm:
     
     async def ping(self):
         self._ping_event = asyncio.Event()
-        self._send_cmd(CMD_PING)
+        self._uart.write(bytes([CMD_PING]))
         await self._ping_event.wait()        
         
     async def echo_test(self, msg):
@@ -88,10 +88,10 @@ class RobotComm:
         
     async def __aenter__(self):
         # start program on MCU
-        repl_task = async_repl(
-                # f"print('foo')\n"
-                # f"for i in range(20):\n"
-                # f"    print(i)\n"
+        repl_task = async_exec(
+                f"print('foo')\n"
+                f"for i in range(20):\n"
+                f"    print(i)\n"
                 f"from comm import Comm\n"
                 f"Comm({self.baudrate}, {self.pwm_freq})\n"
             )

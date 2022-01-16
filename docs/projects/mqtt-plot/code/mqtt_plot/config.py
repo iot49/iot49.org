@@ -1,8 +1,10 @@
 # config.py
 
+import os
+
 # mqtt
 
-MQTT_BROKER = "10.39.40.200"
+MQTT_BROKER = os.getenv('HOST_IP')
 MQTT_PORT = 1883
 MQTT_QOS = 0
 # all topics related to mqtt_plot start with this prefix

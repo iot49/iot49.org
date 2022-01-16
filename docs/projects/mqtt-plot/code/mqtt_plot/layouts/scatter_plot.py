@@ -20,7 +20,7 @@ def layout(data_source, figure_args):
     colors = itertools.cycle(palette)
     for y_name, color, marker in zip(column_names[1:], colors, MARKERS):
         fig.scatter(column_names[0], y_name, source=data_source, 
-                    legend_label=y_name, color=color, marker=marker)
+                    legend_label=y_name, color=color, marker=marker, size=10)
 
     fig.legend.location = "top_left"
     fig.legend.click_policy = "hide"

@@ -5,8 +5,10 @@
 
 from iot_device.pydevice import Pydevice
 from gpiozero import Button
+from gpiozero import LED as Pin
 from serial import Serial
-import os, requests, time
+from time import sleep
+import os, requests
 
 
 # sudo shutdown (supervisor call)
@@ -24,7 +26,7 @@ def exec_no_follow(cmd, dev='/dev/ttyAMA1'):
         pyd = Pydevice(serial)
         pyd.enter_raw_repl()
         pyd.exec_raw_no_follow(cmd)
-        time.sleep(0.2)
+        sleep(0.2)
         while serial.in_waiting:
             data = serial.read(serial.in_waiting)
             try:
@@ -32,11 +34,20 @@ def exec_no_follow(cmd, dev='/dev/ttyAMA1'):
             except:
                 pass
             print(f"*** MCU: {data}")
-            time.sleep(0.1)
+            sleep(0.1)
 
             
 # monitor pi poweroff pin (AUX=GPIO16) and cut 5V supply when low
 def stm32_shutdown_monitor():
+    # reset STM32
+    with Pin(21) as nrst, Pin(27) as boot0:
+        boot0.off()
+        sleep(0.1)
+        nrst.off()
+        sleep(0.1)
+        nrst.on()
+        # let boot process finish
+        sleep(1)
     exec_no_follow(
 f"""
 from pyb import Pin
@@ -56,7 +67,7 @@ shut_dn.value(1)
 shut_dn = Pin('PWR_EN', mode=Pin.OUT_OD)
 shut_dn.value(0)
 
-# power is cut - we are dead!
+# at this point power is cut - program never gets beyond
 """)
     
 
@@ -72,5 +83,5 @@ with Button(13, pull_up=True, bounce_time=0.1) as shut_dn:
     # do this forever
     while True:
         # print("napping ...")
-        time.sleep(60)
+        sleep(60)
             
