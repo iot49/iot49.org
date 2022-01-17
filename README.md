@@ -1,5 +1,5 @@
 
-# Sources of `Electronics for IoT`.
+# Sources of `Electronics for IoT`
 
 - [`/docs/`]
 
