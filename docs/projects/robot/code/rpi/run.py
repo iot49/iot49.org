@@ -1,26 +1,22 @@
 import asyncio
 import stm32
-from robot import Comm
+from robot import *
 
-def exception_handler(loop, context):
-    msg = context.get("exception", context["message"])
-    print("***** asyncio:", context)
-    print("***** msg:", msg)
-
-asyncio.get_event_loop().set_exception_handler(exception_handler)
-
-stm32.hard_reset()
 
 async def main():
     async with Comm(1_000_000) as robot:
-        print("ping")
-        await robot.ping()
-        print("echo")
-        await robot.echo('hello world')
-        print(f"get(2) = {await robot.get(2)}")
-        print("set")
-        await robot.set(2, 2.7)
-        print(f"get(2) = {await robot.get(2)}")
 
+        await robot.set(PARAM_FS, 5)
+        await robot.ping()
+        print(f"get(PARAM_FS) = {await robot.get(PARAM_FS):10.0f}")
+
+        await robot.set(PARAM_FS, 7)
+        print(f"get(PARAM_FS) = {await robot.get(PARAM_FS):10.0f}")
+
+        # start
+        await robot.start('duty_control')
+        await asyncio.sleep(2)
+        await robot.ping()        
+        print("done!")
 
 asyncio.run(main())
