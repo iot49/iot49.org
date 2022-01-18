@@ -36,12 +36,15 @@ class Comm:
                 module = uart.read(sz)
                 ctrl = getattr(__import__(module.decode()), "Control")
                 controller = ctrl(uart)
+                disable_irq()
+                self.uart.writechar(t)
+                enable_irq()
             elif t == CMD_SHUTDOWN:
                 if controller: controller.shutdown()
                 controller = None
             elif t == CMD_PING:
                 disable_irq()
-                uart.writechar(t)
+                self.uart.writechar(t)
                 enable_irq()
             elif t == CMD_ECHO:
                 sz = uart.readchar()

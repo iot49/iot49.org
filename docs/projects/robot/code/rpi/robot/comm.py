@@ -9,22 +9,14 @@ from . param import *
 from gpiozero import Button as Pin
 Pin(14, pull_up=False)
 
-# state
-STATE_K      = const(0)    # normalized time
-STATE_PITCH  = const(1)    # pitch angle [degree]
-STATE_CPT1   = const(2)    # encoder1 counts in last cycle
-STATE_CPT2   = const(3)    # encoder1 counts in last cycle
-STATE_DUTY1  = const(4)    # motor1 duty cycle, +/- 100
-STATE_DUTY2  = const(5)    # motor2 duty cycle, +/- 100
-STATE_DT1    = const(6)    # controller exec time [us]
-STATE_DT2    = const(7)    # controller + state comm of _last_ cycle time [us]
 
 
 class Comm:
 
-    def __init__(self, baudrate=1_000_000):
+    def __init__(self, state_listener=None, baudrate=1_000_000):
         stm32.hard_reset()
         self.baudrate = baudrate
+        self.state_listener = state_listener
 
     async def __aenter__(self):
         # start program on MCU & listen for output
@@ -46,6 +38,81 @@ class Comm:
         self._uart.close()
         self._uart = None
 
+    async def set(self, index, value):
+        """Set parameter value"""
+        self._uart.write(bytes([CMD_SET, index]))
+        self._uart.write(pack('f', value))
+        PARAM[index] = value
+
+    async def get(self, index):
+        """Get parameter value"""
+        self._uart.write(bytes([CMD_GET, index]))
+        cmd, r = await self._resp_queue.get()
+        assert CMD_GET == cmd, f"get: expected {CMD_GET}, got {cmd}"
+        PARAM[index] = r
+        return r
+
+    async def start(self, controller='duty_control'):
+        """Start controller."""
+        if isinstance(controller, str): controller = controller.encode()
+        self._uart.write(bytes([CMD_START, len(controller)]))
+        self._uart.write(controller)
+        cmd, = await self._resp_queue.get()
+        assert CMD_START == cmd, f"start: expected {CMD_START}, got {cmd}"
+
+    async def shutdown(self):
+        """Shutdown turn off motors and shutdown controller."""
+        self._uart.write(bytes([CMD_SHUTDOWN]))
+
+    async def ping(self):
+        "Send ping & check response"
+        self._uart.write(bytes([CMD_PING]))
+        cmd, = await self._resp_queue.get()
+        assert CMD_PING == cmd, f"ping: expected {CMD_PING}, got {cmd}"
+        
+    async def echo(self, msg):
+        "Send message & check response"
+        if isinstance(msg, str): msg = msg.encode()
+        self._uart.write(bytes([CMD_ECHO, len(msg)]))
+        self._uart.write(msg)
+        cmd, r = await self._resp_queue.get()
+        assert CMD_ECHO == cmd, f"echo: expected {CMD_ECHO}, got {cmd}"
+        
+    async def _cmd_response(self):
+        """Receive and decode messages from stm32 & forward to destination."""
+        uart = self._uart
+        resp_queue = self._resp_queue
+        state_listener = self.state_listener
+        while uart:
+            if uart.in_waiting:
+                t = uart.read(1)[0]
+                if t == CMD_STATE:
+                    sz = uart.read(1)[0]
+                    s = np.frombuffer(uart.read(4*sz), dtype=np.float32)
+                    if state_listener: 
+                        await state_listener(s)
+                elif t == CMD_GET:
+                    f = unpack('f', uart.read(4))[0]
+                    await resp_queue.put((t, f))
+                elif t == CMD_ECHO:
+                    sz = uart.read(1)[0]
+                    resp = uart.read(sz)
+                    await resp_queue.put((t, resp))
+                elif t in { CMD_SET, CMD_START, CMD_SHUTDOWN, CMD_PING }:
+                    await resp_queue.put((t, ))
+                else:
+                    print(f"*** PI: unknown type: {t}")
+                    # purge uart
+                    while uart.in_waiting:
+                        data = uart.read(uart.in_waiting)
+                        try:
+                            data = data.decode()
+                        except:
+                            pass
+                        print(data)
+                        await asyncio.sleep(0.1)
+            await asyncio.sleep(0.001)
+
     async def _repl(self, cmd, dev='/dev/ttyAMA1'):
         stm32.exec_no_follow(cmd)
         with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive=False) as serial:
@@ -61,72 +128,3 @@ class Comm:
                     await asyncio.sleep(0)
                 else:
                     await asyncio.sleep(0.5)
-
-    async def set(self, index, value):
-        self._uart.write(bytes([CMD_SET, index]))
-        self._uart.write(pack('f', value))
-
-    async def get(self, index):
-        self._uart.write(bytes([CMD_GET, index]))
-        cmd, r = await self._resp_queue.get()
-        assert cmd == CMD_GET, f"ping: expected {CMD_GET}, got {cmd}"
-        return r
-
-    async def start(self, controller='duty_control'):
-        if isinstance(controller, str): controller = controller.encode()
-        self._uart.write(bytes([CMD_START, len(controller)]))
-        self._uart.write(controller)
-
-    async def shutdown(self):
-        self._uart.write(bytes([CMD_SHUTDOWN]))
-
-    async def ping(self):
-        "Send ping & check response"
-        self._uart.write(bytes([CMD_PING]))
-        cmd, = await self._resp_queue.get()
-        assert cmd == CMD_PING, f"ping: expected {CMD_PING}, got {cmd}"
-        
-    async def echo(self, msg):
-        "Send message & check response"
-        if isinstance(msg, str): msg = msg.encode()
-        self._uart.write(bytes([CMD_ECHO, len(msg)]))
-        self._uart.write(msg)
-        cmd, r = await self._resp_queue.get()
-        assert cmd == CMD_ECHO, f"echo: expected {CMD_ECHO}, got {cmd}"
-        
-    async def _cmd_response(self):
-        """Receive and decode messages from stm32 & forward to destination."""
-        uart = self._uart
-        resp_queue = self._resp_queue
-        while True:
-            if uart.in_waiting:
-                t = uart.read(1)[0]
-                # print(f"_cmd_response {t}")
-                if t == CMD_STATE:
-                    sz = uart.read(1)[0]
-                    s = np.frombuffer(uart.read(4*sz), dtype=np.float32)
-                    print(f"CMD_STATE = ", end="")
-                    for f in s:
-                        print(int(f), end=" ")
-                    print(f"pitch={s[STATE_PITCH]:.2f}")
-                elif t == CMD_GET:
-                    f = unpack('f', uart.read(4))[0]
-                    await resp_queue.put((t, f))
-                elif t == CMD_PING:
-                    await resp_queue.put((t, ))
-                elif t == CMD_ECHO:
-                    sz = uart.read(1)[0]
-                    resp = uart.read(sz)
-                    await resp_queue.put((t, resp))
-                else:
-                    print(f"*** PI: unknown type: {t}")
-                    # purge uart
-                    while uart.in_waiting:
-                        data = uart.read(uart.in_waiting)
-                        try:
-                            data = data.decode()
-                        except:
-                            pass
-                        print(data)
-                        await asyncio.sleep(0.1)
-            await asyncio.sleep(0.1)

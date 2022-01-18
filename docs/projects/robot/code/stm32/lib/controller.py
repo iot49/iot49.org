@@ -83,9 +83,8 @@ class Controller:
         
     # turn off motors, timer interrupt and release resources
     def shutdown(self):
-        self._ctrl_timer.callback(None)           
         self.nstby.value(0)
-        self.controller_timer.deinit()             
+        self._ctrl_timer.deinit()             
 
     # called by timer interrupt
     def _handler(self, timer):
@@ -93,17 +92,17 @@ class Controller:
         state = self.state
 
         # time index
-        state[STATE_K] += 1.0
+        state[STATE_K] += 1
 
         # encoders
         enc1 = self.enc1
         enc2 = self.enc2
-        cps1 = -c2(enc1.counter())
+        cpt1 = -c2(enc1.counter())
         enc1.counter(0)
-        cps2 =  c2(enc2.counter())
+        cpt2 =  c2(enc2.counter())
         enc2.counter(0)
-        state[STATE_CPT1] = cps1
-        state[STATE_CPT2] = cps2
+        state[STATE_CPT1] = cpt1
+        state[STATE_CPT2] = cpt2
 
         # motor speed
         self.motor1.speed(state[STATE_DUTY1])

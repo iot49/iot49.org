@@ -78,6 +78,9 @@ parts:
     - file: projects/robot/01_stm32
     - file: projects/robot/02_supply
     - file: projects/robot/03_peripherals
+    - file: projects/robot/04_app
+    - file: projects/robot/05_ble_remote
+    - file: projects/robot/06_cruise_control
   - file: projects/rust
     sections:
     - file: projects/rust/install
