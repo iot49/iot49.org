@@ -81,7 +81,7 @@ def decode_services(payload):
 
 def demo():
     payload = advertising_payload(
-        name="micropython",
+        name="robot49",
         services=[bluetooth.UUID(0x181A), bluetooth.UUID("6E400001-B5A3-F393-E0A9-E50E24DCCA9E")],
     )
     print(payload)

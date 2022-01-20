@@ -5,7 +5,7 @@ from gpiozero import LED as Pin
 import subprocess, os, time
 
 
-def hard_reset(boot_mode=False, dev='/dev/ttyAMA1'):
+def hard_reset(boot_mode=False, quiet=True, dev='/dev/ttyAMA1'):
     """Hard reset STM32. Same as pressing reset button.
     
     @param boot_mode: bool Start in "dfu" boot-mode (default False).
@@ -19,8 +19,15 @@ def hard_reset(boot_mode=False, dev='/dev/ttyAMA1'):
         nrst.off()
         time.sleep(0.1)
         nrst.on()
-        # let boot finish
+        # swallow boot message
         time.sleep(1)
+        with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive= True) as serial:
+            if not quiet: print('BOOT> ', end='')
+            while serial.in_waiting:
+                data = serial.read(serial.in_waiting)
+                if not quiet: 
+                    print(data.replace('\n', '\nBOOT> '), end='')
+                time.sleep(0.5)
         
 def _flash_bin(address, firmware, dev, info_only):
     """Flash helper. Used by flash method."""
@@ -78,11 +85,11 @@ def exec_no_follow(cmd, dev='/dev/ttyAMA1'):
             print(f"*** MCU: {data}")
             time.sleep(0.1)
 
-def rsync(dry_run=True, dev='serial:///dev/ttyAMA1'):
+def rsync(dev='serial:///dev/ttyAMA1'):
     registry = DeviceRegistry()
     registry.register(dev)
     with registry.get_device(dev) as repl:
-        repl.rsync(data_consumer=lambda x: print(x, end=''), dry_run=dry_run)
+        repl.rsync(data_consumer=lambda x: print(x, end=''), dry_run=False, upload_only=False)
 
 def rlist(dev='serial:///dev/ttyAMA1'):
     registry = DeviceRegistry()

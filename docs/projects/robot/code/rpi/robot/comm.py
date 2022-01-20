@@ -14,6 +14,7 @@ Pin(14, pull_up=False)
 class Comm:
 
     def __init__(self, state_listener=None, baudrate=1_000_000):
+        print("reset stm32")
         stm32.hard_reset()
         self.baudrate = baudrate
         self.state_listener = state_listener

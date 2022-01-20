@@ -45,13 +45,16 @@ class Controller:
      
         # motors
         pwm_timer = Timer(8, freq=int(PARAM[PARAM_PWM]))
+        scale = (pwm_timer.period()+1)/100
         self.motor1 = TB6612(
             pwm_timer.channel(3, Timer.PWM_INVERTED, pin=Pin('PWM_A')),
+            scale,
             Pin('AIN1', mode=Pin.OUT_PP),
             Pin('AIN2', mode=Pin.OUT_PP)
         )
         self.motor2 = TB6612(
             pwm_timer.channel(1, Timer.PWM_INVERTED, pin=Pin('PWM_B')),
+            scale,
             Pin('BIN1', mode=Pin.OUT_PP),
             Pin('BIN2', mode=Pin.OUT_PP)
         )
@@ -104,10 +107,6 @@ class Controller:
         state[STATE_CPT1] = cpt1
         state[STATE_CPT2] = cpt2
 
-        # motor speed
-        self.motor1.speed(state[STATE_DUTY1])
-        self.motor2.speed(state[STATE_DUTY2])
-        
         # gyro
         imu = self.imu
         imu.iget(QUAT_DATA)
@@ -121,6 +120,10 @@ class Controller:
         
         # call control code
         self.update()
+        
+        # motor speed
+        self.motor1.speed(state[STATE_DUTY1])
+        self.motor2.speed(state[STATE_DUTY2])
         
         # controller execution time
         state[STATE_DT1] = ticks_diff(ticks_us(), start_us)

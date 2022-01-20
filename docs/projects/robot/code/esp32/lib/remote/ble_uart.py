@@ -35,7 +35,7 @@ _ADV_APPEARANCE_GENERIC_COMPUTER = const(128)
 
 class BLE_UART:
     
-    def __init__(self, rx_cb, central_name="mpy-uart"):
+    def __init__(self, rx_cb, central_name="iot49-robot"):
         self._ble = bluetooth.BLE()
         self._ble.active(True)
         self._ble.irq(self._irq)

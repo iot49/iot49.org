@@ -7,7 +7,7 @@ from pyb import Pin, Timer
 from tb6612 import TB6612
 import time
 
-freq = 10_0000
+freq = 10_000
 tim = Timer(8, freq=freq)
 
 motor1 = TB6612(
@@ -34,8 +34,9 @@ nstby.value(0)
 
 class TB6612:
     
-    def __init__(self, pwm, in1, in2):
+    def __init__(self, pwm, scale, in1, in2):
         self.pwm = pwm
+        self.scale = scale
         self.in1 = in1
         self.in2 = in2
         
@@ -47,5 +48,5 @@ class TB6612:
         else:
             self.in1.value(1)
             self.in2.value(0)
-        speed = min(int(abs(speed)), 100)
-        self.pwm.pulse_width_percent(speed)        
+        speed *= self.scale
+        self.pwm.pulse_width(int(abs(speed)))
