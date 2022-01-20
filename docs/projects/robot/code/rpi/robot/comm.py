@@ -5,11 +5,6 @@ import asyncio
 import stm32
 from . param import *
 
-# fix wiring issue
-from gpiozero import Button as Pin
-Pin(14, pull_up=False)
-
-
 
 class Comm:
 
