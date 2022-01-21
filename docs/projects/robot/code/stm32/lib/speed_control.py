@@ -1,13 +1,8 @@
 from controller import *
-from param import PARAM, PARAM_RESERVED
+from param import PARAM
 
-
-P0 = const(2)
-assert P0 == PARAM_RESERVED
-
-PARAM_DUTY1  = const(P0+0)   # motor1 duty cycle setpoint
-PARAM_DUTY2  = const(P0+1)   # motor2 duty cycle setpoint
-
+PARAM_DUTY1  = const(2)   # motor1 duty cycle setpoint
+PARAM_DUTY2  = const(3)   # motor2 duty cycle setpoint
 
 class Control(Controller):
     

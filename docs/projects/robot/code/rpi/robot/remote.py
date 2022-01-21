@@ -16,7 +16,7 @@ class Remote:
         @param value: value of message
         """
         if code != 'h':
-            if dt < 0.01: print(f"***** QUICK READ:  {1000*dt:12.8} [ms]")
+            # if dt < 0.01: print(f"***** QUICK READ:  {1000*dt:12.8} [ms]")
             print(f"RECV {code} = {value:8.3f}   dt = {1000*dt:12.4} [ms]")
             
     async def shutdown(self, dt: float, code: str):
@@ -46,7 +46,7 @@ class Remote:
         last_rx = time.monotonic()
         while not self.stop:
             try:
-                data = await asyncio.wait_for(self.uart.read(), timeout=1)
+                data = await asyncio.wait_for(self.uart.read(), timeout=2)
                 dt = time.monotonic() - last_rx
                 last_rx = time.monotonic()
                 if data == None: 
@@ -60,23 +60,27 @@ class Remote:
                 else:
                     await self.handle(dt, code, value)
             except asyncio.TimeoutError:
-                await self.timout()
+                await self.timeout()
         self.stop = True
                 
-    async def rgb(self, r=None, g=None, b=None):
-        """LED level, 0 ... 1 or None for no change"""
+    async def rgb(self, *, r=None, g=None, b=None):
+        """LED on/off, 1/0 or None for no change"""
         uart = self.uart
-        if r: await uart.write(pack('>Bf', ord('R'), r))
-        if g: await uart.write(pack('>Bf', ord('G'), g))
-        if b: await uart.write(pack('>Bf', ord('B'), b))
+        try:
+            if r != None: await uart.write(pack('>Bf', ord('R'), r))
+            if g != None: await uart.write(pack('>Bf', ord('G'), g))
+            if b != None: await uart.write(pack('>Bf', ord('B'), b))
+        except Exception as e:
+            print(f"***** remote.rgb: {e}")
             
             
-    async def run(self, peripheral_name='mpy-uart'):
+    async def run(self, peripheral_name='iot49-robot'):
         """Sample main"""
         async with BLE_UART(peripheral_name) as uart:
             self.uart = uart
             await uart.connect()
             asyncio.create_task(self._recv())
+            blue = 0
             while not self.stop:
                 await asyncio.sleep(0.5)
             print("so long ...")

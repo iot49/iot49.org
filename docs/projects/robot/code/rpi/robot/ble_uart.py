@@ -26,8 +26,6 @@ class BLE_UART:
         return msg
     
     async def write(self, msg):
-        print("write disabled (install Bluez 5.51!)")
-        return
         if isinstance(msg, str):
             msg = bytes(msg)
         await self._client.write_gatt_char(self.UART_RX_CHAR_UUID, msg)
@@ -59,7 +57,6 @@ class BLE_UART:
     def _find_uart_device(self, device: BLEDevice, adv: AdvertisementData):
         # called whenever a device is detected during discovery
         # ignore all but target device
-        print(f"_find_uart_device: {device.name}", device)
         if device.name == self._peripheral_name:
             self._discovery_queue.put_nowait(device)
         

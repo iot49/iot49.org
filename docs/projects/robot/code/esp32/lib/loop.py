@@ -1,4 +1,4 @@
-from remote import BLE_UART, JoyAxis, Button, Encoder, LED
+from remote import BLE_UART, JoyAxis, Button, Encoder
 from machine import ADC, Pin, deepsleep, reset_cause, PWRON_RESET
 from struct import pack, unpack
 from time import ticks_ms, ticks_diff, sleep_ms
@@ -22,11 +22,11 @@ a) MCU -> Pi
    h: heartbeat count
    
 b) Pi -> MCU
-   R, G, B: led intensities (0 ... 1)
+   R, G, B: led on/off (1/0)
    Q: power down remote (deepsleep)
 """
 
-HARTBEAT_MS =   500     # frequency with which hartbeats are sent [ms]
+HARTBEAT_MS =  1000     # frequency with which hartbeats are sent [ms]
 SHUTDOWN_MS = 60000     # shut down if no connection in specified time [ms]
 VBATT_MS    = 60000     # rate at which battery level is sent [ms]
 
@@ -42,14 +42,13 @@ def loop():
         code, value = unpack('>Bf', data)
         code = chr(code)
         # print("ESP32: recv", code, value)
-        if code == 'R':
-            red.level = value
-        if code == 'G':
-            green.level = value
-        if code == 'B':
-            blue.level = value
+        value = value > 0
+        if code == 'R': red.value(value)
+        if code == 'G': green.value(value)
+        if code == 'B': blue.value(value)
         if code == 'Q':
-            deepsleep()
+            print("deepsleep requested by central")
+            deepsleep() 
         
     uart = BLE_UART(rx_cb=rx_cb)
     
@@ -79,11 +78,11 @@ def loop():
     enc3_last = enc3.count
     
     # LEDs
-    red   = LED(17)
-    green = LED(16)
-    blue  = LED(19)
+    red   = Pin(17, mode=Pin.OUT)
+    green = Pin(16, mode=Pin.OUT)
+    blue  = Pin(19, mode=Pin.OUT)
     power_led = red
-    power_led.level = 0.1
+    power_led.value(1)
     connected_led = green
     
     # LiPo battery voltage
@@ -101,21 +100,21 @@ def loop():
 
         # connected?
         if not uart.is_connected():
-            connected_led.level = 0
+            connected_led.value(0)
             while not uart.is_connected() and \
                     ticks_diff(ticks_ms(), start) < 60_000 and \
                     not button_1.pressed:
                 sleep_ms(100)
             if not uart.is_connected() or button_1.pressed:
-                power_led.level = 0
                 while deepsleep_wakeup_pin.value() == 0:
                     pass
-                print("no connection --> deepsleep")
+                print("deepsleep timeout")
                 deepsleep()
             # reset encoder counts and start loop
             enc1.reset()
             enc2.reset()
-        connected_led.level = 0.1
+            enc3.reset()
+        connected_led.value(1)
         
         # Joystick
         x = joy_x.read_changed()
@@ -125,13 +124,12 @@ def loop():
 
         # Buttons
         if button_1.pressed: 
-            power_led.level = 0
-            connected_led.level = 0
+            # power down remote
             send('q', button_1.count)
             # wait for user to release button (otherwise it will start right away)
             while deepsleep_wakeup_pin.value() == 0:
                 pass
-            print("deepsleep")
+            print("deepsleep power button")
             deepsleep()
         if button_2.pressed: 
             send('b', button_2.count)
@@ -141,15 +139,12 @@ def loop():
         # Encoders
         if enc1.count != enc1_last:
             enc1_last = enc1.count
-            print("enc1", enc1_last)
             send('1', enc1_last)
         if enc2.count != enc2_last:
             enc2_last = enc2.count
-            print("enc2", enc2_last)
             send('2', enc2_last)
         if enc3.count != enc3_last:
             enc3_last = enc3.count
-            print("enc3", enc3_last)
             send('3', enc3_last)
             
         # v_bat

@@ -3,8 +3,9 @@ from time import sleep_ms
 
 class JoyAxis:
     
-    def __init__(self, pin, change_threshold=0.03):
+    def __init__(self, pin, change_threshold=0.03, dead_zone=0.05):
         self._change_threshold = change_threshold
+        self._dead_zone = dead_zone
         self._adc = adc = ADC(Pin(pin, mode=Pin.IN))
         adc.atten(ADC.ATTN_11DB)
         N = 10
@@ -23,7 +24,8 @@ class JoyAxis:
     def read_changed(self):
         l = self._last
         v = self.read()
-        if abs(v-l) > self._change_threshold: # *(1+abs(v)):
-            self._last = v
-            return v
-        return None
+        # attempt to filter ESP32 ADC noise
+        if abs(v) < self._dead_zone or abs(v-l) < self._change_threshold:
+            return None
+        self._last = v
+        return v
