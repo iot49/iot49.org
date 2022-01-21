@@ -20,14 +20,19 @@ def hard_reset(boot_mode=False, quiet=True, dev='/dev/ttyAMA1'):
         time.sleep(0.1)
         nrst.on()
         # swallow boot message
-        time.sleep(1)
-        with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive= True) as serial:
+        with Serial(dev, 115200, timeout=0.5, exclusive= True) as serial:
+            time.sleep(0.1)
             if not quiet: print('BOOT> ', end='')
             while serial.in_waiting:
                 data = serial.read(serial.in_waiting)
+                try:
+                    data = data.decode()
+                except UnicodeDecodeError:
+                    pass
                 if not quiet: 
-                    print(data.replace('\n', '\nBOOT> '), end='')
-                time.sleep(0.5)
+                    print(data.replace('\n', '\n    > '), end='')
+                time.sleep(0.1)
+            if not quiet: print()
         
 def _flash_bin(address, firmware, dev, info_only):
     """Flash helper. Used by flash method."""
@@ -54,14 +59,14 @@ def flash(firmware_dir='$IOT/mp/micropython/ports/stm32/build-MOTOR_HAT/', dev='
     _flash_bin('0x08020000', os.path.join(dir, 'firmware1.bin'), dev, info_only)
     hard_reset(boot_mode=False) 
 
-def exec(cmd, dev='serial:///dev/ttyAMA1'):
+def exec(cmd, url='serial:///dev/ttyAMA1'):
     """Execute MicroPython code on STM32.
 
     @param cmd: string Code.
     """
     registry = DeviceRegistry()
-    registry.register(dev)
-    with registry.get_device(dev) as repl:
+    registry.register(url)
+    with registry.get_device(url) as repl:
         res = repl.exec(cmd)
         try:
             res = res.decode()
@@ -85,16 +90,16 @@ def exec_no_follow(cmd, dev='/dev/ttyAMA1'):
             print(f"*** MCU: {data}")
             time.sleep(0.1)
 
-def rsync(dev='serial:///dev/ttyAMA1'):
+def rsync(url='serial:///dev/ttyAMA1'):
     registry = DeviceRegistry()
-    registry.register(dev)
-    with registry.get_device(dev) as repl:
+    registry.register(url)
+    with registry.get_device(url) as repl:
         repl.rsync(data_consumer=lambda x: print(x, end=''), dry_run=False, upload_only=False)
 
-def rlist(dev='serial:///dev/ttyAMA1'):
+def rlist(url='serial:///dev/ttyAMA1'):
     registry = DeviceRegistry()
-    registry.register(dev)
-    with registry.get_device(dev) as repl:
+    registry.register(url)
+    with registry.get_device(url) as repl:
         repl.rlist(data_consumer=lambda x: print(x, end=''), show=True)
 
 def supply_voltage():

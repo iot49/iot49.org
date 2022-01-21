@@ -17,6 +17,7 @@ class JoyAxis:
         self._last = self.read()
         
     def read(self):
+        # attempt to set range to +/-1
         F = 1450
         self._adc.read()
         return (self._adc.read()-self._offset)/F
@@ -25,7 +26,9 @@ class JoyAxis:
         l = self._last
         v = self.read()
         # attempt to filter ESP32 ADC noise
-        if abs(v) < self._dead_zone or abs(v-l) < self._change_threshold:
+        if abs(v) < self._dead_zone:
+            v = 0
+        if abs(v-l) < self._change_threshold:
             return None
         self._last = v
         return v

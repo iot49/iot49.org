@@ -9,8 +9,7 @@ from . param import *
 class Comm:
 
     def __init__(self, state_listener=None, baudrate=1_000_000):
-        print("reset stm32")
-        stm32.hard_reset()
+        stm32.hard_reset(quiet=True)
         self.baudrate = baudrate
         self.state_listener = state_listener
 
@@ -23,7 +22,7 @@ class Comm:
         await asyncio.sleep(1)
         # communications port
         self._uart = Serial(port='/dev/ttyAMA2', baudrate=self.baudrate, 
-                            timeout=2, write_timeout=1, exclusive=False)
+                            timeout=2, write_timeout=1, exclusive=True)
         self._resp_queue = asyncio.Queue()
         self._cmd_response_task = asyncio.create_task(self._cmd_response())
         return self
@@ -53,7 +52,9 @@ class Comm:
         if isinstance(controller, str): controller = controller.encode()
         self._uart.write(bytes([CMD_START, len(controller)]))
         self._uart.write(controller)
+        print("wait")
         cmd, = await self._resp_queue.get()
+        print("cmd", cmd)
         assert CMD_START == cmd, f"start: expected {CMD_START}, got {cmd}"
 
     async def shutdown(self):
@@ -82,6 +83,7 @@ class Comm:
         while uart:
             if uart.in_waiting:
                 t = uart.read(1)[0]
+                print("_cmd_response", t)
                 if t == CMD_STATE:
                     sz = uart.read(1)[0]
                     s = np.frombuffer(uart.read(4*sz), dtype=np.float32)
