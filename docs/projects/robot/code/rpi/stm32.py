@@ -1,38 +1,47 @@
 from iot_device.pydevice import Pydevice
-from iot_device import DeviceRegistry, RemoteError
+from iot_device.serial_device import SerialDevice
 from serial import Serial
-from gpiozero import LED as Pin
 import subprocess, os, time
 
 
-def hard_reset(boot_mode=False, quiet=True, dev='/dev/ttyAMA1'):
-    """Hard reset STM32. Same as pressing reset button.
-    
-    @param boot_mode: bool Start in "dfu" boot-mode (default False).
-    """
-    with Pin(21) as nrst, Pin(27) as boot0:
-        if boot_mode:
-            boot0.on()
-        else:
-            boot0.off()
-        time.sleep(0.1)
-        nrst.off()
-        time.sleep(0.1)
-        nrst.on()
-        # swallow boot message
-        with Serial(dev, 115200, timeout=0.5, exclusive= True) as serial:
+if os.getenv('BALENA_DEVICE_ARCH') == 'aarch64':
+    # only on rpi, not x86
+    from gpiozero import LED as Pin
+
+    def hard_reset(boot_mode=False, quiet=True, dev='/dev/ttyAMA1'):
+        """Hard reset STM32. Same as pressing reset button.
+        
+        @param boot_mode: bool Start in "dfu" boot-mode (default False).
+        """
+        # twiddle pins
+        with Pin(21) as nrst, Pin(27) as boot0:
             time.sleep(0.1)
+            if boot_mode:
+                boot0.on()
+            else:
+                boot0.off()
+            time.sleep(0.1)
+            nrst.off()
+            time.sleep(0.1)
+            nrst.on()
+        # swallow boot message
+        with Serial(dev, 115200, timeout=0.3, exclusive=True) as serial:
+            time.sleep(0.2)
             if not quiet: print('BOOT> ', end='')
             while serial.in_waiting:
                 data = serial.read(serial.in_waiting)
-                try:
-                    data = data.decode()
-                except UnicodeDecodeError:
-                    pass
                 if not quiet: 
-                    print(data.replace('\n', '\n    > '), end='')
-                time.sleep(0.1)
+                    data = data.replace(b'\n', b'\n    > ')
+                    try:
+                        data = data.decode()
+                    except UnicodeDecodeError:
+                        print("not unicode!")
+                    print(data, end='')
+                time.sleep(0.3)
             if not quiet: print()
+else:
+    def hard_reset(boot_mode=False, quiet=True, dev='/dev/ttyAMA1'):
+        pass
         
 def _flash_bin(address, firmware, dev, info_only):
     """Flash helper. Used by flash method."""
@@ -64,9 +73,7 @@ def exec(cmd, url='serial:///dev/ttyAMA1'):
 
     @param cmd: string Code.
     """
-    registry = DeviceRegistry()
-    registry.register(url)
-    with registry.get_device(url) as repl:
+    with SerialDevice(url) as repl:
         res = repl.exec(cmd)
         try:
             res = res.decode()
@@ -76,7 +83,7 @@ def exec(cmd, url='serial:///dev/ttyAMA1'):
     
 def exec_no_follow(cmd, dev='/dev/ttyAMA1'):
     """Execute MicroPython code on STM32 & do not wait for result."""
-    with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive= True) as serial:
+    with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive=True) as serial:
         pyd = Pydevice(serial)
         pyd.enter_raw_repl()
         pyd.exec_raw_no_follow(cmd)
@@ -91,15 +98,11 @@ def exec_no_follow(cmd, dev='/dev/ttyAMA1'):
             time.sleep(0.1)
 
 def rsync(url='serial:///dev/ttyAMA1'):
-    registry = DeviceRegistry()
-    registry.register(url)
-    with registry.get_device(url) as repl:
+    with SerialDevice(url) as repl:
         repl.rsync(data_consumer=lambda x: print(x, end=''), dry_run=False, upload_only=False)
 
 def rlist(url='serial:///dev/ttyAMA1'):
-    registry = DeviceRegistry()
-    registry.register(url)
-    with registry.get_device(url) as repl:
+    with SerialDevice(url) as repl:
         repl.rlist(data_consumer=lambda x: print(x, end=''), show=True)
 
 def supply_voltage():

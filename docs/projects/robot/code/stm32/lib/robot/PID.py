@@ -11,23 +11,22 @@ U_MIN    = const(4)  # minimum PID output (anti-windup)
 U_MAX    = const(5)  # maximum PID output (anti-windup)
 
 # state (used internally)
-_SUM     = const(0)
-_Y       = const(1)
+_SUM     = const(6)
+_Y       = const(7)
 
 class PID:
     
     def __init__(self, config):
         self.config = config
-        self.state = array('f', [0, 0])
     
     def update(self, y):
         """compute & return new PID output u from plant output y"""
         c = self.config
-        s = self.state
         err = c[SETPOINT] - y
-        s[_SUM] += self._clip(c[KI] * err)   # integrator state
-        u = self._clip(c[KP] * err + s[_SUM] - c[KD] * (y - s[_Y]))
-        s[_Y] = y   # save last y (for KD term)
+        c[_SUM] += self._clip(c[KI] * err)   # integrator state
+        u = self._clip(c[KP] * err + c[_SUM] - c[KD] * (y - c[_Y]))
+        c[_Y] = y   # save last y (for KD term)
+        return c[SETPOINT]
         return u
     
     def _clip(self, value):

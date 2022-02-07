@@ -1,13 +1,13 @@
 # controller.py
 
-from param import PARAM, PARAM_FS, PARAM_PWM, CMD_STATE
+from . state import STATE, EXEC_T, FS, PWM_FREQ, CMD_STATE
+from encoder16 import Encoder16
+from tb6612 import TB6612
+from bno055 import BNO055, NDOF_FMC_OFF_MODE, QUAT_DATA
 from pyb import Timer, Pin
 from machine import I2C
 from array import array
 from time import ticks_us, ticks_diff, sleep_ms
-from encoder import init_encoder, c2
-from tb6612 import TB6612
-from bno055 import BNO055, NDOF_FMC_OFF_MODE, QUAT_DATA
 import gc, math
 
 # allocate emergency exception buffer
@@ -15,24 +15,28 @@ import micropython
 micropython.alloc_emergency_exception_buf(100)
 
 # state
-STATE_K      = const(0)    # normalized time
-STATE_PITCH  = const(1)    # pitch angle [degree]
-STATE_CPT1   = const(2)    # encoder1 counts in last cycle
-STATE_CPT2   = const(3)    # encoder1 counts in last cycle
-STATE_DUTY1  = const(4)    # motor1 duty cycle, +/- 100
-STATE_DUTY2  = const(5)    # motor2 duty cycle, +/- 100
-STATE_DT1    = const(6)    # controller exec time [us]
-STATE_DT2    = const(7)    # controller + state comm of _last_ cycle time [us]
-
-STATE_LEN    = const(8)    # lenght of state vector
+_K                 = const( 0)    # normalized time, t = K/FS
+_PITCH             = const( 1)    # pitch angle [degree]
+_ODO_1             = const( 2)    # encoder 1 sum
+_ODO_2             = const( 3)    # encoder 2 sum
+_TACHO_CM          = const( 4)    # derivative of 0.5 * (ODO_1 + ODO_2)
+_TACHO_DIFF        = const( 5)    # derivative of of ODO_1 - ODO_2
+_DUTY_CM           = const( 6)    # mean of motor duty cycle, +/- 100
+_DUTY_DIFF         = const( 7)    # difference of motor duty cycles, +/- 200
+_EXEC_T            = const( 8)    # controller irq exec time [us]
+_STATE_LEN         = const(_EXEC_T + 1)
 
 # send status to host
-_CMD_STATE   = const(1)
+_CMD_STATE = const(0)
 
 # gyro pitch helpers
 _RAD2DEG = 180/math.pi
 _90DEG = 0.5 * math.pi
 _QUAT_SCALE = 1/(2<<26)
+
+# checks
+assert _CMD_STATE == CMD_STATE, f"cmd_state: {_CMD_STATE} != {CMD_STATE}"
+assert _EXEC_T == EXEC_T
 
 
 class Controller:
@@ -41,10 +45,10 @@ class Controller:
         self.uart = uart
 
         # state, sent to host in every iteration
-        self.state = array('f', [0] * STATE_LEN)
+        self.state = memoryview(STATE)[_K:_STATE_LEN]
      
         # motors
-        pwm_timer = Timer(8, freq=int(PARAM[PARAM_PWM]))
+        pwm_timer = Timer(8, freq=int(STATE[PWM_FREQ]))
         scale = (pwm_timer.period()+1)/100
         self.motor1 = TB6612(
             pwm_timer.channel(3, Timer.PWM_INVERTED, pin=Pin('PWM_A')),
@@ -60,8 +64,8 @@ class Controller:
         )
        
         # encoders
-        self.enc1 = init_encoder(4, 'ENC_A1', 'ENC_A2', Pin.AF2_TIM4)
-        self.enc2 = init_encoder(3, 'ENC_B1', 'ENC_B2', Pin.AF2_TIM3)
+        self.enc1 = Encoder16(4, 'ENC_A1', 'ENC_A2', Pin.AF2_TIM4)
+        self.enc2 = Encoder16(3, 'ENC_B1', 'ENC_B2', Pin.AF2_TIM3)
         
         # gyro
         i2c = I2C(1, freq=400_000)
@@ -78,7 +82,7 @@ class Controller:
         gc.collect()
         self.nstby.value(1)
         self._ctrl_timer = Timer(1)
-        self._ctrl_timer.init(freq=int(PARAM[PARAM_FS]), callback=self._handler)
+        self._ctrl_timer.init(freq=int(STATE[FS]), callback=self._handler)
 
     def update(self):
         """Actual control code. Implement in derived class. Default does nothing."""
@@ -95,17 +99,17 @@ class Controller:
         state = self.state
 
         # time index
-        state[STATE_K] += 1
+        state[_K] += 1
 
         # encoders
-        enc1 = self.enc1
-        enc2 = self.enc2
-        cpt1 = -c2(enc1.counter())
-        enc1.counter(0)
-        cpt2 =  c2(enc2.counter())
-        enc2.counter(0)
-        state[STATE_CPT1] = cpt1
-        state[STATE_CPT2] = cpt2
+        odo1  =  self.enc1.count()
+        odo2  = -self.enc2.count()
+        tach1 = state[_ODO_1] - odo1
+        tach2 = state[_ODO_2] - odo2
+        state[_ODO_1]      = odo1
+        state[_ODO_2]      = odo2
+        state[_TACHO_CM]   = 0.5 * (tach1 + tach2)
+        state[_TACHO_DIFF] = tach1 - tach2
 
         # gyro
         imu = self.imu
@@ -116,23 +120,20 @@ class Controller:
             pitch = math.copysign(_90DEG, sinp)
         else:
             pitch = math.asin(sinp)
-        state[STATE_PITCH] = _RAD2DEG * pitch
+        state[_PITCH] = _RAD2DEG * pitch
         
         # call control code
         self.update()
         
         # motor speed
-        self.motor1.speed(state[STATE_DUTY1])
-        self.motor2.speed(state[STATE_DUTY2])
+        self.motor1.speed(state[_DUTY_CM] + 0.5*state[_DUTY_DIFF])
+        self.motor2.speed(state[_DUTY_CM] - 0.5*state[_DUTY_DIFF])
         
-        # controller execution time
-        state[STATE_DT1] = ticks_diff(ticks_us(), start_us)
-
         # send status to host
         uart = self.uart
-        uart.writechar(CMD_STATE)
-        uart.writechar(STATE_LEN)
+        uart.writechar(_CMD_STATE)
+        uart.writechar(_STATE_LEN)
         uart.write(state)
         
         # total execution time
-        state[STATE_DT2] = ticks_diff(ticks_us(), start_us)
+        state[_EXEC_T] = ticks_diff(ticks_us(), start_us)

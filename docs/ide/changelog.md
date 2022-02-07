@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [unreleased]
 ### Release candidate
-- core/micropython/Dockerfile.template: add asyncio-mqtt
+- enhancement: core/micropython/Dockerfile.template: add asyncio-mqtt
+- bugfix: core/micropython/start-hook.sh: correctly set $HOST_IP
 
 
 ## [1.0.0] - 2022-01-07

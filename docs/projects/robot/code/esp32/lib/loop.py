@@ -26,9 +26,9 @@ b) Pi -> MCU
    Q: power down remote (deepsleep)
 """
 
-HARTBEAT_MS =  1000     # frequency with which hartbeats are sent [ms]
-SHUTDOWN_MS = 60000     # shut down if no connection in specified time [ms]
-VBATT_MS    = 60000     # rate at which battery level is sent [ms]
+HARTBEAT_MS =   1_000     # frequency with which hartbeats are sent [ms]
+SHUTDOWN_MS = 300_000     # shut down if no connection in specified time [ms]
+VBATT_MS    =  60_000     # rate at which battery level is sent [ms]
 
 def loop():
     
@@ -118,9 +118,9 @@ def loop():
         
         # Joystick
         x = joy_x.read_changed()
-        if x: send('x', -x)
+        if x != None: send('x', -x)
         y = joy_y.read_changed()
-        if y: send('y',  y)
+        if y != None: send('y',  y)
 
         # Buttons
         if button_1.pressed: 

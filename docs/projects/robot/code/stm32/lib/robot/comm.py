@@ -1,6 +1,6 @@
 # comm.py
 
-from param import *
+from . state import *
 from pyb import UART, disable_irq, enable_irq
 from struct import pack
 import gc, sys, time
@@ -16,25 +16,34 @@ class Comm:
     def _cmds(self):
         uart = self.uart
         # CMD_SET requires a memoryview
-        param = memoryview(PARAM)
+        state = memoryview(STATE)
         controller = None
         while True:
             t = uart.readchar()
             if t < 0: continue    # timeout
-            if t == CMD_GET:
+            if t == CMD_GET_ALL:
+                disable_irq()
+                uart.writechar(t)
+                uart.writechar(len(state))
+                for value in state:
+                    uart.write(pack('f', value))
+                enable_irq()
+            elif t == CMD_GET:
                 index = uart.readchar()
                 disable_irq()
                 uart.writechar(t)
-                uart.write(pack('f', param[index]))
+                uart.write(pack('f', state[index]))
                 enable_irq()
             elif t == CMD_SET:
                 index = uart.readchar()
-                uart.readinto(param[index:index+1])
+                uart.readinto(state[index:index+1])
             elif t == CMD_START:
+                # stop running controller
                 if controller: controller.shutdown()
+                # controller module
                 sz = uart.readchar()
-                module = uart.read(sz)
-                ctrl = getattr(__import__(module.decode()), "Control")
+                module = uart.read(sz).decode()
+                ctrl = getattr(__import__(module), "Control")
                 controller = ctrl(uart)
                 disable_irq()
                 self.uart.writechar(t)

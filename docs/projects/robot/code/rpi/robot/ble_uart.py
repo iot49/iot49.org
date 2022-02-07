@@ -7,6 +7,7 @@ from bleak.backends.device import BLEDevice
 
 # https://github.com/hbldh/bleak/blob/develop/examples/uart_service.py
 
+
 class BLE_UART:
     
     UART_SERVICE_UUID = "6E400001-B5A3-F393-E0A9-E50E24DCCA9E"

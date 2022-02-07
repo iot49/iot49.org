@@ -6,6 +6,7 @@ class JoyAxis:
     def __init__(self, pin, change_threshold=0.03, dead_zone=0.05):
         self._change_threshold = change_threshold
         self._dead_zone = dead_zone
+        self._pin = pin
         self._adc = adc = ADC(Pin(pin, mode=Pin.IN))
         adc.atten(ADC.ATTN_11DB)
         N = 10

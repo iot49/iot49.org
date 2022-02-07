@@ -1,4 +1,4 @@
-from controller import *
+from . controller import *
 from param import PARAM, PARAM_RESERVED
 from pid import PID
 
@@ -13,6 +13,10 @@ KD        = const(P0+3)
 U_MIN     = const(P0+4)
 U_MAX     = const(P0+5)
 
+PARAM[U_MIN] = -100
+PARAM[U_MAX] =  100
+
+
 class Control(Controller):
     
     def __init__(self, uart):
@@ -22,11 +26,12 @@ class Control(Controller):
     def update(self):
         state = self.state
         pitch = state[STATE_PITCH]
-        if abs(pitch) < 10:
-            duty = self.fix_duty(self.pid.update(pitch))
+        if abs(pitch) < 30:
+            duty = self.pid.update(pitch)
+            duty = self.fix_duty(duty)
         else:
             duty = 0
-            state[STATE_DUTY1] = state[STATE_DUTY2] = duty
+        state[STATE_DUTY1] = state[STATE_DUTY2] = duty
         
     @staticmethod
     def fix_duty(duty):
