@@ -1,0 +1,1525 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Peripherals &#8212; Electronics for IoT</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/projects/robot/03_peripherals.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Pitch Control" href="07_pitch.html" />
+    <link rel="prev" title="Power Supply" href="02_supply.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/timezone.html">
+     Timezone
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/mosquitto.html">
+     Mosquitto MQTT Broker
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flashing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/mp_ext_c.html">
+     External C modules
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/app.html">
+   Docker App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/help.html">
+   Help
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tours &amp; Projects
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../balance.html">
+   GPIO
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/01_parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/02_circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/03_code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/04_display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/05_buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/06_ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/07_app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/08_hx711.html">
+     “Precision” Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/09_ticks.html">
+     Time Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../internet.html">
+   Internet
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/mqtt.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wireshark.html">
+     Wireshark
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/ota.html">
+     ESP32 OTA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/encryption.html">
+     Encryption
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bluetooth.html">
+   Bluetooth
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bluetooth/ble_uart_esp32.html">
+     BLE UART - esp32
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bluetooth/ble_uart_host.html">
+     BLE UART Service - Host
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bluetooth/eddystone.html">
+     BLE Beacon Scanner
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../mqtt-plot.html">
+   MQTT Plot
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mqtt-plot/examples.html">
+     Examples
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mqtt-plot/docs.html">
+     Documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../robot.html">
+   Robot
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="00_overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_stm32.html">
+     STM32
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_supply.html">
+     Power Supply
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Peripherals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_pitch.html">
+     Pitch Control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03a_period.html">
+     Encoder Readout
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rust.html">
+   Rust
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/install.html">
+     Install Rust
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/tour.html">
+     Try Rust
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/iot49/iot49.org"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/robot/03_peripherals.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/iot49/iot49.org/edit/master/docs/projects/robot/03_peripherals.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/projects/robot/03_peripherals.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gpio">
+   GPIO
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motor-controller">
+   Motor Controller
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#h-bridges">
+     H-bridges
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoder">
+     Encoder
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imu">
+   IMU
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complementary-filter">
+   Complementary Filter
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Peripherals</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#configuration">
+   Configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gpio">
+   GPIO
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#motor-controller">
+   Motor Controller
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#h-bridges">
+     H-bridges
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#encoder">
+     Encoder
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imu">
+   IMU
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complementary-filter">
+   Complementary Filter
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="peripherals">
+<h1>Peripherals<a class="headerlink" href="#peripherals" title="Permalink to this headline">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">serial</span><span class="p">:</span><span class="o">///</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyAMA1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to robot-stm32 @ serial:///dev/ttyAMA1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">/boot/config.txt</span></code>: add</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">pi4</span><span class="p">]</span>
+<span class="n">dtoverlay</span><span class="o">=</span><span class="n">uart3</span>
+<span class="n">dtoverlay</span><span class="o">=</span><span class="n">uart4</span>
+<span class="n">enable_uart</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>Balena: configure dtoverlay from the dashboard.</p>
+<p>Overlay <code class="docutils literal notranslate"><span class="pre">enable_uart=0</span></code> disables the console UART on pins 8, 10. No need to disable if pins are not connected (but then there is no way this can work with a Pi 3, probably ok).</p>
+<p>UART Assignments (Pi 4):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Pi</span> <span class="mi">4</span>                      <span class="n">STM32</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyAMA1</span>   <span class="n">uart3</span>      <span class="n">uart6</span> <span class="p">(</span><span class="n">REPL</span><span class="p">)</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyAMA2</span>   <span class="n">uart4</span>      <span class="n">uart3</span> <span class="p">(</span><span class="n">dfu</span><span class="p">,</span> <span class="n">robot</span> <span class="n">comm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>GPIO Pins:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BOOT0</span>   <span class="o">=</span> <span class="mi">13</span> <span class="p">(</span><span class="n">GPIO27</span><span class="p">)</span>
+<span class="n">SHUT_DN</span> <span class="o">=</span> <span class="mi">33</span> <span class="p">(</span><span class="n">GPIO13</span><span class="p">)</span>     <span class="n">shutdown</span> <span class="n">button</span> <span class="nb">input</span> <span class="p">(</span><span class="n">active</span> <span class="n">low</span><span class="p">)</span>
+<span class="n">nRST</span>    <span class="o">=</span> <span class="mi">40</span> <span class="p">(</span><span class="n">GPIO21</span><span class="p">)</span>
+<span class="n">AUX</span>     <span class="o">=</span> <span class="mi">36</span> <span class="p">(</span><span class="n">GPIO16</span><span class="p">)</span>     <span class="n">stm32</span><span class="p">:</span> <span class="n">AUX</span>
+                          <span class="n">stm32</span><span class="p">:</span> <span class="n">PWR_EN</span><span class="p">:</span> <span class="n">pull</span> <span class="n">low</span> <span class="n">to</span> <span class="n">cut</span> <span class="n">main</span> <span class="p">(</span><span class="mi">5</span><span class="n">V</span><span class="p">)</span> <span class="n">power</span> <span class="n">supply</span>
+                          <span class="n">stm32</span><span class="p">:</span> <span class="n">V12_DIV</span><span class="p">:</span> <span class="mi">12</span><span class="n">V</span> <span class="nb">input</span> <span class="o">/</span> <span class="mf">7.8</span> 
+</pre></div>
+</div>
+</section>
+<section id="gpio">
+<h2>GPIO<a class="headerlink" href="#gpio" title="Permalink to this headline">#</a></h2>
+<p>List of available GPIOs and their capabilities:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pin alternate functions</span>
+
+<span class="kn">from</span> <span class="nn">pyb</span> <span class="kn">import</span> <span class="n">Pin</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:15}</span><span class="s2"> </span><span class="si">{:4}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;board name&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;alternate functions&#39;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">Pin</span><span class="o">.</span><span class="n">board</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="s1">&#39;__&#39;</span> <span class="ow">in</span> <span class="n">p</span><span class="p">:</span> <span class="k">continue</span>
+    <span class="n">pin</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="n">pin</span><span class="o">.</span><span class="n">names</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:15}</span><span class="s2"> </span><span class="si">{:4}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">names</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">names</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pin</span><span class="o">.</span><span class="n">af_list</span><span class="p">()))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>board name      name alternate functions
+AIN1            C5   []
+AIN2            C1   []
+AUX             B13  [Pin.AF1_TIM1, Pin.AF5_SPI2, Pin.AF7_USART3]
+BATTERY_MONITOR A3   [Pin.AF1_TIM2, Pin.AF2_TIM5, Pin.AF3_TIM9, Pin.AF7_USART2]
+BIN1            C3   [Pin.AF5_SPI2]
+BIN2            A4   [Pin.AF5_SPI1, Pin.AF7_USART2]
+BOOT1           B2   []
+D8              C0   []
+ENC_A1          A6   [Pin.AF1_TIM1, Pin.AF2_TIM3, Pin.AF3_TIM8, Pin.AF5_SPI1, Pin.AF9_TIM13]
+ENC_A2          A7   [Pin.AF1_TIM1, Pin.AF2_TIM3, Pin.AF3_TIM8, Pin.AF5_SPI1, Pin.AF9_TIM14]
+ENC_B1          B6   [Pin.AF2_TIM4, Pin.AF4_I2C1]
+ENC_B2          B7   [Pin.AF2_TIM4, Pin.AF4_I2C1]
+FLASH_CS        A15  [Pin.AF1_TIM2, Pin.AF1_TIM2, Pin.AF5_SPI1]
+FLASH_MISO      B4   [Pin.AF2_TIM3, Pin.AF5_SPI1]
+FLASH_MOSI      B5   [Pin.AF2_TIM3, Pin.AF5_SPI1]
+FLASH_SCK       B3   [Pin.AF1_TIM2, Pin.AF5_SPI1]
+NC_A0           A0   [Pin.AF1_TIM2, Pin.AF1_TIM2, Pin.AF2_TIM5, Pin.AF3_TIM8, Pin.AF7_USART2]
+NC_A1           A1   [Pin.AF1_TIM2, Pin.AF2_TIM5, Pin.AF7_USART2]
+NC_A2           A2   [Pin.AF1_TIM2, Pin.AF2_TIM5, Pin.AF3_TIM9, Pin.AF7_USART2]
+D8              C0   []
+NSTBY           C2   [Pin.AF5_SPI2]
+PWM_A           B15  [Pin.AF1_TIM1, Pin.AF3_TIM8, Pin.AF5_SPI2, Pin.AF9_TIM12]
+PWM_B           A5   [Pin.AF1_TIM2, Pin.AF1_TIM2, Pin.AF3_TIM8, Pin.AF5_SPI1]
+PWR_EN          B14  [Pin.AF1_TIM1, Pin.AF3_TIM8, Pin.AF5_SPI2, Pin.AF7_USART3, Pin.AF9_TIM12]
+RX              B11  [Pin.AF1_TIM2, Pin.AF4_I2C2, Pin.AF7_USART3]
+RX_AUX          C7   [Pin.AF2_TIM3, Pin.AF3_TIM8, Pin.AF8_USART6]
+SCL             B8   [Pin.AF2_TIM4, Pin.AF3_TIM10, Pin.AF4_I2C1, Pin.AF9_CAN1]
+SDA             B9   [Pin.AF2_TIM4, Pin.AF3_TIM11, Pin.AF4_I2C1, Pin.AF5_SPI2, Pin.AF9_CAN1]
+SD_CK           C12  [Pin.AF7_USART3]
+SD_CMD          D2   [Pin.AF2_TIM3]
+SD_D0           C8   [Pin.AF2_TIM3, Pin.AF3_TIM8, Pin.AF8_USART6]
+SD_D1           C9   [Pin.AF2_TIM3, Pin.AF3_TIM8]
+SD_D2           C10  [Pin.AF7_USART3]
+SD_D3           C11  [Pin.AF7_USART3]
+SD_DETECT       B12  [Pin.AF1_TIM1, Pin.AF5_SPI2, Pin.AF7_USART3]
+SWCLK           A14  []
+SWDIO           A13  []
+TX              B10  [Pin.AF1_TIM2, Pin.AF4_I2C2, Pin.AF5_SPI2, Pin.AF7_USART3]
+TX_AUX          C6   [Pin.AF2_TIM3, Pin.AF3_TIM8, Pin.AF8_USART6]
+USB_DM          A11  [Pin.AF1_TIM1, Pin.AF9_CAN1]
+USB_DP          A12  [Pin.AF1_TIM1, Pin.AF9_CAN1]
+USB_ID          A10  [Pin.AF1_TIM1]
+USB_VBUS        A9   [Pin.AF1_TIM1]
+V12_DIV         C4   []
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="motor-controller">
+<h2>Motor Controller<a class="headerlink" href="#motor-controller" title="Permalink to this headline">#</a></h2>
+<p>I use HPCB micro gear motors with extended shaft (to mount the encoder magnet) and 210:1 gear ratio.</p>
+<p>The motor controller comprises two H-bridges to control the speed and direction of the motors and magnetic encoders to capture the rotational speed.</p>
+<section id="h-bridges">
+<h3>H-bridges<a class="headerlink" href="#h-bridges" title="Permalink to this headline">#</a></h3>
+<p>The figure below shows the TB6612 motor controller. It is wired to the STM32 as follows:</p>
+<ul class="simple">
+<li><p>Channel A control: PWMA, AIN1, AIN2</p></li>
+<li><p>Channel B control: PWMB, BIN1, BIN2</p></li>
+</ul>
+<figure class="align-default" id="h-bridge">
+<a class="reference internal image-reference" href="../../_images/TB6612-breakout.jpg"><img alt="../../_images/TB6612-breakout.jpg" src="../../_images/TB6612-breakout.jpg" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 26 </span><span class="caption-text"><a class="reference external" href="https://www.pololu.com/product/713">TB6612</a> dual H-bridge motor controller breakout.</span><a class="headerlink" href="#h-bridge" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The <code class="docutils literal notranslate"><span class="pre">xIN1</span></code> and <code class="docutils literal notranslate"><span class="pre">xIN2</span></code> determine its state as follows:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>IN1</p></th>
+<th class="head"><p>IN2</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Forward</p></td>
+<td><p>L</p></td>
+<td><p>H</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Reverse</p></td>
+<td><p>H</p></td>
+<td><p>L</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Brake</p></td>
+<td><p>H</p></td>
+<td><p>H</p></td>
+<td><p>speed=0 has same effect</p></td>
+</tr>
+<tr class="row-odd"><td><p>Coast (Z)</p></td>
+<td><p>L</p></td>
+<td><p>L</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>The TB6612 class maps the desired speed input to the appropriate control signals:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">cat</span> <span class="o">/</span><span class="n">flash</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">tb6612</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;&quot;&quot;
+TB6612 motor driver.
+
+Example:
+
+from pyb import Pin, Timer
+from tb6612 import TB6612
+import time
+
+freq = 10_000
+tim = Timer(8, freq=freq)
+
+motor1 = TB6612(
+    tim.channel(3, Timer.PWM_INVERTED, pin=Pin(&#39;PWM_A&#39;)),
+    Pin(&#39;AIN1&#39;, mode=Pin.OUT_PP),
+    Pin(&#39;AIN2&#39;, mode=Pin.OUT_PP)
+)
+
+motor2 = TB6612(
+    tim.channel(1, Timer.PWM_INVERTED, pin=Pin(&#39;PWM_B&#39;)),
+    Pin(&#39;BIN1&#39;, mode=Pin.OUT_PP),
+    Pin(&#39;BIN2&#39;, mode=Pin.OUT_PP)
+)
+
+nstby = Pin(&#39;NSTBY&#39;, mode=Pin.OUT_PP)
+nstby.value(1)
+
+motor1.speed(30)
+motor2.speed(-83)
+
+time.sleep(5)
+nstby.value(0)
+&quot;&quot;&quot;
+
+class TB6612:
+    
+    def __init__(self, pwm, scale, in1, in2):
+        self.pwm = pwm
+        self.scale = scale
+        self.in1 = in1
+        self.in2 = in2
+        
+    def speed(self, speed:float):
+        &quot;&quot;&quot;Set motor speed (duty cycle), range +/- 100.&quot;&quot;&quot;
+        if speed &lt; 0:
+            self.in1.value(0)
+            self.in2.value(1)
+        else:
+            self.in1.value(1)
+            self.in2.value(0)
+        speed *= self.scale
+        self.pwm.pulse_width(int(abs(speed)))
+</pre></div>
+</div>
+</div>
+</div>
+<p>Example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tb6612</span> <span class="kn">import</span> <span class="n">TB6612</span>
+<span class="kn">from</span> <span class="nn">pyb</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Timer</span>
+
+<span class="c1"># motor power control</span>
+<span class="n">nstby</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;NSTBY&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">)</span>
+<span class="n">nstby</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># motors</span>
+<span class="n">pwm_timer</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="p">(</span><span class="n">pwm_timer</span><span class="o">.</span><span class="n">period</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>
+
+<span class="n">motor1</span> <span class="o">=</span> <span class="n">TB6612</span><span class="p">(</span>
+    <span class="n">pwm_timer</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">Timer</span><span class="o">.</span><span class="n">PWM_INVERTED</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;PWM_A&#39;</span><span class="p">)),</span>
+    <span class="n">scale</span><span class="p">,</span>
+    <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;AIN1&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">),</span>
+    <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;AIN2&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">motor2</span> <span class="o">=</span> <span class="n">TB6612</span><span class="p">(</span>
+    <span class="n">pwm_timer</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Timer</span><span class="o">.</span><span class="n">PWM_INVERTED</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;PWM_B&#39;</span><span class="p">)),</span>
+    <span class="n">scale</span><span class="p">,</span>
+    <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;BIN1&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">),</span>
+    <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;BIN2&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to robot-stm32 @ serial:///dev/ttyAMA1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Start motors: if everything is wired correctly, the motors will spin when running the code in next cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="c1"># enable TB6612</span>
+<span class="n">nstby</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">speed</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+    <span class="c1"># set desired speed (PWM duty cycle)</span>
+    <span class="n">motor1</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+    <span class="n">motor2</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+<span class="n">motor1</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">motor2</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">nstby</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="encoder">
+<h3>Encoder<a class="headerlink" href="#encoder" title="Permalink to this headline">#</a></h3>
+<p>Just like a car, motor speed depends on load. Encoders can be used to measure the position (and, by taking the derivative, speed).</p>
+<p>I’ve chosen magnetic encoders:</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/encoder.jpg"><img alt="../../_images/encoder.jpg" src="../../_images/encoder.jpg" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 27 </span><span class="caption-text"><a class="reference external" href="https://www.pololu.com/product/3081">Magnetic Encoder</a> breakout boards.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>A wheel with several magnetic zones with with alternating magnetization mounted to the shaft to the motor passes two magnetic sensors (the black components on the board) to produce electrical pulses. The STM32 has built-in counters to tally up these pulses.</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat code/stm32/lib/encoder16.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>from pyb import Pin, Timer
+
+&quot;&quot;&quot;
+Encoder readout for STM32 16-bit timers. Corrects for counter over/under-flow.
+&quot;&quot;&quot;
+
+class Encoder16:
+
+    def __init__(self, timer_no, ch1_pin, ch2_pin, af):
+        pin_a = Pin(ch1_pin, Pin.AF_PP, pull=Pin.PULL_NONE, af=af)
+        pin_b = Pin(ch2_pin, Pin.AF_PP, pull=Pin.PULL_NONE, af=af)
+        timer = Timer(timer_no, prescaler=0, period=0xffff)
+        channel = timer.channel(1, Timer.ENC_AB)
+        self._timer = timer
+        self._sum = 0
+        self._cnt = timer.counter()
+
+    def count(self):
+        c = self._timer.counter()
+        if c-self._cnt &gt; 0x8fff:
+            print(&quot;under&quot;)
+            self._sum -= 0x10000
+        if self._cnt-c &gt; 0x8fff:
+            print(&quot;over&quot;)
+            self._sum += 0x10000
+        self._cnt = c
+        return self._sum + c
+
+
+&quot;&quot;&quot;
+Example:
+
+enc = Encoder16(3, &#39;ENC_B1&#39;, &#39;ENC_B2&#39;, Pin.AF2_TIM3)
+
+last = enc.count()
+while True:
+    c = enc.count()
+    if abs(last-c) &gt; 5:
+        last = c
+        print(f&quot;{c:6d}&quot;)
+&quot;&quot;&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">encoder16</span> <span class="kn">import</span> <span class="n">Encoder16</span>
+<span class="kn">from</span> <span class="nn">pyb</span> <span class="kn">import</span> <span class="n">Pin</span>
+
+<span class="n">enc1</span> <span class="o">=</span> <span class="n">Encoder16</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;ENC_A1&#39;</span><span class="p">,</span> <span class="s1">&#39;ENC_A2&#39;</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">AF2_TIM4</span><span class="p">)</span>
+<span class="n">enc2</span> <span class="o">=</span> <span class="n">Encoder16</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ENC_B1&#39;</span><span class="p">,</span> <span class="s1">&#39;ENC_B2&#39;</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">AF2_TIM3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>A complete example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span> 
+
+<span class="c1"># enable TB6612</span>
+<span class="n">nstby</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">last1</span> <span class="o">=</span> <span class="n">enc1</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<span class="n">last2</span> <span class="o">=</span> <span class="n">enc2</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>    
+
+<span class="k">for</span> <span class="n">duty</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
+    <span class="n">motor1</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">duty</span><span class="p">)</span>
+    <span class="n">motor2</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">duty</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">cnt1</span> <span class="o">=</span> <span class="n">enc1</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+    <span class="n">cnt2</span> <span class="o">=</span> <span class="n">enc2</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">duty</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2">  cnt1=</span><span class="si">{</span><span class="n">cnt1</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2">  cnt2=</span><span class="si">{</span><span class="n">cnt2</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2">  speed1=</span><span class="si">{</span><span class="n">cnt1</span><span class="o">-</span><span class="n">last1</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2">  speed2=</span><span class="si">{</span><span class="n">cnt2</span><span class="o">-</span><span class="n">last2</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">last1</span> <span class="o">=</span> <span class="n">cnt1</span>
+    <span class="n">last2</span> <span class="o">=</span> <span class="n">cnt2</span>
+    
+<span class="n">nstby</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0  cnt1=     0  cnt2=     0  speed1=     0  speed2=     0
+ 20  cnt1=   846  cnt2=   912  speed1=   846  speed2=   912
+ 40  cnt1=  2959  cnt2=  3081  speed1=  2113  speed2=  2169
+ 60  cnt1=  6282  cnt2=  6500  speed1=  3323  speed2=  3419
+ 80  cnt1= 10688  cnt2= 11071  speed1=  4406  speed2=  4571
+100  cnt1= 15835  cnt2= 16711  speed1=  5147  speed2=  5640
+</pre></div>
+</div>
+</div>
+</div>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/enc_duty40.png"><img alt="../../_images/enc_duty40.png" src="../../_images/enc_duty40.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 28 </span><span class="caption-text">Quadrature encoder signals for motor duty = 40%.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The the output period as a function of duty cycles is</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Duty [%]</p></th>
+<th class="text-align:center head"><p>Period [ms]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>10</p></td>
+<td class="text-align:center"><p>14.4</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>40</p></td>
+<td class="text-align:center"><p>1.74</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>100</p></td>
+<td class="text-align:center"><p>0.68</p></td>
+</tr>
+</tbody>
+</table>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../_images/enc_duty10.png"><img alt="../../_images/enc_duty10.png" src="../../_images/enc_duty10.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 29 </span><span class="caption-text">Encoder output for duty = 10%.</span><a class="headerlink" href="#id3" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../../_images/enc_duty100.png"><img alt="../../_images/enc_duty100.png" src="../../_images/enc_duty100.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 30 </span><span class="caption-text">Encoder output for duty = 100%.</span><a class="headerlink" href="#id4" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>At low rotation speeds, the resolution of quadrature encoders is poor. It can possible be improved by <a class="reference internal" href="03a_period.html"><span class="doc std std-doc">measuring the pulse width or period</span></a>.</p>
+<p>Use the code below to estimate the number of counts for a full turn of the wheel. Start the measurement, then carefully turn the wheel by hand. The value depends on the encoder and motor gear ratio. For my motors it is about 1800 counts per revolution. With the 8cm wheel diameter, this amounts to 25cm displacement or 0.14mm/count.</p>
+</section>
+</section>
+<section id="imu">
+<h2>IMU<a class="headerlink" href="#imu" title="Permalink to this headline">#</a></h2>
+<p>To balance on two wheels, the robot needs to know about the direction of gravity. Specifically, we want to know the pitch angle in the figure below.</p>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../../_images/yaw_pitch_roll.png"><img alt="../../_images/yaw_pitch_roll.png" src="../../_images/yaw_pitch_roll.png" style="width: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 31 </span><span class="caption-text">Pitch, roll, and heading.</span><a class="headerlink" href="#id5" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Accelerometers and gyroscopes are perfect for this task. We will look at two solutions - one using a BNO055 IMU with on-board motion processor that directly outputs quaternions from which gravity can be calculated.</p>
+<p>The other option uses a complementary filter to extract gravity from raw accelerometer and gyroscope output.</p>
+<p>Below is the code using quaternions and the output from flipping the robot over.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bno055</span> <span class="kn">import</span> <span class="n">BNO055</span><span class="p">,</span> <span class="n">NDOF_FMC_OFF_MODE</span><span class="p">,</span> <span class="n">QUAT_DATA</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">I2C</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep_ms</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">RAD2DEG</span> <span class="o">=</span> <span class="mi">180</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="c1"># init</span>
+<span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">400_000</span><span class="p">)</span>
+<span class="n">imu</span> <span class="o">=</span> <span class="n">BNO055</span><span class="p">(</span><span class="n">i2c</span><span class="p">,</span> <span class="n">crystal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">sign</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">imu</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="n">NDOF_FMC_OFF_MODE</span><span class="p">)</span>
+<span class="n">sleep_ms</span><span class="p">(</span><span class="mi">800</span><span class="p">)</span>
+
+<span class="c1"># read sensor and compute pitch angle</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">imu</span><span class="o">.</span><span class="n">iget</span><span class="p">(</span><span class="n">QUAT_DATA</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">imu</span><span class="o">.</span><span class="n">w</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">imu</span><span class="o">.</span><span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">imu</span><span class="o">.</span><span class="n">y</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">imu</span><span class="o">.</span><span class="n">z</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">&lt;&lt;</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">sinp</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">w</span> <span class="o">*</span> <span class="n">y</span> <span class="o">-</span> <span class="n">z</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sinp</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># use 90 degrees if out of range</span>
+        <span class="n">pitch</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">copysign</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sinp</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pitch</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">sinp</span><span class="p">)</span>
+    <span class="n">pitch</span> <span class="o">*=</span> <span class="n">RAD2DEG</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pitch</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  -88.01
+  -88.01
+  -87.82
+  -54.62
+  -46.12
+  -29.56
+    3.47
+   42.27
+   61.86
+   83.53
+</pre></div>
+</div>
+</div>
+</div>
+<p>A little bit optimized:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bno055</span> <span class="kn">import</span> <span class="n">BNO055</span><span class="p">,</span> <span class="n">NDOF_FMC_OFF_MODE</span><span class="p">,</span> <span class="n">QUAT_DATA</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">I2C</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep_ms</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">_RAD2DEG</span> <span class="o">=</span> <span class="mi">180</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">_90DEG</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">_QUAT_SCALE</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">&lt;&lt;</span><span class="mi">26</span><span class="p">)</span>
+
+<span class="c1"># init</span>
+<span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">400_000</span><span class="p">)</span>
+<span class="n">imu</span> <span class="o">=</span> <span class="n">BNO055</span><span class="p">(</span><span class="n">i2c</span><span class="p">,</span> <span class="n">crystal</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transpose</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">sign</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">imu</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="n">NDOF_FMC_OFF_MODE</span><span class="p">)</span>
+<span class="n">sleep_ms</span><span class="p">(</span><span class="mi">800</span><span class="p">)</span>
+
+<span class="c1"># read sensor and compute pitch angle</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">imu</span><span class="o">.</span><span class="n">iget</span><span class="p">(</span><span class="n">QUAT_DATA</span><span class="p">)</span>
+    <span class="n">sinp</span> <span class="o">=</span> <span class="n">_QUAT_SCALE</span> <span class="o">*</span> <span class="p">(</span><span class="n">imu</span><span class="o">.</span><span class="n">w</span> <span class="o">*</span> <span class="n">imu</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">imu</span><span class="o">.</span><span class="n">z</span> <span class="o">*</span> <span class="n">imu</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sinp</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># use 90 degrees if out of range</span>
+        <span class="n">pitch</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">copysign</span><span class="p">(</span><span class="n">_90DEG</span><span class="p">,</span> <span class="n">sinp</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pitch</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">sinp</span><span class="p">)</span>
+    <span class="n">pitch</span> <span class="o">*=</span> <span class="n">_RAD2DEG</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">pitch</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">sleep_ms</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  -88.19
+  -88.15
+  -42.03
+    5.38
+   52.51
+   75.75
+   42.02
+   23.82
+   46.48
+   76.74
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="complementary-filter">
+<h2>Complementary Filter<a class="headerlink" href="#complementary-filter" title="Permalink to this headline">#</a></h2>
+<p>The code below reports the computation time (including reading the sensor) and orientation from:</p>
+<ol class="simple">
+<li><p>accelerometers only</p></li>
+<li><p>gyroscope only</p></li>
+<li><p>complementary filter combining accelerometer and gyroscope data</p></li>
+<li><p>Euler angle computed by BNO055</p></li>
+</ol>
+<p>The third option is robust and ideal for low-cost inertial sensors without on-board processing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rotate about short side of chip</span>
+
+<span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">gc</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">I2C</span> <span class="k">as</span> <span class="n">I2C</span>
+<span class="kn">from</span> <span class="nn">pyb</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="kn">from</span> <span class="nn">bno055</span> <span class="kn">import</span> <span class="n">BNO055</span>
+
+<span class="n">tau</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">Ts</span> <span class="o">=</span> <span class="mf">0.02</span>
+<span class="n">ALPHA</span> <span class="o">=</span> <span class="n">tau</span> <span class="o">/</span> <span class="p">(</span><span class="n">tau</span><span class="o">+</span><span class="n">Ts</span><span class="p">)</span>
+<span class="n">RAD_TO_DEG</span> <span class="o">=</span> <span class="mi">180</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="n">i2c</span> <span class="o">=</span> <span class="n">I2C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">400_000</span><span class="p">)</span>
+
+<span class="n">imu</span> <span class="o">=</span> <span class="n">BNO055</span><span class="p">(</span><span class="n">i2c</span><span class="p">)</span>
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">a_off</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">g_phi</span> <span class="o">=</span> <span class="o">-</span><span class="mi">90</span>
+<span class="n">c_phi</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">t_last</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>
+
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:&gt;8s}</span><span class="s2"> </span><span class="si">{:&gt;6s}</span><span class="s2"> </span><span class="si">{:&gt;6}</span><span class="s2"> </span><span class="si">{:&gt;6}</span><span class="s2"> </span><span class="si">{:&gt;6}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;dt [us]&quot;</span><span class="p">,</span> <span class="s2">&quot;xcell&quot;</span><span class="p">,</span> <span class="s2">&quot;gyro&quot;</span><span class="p">,</span> <span class="s2">&quot;comp&quot;</span><span class="p">,</span> <span class="s2">&quot;bno055&quot;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="c1"># xcell</span>
+    <span class="n">ax</span><span class="p">,</span> <span class="n">ay</span><span class="p">,</span> <span class="n">az</span> <span class="o">=</span> <span class="n">imu</span><span class="o">.</span><span class="n">accel</span><span class="p">()</span>
+    <span class="n">a_phi</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">ay</span><span class="p">,</span> <span class="n">az</span><span class="p">)</span><span class="o">*</span><span class="n">RAD_TO_DEG</span> <span class="o">-</span> <span class="n">a_off</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">a_off</span> <span class="o">=</span> <span class="n">a_phi</span><span class="o">+</span><span class="mi">90</span>
+    
+    <span class="c1"># gyro</span>
+    <span class="n">rx</span><span class="p">,</span> <span class="n">ry</span><span class="p">,</span> <span class="n">rz</span> <span class="o">=</span> <span class="n">imu</span><span class="o">.</span><span class="n">gyro</span><span class="p">()</span>
+    <span class="n">g_phi</span> <span class="o">+=</span> <span class="n">rx</span> <span class="o">*</span> <span class="n">Ts</span> <span class="o">*</span> <span class="mf">0.5</span>  <span class="c1"># why 0.5?</span>
+    
+    <span class="c1"># complementary</span>
+    <span class="n">c_phi</span> <span class="o">=</span> <span class="n">ALPHA</span> <span class="o">*</span> <span class="p">(</span><span class="n">c_phi</span> <span class="o">+</span> <span class="n">rx</span> <span class="o">*</span> <span class="n">Ts</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">ALPHA</span><span class="p">)</span> <span class="o">*</span> <span class="n">a_phi</span>
+    
+    <span class="c1"># euler</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">e_phi</span> <span class="o">=</span> <span class="n">imu</span><span class="o">.</span><span class="n">euler</span><span class="p">()</span>
+    
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">50</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:8d}</span><span class="s2"> </span><span class="si">{:6.0f}</span><span class="s2"> </span><span class="si">{:6.0f}</span><span class="s2"> </span><span class="si">{:6.0f}</span><span class="s2"> </span><span class="si">{:6.0f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">dt</span><span class="p">),</span> <span class="n">a_phi</span><span class="p">,</span> <span class="n">g_phi</span><span class="p">,</span> <span class="n">c_phi</span><span class="p">,</span> <span class="o">-</span><span class="n">e_phi</span><span class="o">-</span><span class="mi">90</span><span class="p">))</span>
+    
+    <span class="c1"># clean slate</span>
+    <span class="n">gc</span><span class="o">.</span><span class="n">collect</span><span class="p">()</span>
+
+    <span class="c1"># sleep off extra time</span>
+    <span class="n">t_new</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_us</span><span class="p">()</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">ticks_diff</span><span class="p">(</span><span class="n">t_new</span><span class="p">,</span> <span class="n">t_last</span><span class="p">)</span>
+    <span class="n">t_last</span> <span class="o">=</span> <span class="n">t_new</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">Ts</span><span class="o">-</span><span class="n">dt</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> dt [us]  xcell   gyro   comp bno055
+       0     -0    -90     -0    -91
+   17999    -90    -90    -89    -91
+   10447    -90    -90    -90    -91
+    5354   -113   -111   -117   -114
+    7995   -132   -131   -137   -134
+    5399   -157   -153   -161   -158
+    2593   -173   -168   -177   -176
+   11001   -197   -187   -199   -196
+    9994   -217   -206   -220   -216
+   10603   -234   -221   -236   -233
+   15108   -243   -231   -245   -244
+   11001   -256   -242   -258   -256
+    8185     84   -256   -123     88
+    3003     90   -256     84     88
+    8608     90   -256     90     88
+    7747     90   -256     90     88
+    5926     90   -256     90     88
+    4437     90   -256     90     88
+    8183     90   -256     90     88
+   10926     90   -256     90     88
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./projects/robot"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="02_supply.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Power Supply</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="07_pitch.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Pitch Control</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Bernhard Boser<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

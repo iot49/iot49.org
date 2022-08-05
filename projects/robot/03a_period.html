@@ -1,0 +1,976 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Encoder Readout &#8212; Electronics for IoT</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/projects/robot/03a_period.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Rust" href="../rust.html" />
+    <link rel="prev" title="Pitch Control" href="07_pitch.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/timezone.html">
+     Timezone
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/mosquitto.html">
+     Mosquitto MQTT Broker
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flashing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/mp_ext_c.html">
+     External C modules
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/app.html">
+   Docker App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/help.html">
+   Help
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tours &amp; Projects
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../balance.html">
+   GPIO
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/01_parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/02_circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/03_code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/04_display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/05_buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/06_ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/07_app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/08_hx711.html">
+     “Precision” Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/09_ticks.html">
+     Time Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../internet.html">
+   Internet
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/mqtt.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wireshark.html">
+     Wireshark
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/ota.html">
+     ESP32 OTA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/encryption.html">
+     Encryption
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bluetooth.html">
+   Bluetooth
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bluetooth/ble_uart_esp32.html">
+     BLE UART - esp32
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bluetooth/ble_uart_host.html">
+     BLE UART Service - Host
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bluetooth/eddystone.html">
+     BLE Beacon Scanner
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../mqtt-plot.html">
+   MQTT Plot
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mqtt-plot/examples.html">
+     Examples
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mqtt-plot/docs.html">
+     Documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../robot.html">
+   Robot
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="00_overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="01_stm32.html">
+     STM32
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_supply.html">
+     Power Supply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_peripherals.html">
+     Peripherals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_pitch.html">
+     Pitch Control
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Encoder Readout
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rust.html">
+   Rust
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/install.html">
+     Install Rust
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/tour.html">
+     Try Rust
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/iot49/iot49.org"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/robot/03a_period.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/iot49/iot49.org/edit/master/docs/projects/robot/03a_period.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/projects/robot/03a_period.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Encoder Readout</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="encoder-readout">
+<h1>Encoder Readout<a class="headerlink" href="#encoder-readout" title="Permalink to this headline">#</a></h1>
+<p>Rotational speed can be measured with quadrature encoders by either counting pulses or measuring the width or period of the pulses at the output from the quadrature encoder. Counting pulses is simple and works well for high rotation speed, but gives inaccurate results at low speed when only few pulses are detected.</p>
+<p>By contrast, measuring pulse width works well at low speeds (as long as at least one pulse is detected in the measurement interval), but requires a very fast clock to measure rotational speed at high rpm.</p>
+<p>Below we compare the two approaches.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">serial</span><span class="p">:</span><span class="o">///</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyAMA1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to robot-stm32 @ serial:///dev/ttyAMA1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Setup motors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tb6612</span> <span class="kn">import</span> <span class="n">TB6612</span>
+<span class="kn">from</span> <span class="nn">pyb</span> <span class="kn">import</span> <span class="n">Pin</span><span class="p">,</span> <span class="n">Timer</span>
+
+<span class="c1"># motor power control</span>
+<span class="n">nstby</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;NSTBY&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">)</span>
+<span class="n">nstby</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># motors</span>
+<span class="n">pwm_timer</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="p">(</span><span class="n">pwm_timer</span><span class="o">.</span><span class="n">period</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">100</span>
+
+<span class="n">motor1</span> <span class="o">=</span> <span class="n">TB6612</span><span class="p">(</span>
+    <span class="n">pwm_timer</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">Timer</span><span class="o">.</span><span class="n">PWM_INVERTED</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;PWM_A&#39;</span><span class="p">)),</span>
+    <span class="n">scale</span><span class="p">,</span>
+    <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;AIN1&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">),</span>
+    <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;AIN2&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">motor2</span> <span class="o">=</span> <span class="n">TB6612</span><span class="p">(</span>
+    <span class="n">pwm_timer</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Timer</span><span class="o">.</span><span class="n">PWM_INVERTED</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;PWM_B&#39;</span><span class="p">)),</span>
+    <span class="n">scale</span><span class="p">,</span>
+    <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;BIN1&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">),</span>
+    <span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;BIN2&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">Pin</span><span class="o">.</span><span class="n">OUT_PP</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Pulse width measurement based on <a class="reference external" href="https://github.com/dhylands/upy-examples/blob/master/ic_test.py">https://github.com/dhylands/upy-examples/blob/master/ic_test.py</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyb</span><span class="o">,</span> <span class="nn">micropython</span>
+<span class="kn">from</span> <span class="nn">encoder</span> <span class="kn">import</span> <span class="n">init_encoder</span><span class="p">,</span> <span class="n">c2</span>
+
+<span class="c1"># quadrature counter (motor2)</span>
+<span class="n">enc</span> <span class="o">=</span> <span class="n">init_encoder</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;ENC_A1&#39;</span><span class="p">,</span> <span class="s1">&#39;ENC_A2&#39;</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">AF2_TIM4</span><span class="p">)</span>
+
+<span class="c1"># interval counter (motor1)</span>
+<span class="c1"># increase prescaler value if width overflows at low speeds</span>
+<span class="n">ic_tim</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">prescaler</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mh">0x0ffff</span><span class="p">)</span>
+<span class="n">ic_pin</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;ENC_B1&#39;</span><span class="p">)</span>
+<span class="n">ic_dir</span> <span class="o">=</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Pin</span><span class="p">(</span><span class="s1">&#39;ENC_B2&#39;</span><span class="p">)</span>
+<span class="n">ic_cha</span> <span class="o">=</span> <span class="n">ic_tim</span><span class="o">.</span><span class="n">channel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="o">.</span><span class="n">IC</span><span class="p">,</span> <span class="n">pin</span><span class="o">=</span><span class="n">ic_pin</span><span class="p">,</span> <span class="n">polarity</span><span class="o">=</span><span class="n">pyb</span><span class="o">.</span><span class="n">Timer</span><span class="o">.</span><span class="n">BOTH</span><span class="p">)</span>
+
+<span class="n">ic_start</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ic_width</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">ic_period</span><span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">ic_cb</span><span class="p">(</span><span class="n">tim</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">ic_start</span>
+    <span class="k">global</span> <span class="n">ic_width</span>
+    <span class="k">global</span> <span class="n">ic_period</span>
+    <span class="c1"># Read the GPIO pin to figure out if this was a rising or falling edge</span>
+    <span class="k">if</span> <span class="n">ic_pin</span><span class="o">.</span><span class="n">value</span><span class="p">():</span>
+        <span class="n">ic_period</span> <span class="o">=</span> <span class="n">ic_cha</span><span class="o">.</span><span class="n">capture</span><span class="p">()</span> <span class="o">-</span> <span class="n">ic_start</span>
+        <span class="n">ic_start</span> <span class="o">=</span> <span class="n">ic_cha</span><span class="o">.</span><span class="n">capture</span><span class="p">()</span>
+        <span class="c1"># counter rolled over</span>
+        <span class="k">if</span> <span class="n">ic_period</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ic_period</span> <span class="o">+=</span> <span class="mh">0x10000</span>
+        <span class="c1"># use quadrature pin to determine direction</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ic_dir</span><span class="o">.</span><span class="n">value</span><span class="p">():</span>
+            <span class="n">ic_period</span> <span class="o">=</span> <span class="o">-</span><span class="n">ic_period</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Falling edge - end of the pulse</span>
+        <span class="n">ic_width</span> <span class="o">=</span> <span class="n">ic_cha</span><span class="o">.</span><span class="n">capture</span><span class="p">()</span> <span class="o">-</span> <span class="n">ic_start</span>
+        <span class="c1"># counter rolled over</span>
+        <span class="k">if</span> <span class="n">ic_width</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ic_width</span> <span class="o">+=</span> <span class="mh">0x10000</span>
+        <span class="c1"># use quadrature pin to determine direction</span>
+        <span class="k">if</span> <span class="n">ic_dir</span><span class="o">.</span><span class="n">value</span><span class="p">():</span>
+            <span class="n">ic_width</span> <span class="o">=</span> <span class="o">-</span><span class="n">ic_width</span>
+
+<span class="n">micropython</span><span class="o">.</span><span class="n">alloc_emergency_exception_buf</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">ic_cha</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">ic_cb</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="c1"># enable TB6612</span>
+<span class="n">nstby</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># speed vector</span>
+<span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">a</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span> <span class="o">-</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span> <span class="p">]</span>
+<span class="n">b</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+<span class="n">b</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">speed</span> <span class="ow">in</span> <span class="n">b</span><span class="p">:</span>
+    <span class="n">motor1</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+    <span class="n">motor2</span><span class="o">.</span><span class="n">speed</span><span class="p">(</span><span class="n">speed</span><span class="p">)</span>
+    <span class="c1"># let motor speed stabilize</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="c1"># measure speed in only 10ms</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">enc</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">ic_width</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">c2</span><span class="p">(</span><span class="n">enc</span><span class="o">.</span><span class="n">counter</span><span class="p">())</span>
+        <span class="n">enc</span><span class="o">.</span><span class="n">counter</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ic_width</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;duty: </span><span class="si">{</span><span class="n">speed</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">   encoder: </span><span class="si">{</span><span class="n">cnt</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">   interval: </span><span class="si">{</span><span class="mi">100_000</span><span class="o">/</span><span class="n">ic_width</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">   period: </span><span class="si">{</span><span class="mi">200_000</span><span class="o">/</span><span class="n">ic_period</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">   pw: </span><span class="si">{</span><span class="n">ic_width</span><span class="si">:</span><span class="s2">6d</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;duty: </span><span class="si">{</span><span class="n">speed</span><span class="si">:</span><span class="s2">4d</span><span class="si">}</span><span class="s2">   encoder: </span><span class="si">{</span><span class="n">cnt</span><span class="si">:</span><span class="s2">8.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+<span class="n">nstby</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>duty: -100   encoder:  -100.00   interval:  -102.77   period:  -104.66   pw:   -973
+duty: -100   encoder:   -92.00   interval:  -102.77   period:  -106.61   pw:   -973
+duty:  -50   encoder:   -46.00   interval:   -50.53   period:   -49.32   pw:  -1979
+duty:  -50   encoder:   -42.00   interval:   -50.45   period:   -49.16   pw:  -1982
+duty:  -19   encoder:   -14.00   interval:   -13.31   period:   -13.81   pw:  -7512
+duty:  -19   encoder:   -14.00   interval:   -13.33   period:   -13.83   pw:  -7501
+duty:  -18   encoder:   -12.00   interval:   -12.46   period:   -12.51   pw:  -8027
+duty:  -18   encoder:   -12.00   interval:   -12.42   period:   -12.69   pw:  -8054
+duty:  -17   encoder:   -12.00   interval:   -11.20   period:   -11.27   pw:  -8929
+duty:  -17   encoder:   -10.00   interval:   -11.16   period:   -11.41   pw:  -8963
+duty:  -16   encoder:   -10.00   interval:    -9.76   period:    -9.99   pw: -10246
+duty:  -16   encoder:   -10.00   interval:    -9.75   period:   -10.07   pw: -10255
+duty:  -15   encoder:    -8.00   interval:    -8.55   period:    -8.85   pw: -11695
+duty:  -15   encoder:    -8.00   interval:    -8.66   period:    -8.76   pw: -11543
+duty:  -14   encoder:    -8.00   interval:    -7.56   period:    -7.66   pw: -13229
+duty:  -14   encoder:    -8.00   interval:    -7.94   period:    -7.71   pw: -12593
+duty:  -13   encoder:    -8.00   interval:    -6.39   period:    -6.49   pw: -15643
+duty:  -13   encoder:    -8.00
+duty:  -12   encoder:    -6.00   interval:    -5.25   period:    -5.41   pw: -19043
+duty:  -12   encoder:    -6.00   interval:    -5.71   period:    -5.49   pw: -17500
+duty:  -11   encoder:    -6.00
+duty:  -11   encoder:    -6.00
+duty:  -10   encoder:    -4.00
+duty:  -10   encoder:    -4.00   interval:    -2.87   period:    -3.08   pw: -34892
+duty:   -9   encoder:    -4.00   interval:   -20.92   period:   -18.73   pw:  -4781
+duty:   -9   encoder:    -4.00
+duty:   -8   encoder:     0.00
+duty:   -8   encoder:     0.00
+duty:    8   encoder:     0.00
+duty:    8   encoder:     0.00
+duty:    9   encoder:     0.00
+duty:    9   encoder:     0.00
+duty:   10   encoder:     0.00
+duty:   10   encoder:     0.00
+duty:   11   encoder:     0.00   interval:     4.05   period:     3.73   pw:  24698
+duty:   11   encoder:     0.00   interval:     3.46   period:     3.76   pw:  28923
+duty:   12   encoder:     0.00   interval:     5.47   period:     5.09   pw:  18289
+duty:   12   encoder:     0.00   interval:     4.78   period:     5.24   pw:  20931
+duty:   13   encoder:     6.00   interval:     6.66   period:     6.31   pw:  15012
+duty:   13   encoder:     6.00
+duty:   14   encoder:     8.00   interval:     7.57   period:     7.38   pw:  13212
+duty:   14   encoder:     8.00
+duty:   15   encoder:     8.00   interval:     9.19   period:     8.65   pw:  10878
+duty:   15   encoder:     8.00   interval:     8.72   period:     8.53   pw:  11473
+duty:   16   encoder:    10.00   interval:    10.39   period:    10.23   pw:   9626
+duty:   16   encoder:    10.00   interval:     9.85   period:     9.77   pw:  10155
+duty:   17   encoder:    12.00   interval:    10.99   period:    10.77   pw:   9101
+duty:   17   encoder:    12.00   interval:    10.60   period:    10.75   pw:   9432
+duty:   18   encoder:    12.00   interval:    12.71   period:    12.15   pw:   7866
+duty:   18   encoder:    10.00   interval:    12.08   period:    12.04   pw:   8275
+duty:   19   encoder:    14.00   interval:    13.98   period:    13.20   pw:   7152
+duty:   19   encoder:    12.00   interval:    13.32   period:    13.24   pw:   7508
+duty:   50   encoder:    44.00   interval:    48.38   period:    51.59   pw:   2067
+duty:   50   encoder:    40.00   interval:    49.16   period:    48.94   pw:   2034
+duty:  100   encoder:    98.00   interval:   114.16   period:   114.03   pw:    876
+duty:  100   encoder:    88.00   interval:   107.07   period:   107.87   pw:    934
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, pulse width measurement gives more consistent results.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./projects/robot"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="07_pitch.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Pitch Control</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../rust.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Rust</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Bernhard Boser<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

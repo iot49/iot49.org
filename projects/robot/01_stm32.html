@@ -1,0 +1,1277 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>STM32 &#8212; Electronics for IoT</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://iot49.org/projects/robot/01_stm32.html" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Power Supply" href="02_supply.html" />
+    <link rel="prev" title="Overview" href="00_overview.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Electronics for IoT</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  ide49
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/install.html">
+   Install
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/configuration.html">
+   Configuration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/password.html">
+     Change Password
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/backup.html">
+     Backup
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/timezone.html">
+     Timezone
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/dns.html">
+     Domain Name
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/https.html">
+     Https &amp; Certificates
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/samba.html">
+     Samba File Server/Client
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/config/mosquitto.html">
+     Mosquitto MQTT Broker
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/micropython.html">
+   MicroPython
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/iot-kernel.html">
+     IoT Kernel
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/magics.html">
+     Magics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/REPL.html">
+     REPL prompt
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/dev_config.html">
+     Device Configuration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/flash.html">
+     Flashing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/compile.html">
+     Compile
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/micropython/mp_ext_c.html">
+     External C modules
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../ide/app.html">
+   Docker App
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../ide/app/customize.html">
+     Customize
+     <em>
+      ide49
+     </em>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/help.html">
+   Help
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ide/changelog.html">
+   Changelog
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Tours &amp; Projects
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../balance.html">
+   GPIO
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/01_parts.html">
+     Parts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/02_circuit.html">
+     Circuit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/03_code.html">
+     MicroPython Code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/04_display.html">
+     Display
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/05_buttons.html">
+     Buttons
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/06_ble.html">
+     Bluetooth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/07_app.html">
+     Standalone App
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/08_hx711.html">
+     “Precision” Scale
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../balance/09_ticks.html">
+     Time Intervals
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../internet.html">
+   Internet
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wifi.html">
+     WiFi
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/sockets.html">
+     Sockets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/requests.html">
+     Requests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/mqtt.html">
+     MQTT
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/wireshark.html">
+     Wireshark
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/ota.html">
+     ESP32 OTA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../internet/encryption.html">
+     Encryption
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bluetooth.html">
+   Bluetooth
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bluetooth/ble_uart_esp32.html">
+     BLE UART - esp32
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bluetooth/ble_uart_host.html">
+     BLE UART Service - Host
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bluetooth/eddystone.html">
+     BLE Beacon Scanner
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../wifi-cop.html">
+   WiFi Coprocessor
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/custom_c.html">
+     Custom MicroPython
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/rpc.html">
+     RPC
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../wifi-cop/networking.html">
+     Networking
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../mqtt-plot.html">
+   MQTT Plot
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mqtt-plot/examples.html">
+     Examples
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../mqtt-plot/docs.html">
+     Documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../robot.html">
+   Robot
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="00_overview.html">
+     Overview
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     STM32
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="02_supply.html">
+     Power Supply
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03_peripherals.html">
+     Peripherals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="07_pitch.html">
+     Pitch Control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="03a_period.html">
+     Encoder Readout
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../rust.html">
+   Rust
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/install.html">
+     Install Rust
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rust/tour.html">
+     Try Rust
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/iot49/iot49.org"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/iot49/iot49.org/issues/new?title=Issue%20on%20page%20%2Fprojects/robot/01_stm32.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/iot49/iot49.org/edit/master/docs/projects/robot/01_stm32.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/projects/robot/01_stm32.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dtoverlay">
+   dtoverlay
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#customize-micropython">
+   Customize MicroPython
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#micropython-source">
+     MicroPython Source
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compile">
+     Compile
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flash">
+     Flash
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repl">
+     REPL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stm32-from-pi">
+   STM32 from Pi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#device-configuration">
+   Device Configuration
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>STM32</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dtoverlay">
+   dtoverlay
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#customize-micropython">
+   Customize MicroPython
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#micropython-source">
+     MicroPython Source
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compile">
+     Compile
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flash">
+     Flash
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repl">
+     REPL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stm32-from-pi">
+   STM32 from Pi
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#device-configuration">
+   Device Configuration
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="stm32">
+<h1>STM32<a class="headerlink" href="#stm32" title="Permalink to this headline">#</a></h1>
+<p>The control of the robot - motors and balancing - is delegated to a dedicated STM32. Although the Raspberry PI has certainly sufficient compute power for this function, its Linux operating system is not well suited for real time control. Depending on activity, a process may be suspended for a potentially sufficiently long time for the robot to crash. While with light CPU loads this may never happen, there is no guarantee and consequently such two (or multiple) CPU arrangements are typical in control applications where response time is critical.</p>
+<section id="dtoverlay">
+<h2>dtoverlay<a class="headerlink" href="#dtoverlay" title="Permalink to this headline">#</a></h2>
+<p>The STM32 communicates with the Raspberry PI over UART. These need to be enabled.  Login to <a class="reference external" href="https://www.balena.io/">Balena</a> (this works only with custom installs!) and open the dashboard for your Raspberry PI.</p>
+<p>Choose <code class="docutils literal notranslate"><span class="pre">Device</span> <span class="pre">Conifguration</span></code> and change <code class="docutils literal notranslate"><span class="pre">Define</span> <span class="pre">DT</span> <span class="pre">overlays</span></code> to</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;vc4-fkms-v3d&quot;</span><span class="p">,</span> <span class="s2">&quot;uart3&quot;</span><span class="p">,</span> <span class="s2">&quot;uart4&quot;</span><span class="p">,</span> <span class="s2">&quot;gpio-poweroff,gpiopin=16,active_low=1&quot;</span><span class="p">,</span> <span class="s2">&quot;enable_uart=0&quot;</span>
+</pre></div>
+</div>
+<p>similar to <a class="reference internal" href="#id1"><span class="std std-numref">Figure 22</span></a>. The Raspberry PI will reboot for the change to take effect.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../../_images/dtoverlay.png"><img alt="../../_images/dtoverlay.png" src="../../_images/dtoverlay.png" style="width: 500px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 22 </span><span class="caption-text">dtoverlay: configure Raspberry PI IO</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The Raspberry PI 4 pinout is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="n">TXD</span> <span class="n">RXD</span> <span class="n">CTS</span> <span class="n">RTS</span>     <span class="n">Board</span> <span class="n">Pins</span>
+<span class="n">uart0</span>   <span class="mi">14</span>  <span class="mi">15</span>              <span class="mi">8</span>   <span class="mi">10</span>
+<span class="n">uart1</span>   <span class="mi">14</span>  <span class="mi">15</span>              <span class="mi">8</span>   <span class="mi">10</span>
+<span class="n">uart2</span>   <span class="mi">0</span>   <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>       <span class="mi">27</span>  <span class="mi">28</span>  <span class="p">(</span><span class="n">I2C</span><span class="p">)</span>
+<span class="n">uart3</span>   <span class="mi">4</span>   <span class="mi">5</span>   <span class="mi">6</span>   <span class="mi">7</span>       <span class="mi">7</span>   <span class="mi">29</span>
+<span class="n">uart4</span>   <span class="mi">8</span>   <span class="mi">9</span>   <span class="mi">10</span>  <span class="mi">11</span>      <span class="mi">24</span>  <span class="mi">21</span>  <span class="p">(</span><span class="n">SPI0</span><span class="p">)</span>
+<span class="n">uart5</span>   <span class="mi">12</span>  <span class="mi">13</span>  <span class="mi">14</span>  <span class="mi">15</span>      <span class="mi">32</span>  <span class="mi">33</span>  <span class="p">(</span><span class="n">gpio</span><span class="o">-</span><span class="n">fan</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/pi4-pinout.png"><img alt="../../_images/pi4-pinout.png" src="../../_images/pi4-pinout.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 23 </span><span class="caption-text">Raspberry PI 4 pin assignment</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="customize-micropython">
+<h2>Customize MicroPython<a class="headerlink" href="#customize-micropython" title="Permalink to this headline">#</a></h2>
+<p>We use a special MicroPython VM with the following customizations:</p>
+<ul class="simple">
+<li><p>STM32 pin assignments</p></li>
+<li><p>floats not stored on heap</p></li>
+</ul>
+<p>The STM32 has many powerful peripherals such as quadrature decoders that in this project will be used for measuring the true wheel RPM. Many of these functions are available only on specific pins. <a class="reference internal" href="#stm32-pinout"><span class="std std-numref">Figure 24</span></a> shows the pin assignment used for this project.</p>
+<figure class="align-default" id="stm32-pinout">
+<img alt="../../_images/stm32_pinout.png" src="../../_images/stm32_pinout.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 24 </span><span class="caption-text">STM32 pin assignments (<a href="../../_images/stm32_pinout.pdf">pdf</a>)</span><a class="headerlink" href="#stm32-pinout" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The second customization configures the MicroPython VM to store floats inline, rather than on the heap so that they may be safely used in interrupt handlers.</p>
+<section id="micropython-source">
+<h3>MicroPython Source<a class="headerlink" href="#micropython-source" title="Permalink to this headline">#</a></h3>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%bash
+
+# interpreter
+cd $IOT/mp
+if [ ! -d micropython ]
+then
+    git clone git@github.com:micropython/micropython.git
+else
+    cd micropython
+    git checkout master
+    git pull
+    git merge master
+fi
+
+# library
+cd $IOT/mp
+if [ ! -d micropython-lib ]
+then
+    git clone git@github.com:micropython/micropython-lib.git
+else
+    cd micropython-lib
+    git checkout master
+    git pull
+    git merge master
+fi
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="compile">
+<h3>Compile<a class="headerlink" href="#compile" title="Permalink to this headline">#</a></h3>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%service arm32
+
+cd $IOT/mp/micropython/ports/stm32
+cp -rf ../../../boards/MOTOR_HAT boards
+make submodules
+make BOARD=MOTOR_HAT clean
+make BOARD=MOTOR_HAT USER_C_MODULES=../../../modules
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="flash">
+<h3>Flash<a class="headerlink" href="#flash" title="Permalink to this headline">#</a></h3>
+<p>Install stm32 flasher:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">bash</span>
+
+<span class="n">cd</span> <span class="o">/</span><span class="n">tmp</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">git</span><span class="o">.</span><span class="n">code</span><span class="o">.</span><span class="n">sf</span><span class="o">.</span><span class="n">net</span><span class="o">/</span><span class="n">p</span><span class="o">/</span><span class="n">stm32flash</span><span class="o">/</span><span class="n">code</span> <span class="n">stm32flash</span><span class="o">-</span><span class="n">code</span>
+<span class="n">cd</span> <span class="n">stm32flash</span><span class="o">-</span><span class="n">code</span>
+<span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+
+<span class="kn">import</span> <span class="nn">stm32</span>
+<span class="n">stm32</span><span class="o">.</span><span class="n">flash</span><span class="p">(</span><span class="n">info_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="repl">
+<h3>REPL<a class="headerlink" href="#repl" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">serial</span><span class="p">:</span><span class="o">///</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyAMA1</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Black -Color-Black-BGCyan">Connected to 2c:00:29:00:09:50:52:42:4e:30:39:20 @ serial:///dev/ttyAMA1</span>
+pyboard
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="stm32-from-pi">
+<h2>STM32 from Pi<a class="headerlink" href="#stm32-from-pi" title="Permalink to this headline">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">stm32.py</span></code> provides a number of convenience functions for accessing the STM32 from the Raspberry PI:</p>
+<div class="cell tag_hide-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>!cat $IOT_PROJECTS/robot/code/rpi/stm32.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>from iot_device.pydevice import Pydevice
+from iot_device import DeviceRegistry, RemoteError
+from serial import Serial
+from gpiozero import LED as Pin
+import asyncio, subprocess, os, time
+
+
+def hard_reset(boot_mode=False):
+    &quot;&quot;&quot;Hard reset STM32. Same as pressing reset button.
+
+    @param boot_mode: bool Start in &quot;dfu&quot; boot-mode (default False).
+    &quot;&quot;&quot;
+    with Pin(21) as nrst, Pin(27) as boot0:
+        if boot_mode:
+            boot0.on()
+        else:
+            boot0.off()
+        time.sleep(0.1)
+        nrst.off()
+        time.sleep(0.1)
+        nrst.on()
+        # let boot process finish
+        time.sleep(1)
+
+def _flash_bin(address, firmware, dev, info_only):
+    &quot;&quot;&quot;Flash helper. Used by flash method.&quot;&quot;&quot;
+    if info_only:
+        cmd = [&#39;stm32flash&#39;, dev]
+    else:
+        cmd = [&#39;stm32flash&#39;, &#39;-v&#39;, &#39;-S&#39;, address, &#39;-w&#39;, firmware, dev]
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    print(stdout.decode())
+    if len(stderr) &gt; 0:
+        print(f&quot;***** {stderr.decode()}&quot;)
+
+def flash(firmware_dir=&#39;$IOT/mp/micropython/ports/stm32/build-MOTOR_HAT/&#39;, dev=&#39;/dev/ttyAMA2&#39;, info_only=False):
+    &quot;&quot;&quot;Flash MicroPython VM.
+
+    @param firmware_dir Location of firmware.
+    @param dev Device port.
+    @param info_only Dry run if True (default False).
+    &quot;&quot;&quot;
+    dir = os.path.expandvars(firmware_dir)
+    hard_reset(boot_mode=True)
+    _flash_bin(&#39;0x08000000&#39;, os.path.join(dir, &#39;firmware0.bin&#39;), dev, info_only)
+    _flash_bin(&#39;0x08020000&#39;, os.path.join(dir, &#39;firmware1.bin&#39;), dev, info_only)
+    hard_reset(boot_mode=False)
+
+def exec(cmd, dev=&#39;serial:///dev/ttyAMA1&#39;):
+    &quot;&quot;&quot;Execute MicroPython code on STM32.
+
+    @param cmd: string Code.
+    &quot;&quot;&quot;
+    registry = DeviceRegistry()
+    registry.register(dev)
+    with registry.get_device(dev) as repl:
+        res = repl.exec(cmd)
+        try:
+            res = res.decode()
+        except:
+            pass
+        return res
+
+def exec_no_follow(cmd, dev=&#39;/dev/ttyAMA1&#39;):
+    &quot;&quot;&quot;Execute MicroPython code on STM32 &amp; do not wait for result.&quot;&quot;&quot;
+    with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive= True) as serial:
+        pyd = Pydevice(serial)
+        pyd.enter_raw_repl()
+        pyd.exec_raw_no_follow(cmd)
+        time.sleep(0.2)
+        while serial.in_waiting:
+            data = serial.read(serial.in_waiting)
+            try:
+                data = data.decode()
+            except:
+                pass
+            print(f&quot;*** MCU: {data}&quot;)
+            time.sleep(0.1)
+
+async def async_exec(cmd, dev=&#39;/dev/ttyAMA1&#39;, pause=0.1):
+    &quot;&quot;&quot;Asynchronous exec.
+
+    @param cmd: string Code.
+    @param pause: float Interval checking for output [seconds].
+    &quot;&quot;&quot;
+    with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive=False) as serial:
+        pyd = Pydevice(serial)
+        pyd.enter_raw_repl()
+        pyd.exec_raw_no_follow(cmd)
+        while True:
+            if serial.in_waiting:
+                data = serial.read(serial.in_waiting)
+                try:
+                    data = data.decode()
+                except:
+                    pass
+                print(f&quot;MCU: {data}&quot;)
+                await asyncio.sleep(0)
+        else:
+                await asyncio.sleep(pause)
+
+def rsync(dry_run=True, dev=&#39;serial:///dev/ttyAMA1&#39;):
+    registry = DeviceRegistry()
+    registry.register(dev)
+    with registry.get_device(dev) as repl:
+        repl.rsync(data_consumer=lambda x: print(x, end=&#39;&#39;), dry_run=dry_run)
+
+def rlist(dev=&#39;serial:///dev/ttyAMA1&#39;):
+    registry = DeviceRegistry()
+    registry.register(dev)
+    with registry.get_device(dev) as repl:
+        repl.rlist(data_consumer=lambda x: print(x, end=&#39;&#39;), show=True)
+
+def supply_voltage():
+    &quot;&quot;&quot;Report unregulated supply voltage in [V] (nominally 12V).&quot;&quot;&quot;
+    return float(exec(
+&quot;&quot;&quot;
+from pyb import ADC
+
+adc = pyb.ADC(&#39;V12_DIV&#39;)
+print(0.00655233*adc.read())
+&quot;&quot;&quot;))
+
+def power_off(delay=10):
+    &quot;&quot;&quot;Turn off 5V power supply to Raspberry PI &amp; STM32.
+
+    @param delay: float Delay in seconds before turning power off.
+
+    Warning: make sure Raspberry PI is shutdown before calling this!
+    &quot;&quot;&quot;
+    print(f&quot;shutting down ...&quot;)
+    exec_no_follow(
+f&quot;&quot;&quot;
+from pyb import Pin
+from time import sleep
+
+# declaring as input first sets the initial value after configuring as output
+shut_dn = Pin(&#39;PWR_EN&#39;, mode=Pin.IN, pull=Pin.PULL_UP)
+shut_dn.value(1)
+shut_dn = Pin(&#39;PWR_EN&#39;, mode=Pin.OUT_OD)
+sleep({delay})
+shut_dn.value(0)
+&quot;&quot;&quot;)
+    os.system(&quot;sudo halt&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">host</span>
+
+<span class="c1"># setup path</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;IOT_PROJECTS&#39;</span><span class="p">),</span> <span class="s1">&#39;robot/code/rpi&#39;</span><span class="p">))</span>
+
+<span class="kn">import</span> <span class="nn">stm32</span>
+
+<span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;print(4+7, end=&quot;&quot;)&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;exec(</span><span class="si">{</span><span class="n">cmd</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">stm32</span><span class="o">.</span><span class="n">exec</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;supply voltage: </span><span class="si">{</span><span class="n">stm32</span><span class="o">.</span><span class="n">supply_voltage</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">V&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>exec(print(4+7, end=&quot;&quot;)): 11
+supply voltage: 10.1V
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="device-configuration">
+<h2>Device Configuration<a class="headerlink" href="#device-configuration" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span>%%writefile $IOT_PROJECTS/devices/robot.yaml
+
+# motor controller etc.
+robot-stm32:
+    # uid: 1c:00:26:00:09:50:52:42:4e:30:39:20
+    uid: 2c:00:29:00:09:50:52:42:4e:30:39:20
+    install-dir: /flash
+    path: robot/code
+    resources:
+        - secrets.py:
+            path: libs
+        - state.py:
+            path: robot/code/rpi/robot
+            install-dir: /flash/lib/robot
+        - pid.py:
+            path: robot/code/rpi/robot
+            install-dir: /flash/lib/robot
+        - bno055:
+            path: libs
+            install-dir: /flash/lib
+        - stm32
+
+# ble remote control
+robot-esp32:
+    uid: 30:ae:a4:28:39:f0
+    path: robot/code
+    resources:
+        - secrets.py:
+            path: libs
+        - esp32
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing /home/iot/iot49.org/docs/projects/devices/robot.yaml
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-output docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">connect</span> <span class="n">serial</span><span class="p">:</span><span class="o">///</span><span class="n">dev</span><span class="o">/</span><span class="n">ttyAMA1</span>
+<span class="o">%</span><span class="n">rsync</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "iot_kernel"
+        },
+        kernelOptions: {
+            kernelName: "iot_kernel",
+            path: "./projects/robot"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'iot_kernel'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="00_overview.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Overview</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="02_supply.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Power Supply</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Bernhard Boser<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
