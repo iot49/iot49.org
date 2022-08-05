@@ -22,7 +22,7 @@ def shutdown():
     
 # run code on stm32
 def exec_no_follow(cmd, dev='/dev/ttyAMA1'):
-    with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive= True) as serial:
+    with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive=False) as serial:
         pyd = Pydevice(serial)
         pyd.enter_raw_repl()
         pyd.exec_raw_no_follow(cmd)

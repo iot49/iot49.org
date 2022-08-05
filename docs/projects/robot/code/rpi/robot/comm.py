@@ -27,7 +27,7 @@ class Comm:
         ), name="comm._repl"))
         await asyncio.sleep(1)
         self._uart = Serial(port='/dev/ttyAMA2', baudrate=self.baudrate, 
-                            timeout=2, write_timeout=1, exclusive=True)
+                            timeout=2, write_timeout=1, exclusive=False)
         self._resp_queue = asyncio.Queue()
         tasks.append(asyncio.create_task(self._cmd_response(), name="comm._cmd_response"))
         for task in tasks:
@@ -142,7 +142,7 @@ class Comm:
 
     async def _repl(self, cmd, dev='/dev/ttyAMA1'):
         stm32.exec_no_follow(cmd)
-        with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive=True) as serial:
+        with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive=False) as serial:
             while True:
                 if serial.in_waiting:
                     data = serial.read(serial.in_waiting)

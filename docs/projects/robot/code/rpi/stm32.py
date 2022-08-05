@@ -25,7 +25,7 @@ if os.getenv('BALENA_DEVICE_ARCH') == 'aarch64':
             time.sleep(0.1)
             nrst.on()
         # swallow boot message
-        with Serial(dev, 115200, timeout=0.3, exclusive=True) as serial:
+        with Serial(dev, 115200, timeout=0.3, exclusive=False) as serial:
             time.sleep(0.2)
             if not quiet: print('BOOT> ', end='')
             while serial.in_waiting:
@@ -83,7 +83,7 @@ def exec(cmd, url='serial:///dev/ttyAMA1'):
     
 def exec_no_follow(cmd, dev='/dev/ttyAMA1'):
     """Execute MicroPython code on STM32 & do not wait for result."""
-    with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive=True) as serial:
+    with Serial(dev, 115200, timeout=0.5, write_timeout=2, exclusive=False) as serial:
         pyd = Pydevice(serial)
         pyd.enter_raw_repl()
         pyd.exec_raw_no_follow(cmd)
@@ -98,8 +98,11 @@ def exec_no_follow(cmd, dev='/dev/ttyAMA1'):
             time.sleep(0.1)
 
 def rsync(url='serial:///dev/ttyAMA1'):
+    print("stm32.rsync")
     with SerialDevice(url) as repl:
+        print("repl =", repl)
         repl.rsync(data_consumer=lambda x: print(x, end=''), dry_run=False, upload_only=False)
+        print("rsynced")
 
 def rlist(url='serial:///dev/ttyAMA1'):
     with SerialDevice(url) as repl:

@@ -13,7 +13,10 @@ def layout(data_source, figure_args):
         'plot_width': 800,
         'plot_height': 500, 
     }
-    fig = figure(**{**figure_defaults, **figure_args})
+    try:
+        fig = figure(**{**figure_defaults, **figure_args})
+    except AttributeError:
+        fig = figure(**figure_defaults)
     
     colors = itertools.cycle(palette)
     for y_name, color in zip(column_names[1:], colors):

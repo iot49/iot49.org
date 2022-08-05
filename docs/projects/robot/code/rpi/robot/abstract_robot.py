@@ -77,14 +77,20 @@ class AbstractRobot(ABC):
         else:
             raise NameError(f"state {name} does not exist")
             
-    async def get(self, name):
+    async def get(self, name, verify=False):
         """Get state/parameter value. See state_module.py for field names.
         
         Example: 
             get('ODO_CM')
         """
         if name.isupper() and hasattr(state_module, name):
-            return state_module.STATE[getattr(state_module, name)]
+            value = state_module.STATE[getattr(state_module, name)]
+            if verify:
+                # fetch value from stm32
+                idx = getattr(state_module, name)
+                v = await self._comm.get(idx)
+                assert math.isclose(value, v, rel_tol=1e-6, abs_tol=1e-6), f"{pid_name}.{param_name}: {v} != {value}"
+            return value
         else:
             raise NameError(f"state {name} does not exist")
             
@@ -101,7 +107,7 @@ class AbstractRobot(ABC):
         await self._comm.set(idx, value)      
         state_module.STATE[idx] = value
                             
-    async def get_pid(self, pid_name, param_name):
+    async def get_pid(self, pid_name, param_name, verify=False):
         """Get PID parameter. See state_module.py / pid.py for field names.
         
         Example: 
@@ -109,6 +115,10 @@ class AbstractRobot(ABC):
         """
         idx = self._pid_idx(pid_name, param_name)
         value = state_module.STATE[idx]
+        if verify:
+            # fetch value from stm32
+            v = await self._comm.get(idx)
+            assert math.isclose(value, v, rel_tol=1e-6, abs_tol=1e-6), f"{pid_name}.{param_name}: {v} != {value}"
         fs = state_module.STATE[state_module.FS]
         if param_name == 'KI': value *= fs
         if param_name == 'KD': value /= fs

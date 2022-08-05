@@ -11,9 +11,7 @@ class Control(Controller):
         
     def update(self):
         duty = self.pid.update(STATE[TACHO_CM])
-        # STATE[DUTY_CM] = self.pid.config[SETPOINT]
         STATE[DUTY_CM] = self.fix_duty(duty)
-
     
     def fix_duty(self, duty):
         if abs(duty) > 0.5:

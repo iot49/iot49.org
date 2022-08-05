@@ -102,10 +102,10 @@ class Controller:
         state[_K] += 1
 
         # encoders
-        odo1  =  self.enc1.count()
-        odo2  = -self.enc2.count()
-        tach1 = state[_ODO_1] - odo1
-        tach2 = state[_ODO_2] - odo2
+        odo1  = self.enc1.count()
+        odo2  = self.enc2.count()
+        tach1 = odo1 - state[_ODO_1]
+        tach2 = odo2 - state[_ODO_2]
         state[_ODO_1]      = odo1
         state[_ODO_2]      = odo2
         state[_TACHO_CM]   = 0.5 * (tach1 + tach2)
