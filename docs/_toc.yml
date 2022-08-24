@@ -19,6 +19,7 @@ parts:
     - file: ide/config/https
     - file: ide/config/samba
     - file: ide/config/mosquitto
+    - file: ide/config/mount
   - file: ide/micropython
     sections:
     - file: ide/micropython/iot-kernel
